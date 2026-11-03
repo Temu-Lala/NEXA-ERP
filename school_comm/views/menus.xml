@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_comm_root" name="Communication" parent="school.school_menu_root" sequence="17" web_icon="users" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_comm_channel" name="Channels" parent="school_menu_comm_root" action="school_comm.action_school_communication_channel" sequence="1" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_comm_announcement" name="Announcements" parent="school_menu_comm_root" action="school_comm.action_school_announcement" sequence="2" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_comm_notification" name="Notifications" parent="school_menu_comm_root" action="school_comm.action_school_notification" sequence="3" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_comm_message" name="Messages" parent="school_menu_comm_root" action="school_comm.action_school_message" sequence="4" groups="school.group_school_clerk"/>
+    </data>
+</nexa>

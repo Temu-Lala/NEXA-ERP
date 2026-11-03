@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Staff members -->
+        <view id="view_school_staff_member_list" model="school.staff.member" type="list">
+            <field name="staff_code" string="Staff Code"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="category" string="Category"/>
+            <field name="campus_id" string="Campus"/>
+            <field name="job_title" string="Job Title"/>
+            <field name="weekly_periods" string="Periods/wk"/>
+            <field name="on_leave" string="On Leave"/>
+        </view>
+        <view id="view_school_staff_member_form" model="school.staff.member" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="staff_code" placeholder="e.g. STF-0001"/></h1></div>
+                <group>
+                    <group string="Profile">
+                        <field name="employee_id"/>
+                        <field name="teacher_id"/>
+                        <field name="category"/>
+                        <field name="department_id"/>
+                        <field name="campus_id"/>
+                        <field name="job_title"/>
+                    </group>
+                    <group string="Workload &amp; Leave">
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="qualification_count" readonly="true"/>
+                        <field name="weekly_periods" readonly="true"/>
+                        <field name="open_leave_requests" readonly="true"/>
+                        <field name="on_leave" readonly="true"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Qualifications">
+                        <field name="qualifications" nolabel="1">
+                            <list>
+                                <field name="qual_type"/>
+                                <field name="title"/>
+                                <field name="institution"/>
+                                <field name="year_obtained"/>
+                                <field name="expiry_date"/>
+                                <field name="verified"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_staff_member" type="window" model="school.staff.member" name="Staff Members" view_mode="list,form"/>
+
+        <!-- Qualifications -->
+        <view id="view_school_staff_qualification_list" model="school.staff.qualification" type="list">
+            <field name="staff_id" string="Staff"/>
+            <field name="qual_type" string="Type"/>
+            <field name="title" string="Title"/>
+            <field name="institution" string="Institution"/>
+            <field name="expiry_date" string="Expiry"/>
+            <field name="verified" string="Verified"/>
+        </view>
+        <view id="view_school_staff_qualification_form" model="school.staff.qualification" type="form">
+            <header>
+                <button name="qualification_verify" string="Verify" type="object" class="sum_highlight"/>
+                <field name="verified" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Credential">
+                        <field name="staff_id"/>
+                        <field name="qual_type"/>
+                        <field name="title"/>
+                        <field name="institution"/>
+                    </group>
+                    <group string="Details">
+                        <field name="year_obtained"/>
+                        <field name="expiry_date"/>
+                        <field name="reference_no"/>
+                        <field name="verified_by_id"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_staff_qualification" type="window" model="school.staff.qualification" name="Qualifications" view_mode="list,form"/>
+
+        <!-- Substitutions -->
+        <view id="view_school_staff_substitution_list" model="school.staff.substitution" type="list">
+            <field name="absent_staff_id" string="Absent Teacher"/>
+            <field name="substitute_staff_id" string="Substitute"/>
+            <field name="subject_id" string="Subject"/>
+            <field name="date_from" string="From"/>
+            <field name="date_to" string="To"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_staff_substitution_form" model="school.staff.substitution" type="form">
+            <header>
+                <button name="substitution_assign" string="Assign" type="object" class="sum_highlight"/>
+                <button name="substitution_complete" string="Complete" type="object"/>
+                <button name="substitution_cancel" string="Cancel" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Coverage">
+                        <field name="absent_staff_id"/>
+                        <field name="substitute_staff_id"/>
+                        <field name="assignment_id"/>
+                        <field name="subject_id"/>
+                    </group>
+                    <group string="When">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="period_number"/>
+                        <field name="class_id"/>
+                        <field name="section_id"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="reason"/>
+                    <field name="notes"/>
+                </group>
+                <group>
+                    <field name="company_id"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_staff_substitution" type="window" model="school.staff.substitution" name="Substitutions" view_mode="list,form"/>
+
+        <!-- Performance reviews -->
+        <view id="view_school_staff_performance_review_list" model="school.staff.performance.review" type="list">
+            <field name="staff_id" string="Staff"/>
+            <field name="period" string="Period"/>
+            <field name="reviewer_id" string="Reviewer"/>
+            <field name="observation_score" string="Score"/>
+            <field name="overall_rating" string="Rating"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_staff_performance_review_form" model="school.staff.performance.review" type="form">
+            <header>
+                <button name="performance_submit" string="Submit" type="object"/>
+                <button name="performance_approve" string="Approve" type="object" class="sum_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Review">
+                        <field name="staff_id"/>
+                        <field name="period"/>
+                        <field name="reviewer_id"/>
+                        <field name="observation_score"/>
+                        <field name="overall_rating" readonly="true"/>
+                    </group>
+                    <group string="Outcome">
+                        <field name="review_date"/>
+                        <field name="reviewed_by_id"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="strengths"/>
+                    <field name="improvements"/>
+                    <field name="notes"/>
+                </group>
+                <group>
+                    <field name="company_id"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_staff_performance_review" type="window" model="school.staff.performance.review" name="Performance Reviews" view_mode="list,form"/>
+    </data>
+</nexa>

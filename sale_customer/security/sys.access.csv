@@ -1,0 +1,7 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_customer_profile_user,access_sale_customer_profile_user,sale.customer.profile,group_sale_user,1,1,1,0
+access_sale_customer_profile_manager,access_sale_customer_profile_manager,sale.customer.profile,group_sale_manager,1,1,1,1
+access_sale_team_user,access_sale_team_user,sale.team,group_sale_user,1,0,0,0
+access_sale_team_manager,access_sale_team_manager,sale.team,group_sale_manager,1,1,1,1
+access_sale_team_member_user,access_sale_team_member_user,sale.team.member,group_sale_user,1,0,0,0
+access_sale_team_member_manager,access_sale_team_member_manager,sale.team.member,group_sale_manager,1,1,1,1

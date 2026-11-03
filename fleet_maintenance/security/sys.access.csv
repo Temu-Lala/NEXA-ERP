@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_vehicle_defect_all,fleet.vehicle.defect,fleet.vehicle.defect,,1,1,1,1
+access_fleet_inspection_template_all,fleet.inspection.template,fleet.inspection.template,,1,1,1,1
+access_fleet_vehicle_inspection_all,fleet.vehicle.inspection,fleet.vehicle.inspection,,1,1,1,1
+access_fleet_service_schedule_all,fleet.service.schedule,fleet.service.schedule,,1,1,1,1

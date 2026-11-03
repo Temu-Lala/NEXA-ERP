@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_ops_root" name="Operations" parent="school.school_menu_root" sequence="16" web_icon="users" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_route" name="Transport Routes" parent="school_menu_ops_root" action="school_ops.action_school_transport_route" sequence="1" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_vehicle" name="Vehicles" parent="school_menu_ops_root" action="school_ops.action_school_transport_vehicle" sequence="2" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_assignment" name="Transport Assignments" parent="school_menu_ops_root" action="school_ops.action_school_transport_assignment" sequence="3" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_book" name="Library Books" parent="school_menu_ops_root" action="school_ops.action_school_library_book" sequence="4" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_loan" name="Library Loans" parent="school_menu_ops_root" action="school_ops.action_school_library_loan" sequence="5" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_house" name="Boarding Houses" parent="school_menu_ops_root" action="school_ops.action_school_boarding_house" sequence="6" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_dormitory" name="Dormitories" parent="school_menu_ops_root" action="school_ops.action_school_boarding_dormitory" sequence="7" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_boarder" name="Boarders" parent="school_menu_ops_root" action="school_ops.action_school_boarding_boarder" sequence="8" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_item" name="Inventory Items" parent="school_menu_ops_root" action="school_ops.action_school_inventory_item" sequence="9" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_movement" name="Stock Movements" parent="school_menu_ops_root" action="school_ops.action_school_inventory_movement" sequence="10" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_menu" name="Cafeteria Menus" parent="school_menu_ops_root" action="school_ops.action_school_cafeteria_menu" sequence="11" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_ops_subscription" name="Meal Subscriptions" parent="school_menu_ops_root" action="school_ops.action_school_cafeteria_subscription" sequence="12" groups="school.group_school_clerk"/>
+    </data>
+</nexa>

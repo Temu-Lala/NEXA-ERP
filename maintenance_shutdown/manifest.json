@@ -1,0 +1,20 @@
+{
+  "name": "maintenance_shutdown",
+  "display_name": "Maintenance Turnarounds & Shutdown Projects",
+  "version": "1.0.0",
+  "summary": "Plant shutdowns, turnarounds, scheduled maintenance windows and grouped work packages",
+  "description": "Manage major plant turnarounds, planned outages and scheduled maintenance windows. Group hundreds of work orders into synchronized work packages, track critical path milestones, coordinate downtime windows with Operations, and control pre-shutdown preparation, execution and restart phases.",
+  "author": "Nexa",
+  "depends": [
+    "base",
+    "maintenance",
+    "maintenance_downtime"
+  ],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Operations"
+}

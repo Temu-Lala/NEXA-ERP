@@ -1,0 +1,3 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_contractor_dispatch,maintenance.contractor.dispatch all,maintenance.contractor.dispatch,,1,1,1,1
+access_maint_warranty_claim_v2,maintenance.warranty.claim all,maintenance.warranty.claim,,1,1,1,1

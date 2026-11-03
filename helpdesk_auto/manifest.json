@@ -1,0 +1,17 @@
+{
+    "name": "helpdesk_auto",
+    "display_name": "Helpdesk Automation Rules",
+    "version": "1.0.0",
+    "summary": "Event-driven automation rule engine with versioning, dry-run and execution logs",
+    "description": "A WHEN/IF/THEN automation engine that reacts to ticket create/update and state, priority or assignee changes, plus scheduled sweeps. Conditions combine with all/any logic; actions perform typed ticket mutations (set state/priority/team/assignee/category, add note, add tag, escalate). Rules are explicitly versioned and published, support dry-run test runs against a sample ticket, apply-once and emergency disable, with loop prevention via a security-bypass apply path and a full execution log per rule/ticket.",
+    "author": "Nexa",
+    "depends": ["base", "helpdesk"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/auto_cron.xml"
+    ],
+    "application": false,
+    "category": "Services"
+}

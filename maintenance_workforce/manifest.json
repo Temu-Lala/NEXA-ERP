@@ -1,0 +1,16 @@
+{
+  "name": "maintenance_workforce",
+  "display_name": "Maintenance Workforce",
+  "version": "1.0.0",
+  "summary": "Technician profiles, skills, qualifications, certificates and shift scheduling",
+  "description": "Manage maintenance technician profiles with trade classifications, skills and competency levels, track certificates and their expiry dates, manage shift schedules and working hours, record labor time entries against work orders, and support contractor access and supervision requirements.",
+  "author": "Nexa",
+  "depends": ["base", "maintenance"],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Operations"
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_root" name="School" sequence="40" web_icon="graduation-cap" groups="school.group_school_clerk"/>
+
+        <menuitem id="school_menu_students" name="Students" parent="school_menu_root" sequence="10" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_student" name="Students" parent="school_menu_students" action="school.action_school_student" sequence="1" groups="school.group_school_clerk"/>
+
+        <menuitem id="school_menu_config" name="Configuration" parent="school_menu_root" sequence="90" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_academic_year" name="Academic Years" parent="school_menu_config" action="school.action_school_academic_year" sequence="1" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_class" name="Classes" parent="school_menu_config" action="school.action_school_class" sequence="2" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_section" name="Sections" parent="school_menu_config" action="school.action_school_section" sequence="3" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_fee_category" name="Fee Categories" parent="school_menu_config" action="school.action_school_fee_category" sequence="4" groups="school.group_school_manager"/>
+    </data>
+</nexa>

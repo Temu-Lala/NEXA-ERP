@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hr_employee_search" model="hr.employee" type="search">
+            <field name="name" string="Employee"/>
+            <field name="employee_id" string="Employee ID"/>
+            <field name="work_email" string="Work Email"/>
+            <field name="job_id" string="Job Position"/>
+            <field name="department_id" string="Department"/>
+            <field name="parent_id" string="Manager"/>
+            <filter name="state_draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="state_pending" string="Pending Approval" domain='[["state","=","pending"]]'/>
+            <filter name="state_active" string="Active" domain='[["state","=","active"]]'/>
+            <filter name="state_on_leave" string="On Leave" domain='[["state","=","on_leave"]]'/>
+            <filter name="state_notice" string="Notice Period" domain='[["state","=","notice"]]'/>
+            <filter name="state_ended" string="Ended" domain='[["state","in",["terminated","retired","suspended"]]]'/>
+            <filter name="active_records" string="Active (not archived)" domain='[["active","=",true]]'/>
+            <filter name="archived_records" string="Archived" domain='[["active","=",false]]'/>
+            <filter name="group_department" string="Department" group_by="department_id"/>
+            <filter name="group_job" string="Job Position" group_by="job_id"/>
+            <filter name="group_manager" string="Manager" group_by="parent_id"/>
+            <filter name="group_employment_type" string="Employment Type" group_by="employment_type"/>
+            <filter name="group_state" string="Status" group_by="state"/>
+        </view>
+    </data>
+</nexa>

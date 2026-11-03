@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_purchase_overview_root" name="Dashboard" parent="purchase.purchase_menu_root" sequence="1" web_icon="pie-chart" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_ovw_po_state" name="Committed Spend" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_po_state" sequence="1" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_ovw_spend_supplier" name="Spend by Supplier" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_spend_supplier" sequence="2" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_ovw_spend_entity" name="Spend by Entity" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_spend_entity" sequence="3" groups="purchase.group_purchase_manager"/>
+        <menuitem id="menu_purchase_ovw_req" name="Requisition Pipeline" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_req_state" sequence="4" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_ovw_req_dept" name="Req Value by Dept" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_req_dept" sequence="5" groups="purchase.group_purchase_requester"/>
+        <menuitem id="menu_purchase_ovw_rfq" name="Open RFQs" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_rfq_state" sequence="6" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_ovw_rfq_deadline" name="Tender Deadlines" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_rfq_deadline" sequence="7" groups="purchase.group_purchase_officer"/>
+        <menuitem id="menu_purchase_ovw_contract" name="Contract Coverage" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_contract_state" sequence="8" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_ovw_contract_value" name="Ceiling vs Used" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_contract_value" sequence="9" groups="purchase.group_purchase_manager"/>
+        <menuitem id="menu_purchase_ovw_disc" name="Discrepancy Mix" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_disc_issue" sequence="10" groups="purchase.group_purchase_receiving"/>
+        <menuitem id="menu_purchase_ovw_match" name="Matching Load" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_match_state" sequence="11" groups="purchase.group_purchase_ap_officer"/>
+        <menuitem id="menu_purchase_ovw_dup" name="Duplicate Bills" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_match_dup" sequence="12" groups="purchase.group_purchase_ap_officer"/>
+        <menuitem id="menu_purchase_ovw_grade" name="Supplier Grades" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_scorecard_grade" sequence="13" groups="purchase.group_purchase_manager"/>
+        <menuitem id="menu_purchase_ovw_kpi" name="KPI Quality" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_metric_kpi" sequence="14" groups="purchase.group_purchase_quality"/>
+        <menuitem id="menu_purchase_ovw_corrective" name="Corrective Actions" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_corrective_state" sequence="15" groups="purchase.group_purchase_quality"/>
+        <menuitem id="menu_purchase_ovw_risk" name="Supplier Risk" parent="menu_purchase_overview_root" action="purchase_overview.action_purchase_ovw_supplier_risk" sequence="16" groups="purchase.group_purchase_supplier_compliance"/>
+    </data>
+</nexa>

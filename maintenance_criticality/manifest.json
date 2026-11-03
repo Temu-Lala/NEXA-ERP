@@ -1,0 +1,16 @@
+{
+    "name": "maintenance_criticality",
+    "display_name": "Maintenance Asset Criticality & Risk Scoring",
+    "version": "1.0.0",
+    "summary": "Configurable weighted criticality scoring: factors, scoring models and asset assessments with history",
+    "description": "Classify assets by configurable risk using weighted criticality factors (safety, environmental, production, financial, failure frequency, repair lead time, backup availability and regulatory importance). Define scoring models that bind factors to weights and rating scales, run per-asset assessments that keep full scoring history, and let the system compute the weighted score, criticality index and resulting level so staff can see why one asset receives a higher maintenance priority than another.",
+    "author": "Nexa",
+    "depends": ["base", "maintenance"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_maint_pm_schedule_generator" model="sys.cron">
+            <field name="name">Maintenance: Generate Scheduled PM Occurrences &amp; Work Orders</field>
+            <field name="code">maintenance.plan.generate.occurrences</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+        <record id="cron_maint_meter_reading_rollup" model="sys.cron">
+            <field name="name">Maintenance: Rollup Asset Meter Usage Summaries</field>
+            <field name="code">maintenance.meter.rollup.summaries</field>
+            <field name="interval_number">360</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

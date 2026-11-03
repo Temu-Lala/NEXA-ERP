@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== Performance Reviews (hr.appraisal overlay) ===================== -->
+        <view id="view_perf_review_list" model="hr.appraisal" type="list">
+            <field name="cycle_id" string="Cycle"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="manager_id" string="Appraiser"/>
+            <field name="overall_rating" string="Overall"/>
+            <field name="peer_score" string="360"/>
+            <field name="calibrated_rating" string="Calibrated"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_perf_review_form" model="hr.appraisal" type="form">
+            <header>
+                <button name="action_appraisal_seed" string="Seed Criteria" type="object" invisible="state == 'approved'"/>
+                <button name="action_appraisal_finalize" string="Finalize" type="object" class="sum_highlight" invisible="finalized == true"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Review">
+                        <field name="cycle_id"/>
+                        <field name="employee_id"/>
+                        <field name="manager_id"/>
+                        <field name="template_id"/>
+                    </group>
+                    <group string="Rating">
+                        <field name="overall_rating"/>
+                        <field name="peer_score" readonly="true"/>
+                        <field name="calibrated_rating"/>
+                        <field name="finalized" readonly="true"/>
+                        <field name="finalized_by" readonly="true"/>
+                        <field name="finalized_date" widget="date" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Assessment">
+                    <field name="self_review" nolabel="1"/>
+                    <field name="manager_feedback" nolabel="1"/>
+                </group>
+                <group string="360 Feedback">
+                    <field name="feedbacks" nolabel="1">
+                        <list>
+                            <field name="reviewer_id"/>
+                            <field name="relation"/>
+                            <field name="weight"/>
+                            <field name="score"/>
+                            <field name="submitted"/>
+                        </list>
+                    </field>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Objectives (hr.appraisal.goal overlay) ===================== -->
+        <view id="view_perf_goal_list" model="hr.appraisal.goal" type="list">
+            <field name="name" string="Objective"/>
+            <field name="level" string="Level"/>
+            <field name="employee_id" string="Owner"/>
+            <field name="parent_goal_id" string="Parent"/>
+            <field name="progress" string="Progress"/>
+            <field name="achievement_pct" string="Achieved %"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_perf_goal_form" model="hr.appraisal.goal" type="form">
+            <header>
+                <button name="action_goal_start" string="Start" type="object" invisible="state != 'draft'"/>
+                <button name="action_goal_reach" string="Reached" type="object" class="sum_highlight" invisible="state != 'in_progress'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Objective">
+                        <field name="name"/>
+                        <field name="level"/>
+                        <field name="parent_goal_id"/>
+                        <field name="employee_id"/>
+                        <field name="department_id"/>
+                        <field name="cycle_id"/>
+                    </group>
+                    <group string="Measurement">
+                        <field name="target_value"/>
+                        <field name="actual_value"/>
+                        <field name="unit"/>
+                        <field name="weight"/>
+                        <field name="progress"/>
+                        <field name="achievement_pct" readonly="true"/>
+                        <field name="target_date" widget="date"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== KPIs ===================== -->
+        <view id="view_kpi_list" model="hr.performance.kpi" type="list">
+            <field name="goal_id" string="Objective"/>
+            <field name="name" string="KPI"/>
+            <field name="target_value" string="Target"/>
+            <field name="actual_value" string="Actual"/>
+            <field name="achievement_pct" string="Achieved %"/>
+        </view>
+        <view id="view_kpi_form" model="hr.performance.kpi" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Indicator">
+                        <field name="goal_id"/>
+                        <field name="name"/>
+                        <field name="unit"/>
+                    </group>
+                    <group string="Performance">
+                        <field name="target_value"/>
+                        <field name="actual_value"/>
+                        <field name="weight"/>
+                        <field name="achievement_pct" readonly="true"/>
+                    </group>
+                </group>
+                <group col="2" string="Period">
+                    <field name="period_start" widget="date"/>
+                    <field name="period_end" widget="date"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Review Templates ===================== -->
+        <view id="view_appr_template_list" model="hr.appraisal.template" type="list">
+            <field name="name" string="Template"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_appr_template_form" model="hr.appraisal.template" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="name"/>
+                    <field name="active"/>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <group string="Criteria">
+                    <field name="lines" nolabel="1">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name"/>
+                            <field name="skill_id"/>
+                            <field name="weight"/>
+                        </list>
+                    </field>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_appr_template_line_list" model="hr.appraisal.template.line" type="list">
+            <field name="template_id" string="Template"/>
+            <field name="name" string="Criteria"/>
+            <field name="skill_id" string="Competency"/>
+            <field name="weight" string="Weight"/>
+        </view>
+        <view id="view_appr_template_line_form" model="hr.appraisal.template.line" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="template_id"/>
+                    <field name="name"/>
+                    <field name="skill_id"/>
+                    <field name="weight"/>
+                    <field name="sequence"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== 360 Feedback ===================== -->
+        <view id="view_feedback_list" model="hr.appraisal.feedback" type="list">
+            <field name="appraisal_id" string="Review"/>
+            <field name="reviewer_id" string="Reviewer"/>
+            <field name="relation" string="Relationship"/>
+            <field name="score" string="Score"/>
+            <field name="submitted" string="Submitted"/>
+        </view>
+        <view id="view_feedback_form" model="hr.appraisal.feedback" type="form">
+            <header>
+                <button name="action_feedback_submit" string="Submit" type="object" class="sum_highlight" invisible="submitted == true"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Feedback">
+                        <field name="appraisal_id"/>
+                        <field name="reviewer_id"/>
+                        <field name="relation"/>
+                    </group>
+                    <group string="Scoring">
+                        <field name="weight"/>
+                        <field name="score"/>
+                        <field name="submitted" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Comments">
+                    <field name="comments" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Check-ins ===================== -->
+        <view id="view_checkin_list" model="hr.performance.checkin" type="list">
+            <field name="checkin_date" string="Date"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="manager_id" string="Manager"/>
+            <field name="topic" string="Topic"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_checkin_form" model="hr.performance.checkin" type="form">
+            <header>
+                <button name="action_checkin_log" string="Log" type="object" invisible="state != 'draft'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="manager_id"/>
+                        <field name="goal_id"/>
+                    </group>
+                    <group>
+                        <field name="checkin_date" widget="date"/>
+                        <field name="topic"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+                <group string="Follow-up">
+                    <field name="follow_up" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Development Plans ===================== -->
+        <view id="view_devplan_list" model="hr.performance.devplan" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="name" string="Plan"/>
+            <field name="start_date" string="Start"/>
+            <field name="target_date" string="Target"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_devplan_form" model="hr.performance.devplan" type="form">
+            <header>
+                <button name="action_devplan_activate" string="Activate" type="object" invisible="state != 'draft'"/>
+                <button name="action_devplan_complete" string="Complete" type="object" class="sum_highlight" invisible="state != 'active'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="name"/>
+                        <field name="goal_id"/>
+                    </group>
+                    <group>
+                        <field name="start_date" widget="date"/>
+                        <field name="target_date" widget="date"/>
+                    </group>
+                </group>
+                <group string="Summary">
+                    <field name="summary" nolabel="1"/>
+                </group>
+                <group string="Actions">
+                    <field name="actions" nolabel="1">
+                        <list editable="bottom">
+                            <field name="description"/>
+                            <field name="skill_id"/>
+                            <field name="due_date" widget="date"/>
+                            <field name="progress"/>
+                            <field name="done"/>
+                        </list>
+                    </field>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_devplan_action_list" model="hr.performance.devplan.action" type="list">
+            <field name="plan_id" string="Plan"/>
+            <field name="description" string="Action"/>
+            <field name="due_date" string="Due"/>
+            <field name="progress" string="Progress"/>
+            <field name="done" string="Done"/>
+        </view>
+        <view id="view_devplan_action_form" model="hr.performance.devplan.action" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="plan_id"/>
+                    <field name="description"/>
+                    <field name="skill_id"/>
+                    <field name="due_date" widget="date"/>
+                    <field name="progress"/>
+                    <field name="done"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Improvement Plans ===================== -->
+        <view id="view_pip_list" model="hr.performance.pip" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="start_date" string="Start"/>
+            <field name="end_date" string="End"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_pip_form" model="hr.performance.pip" type="form">
+            <header>
+                <button name="action_pip_submit" string="Submit" type="object" invisible="state != 'draft'"/>
+                <button name="action_pip_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'submitted'"/>
+                <button name="action_pip_succeed" string="Succeeded" type="object" invisible="state != 'active'"/>
+                <button name="action_pip_fail" string="Failed" type="object" invisible="state != 'active'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Plan">
+                        <field name="employee_id"/>
+                        <field name="appraisal_id"/>
+                        <field name="start_date" widget="date"/>
+                        <field name="end_date" widget="date"/>
+                        <field name="review_date" widget="date"/>
+                    </group>
+                    <group string="Approval">
+                        <field name="requested_by" readonly="true"/>
+                        <field name="approver_id" readonly="true"/>
+                        <field name="approve_date" widget="date" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Reason">
+                    <field name="reason" nolabel="1"/>
+                </group>
+                <group string="Objective">
+                    <field name="objective" nolabel="1"/>
+                </group>
+                <group string="Outcome">
+                    <field name="outcome" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Calibration Sessions ===================== -->
+        <view id="view_calib_session_list" model="hr.calibration.session" type="list">
+            <field name="name" string="Session"/>
+            <field name="cycle_id" string="Cycle"/>
+            <field name="department_id" string="Department"/>
+            <field name="meeting_date" string="Meeting"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_calib_session_form" model="hr.calibration.session" type="form">
+            <header>
+                <button name="action_calib_open" string="Open" type="object" invisible="state != 'draft'"/>
+                <button name="action_calib_lock" string="Lock &amp; Apply" type="object" class="sum_highlight" invisible="state != 'open'"/>
+                <button name="action_calib_close" string="Close" type="object" invisible="state != 'locked'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group>
+                        <field name="name"/>
+                        <field name="cycle_id"/>
+                        <field name="department_id"/>
+                    </group>
+                    <group>
+                        <field name="meeting_date" widget="date"/>
+                    </group>
+                </group>
+                <group string="Lines">
+                    <field name="lines" nolabel="1">
+                        <list editable="bottom">
+                            <field name="appraisal_id"/>
+                            <field name="proposed_rating"/>
+                            <field name="calibrated_rating"/>
+                            <field name="delta"/>
+                            <field name="state"/>
+                        </list>
+                    </field>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_calib_line_list" model="hr.calibration.line" type="list">
+            <field name="session_id" string="Session"/>
+            <field name="appraisal_id" string="Review"/>
+            <field name="proposed_rating" string="Proposed"/>
+            <field name="calibrated_rating" string="Calibrated"/>
+            <field name="delta" string="Change"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_calib_line_form" model="hr.calibration.line" type="form">
+            <header>
+                <button name="action_callib_adjust" string="Adjust" type="object" invisible="state != 'proposed'"/>
+                <button name="action_callib_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'adjusted'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Line">
+                        <field name="session_id"/>
+                        <field name="appraisal_id"/>
+                    </group>
+                    <group string="Ratings">
+                        <field name="proposed_rating"/>
+                        <field name="calibrated_rating"/>
+                        <field name="delta" readonly="true"/>
+                        <field name="approved_by" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Adjustment Reason">
+                    <field name="adjust_reason" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_calib_history_list" model="hr.calibration.history" type="list">
+            <field name="session_id" string="Session"/>
+            <field name="appraisal_id" string="Review"/>
+            <field name="action" string="Action"/>
+            <field name="from_rating" string="From"/>
+            <field name="to_rating" string="To"/>
+            <field name="performed_by" string="By"/>
+            <field name="performed_at" string="When"/>
+        </view>
+        <view id="view_calib_history_form" model="hr.calibration.history" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="session_id"/>
+                    <field name="line_id"/>
+                    <field name="appraisal_id"/>
+                    <field name="action"/>
+                    <field name="from_rating"/>
+                    <field name="to_rating"/>
+                    <field name="performed_by"/>
+                    <field name="performed_at"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+        <action id="action_perf_review" type="window" model="hr.appraisal" name="Performance Reviews" view_mode="list,form"/>
+        <action id="action_perf_goal" type="window" model="hr.appraisal.goal" name="Objectives" view_mode="list,form"/>
+        <action id="action_kpi" type="window" model="hr.performance.kpi" name="KPIs" view_mode="list,form"/>
+        <action id="action_appr_template" type="window" model="hr.appraisal.template" name="Review Templates" view_mode="list,form"/>
+        <action id="action_appr_template_line" type="window" model="hr.appraisal.template.line" name="Template Criteria" view_mode="list,form"/>
+        <action id="action_feedback" type="window" model="hr.appraisal.feedback" name="360 Feedback" view_mode="list,form"/>
+        <action id="action_checkin" type="window" model="hr.performance.checkin" name="Check-ins" view_mode="list,form"/>
+        <action id="action_devplan" type="window" model="hr.performance.devplan" name="Development Plans" view_mode="list,form"/>
+        <action id="action_devplan_action" type="window" model="hr.performance.devplan.action" name="Development Actions" view_mode="list,form"/>
+        <action id="action_pip" type="window" model="hr.performance.pip" name="Improvement Plans" view_mode="list,form"/>
+        <action id="action_calib_session" type="window" model="hr.calibration.session" name="Calibration Sessions" view_mode="list,form"/>
+        <action id="action_calib_line" type="window" model="hr.calibration.line" name="Calibration Lines" view_mode="list,form"/>
+        <action id="action_calib_history" type="window" model="hr.calibration.history" name="Calibration History" view_mode="list,form"/>
+    </data>
+</nexa>

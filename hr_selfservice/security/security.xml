@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- NOTE: the Employees / Self-Service tier (group_hr_selfservice) is defined
+             in the anchor hr module alongside group_hr_user and group_hr_manager, so
+             this companion module's ACL CSV can resolve it across re-syncs. The rules
+             below scope its members to their own cases and requests; HR Officers see
+             everything through the empty-domain allow-all rules. -->
+
+        <!-- Ownership isolation: read-only rules keep an employee's service-desk
+             case and request list scoped to their own records, while officers and
+             managers (empty domain => allow-all) are unrestricted. Rules apply to
+             the read operation only, so record creation / edit is governed solely
+             by the ACLs and the workflow actions. -->
+        <record id="rule_case_own" model="sys.rule">
+            <field name="name">HR Case: own records</field>
+            <field name="model">hr.service.case</field>
+            <field name="domain_force">[["employee_user_id","=","$uid"]]</field>
+            <field name="active" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_selfservice'))]"/>
+        </record>
+        <record id="rule_case_officer_all" model="sys.rule">
+            <field name="name">HR Case: officers see all</field>
+            <field name="model">hr.service.case</field>
+            <field name="domain_force">[]</field>
+            <field name="active" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        </record>
+        <record id="rule_request_own" model="sys.rule">
+            <field name="name">HR Self-Service Request: own records</field>
+            <field name="model">hr.selfservice.request</field>
+            <field name="domain_force">[["employee_user_id","=","$uid"]]</field>
+            <field name="active" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_selfservice'))]"/>
+        </record>
+        <record id="rule_request_officer_all" model="sys.rule">
+            <field name="name">HR Self-Service Request: officers see all</field>
+            <field name="model">hr.selfservice.request</field>
+            <field name="domain_force">[]</field>
+            <field name="active" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        </record>
+    </data>
+</nexa>

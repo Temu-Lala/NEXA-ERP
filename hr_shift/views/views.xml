@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== Work Shifts ===================== -->
+
+        <view id="view_work_shift_list" model="hr.work.shift" type="list">
+            <field name="name" string="Shift"/>
+            <field name="code" string="Code"/>
+            <field name="start_time" string="Start"/>
+            <field name="end_time" string="End"/>
+            <field name="standard_hrs" string="Standard Hrs"/>
+            <field name="overnight" string="Overnight"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_work_shift_form" model="hr.work.shift" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Schedule">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="start_time"/>
+                        <field name="end_time"/>
+                        <field name="standard_hrs"/>
+                        <field name="overnight"/>
+                    </group>
+                    <group string="Tolerances">
+                        <field name="grace_in_min"/>
+                        <field name="grace_out_min"/>
+                        <field name="rounding_min"/>
+                        <field name="company_id"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Shift Assignments (roster) ===================== -->
+
+        <view id="view_shift_assignment_list" model="hr.work.shift.assignment" type="list">
+            <field name="date" widget="date" string="Date"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="shift_id" string="Shift"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_shift_assignment_form" model="hr.work.shift.assignment" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Roster">
+                        <field name="employee_id"/>
+                        <field name="shift_id"/>
+                        <field name="date" widget="date"/>
+                    </group>
+                    <group string="Scope">
+                        <field name="company_id"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_shift_assignment_search" model="hr.work.shift.assignment" type="search">
+            <field name="employee_id" string="Employee"/>
+            <field name="shift_id" string="Shift"/>
+            <filter name="group_shift" string="Shift" group_by="shift_id"/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+        </view>
+
+        <!-- ===================== Attendance Corrections ===================== -->
+
+        <view id="view_attendance_correction_list" model="hr.attendance.correction" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="attendance_id" string="Attendance"/>
+            <field name="orig_check_in" widget="datetime" string="Original In"/>
+            <field name="orig_check_out" widget="datetime" string="Original Out"/>
+            <field name="requested_check_in" widget="datetime" string="New In"/>
+            <field name="requested_check_out" widget="datetime" string="New Out"/>
+            <field name="state" widget="badge" string="Status"/>
+            <field name="applied" string="Applied"/>
+        </view>
+        <view id="view_attendance_correction_form" model="hr.attendance.correction" type="form">
+            <header>
+                <button name="action_confirm" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_validate" string="Approve" type="object" class="sum_highlight" invisible="state != 'confirm'"/>
+                <button name="action_refuse" string="Refuse" type="object" invisible="state != 'draft' &amp;&amp; state != 'confirm'"/>
+                <button name="action_reset" string="Reset to Draft" type="object" invisible="state != 'refuse' &amp;&amp; state != 'confirm'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Request">
+                        <field name="employee_id"/>
+                        <field name="attendance_id"/>
+                        <field name="company_id"/>
+                        <field name="applied"/>
+                    </group>
+                    <group string="Punches">
+                        <field name="orig_check_in" widget="datetime"/>
+                        <field name="orig_check_out" widget="datetime"/>
+                        <field name="requested_check_in" widget="datetime"/>
+                        <field name="requested_check_out" widget="datetime"/>
+                    </group>
+                </group>
+                <group string="Reason">
+                    <field name="reason" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_attendance_correction_search" model="hr.attendance.correction" type="search">
+            <field name="employee_id" string="Employee"/>
+            <filter name="pending" string="Waiting Approval" domain='[["state","=","confirm"]]'/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_state" string="Status" group_by="state"/>
+        </view>
+
+        <!-- ===================== Overtime Requests ===================== -->
+
+        <view id="view_overtime_request_list" model="hr.overtime.request" type="list">
+            <field name="date" widget="date" string="Date"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="hours" string="Overtime Hours"/>
+            <field name="attendance_id" string="Attendance"/>
+            <field name="state" widget="badge" string="Status"/>
+        </view>
+        <view id="view_overtime_request_form" model="hr.overtime.request" type="form">
+            <header>
+                <button name="action_confirm" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_validate" string="Approve" type="object" class="sum_highlight" invisible="state != 'confirm'"/>
+                <button name="action_refuse" string="Refuse" type="object" invisible="state != 'draft' &amp;&amp; state != 'confirm'"/>
+                <button name="action_reset" string="Reset to Draft" type="object" invisible="state != 'refuse' &amp;&amp; state != 'confirm'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Request">
+                        <field name="employee_id"/>
+                        <field name="date" widget="date"/>
+                        <field name="hours"/>
+                    </group>
+                    <group string="Reference">
+                        <field name="attendance_id"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                <group string="Reason">
+                    <field name="reason" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_overtime_request_search" model="hr.overtime.request" type="search">
+            <field name="employee_id" string="Employee"/>
+            <filter name="pending" string="Waiting Approval" domain='[["state","=","confirm"]]'/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_state" string="Status" group_by="state"/>
+        </view>
+        <view id="view_overtime_request_pivot" model="hr.overtime.request" type="pivot" string="Overtime Matrix">
+            <field name="employee_id" type="row"/>
+            <field name="date" type="col"/>
+            <field name="hours" type="measure"/>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+
+        <action id="action_work_shift" type="window" model="hr.work.shift" name="Work Shifts" view_mode="list,form"/>
+        <action id="action_shift_assignment" type="window" model="hr.work.shift.assignment" name="Shift Assignments" view_mode="list,search,form"/>
+        <action id="action_attendance_correction" type="window" model="hr.attendance.correction" name="Attendance Corrections" view_mode="list,search,form"/>
+        <action id="action_overtime_request" type="window" model="hr.overtime.request" name="Overtime Requests" view_mode="list,search,pivot,form"/>
+    </data>
+</nexa>

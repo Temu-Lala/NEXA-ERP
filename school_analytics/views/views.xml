@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- KPIs -->
+        <view id="view_school_analytics_kpi_list" model="school.analytics.kpi" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="KPI"/>
+            <field name="category" string="Category"/>
+            <field name="unit" string="Unit"/>
+            <field name="aggregation" string="Aggregation"/>
+            <field name="source_model" string="Source"/>
+            <field name="latest_value" string="Latest"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_analytics_kpi_form" model="school.analytics.kpi" type="form">
+            <header>
+                <button name="kpi_refresh" string="Refresh Snapshot" type="object" class="sum_highlight"/>
+                <field name="active" widget="boolean_toggle"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="KPI name"/></h1></div>
+                <group>
+                    <group string="Definition">
+                        <field name="code"/>
+                        <field name="category"/>
+                        <field name="unit"/>
+                        <field name="sequence"/>
+                    </group>
+                    <group string="Latest Result">
+                        <field name="aggregation"/>
+                        <field name="latest_value" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Aggregation Source">
+                    <group>
+                        <field name="source_model" placeholder="e.g. school.enrollment"/>
+                        <field name="filter_field"/>
+                        <field name="filter_value"/>
+                    </group>
+                    <group>
+                        <field name="value_field"/>
+                        <field name="num_field"/>
+                        <field name="num_values" placeholder="present,late"/>
+                    </group>
+                </group>
+                <group><field name="description"/></group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_analytics_kpi" type="window" model="school.analytics.kpi" name="KPIs" view_mode="list,form"/>
+
+        <!-- Snapshots -->
+        <view id="view_school_analytics_snapshot_list" model="school.analytics.snapshot" type="list">
+            <field name="snapshot_date" string="Date"/>
+            <field name="kpi_id" string="KPI"/>
+            <field name="formatted_value" string="Value"/>
+            <field name="numerator" string="Numerator"/>
+            <field name="denominator" string="Denominator"/>
+            <field name="campus_id" string="Campus"/>
+            <field name="academic_year_id" string="Academic Year"/>
+        </view>
+        <view id="view_school_analytics_snapshot_form" model="school.analytics.snapshot" type="form">
+            <header>
+                <button name="snapshot_refresh" string="Re-run KPI" type="object" class="sum_highlight"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Snapshot">
+                        <field name="kpi_id"/>
+                        <field name="snapshot_date"/>
+                        <field name="numeric_value"/>
+                        <field name="formatted_value" readonly="true"/>
+                    </group>
+                    <group string="Scope">
+                        <field name="numerator"/>
+                        <field name="denominator"/>
+                        <field name="academic_year_id"/>
+                        <field name="campus_id"/>
+                    </group>
+                </group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_analytics_snapshot" type="window" model="school.analytics.snapshot" name="Snapshots" view_mode="list,form"/>
+
+        <!-- Dashboards -->
+        <view id="view_school_analytics_dashboard_list" model="school.analytics.dashboard" type="list">
+            <field name="sequence" widget="handle"/>
+            <field name="code" string="Code"/>
+            <field name="name" string="Dashboard"/>
+            <field name="category" string="Category"/>
+            <field name="widget_count" string="Tiles"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_analytics_dashboard_form" model="school.analytics.dashboard" type="form">
+            <header>
+                <button name="dashboard_refresh" string="Refresh All KPIs" type="object" class="sum_highlight"/>
+                <field name="active" widget="boolean_toggle"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Dashboard name"/></h1></div>
+                <group>
+                    <group string="Definition">
+                        <field name="code"/>
+                        <field name="category"/>
+                        <field name="sequence"/>
+                    </group>
+                    <group string="Tiles">
+                        <field name="widget_count" readonly="true"/>
+                    </group>
+                </group>
+                <group><field name="description"/></group>
+                <notebook>
+                    <page string="Tiles">
+                        <field name="widgets" nolabel="1">
+                            <list editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="kpi_id"/>
+                                <field name="widget_type"/>
+                                <field name="color"/>
+                                <field name="span"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_analytics_dashboard" type="window" model="school.analytics.dashboard" name="Dashboards" view_mode="list,form"/>
+
+        <!-- Alert Rules -->
+        <view id="view_school_analytics_alert_rule_list" model="school.analytics.alert.rule" type="list">
+            <field name="name" string="Rule"/>
+            <field name="kpi_id" string="KPI"/>
+            <field name="comparison" string="When"/>
+            <field name="threshold" string="Threshold"/>
+            <field name="severity" string="Severity"/>
+            <field name="meets_now" string="Met Now"/>
+            <field name="trigger_count" string="Triggers"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_analytics_alert_rule_form" model="school.analytics.alert.rule" type="form">
+            <header>
+                <button name="alert_evaluate" string="Evaluate Now" type="object" class="sum_highlight"/>
+                <field name="active" widget="boolean_toggle"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Rule name"/></h1></div>
+                <group>
+                    <group string="Condition">
+                        <field name="kpi_id"/>
+                        <field name="comparison"/>
+                        <field name="threshold"/>
+                        <field name="severity"/>
+                    </group>
+                    <group string="Status">
+                        <field name="meets_now" readonly="true"/>
+                        <field name="last_triggered"/>
+                        <field name="trigger_count"/>
+                    </group>
+                </group>
+                <group><field name="notify_message"/></group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_analytics_alert_rule" type="window" model="school.analytics.alert.rule" name="Alert Rules" view_mode="list,form"/>
+    </data>
+</nexa>

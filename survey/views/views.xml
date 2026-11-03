@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_survey_survey_list" model="survey.survey" type="list">
+            <field name="name" string="Survey"/>
+            <field name="state" string="Status"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_survey_survey_form" model="survey.survey" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="description"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_survey_question_list" model="survey.question" type="list">
+            <field name="sequence" string="#"/>
+            <field name="name" string="Question"/>
+            <field name="survey_id" string="Survey"/>
+            <field name="question_type" string="Type"/>
+        </view>
+        <view id="view_survey_question_form" model="survey.question" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="survey_id"/>
+                    <field name="question_type"/>
+                    <field name="sequence"/>
+                </group>
+                <group>
+                    <field name="help"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_survey_survey" type="window" model="survey.survey" name="Surveys" view_mode="list,form"/>
+        <action id="action_survey_question" type="window" model="survey.question" name="Questions" view_mode="list,form"/>
+    </data>
+</nexa>

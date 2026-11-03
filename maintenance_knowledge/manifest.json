@@ -1,0 +1,16 @@
+{
+    "name": "maintenance_knowledge",
+    "display_name": "Maintenance Knowledge & Documents",
+    "version": "1.0.0",
+    "summary": "Technical knowledge library: manuals, diagrams, procedures and versioned documents linked to assets, work orders and plans",
+    "description": "Maintain a controlled technical knowledge library for maintenance teams - equipment manuals, wiring and piping diagrams, repair procedures, standard job plans, troubleshooting guides, manufacturer service bulletins, failure investigation reports, safety procedures and calibration instructions. Documents are versioned so the revision in force during a job stays identifiable, categorized with access-restriction flags for sensitive infrastructure diagrams, and linked to asset models, individual assets, work orders and maintenance plans.",
+    "author": "Nexa",
+    "depends": ["base", "maintenance", "maintenance_equipment"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

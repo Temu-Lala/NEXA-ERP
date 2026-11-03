@@ -1,0 +1,16 @@
+{
+    "name": "fleet_telematics",
+    "display_name": "Fleet Telematics & IoT",
+    "version": "1.0.0",
+    "summary": "GPS tracking, telematics hardware, real-time telemetry events and driving behavior analysis",
+    "description": "Integration with GPS and OBD devices, recording real-time vehicle telemetry, geofence violations, harsh acceleration/braking, and driver score events.",
+    "author": "Nexa",
+    "depends": ["base", "fleet", "fleet_driver"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

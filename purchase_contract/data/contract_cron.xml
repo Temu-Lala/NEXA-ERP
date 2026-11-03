@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_purchase_contract_expiry_renewal" model="sys.cron">
+            <field name="name">Purchase: Contract expiry &amp; renewal notice</field>
+            <field name="code">purchase.contract.expiry.renewal</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

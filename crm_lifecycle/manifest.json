@@ -1,0 +1,19 @@
+{
+    "name": "crm_lifecycle",
+    "display_name": "CRM Lead Governance & Automation",
+    "version": "1.0.0",
+    "summary": "Status history, assignment audit, duplicate review, and workflow rules",
+    "description": "Governance around the lead/opportunity lifecycle: an append-only status history, a full assignment audit (previous owner, new owner, assigner, method, timestamp) so reassignment never loses history, reviewed duplicate candidates matched on email/phone/company/name (never auto-merged on name alone), typed ordered assignment rules, and small reliable workflow rules with configurable intervals and recipients. crm.lead remains the authoritative record.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "crm"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "CRM"
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="blog_menu_root" name="Blog" sequence="68"/>
+        <menuitem id="blog_menu_posts" name="Posts" parent="blog_menu_root" action="website_blog.action_blog_post" sequence="1"/>
+        <menuitem id="blog_menu_tags" name="Tags" parent="blog_menu_root" action="website_blog.action_blog_tag" sequence="2"/>
+    </data>
+</nexa>

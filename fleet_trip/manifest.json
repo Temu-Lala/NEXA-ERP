@@ -1,0 +1,16 @@
+{
+    "name": "fleet_trip",
+    "display_name": "Fleet Trips & Dispatch",
+    "version": "1.0.0",
+    "summary": "Fleet Trips & Dispatch",
+    "description": "Manage fleet trips, dispatch workflows, stops, distance tracking, and trip costs.",
+    "author": "Nexa",
+    "depends": ["base", "fleet", "fleet_driver"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

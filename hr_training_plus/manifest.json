@@ -1,0 +1,22 @@
+{
+    "name": "hr_training_plus",
+    "display_name": "HR: Learning & Development",
+    "version": "1.0.0",
+    "summary": "Training providers, budget-approved requests, enrollment attendance, learning paths, exams and graded attempts, certificate-expiry reminders and job-vs-employee skill gap detection",
+    "description": "Production learning management on top of hr_training without migrating its tables: courses gain a delivery provider and a certificate-validity window, enrollments track attendance and hours attended, and new models add training providers, budget-gated maker-checker training requests, ordered learning paths with mandatory courses, exams with scored questions and graded attempts (percentage and pass derived from the total against the exam's pass mark), a scheduled idempotent scan that surfaces expiring/expiring certificates as alerts, and skill-gap detection comparing each skill a job requires against the level the employee currently holds. Consistent with the blueprint guardrail, approving a request only records a decision and never posts a cost, and grading an attempt is manager-gated. Extends the hr anchor, hr_skill and hr_training; navigated under the single HR app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "hr",
+        "hr_skill",
+        "hr_training"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/cert_cron.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

@@ -1,0 +1,16 @@
+{
+    "name": "website_blog",
+    "display_name": "Blog",
+    "version": "1.0.0",
+    "summary": "Blog posts and content management",
+    "description": "Author, publish, and organize blog posts with tags and status workflow.",
+    "author": "Nexa",
+    "depends": ["base"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Website"
+}

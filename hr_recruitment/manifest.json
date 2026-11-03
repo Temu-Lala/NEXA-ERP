@@ -1,0 +1,16 @@
+{
+    "name": "hr_recruitment",
+    "display_name": "Recruitment",
+    "version": "1.0.0",
+    "summary": "Applicant tracking: openings, interviews and offers",
+    "description": "Job openings with pipeline state, interview scheduling with ratings and feedback, and offers with salary proposal, acceptance tracking and conversion to an employee. Extends the existing hr.applicant record rather than duplicating it.",
+    "author": "Nexa",
+    "depends": ["base", "hr"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

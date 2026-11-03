@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+  <data>
+    <menuitem id="menu_stock_valuation_layer" name="Valuation Layers" parent="stock.menu_stock_valuation" action="action_valuation_layer" sequence="10"/>
+    <menuitem id="menu_stock_landed_cost" name="Landed Costs" parent="stock.menu_stock_valuation" action="action_landed_cost" sequence="20"/>
+    <menuitem id="menu_stock_valuation_event" name="Valuation Events" parent="stock.menu_stock_valuation" action="action_valuation_event" sequence="30"/>
+  </data>
+</nexa>

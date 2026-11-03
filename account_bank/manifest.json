@@ -1,0 +1,16 @@
+{
+    "name": "account_bank",
+    "display_name": "Cash, Bank & Settlement",
+    "version": "1.0.0",
+    "summary": "Cash sessions, cash movements, bank statement imports, and provider settlements",
+    "description": "Deep cash and banking controls on top of the account anchor: cashier/till sessions with counted-balance differences, cash movements, staged bank-statement imports with match statistics, and payment-provider settlement reconciliation via clearing accounts.",
+    "author": "Nexa",
+    "depends": ["base", "account"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Accounting"
+}

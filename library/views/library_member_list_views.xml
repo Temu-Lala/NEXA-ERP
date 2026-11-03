@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_library_member_list" model="library.member" type="list">
+            <field name="name" string="Name"/>
+            <field name="code" string="Member Number"/>
+            <field name="email" string="Email"/>
+            <field name="phone" string="Phone"/>
+            <field name="join_date" string="Member Since"/>
+            <field name="active" string="Active"/>
+        </view>
+    </data>
+</nexa>

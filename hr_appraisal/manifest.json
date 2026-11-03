@@ -1,0 +1,16 @@
+{
+    "name": "hr_appraisal",
+    "display_name": "HR Appraisals",
+    "version": "1.0.0",
+    "summary": "Performance appraisal, goals and review cycles",
+    "description": "Review cycles, employee appraisals with multi-tier feedback, goal management (individual/team/department), and scored evaluation lines linked to skill competencies.",
+    "author": "Nexa",
+    "depends": ["base", "hr", "hr_skill"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

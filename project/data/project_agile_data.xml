@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <!-- Default agile board columns. to_state drives the task lifecycle when a
+             card is dropped; done marks the finishing column. -->
+        <record id="stage_backlog" model="project.board.stage">
+            <field name="name">Backlog</field>
+            <field name="sequence">1</field>
+            <field name="to_state">backlog</field>
+            <field name="color">0</field>
+        </record>
+        <record id="stage_todo" model="project.board.stage">
+            <field name="name">To Do</field>
+            <field name="sequence">10</field>
+            <field name="to_state">todo</field>
+            <field name="color">1</field>
+        </record>
+        <record id="stage_in_progress" model="project.board.stage">
+            <field name="name">In Progress</field>
+            <field name="sequence">20</field>
+            <field name="to_state">in_progress</field>
+            <field name="color">2</field>
+        </record>
+        <record id="stage_in_review" model="project.board.stage">
+            <field name="name">In Review</field>
+            <field name="sequence">30</field>
+            <field name="to_state">in_review</field>
+            <field name="color">4</field>
+        </record>
+        <record id="stage_blocked" model="project.board.stage">
+            <field name="name">Blocked</field>
+            <field name="sequence">40</field>
+            <field name="to_state">blocked</field>
+            <field name="fold" eval="True"/>
+            <field name="color">5</field>
+        </record>
+        <record id="stage_done" model="project.board.stage">
+            <field name="name">Done</field>
+            <field name="sequence">50</field>
+            <field name="to_state">done</field>
+            <field name="done" eval="True"/>
+            <field name="fold" eval="True"/>
+            <field name="color">3</field>
+        </record>
+
+        <!-- Issue type taxonomy. Story is the default for new issues. -->
+        <record id="issue_type_story" model="project.issue.type">
+            <field name="name">Story</field>
+            <field name="code">ST</field>
+            <field name="kind">story</field>
+            <field name="is_default" eval="True"/>
+            <field name="color">1</field>
+        </record>
+        <record id="issue_type_task" model="project.issue.type">
+            <field name="name">Task</field>
+            <field name="code">TK</field>
+            <field name="kind">task</field>
+            <field name="color">0</field>
+        </record>
+        <record id="issue_type_bug" model="project.issue.type">
+            <field name="name">Bug</field>
+            <field name="code">BG</field>
+            <field name="kind">bug</field>
+            <field name="color">5</field>
+        </record>
+        <record id="issue_type_improvement" model="project.issue.type">
+            <field name="name">Improvement</field>
+            <field name="code">IM</field>
+            <field name="kind">improvement</field>
+            <field name="color">2</field>
+        </record>
+        <record id="issue_type_subtask" model="project.issue.type">
+            <field name="name">Sub-task</field>
+            <field name="code">SB</field>
+            <field name="kind">subtask</field>
+            <field name="color">4</field>
+        </record>
+        <record id="issue_type_epic" model="project.issue.type">
+            <field name="name">Epic</field>
+            <field name="code">EP</field>
+            <field name="kind">epic</field>
+            <field name="color">3</field>
+        </record>
+    </data>
+</nexa>

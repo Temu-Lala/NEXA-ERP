@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_loan_schedule_version_user,loan.schedule.version.user,loan.schedule.version,lending.group_lending_user,1,1,1,0
+access_loan_schedule_version_manager,loan.schedule.version.manager,loan.schedule.version,lending.group_lending_manager,1,1,1,1
+access_loan_installment_user,loan.installment.user,loan.installment,lending.group_lending_user,1,1,1,0
+access_loan_installment_manager,loan.installment.manager,loan.installment,lending.group_lending_manager,1,1,1,1
+access_loan_accrual_user,loan.accrual.user,loan.accrual,lending.group_lending_user,1,1,1,0
+access_loan_accrual_manager,loan.accrual.manager,loan.accrual,lending.group_lending_manager,1,1,1,1
+access_loan_adjustment_user,loan.adjustment.user,loan.adjustment,lending.group_lending_user,1,0,0,0
+access_loan_adjustment_manager,loan.adjustment.manager,loan.adjustment,lending.group_lending_manager,1,1,1,1

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Vehicle Expense Views -->
+        <view id="view_fleet_vehicle_expense_list" model="fleet.vehicle.expense" type="list">
+            <field name="name" string="Expense #"/>
+            <field name="expense_date" string="Date"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="trip_id" string="Trip"/>
+            <field name="expense_category" string="Category"/>
+            <field name="amount" string="Pre-tax"/>
+            <field name="tax_amount" string="Tax"/>
+            <field name="total_amount" string="Total"/>
+            <field name="currency" string="Currency"/>
+            <field name="expense_status" string="Status"/>
+        </view>
+
+        <view id="view_fleet_vehicle_expense_form" model="fleet.vehicle.expense" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="vehicle_id"/>
+                    <field name="trip_id"/>
+                    <field name="expense_category"/>
+                    <field name="expense_status"/>
+                    <field name="expense_date"/>
+                </group>
+                <group>
+                    <field name="amount"/>
+                    <field name="tax_amount"/>
+                    <field name="total_amount"/>
+                    <field name="currency"/>
+                    <field name="cost_center"/>
+                    <field name="department"/>
+                </group>
+                <group string="Vendor &amp; Approval">
+                    <field name="vendor_name"/>
+                    <field name="invoice_number"/>
+                    <field name="approved_by"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_vehicle_expense_search" model="fleet.vehicle.expense" type="search">
+            <field name="name" string="Expense #"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="vendor_name" string="Vendor"/>
+            <filter name="approved" string="Approved" domain='[["expense_status","=","approved"]]'/>
+            <filter name="submitted" string="Pending Approval" domain='[["expense_status","=","submitted"]]'/>
+            <filter name="group_category" string="Category" group_by="expense_category"/>
+            <filter name="group_status" string="Status" group_by="expense_status"/>
+            <filter name="group_vehicle" string="Vehicle" group_by="vehicle_id"/>
+        </view>
+
+        <action id="action_fleet_vehicle_expense" type="window" model="fleet.vehicle.expense" name="Vehicle Expenses" view_mode="list,form"/>
+
+        <!-- TCO Summary Views -->
+        <view id="view_fleet_tco_summary_list" model="fleet.tco.summary" type="list">
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="period_type" string="Period Type"/>
+            <field name="period_start" string="Start"/>
+            <field name="period_end" string="End"/>
+            <field name="total_distance_km" string="Distance (km)"/>
+            <field name="fuel_and_energy_cost" string="Fuel &amp; Energy"/>
+            <field name="maintenance_repair_cost" string="Maintenance"/>
+            <field name="total_tco" string="Total TCO"/>
+            <field name="cost_per_km" string="Cost/km"/>
+        </view>
+
+        <view id="view_fleet_tco_summary_form" model="fleet.tco.summary" type="form">
+            <sheet>
+                <group>
+                    <field name="vehicle_id"/>
+                    <field name="period_type"/>
+                    <field name="period_start"/>
+                    <field name="period_end"/>
+                    <field name="total_distance_km"/>
+                </group>
+                <group string="Operating Breakdown">
+                    <field name="acquisition_depreciation"/>
+                    <field name="fuel_and_energy_cost"/>
+                    <field name="maintenance_repair_cost"/>
+                    <field name="tire_cost"/>
+                    <field name="insurance_permit_cost"/>
+                    <field name="toll_parking_cost"/>
+                    <field name="other_operating_cost"/>
+                </group>
+                <group string="TCO &amp; Unit Economics">
+                    <field name="total_tco"/>
+                    <field name="cost_per_km"/>
+                    <field name="fuel_cost_per_km"/>
+                    <field name="maintenance_cost_per_km"/>
+                    <field name="computed_at"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_tco_summary_search" model="fleet.tco.summary" type="search">
+            <field name="vehicle_id" string="Vehicle"/>
+            <filter name="lifetime" string="Lifetime" domain='[["period_type","=","lifetime"]]'/>
+            <filter name="annual" string="Annual" domain='[["period_type","=","annual"]]'/>
+            <filter name="group_period" string="Period Type" group_by="period_type"/>
+            <filter name="group_vehicle" string="Vehicle" group_by="vehicle_id"/>
+        </view>
+
+        <action id="action_fleet_tco_summary" type="window" model="fleet.tco.summary" name="Total Cost of Ownership (TCO)" view_mode="list,form"/>
+    </data>
+</nexa>

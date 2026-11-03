@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="survey_menu_root" name="Surveys" sequence="70"/>
+        <menuitem id="survey_menu_surveys" name="Surveys" parent="survey_menu_root" action="survey.action_survey_survey" sequence="1"/>
+        <menuitem id="survey_menu_questions" name="Questions" parent="survey_menu_root" action="survey.action_survey_question" sequence="2"/>
+    </data>
+</nexa>

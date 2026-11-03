@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_purchase_supplier_root" name="Suppliers" parent="purchase.purchase_menu_root" sequence="8" web_icon="layers" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_supplier_master" name="Suppliers" parent="menu_purchase_supplier_root" action="purchase_supplier.action_purchase_supplier" sequence="1" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_supplier_qualification" name="Qualifications" parent="menu_purchase_supplier_root" action="purchase_supplier.action_purchase_supplier_qualification" sequence="2" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_supplier_document" name="Documents" parent="menu_purchase_supplier_root" action="purchase_supplier.action_purchase_supplier_document" sequence="3" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_supplier_risk" name="Risk Assessments" parent="menu_purchase_supplier_root" action="purchase_supplier.action_purchase_supplier_risk_assessment" sequence="4" groups="purchase.group_purchase_manager"/>
+        <menuitem id="menu_purchase_supplier_change" name="Change Requests" parent="menu_purchase_supplier_root" action="purchase_supplier.action_purchase_supplier_change_request" sequence="5" groups="purchase.group_purchase_manager"/>
+        <menuitem id="menu_purchase_supplier_bank" name="Bank Accounts" parent="menu_purchase_supplier_root" action="purchase_supplier.action_purchase_supplier_bank_account" sequence="6" groups="purchase.group_purchase_supplier_compliance"/>
+    </data>
+</nexa>

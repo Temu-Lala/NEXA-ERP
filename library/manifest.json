@@ -1,0 +1,26 @@
+{
+    "name": "library",
+    "display_name": "Library",
+    "version": "1.0.0",
+    "summary": "Library management: catalog, members, and book lending",
+    "description": "Manage a book catalog, library members, and loan/return workflows with due dates and fines.",
+    "author": "Nexa",
+    "depends": [
+        "base"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/library_category_list_views.xml",
+        "views/library_category_form_views.xml",
+        "views/library_book_list_views.xml",
+        "views/library_book_form_views.xml",
+        "views/library_member_list_views.xml",
+        "views/library_member_form_views.xml",
+        "views/library_loan_list_views.xml",
+        "views/library_loan_form_views.xml",
+        "views/library_actions.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Services"
+}

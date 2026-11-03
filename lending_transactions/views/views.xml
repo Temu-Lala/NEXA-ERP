@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+
+        <!-- ============================================================ -->
+        <!-- Disbursement views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_disbursement_list" model="loan.disbursement" type="list">
+            <field name="name"/>
+            <field name="account_id"/>
+            <field name="gross_amount"/>
+            <field name="net_amount"/>
+            <field name="method"/>
+            <field name="status" widget="badge"/>
+        </view>
+
+        <view id="view_loan_disbursement_form" model="loan.disbursement" type="form">
+            <header>
+                <button name="action_disbursement_confirm" string="Confirm" type="object" class="sum_highlight" invisible="status != 'draft' &amp;&amp; status != 'pending'"/>
+                <button name="action_disbursement_reverse" string="Reverse" type="object" invisible="status != 'confirmed'"/>
+                <field name="status" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Disbursement">
+                        <field name="name"/>
+                        <field name="account_id"/>
+                        <field name="application_id"/>
+                        <field name="disbursed_at"/>
+                    </group>
+                    <group string="Amounts">
+                        <field name="gross_amount"/>
+                        <field name="fees_withheld"/>
+                        <field name="net_amount"/>
+                        <field name="currency_id"/>
+                    </group>
+                </group>
+                <group string="Payment">
+                    <field name="method"/>
+                    <field name="provider_ref"/>
+                    <field name="idempotency_key"/>
+                    <field name="journal_entry_id"/>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_disbursement_search" model="loan.disbursement" type="search">
+            <field name="name"/>
+            <field name="account_id"/>
+            <filter name="pending" string="Pending" domain='[["status","in",["draft","pending"]]]'/>
+            <filter name="confirmed" string="Confirmed" domain='[["status","=","confirmed"]]'/>
+            <filter name="reversed" string="Reversed" domain='[["status","=","reversed"]]'/>
+            <filter name="group_status" string="Status" group_by="status"/>
+            <filter name="group_method" string="Method" group_by="method"/>
+        </view>
+
+        <action id="action_loan_disbursement" type="window" model="loan.disbursement" name="Loan Disbursements">
+            <field name="view_mode">list,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Repayment views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_repayment_kanban" model="loan.repayment" type="kanban" default_group_by="status" records_draggable="false">
+        </view>
+
+        <view id="view_loan_repayment_list" model="loan.repayment" type="list">
+            <field name="name"/>
+            <field name="account_id"/>
+            <field name="date"/>
+            <field name="amount_received"/>
+            <field name="allocated_total"/>
+            <field name="unallocated"/>
+            <field name="status" widget="badge"/>
+        </view>
+
+        <view id="view_loan_repayment_form" model="loan.repayment" type="form">
+            <header>
+                <button name="action_repayment_allocate" string="Allocate" type="object" class="sum_highlight" invisible="status != 'pending' &amp;&amp; status != 'confirmed'"/>
+                <button name="action_repayment_reverse" string="Reverse" type="object" invisible="status != 'confirmed'"/>
+                <field name="status" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Repayment">
+                        <field name="name"/>
+                        <field name="account_id"/>
+                        <field name="date"/>
+                    </group>
+                    <group string="Amounts">
+                        <field name="amount_received"/>
+                        <field name="allocated_total"/>
+                        <field name="amount_confirmed"/>
+                        <field name="unallocated"/>
+                    </group>
+                </group>
+                <group string="Payment">
+                    <field name="channel"/>
+                    <field name="provider_ref"/>
+                    <field name="idempotency_key"/>
+                    <field name="journal_entry_id"/>
+                </group>
+                <notebook>
+                    <page string="Allocations">
+                        <field name="allocations"/>
+                    </page>
+                    <page string="Note">
+                        <field name="note" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <view id="view_loan_repayment_search" model="loan.repayment" type="search">
+            <field name="name"/>
+            <field name="account_id"/>
+            <filter name="pending" string="Pending" domain='[["status","=","pending"]]'/>
+            <filter name="confirmed" string="Confirmed" domain='[["status","=","confirmed"]]'/>
+            <filter name="reversed" string="Reversed" domain='[["status","=","reversed"]]'/>
+            <filter name="group_status" string="Status" group_by="status"/>
+            <filter name="group_channel" string="Channel" group_by="channel"/>
+            <filter name="group_account" string="Loan Account" group_by="account_id"/>
+        </view>
+
+        <action id="action_loan_repayment" type="window" model="loan.repayment" name="Loan Repayments">
+            <field name="view_mode">list,kanban,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Repayment Allocation views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_repayment_allocation_list" model="loan.repayment.allocation" type="list">
+            <field name="repayment_id"/>
+            <field name="installment_id"/>
+            <field name="amount_principal"/>
+            <field name="amount_interest"/>
+            <field name="amount_fees"/>
+            <field name="amount_penalty"/>
+            <field name="total_allocated"/>
+            <field name="date"/>
+        </view>
+
+        <view id="view_loan_repayment_allocation_form" model="loan.repayment.allocation" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Allocation">
+                        <field name="repayment_id"/>
+                        <field name="installment_id"/>
+                        <field name="date"/>
+                    </group>
+                    <group string="Components">
+                        <field name="amount_penalty"/>
+                        <field name="amount_fees"/>
+                        <field name="amount_interest"/>
+                        <field name="amount_principal"/>
+                        <field name="total_allocated"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_repayment_allocation_search" model="loan.repayment.allocation" type="search">
+            <field name="repayment_id"/>
+            <field name="installment_id"/>
+            <filter name="group_repayment" string="Repayment" group_by="repayment_id"/>
+        </view>
+
+        <action id="action_loan_repayment_allocation" type="window" model="loan.repayment.allocation" name="Payment Allocations">
+            <field name="view_mode">list,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Payment Reversal views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_payment_reversal_list" model="loan.payment.reversal" type="list">
+            <field name="name"/>
+            <field name="repayment_id"/>
+            <field name="account_id"/>
+            <field name="date"/>
+            <field name="amount"/>
+            <field name="status" widget="badge"/>
+        </view>
+
+        <view id="view_loan_payment_reversal_form" model="loan.payment.reversal" type="form">
+            <header>
+                <button name="action_reversal_post" string="Post Reversal" type="object" class="sum_highlight" invisible="status != 'pending'"/>
+                <field name="status" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Reversal">
+                        <field name="name"/>
+                        <field name="repayment_id"/>
+                        <field name="account_id"/>
+                        <field name="date"/>
+                        <field name="amount"/>
+                    </group>
+                    <group string="Approval">
+                        <field name="reversed_by"/>
+                        <field name="journal_entry_id"/>
+                    </group>
+                </group>
+                <group string="Reason">
+                    <field name="reason" nolabel="1"/>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_payment_reversal_search" model="loan.payment.reversal" type="search">
+            <field name="name"/>
+            <field name="repayment_id"/>
+            <field name="account_id"/>
+            <filter name="pending" string="Pending" domain='[["status","=","pending"]]'/>
+            <filter name="posted" string="Posted" domain='[["status","=","posted"]]'/>
+            <filter name="group_status" string="Status" group_by="status"/>
+        </view>
+
+        <action id="action_loan_payment_reversal" type="window" model="loan.payment.reversal" name="Payment Reversals">
+            <field name="view_mode">list,form</field>
+        </action>
+
+    </data>
+</nexa>

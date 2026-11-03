@@ -1,0 +1,20 @@
+{
+    "name": "school_academics",
+    "display_name": "School Academics",
+    "version": "1.0.0",
+    "summary": "Subjects with a prerequisite graph, versioned curricula and learning outcomes, teaching assignments with workload, a conflict-validated timetable and lesson plans with an approve/review flow",
+    "description": "Implements the academic-management core from the blueprint. school.subject is a reusable registry whose prerequisites form a subject-level graph (school.subject.prerequisite); school.curriculum is a versioned offering of a subject for a grade and academic year, carrying measurable learning outcomes (school.curriculum.outcome) and a draft/active/retired lifecycle. school.teaching.assignment binds a teacher to a subject for a class and section, recording weekly period workload and the teacher's allowed weekdays. school.timetable.entry schedules one lesson (weekday, period, duration, classroom) and is protected by a conflict engine that refuses to publish when the same teacher is double-booked, the same section is in two lessons at once, two classes share a room for a period, the lesson falls outside the teacher's availability, or the headcount exceeds the room capacity; a standalone check action previews conflicts and a live flag marks entries that currently clash. school.lesson.plan attaches topics, objectives and materials to an assignment and moves through a submit and manager approve/reject review. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_setup"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

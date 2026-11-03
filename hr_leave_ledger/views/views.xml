@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== Leave Transactions (ledger) ===================== -->
+
+        <view id="view_leave_transaction_list" model="hr.leave.transaction" type="list">
+            <field name="date" string="Effective" widget="date"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="leave_type_id" string="Leave Type"/>
+            <field name="category" widget="badge" string="Category"/>
+            <field name="amount" string="Days (+/-)"/>
+            <field name="source_model" string="Source"/>
+            <field name="note" string="Note"/>
+        </view>
+        <view id="view_leave_transaction_form" model="hr.leave.transaction" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Entry">
+                        <field name="employee_id"/>
+                        <field name="leave_type_id"/>
+                        <field name="category"/>
+                        <field name="amount"/>
+                        <field name="date" widget="date"/>
+                    </group>
+                    <group string="Origin">
+                        <field name="source_model"/>
+                        <field name="source_id"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_leave_transaction_search" model="hr.leave.transaction" type="search">
+            <field name="employee_id" string="Employee"/>
+            <field name="leave_type_id" string="Leave Type"/>
+            <filter name="accruals" string="Accruals" domain='[["category","=","accrual"]]'/>
+            <filter name="usages" string="Usages" domain='[["category","=","usage"]]'/>
+            <filter name="reversals" string="Reversals" domain='[["category","=","reversal"]]'/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_type" string="Leave Type" group_by="leave_type_id"/>
+            <filter name="group_category" string="Category" group_by="category"/>
+        </view>
+
+        <!-- ===================== Leave Balances ===================== -->
+
+        <view id="view_leave_balance_list" model="hr.leave.balance" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="leave_type_id" string="Leave Type"/>
+            <field name="accrued" string="Accrued"/>
+            <field name="taken" string="Taken"/>
+            <field name="balance" string="Balance"/>
+        </view>
+        <view id="view_leave_balance_form" model="hr.leave.balance" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Employee">
+                        <field name="employee_id"/>
+                        <field name="leave_type_id"/>
+                        <field name="company_id"/>
+                    </group>
+                    <group string="Balance (days)">
+                        <field name="accrued"/>
+                        <field name="taken"/>
+                        <field name="balance"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_leave_balance_search" model="hr.leave.balance" type="search">
+            <field name="employee_id" string="Employee"/>
+            <field name="leave_type_id" string="Leave Type"/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_type" string="Leave Type" group_by="leave_type_id"/>
+        </view>
+        <view id="view_leave_balance_pivot" model="hr.leave.balance" type="pivot" string="Balance Matrix">
+            <field name="employee_id" type="row"/>
+            <field name="leave_type_id" type="col"/>
+            <field name="balance" type="measure"/>
+        </view>
+
+        <!-- ===================== Accrual Rules ===================== -->
+
+        <view id="view_accrual_rule_list" model="hr.leave.accrual.rule" type="list">
+            <field name="name" string="Rule"/>
+            <field name="leave_type_id" string="Leave Type"/>
+            <field name="days_per_period" string="Days / Period"/>
+            <field name="frequency" widget="badge" string="Frequency"/>
+            <field name="carry_over_max" string="Carry-Over Cap"/>
+            <field name="expiry_days" string="Expiry (Days)"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_accrual_rule_form" model="hr.leave.accrual.rule" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Rule">
+                        <field name="name"/>
+                        <field name="leave_type_id"/>
+                        <field name="days_per_period"/>
+                        <field name="frequency"/>
+                    </group>
+                    <group string="Limits">
+                        <field name="carry_over_max"/>
+                        <field name="expiry_days"/>
+                        <field name="company_id"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+
+        <action id="action_leave_balance" type="window" model="hr.leave.balance" name="Leave Balances" view_mode="list,search,pivot,form"/>
+        <action id="action_leave_transaction" type="window" model="hr.leave.transaction" name="Leave Ledger" view_mode="list,search,form"/>
+        <action id="action_accrual_rule" type="window" model="hr.leave.accrual.rule" name="Accrual Rules" view_mode="list,form"/>
+    </data>
+</nexa>

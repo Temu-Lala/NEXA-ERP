@@ -1,0 +1,19 @@
+{
+    "name": "sale_analytics",
+    "display_name": "Sales Analytics",
+    "version": "1.0.0",
+    "summary": "Period-based sales targets, attainment tracking, and revenue forecasting",
+    "description": "Read-model for sales performance measurement: define revenue, volume, and margin targets per team or individual rep for a given period, record achieved and forecast figures, and track attainment percentage. Actual figures are refreshed by operational batch jobs; this module provides the structure and UI.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "sale"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Sales"
+}

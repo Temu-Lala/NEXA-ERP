@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_ecom_root" name="E-Commerce" sequence="45" web_icon="shopping-bag" groups="website_shop.group_website_shop_user"/>
+
+        <menuitem id="menu_ecom_catalog" name="Catalog" parent="menu_ecom_root" sequence="20" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_sales" name="Sales" parent="menu_ecom_root" sequence="30" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_marketing" name="Marketing" parent="menu_ecom_root" sequence="40" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_reporting" name="Reporting" parent="menu_ecom_root" sequence="50" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_config" name="Configuration" parent="menu_ecom_root" sequence="90" groups="website_shop.group_website_shop_manager"/>
+
+        <menuitem id="menu_ecom_stores" name="Stores" parent="menu_ecom_config" action="website_shop.action_store" sequence="1" groups="website_shop.group_website_shop_manager"/>
+        <menuitem id="menu_ecom_store_domains" name="Store Domains" parent="menu_ecom_config" action="website_shop.action_store_domain" sequence="2" groups="website_shop.group_website_shop_manager"/>
+        <menuitem id="menu_ecom_store_settings" name="Store Settings" parent="menu_ecom_config" action="website_shop.action_store_settings" sequence="3" groups="website_shop.group_website_shop_manager"/>
+        <menuitem id="menu_ecom_publications" name="Product Publications" parent="menu_ecom_catalog" action="website_shop.action_publication" sequence="1" groups="website_shop.group_website_shop_user"/>
+    </data>
+</nexa>

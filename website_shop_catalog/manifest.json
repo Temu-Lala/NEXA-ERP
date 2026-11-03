@@ -1,0 +1,16 @@
+{
+    "name": "website_shop_catalog",
+    "display_name": "E-Commerce Catalog",
+    "version": "1.0.0",
+    "summary": "Storefront categories, collections, and customer wishlists",
+    "description": "Merchandising companion on top of the E-Commerce anchor: store-facing category hierarchy, manual and rule-based collections, and customer wishlists. Product identity remains owned by the Product application; this module only curates storefront presentation.",
+    "author": "Nexa",
+    "depends": ["base", "website_shop"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Website"
+}

@@ -1,0 +1,19 @@
+{
+    "name": "school_setup",
+    "display_name": "School Setup & Organization",
+    "version": "1.0.0",
+    "summary": "Campuses, terms/semesters, classrooms and the school calendar that the academic, attendance and examination modules build on",
+    "description": "Institutional master data for a multi-campus school: school.campus (physical location with manager and contact details), school.term (configurable semesters/terms inside an academic year, with a current-term flag), school.classroom (rooms with type and capacity for the timetable to detect conflicts) and school.calendar.event (dated holidays, examination windows, sports days, parent-teacher meetings and term start/end, with a school-closed flag). Everything is company- and campus-scoped so one deployment can serve several sites without cross-contamination. This tranche is master/configuration data only; it mutates no fees, grades or attendance.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

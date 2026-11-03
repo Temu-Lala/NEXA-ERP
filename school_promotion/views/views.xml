@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Promotion Batch -->
+        <view id="view_school_promotion_batch_list" model="school.promotion.batch" type="list">
+            <field name="name" string="Batch"/>
+            <field name="from_year_id" string="From Year"/>
+            <field name="to_year_id" string="To Year"/>
+            <field name="promoted_count" string="Promoted"/>
+            <field name="retained_count" string="Retained"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_promotion_batch_form" model="school.promotion.batch" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Promotion 2026"/></h1></div>
+                <group>
+                    <group>
+                        <field name="from_year_id" string="From Academic Year"/>
+                        <field name="to_year_id" string="To Academic Year"/>
+                        <field name="from_date" string="Date"/>
+                    </group>
+                    <group>
+                        <field name="promoted_count" string="Promoted"/>
+                        <field name="retained_count" string="Retained"/>
+                        <field name="state" string="Status"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Decisions">
+                        <field name="lines" string="Decisions">
+                            <view type="list">
+                                <field name="student_id" string="Student"/>
+                                <field name="from_class_id" string="From Class"/>
+                                <field name="to_class_id" string="To Class"/>
+                                <field name="result" string="Result"/>
+                                <field name="action" string="Action"/>
+                            </view>
+                        </field>
+                    </page>
+                </notebook>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_promotion_batch" type="window" model="school.promotion.batch" name="Promotion Batches" view_mode="list,form"/>
+
+        <!-- Promotion Line standalone -->
+        <view id="view_school_promotion_line_list" model="school.promotion.line" type="list">
+            <field name="batch_id" string="Batch"/>
+            <field name="student_id" string="Student"/>
+            <field name="from_class_id" string="From Class"/>
+            <field name="to_class_id" string="To Class"/>
+            <field name="result" string="Result"/>
+            <field name="action" string="Action"/>
+        </view>
+        <action id="action_school_promotion_line" type="window" model="school.promotion.line" name="Promotion Decisions" view_mode="list"/>
+
+        <!-- Import Batch -->
+        <view id="view_school_import_batch_list" model="school.import.batch" type="list">
+            <field name="name" string="Batch"/>
+            <field name="date" string="Date"/>
+            <field name="source" string="Source"/>
+            <field name="total_rows" string="Total"/>
+            <field name="imported_rows" string="Imported"/>
+            <field name="error_rows" string="Errors"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_import_batch_form" model="school.import.batch" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Grade 1 Import 2026"/></h1></div>
+                <group>
+                    <group>
+                        <field name="date" string="Date"/>
+                        <field name="source" string="Source"/>
+                        <field name="academic_year_id" string="Academic Year"/>
+                    </group>
+                    <group>
+                        <field name="total_rows" string="Total Rows"/>
+                        <field name="imported_rows" string="Imported Rows"/>
+                        <field name="error_rows" string="Error Rows"/>
+                        <field name="state" string="Status"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Rows">
+                        <field name="lines" string="Rows">
+                            <view type="list">
+                                <field name="name" string="Student Name"/>
+                                <field name="code" string="Student ID"/>
+                                <field name="gender" string="Gender"/>
+                                <field name="age" string="Age"/>
+                                <field name="grade" string="Grade"/>
+                                <field name="section" string="Section"/>
+                                <field name="parent_name" string="Parent"/>
+                                <field name="phone" string="Phone"/>
+                                <field name="status" string="Status"/>
+                                <field name="message" string="Message"/>
+                            </view>
+                        </field>
+                    </page>
+                </notebook>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_import_batch" type="window" model="school.import.batch" name="Bulk Imports" view_mode="list,form"/>
+
+        <!-- Import Line standalone -->
+        <view id="view_school_import_line_list" model="school.import.line" type="list">
+            <field name="batch_id" string="Batch"/>
+            <field name="name" string="Student Name"/>
+            <field name="code" string="Student ID"/>
+            <field name="grade" string="Grade"/>
+            <field name="parent_name" string="Parent"/>
+            <field name="status" string="Status"/>
+            <field name="message" string="Message"/>
+        </view>
+        <action id="action_school_import_line" type="window" model="school.import.line" name="Import Rows" view_mode="list"/>
+    </data>
+</nexa>

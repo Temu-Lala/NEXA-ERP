@@ -1,0 +1,16 @@
+{
+    "name": "fleet_tire",
+    "display_name": "Fleet Tire Management",
+    "version": "1.0.0",
+    "summary": "Tire lifecycle, mounting, wear tracking and inspection management",
+    "description": "Comprehensive tire management covering serial inventory, wheel position installations, tread depth tracking, and condition inspections.",
+    "author": "Nexa",
+    "depends": ["base", "fleet"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

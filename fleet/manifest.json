@@ -1,0 +1,16 @@
+{
+    "name": "fleet",
+    "display_name": "Fleet",
+    "version": "2.0.0",
+    "summary": "Vehicle fleet and enterprise asset management",
+    "description": "Central fleet registry, brand & model catalog, vehicle classes, depots, odometer readings, and status audit lifecycle management.",
+    "author": "Nexa",
+    "depends": ["base"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Operations"
+}

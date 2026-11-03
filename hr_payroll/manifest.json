@@ -1,0 +1,16 @@
+{
+    "name": "hr_payroll",
+    "display_name": "Payroll",
+    "version": "1.0.0",
+    "summary": "Payroll and compensation processing",
+    "description": "Salary structures, payroll categories with accounting mapping, versioned salary rules, payslip runs (prepare/confirm/close lifecycle), payslips with gross-to-net line detail, and journal mapping to Accounting. Complements the hr module (employees, attendance, leave) without duplicating it.",
+    "author": "Nexa",
+    "depends": ["base", "hr", "account"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

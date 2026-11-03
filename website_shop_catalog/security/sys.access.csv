@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_ecom_category_user,access_ecom_category_user,ecom.category,group_website_shop_user,1,1,1,0
+access_ecom_category_manager,access_ecom_category_manager,ecom.category,group_website_shop_manager,1,1,1,1
+access_ecom_collection_user,access_ecom_collection_user,ecom.collection,group_website_shop_user,1,1,1,0
+access_ecom_collection_manager,access_ecom_collection_manager,ecom.collection,group_website_shop_manager,1,1,1,1
+access_ecom_collection_item_user,access_ecom_collection_item_user,ecom.collection.item,group_website_shop_user,1,1,1,1
+access_ecom_collection_item_manager,access_ecom_collection_item_manager,ecom.collection.item,group_website_shop_manager,1,1,1,1
+access_ecom_wishlist_user,access_ecom_wishlist_user,ecom.wishlist,group_website_shop_user,1,1,1,0
+access_ecom_wishlist_manager,access_ecom_wishlist_manager,ecom.wishlist,group_website_shop_manager,1,1,1,1

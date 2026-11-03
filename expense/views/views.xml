@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_expense_category_list" model="expense.category" type="list">
+            <field name="name" string="Category"/>
+            <field name="code" string="Code"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_expense_category_form" model="expense.category" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_expense_expense_list" model="expense.expense" type="list">
+            <field name="name" string="Description"/>
+            <field name="category_id" string="Category"/>
+            <field name="user_id" string="Submitted By"/>
+            <field name="amount" string="Amount"/>
+            <field name="expense_date" string="Date"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_expense_expense_form" model="expense.expense" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="category_id"/>
+                    <field name="user_id"/>
+                </group>
+                <group>
+                    <field name="amount"/>
+                    <field name="expense_date"/>
+                    <field name="state"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_expense_category" type="window" model="expense.category" name="Categories" view_mode="list,form"/>
+        <action id="action_expense_expense" type="window" model="expense.expense" name="My Expenses" view_mode="list,form"/>
+    </data>
+</nexa>

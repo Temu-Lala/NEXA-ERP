@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_helpdesk_sla_root" name="Helpdesk SLA" sequence="65"/>
+
+        <menuitem id="menu_helpdesk_sla_timers" name="SLA Timers" parent="menu_helpdesk_sla_root" action="helpdesk_sla.action_sla_timer" sequence="10"/>
+        <menuitem id="menu_helpdesk_sla_events" name="SLA Events" parent="menu_helpdesk_sla_root" action="helpdesk_sla.action_sla_event" sequence="15"/>
+
+        <menuitem id="menu_helpdesk_sla_config" name="Configuration" parent="menu_helpdesk_sla_root" sequence="20"/>
+        <menuitem id="menu_helpdesk_sla_policy" name="SLA Policies" parent="menu_helpdesk_sla_config" action="helpdesk_sla.action_sla_policy" sequence="10"/>
+        <menuitem id="menu_helpdesk_sla_escalation" name="Escalation Rules" parent="menu_helpdesk_sla_config" action="helpdesk_sla.action_escalation_rule" sequence="20"/>
+        <menuitem id="menu_helpdesk_sla_calendar" name="Business Calendars" parent="menu_helpdesk_sla_config" action="helpdesk_sla.action_business_calendar" sequence="30"/>
+        <menuitem id="menu_helpdesk_sla_holidays" name="Holidays" parent="menu_helpdesk_sla_config" action="helpdesk_sla.action_business_calendar_holiday" sequence="40"/>
+    </data>
+</nexa>

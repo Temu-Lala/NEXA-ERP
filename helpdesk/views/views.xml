@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_helpdesk_team_list" model="helpdesk.team" type="list">
+            <field name="name" string="Team"/>
+            <field name="email" string="Email"/>
+            <field name="allow_inbound" string="Inbound"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_helpdesk_team_form" model="helpdesk.team" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="allow_inbound"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="member_ids"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_helpdesk_ticket_tag_list" model="helpdesk.ticket.tag" type="list">
+            <field name="name" string="Tag"/>
+            <field name="color" string="Color"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_helpdesk_ticket_tag_form" model="helpdesk.ticket.tag" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="color"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_helpdesk_ticket_category_list" model="helpdesk.ticket.category" type="list">
+            <field name="sequence" widget="handle"/>
+            <field name="name" string="Category"/>
+            <field name="parent_id" string="Parent"/>
+            <field name="team_id" string="Default Team"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_helpdesk_ticket_category_form" model="helpdesk.ticket.category" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                    <field name="team_id"/>
+                    <field name="color"/>
+                    <field name="sequence"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Tickets ===================== -->
+
+        <view id="view_helpdesk_ticket_kanban" model="helpdesk.ticket" type="kanban" default_group_by="state" records_draggable="false">
+        </view>
+
+        <view id="view_helpdesk_ticket_list" model="helpdesk.ticket" type="list">
+            <field name="number" string="Number"/>
+            <field name="name" string="Subject"/>
+            <field name="partner_id" string="Reported By"/>
+            <field name="team_id" string="Team"/>
+            <field name="assigned_to" string="Assigned To"/>
+            <field name="category_id" string="Category"/>
+            <field name="ticket_type" string="Type"/>
+            <field name="channel" string="Channel"/>
+            <field name="priority" widget="badge" string="Priority"/>
+            <field name="state" widget="badge" string="Status"/>
+            <field name="message_count" string="Messages"/>
+        </view>
+
+        <view id="view_helpdesk_ticket_form" model="helpdesk.ticket" type="form">
+            <header>
+                <button name="action_assign_self" string="Claim" type="object"/>
+                <button name="action_start_progress" string="Start Working" type="object" invisible="state != 'new' &amp;&amp; state != 'pending' &amp;&amp; state != 'open'"/>
+                <button name="action_pending" string="Pending Customer" type="object" invisible="state != 'new' &amp;&amp; state != 'open' &amp;&amp; state != 'in_progress'"/>
+                <button name="action_resolve" string="Resolve" type="object" class="sum_highlight" invisible="state != 'new' &amp;&amp; state != 'open' &amp;&amp; state != 'in_progress' &amp;&amp; state != 'pending'"/>
+                <button name="action_close" string="Close" type="object" invisible="state != 'resolved'"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state != 'new' &amp;&amp; state != 'open' &amp;&amp; state != 'in_progress' &amp;&amp; state != 'pending'"/>
+                <button name="action_reopen" string="Reopen" type="object" invisible="state != 'closed' &amp;&amp; state != 'resolved' &amp;&amp; state != 'cancelled'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Ticket">
+                        <field name="number"/>
+                        <field name="name"/>
+                        <field name="partner_id"/>
+                        <field name="category_id"/>
+                        <field name="channel"/>
+                        <field name="ticket_type"/>
+                    </group>
+                    <group string="Assignment">
+                        <field name="team_id"/>
+                        <field name="assigned_to"/>
+                        <field name="priority" widget="badge"/>
+                        <field name="company_id"/>
+                        <field name="tag_ids" widget="many2many_tags"/>
+                    </group>
+                </group>
+                <group col="4" string="Tracking">
+                    <field name="first_response_at"/>
+                    <field name="closed_date"/>
+                    <field name="reopened_count"/>
+                    <field name="history_count"/>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <group string="Resolution">
+                    <field name="resolution" nolabel="1"/>
+                </group>
+                <notebook>
+                    <page string="Messages">
+                        <field name="messages"/>
+                    </page>
+                    <page string="Related Tickets">
+                        <field name="links"/>
+                    </page>
+                    <page string="History">
+                        <field name="history"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <view id="view_helpdesk_ticket_search" model="helpdesk.ticket" type="search">
+            <field name="name" string="Subject"/>
+            <field name="number" string="Number"/>
+            <field name="partner_id" string="Reported By"/>
+            <field name="team_id" string="Team"/>
+            <field name="assigned_to" string="Assigned To"/>
+            <field name="category_id" string="Category"/>
+            <filter name="my_tickets" string="My Tickets" domain='[["assigned_to","=","$uid"]]'/>
+            <filter name="open_tickets" string="Open" domain='[["state","in",["new","open","in_progress","pending"]]]'/>
+            <filter name="pending" string="Pending Customer" domain='[["state","=","pending"]]'/>
+            <filter name="resolved" string="Resolved" domain='[["state","=","resolved"]]'/>
+            <filter name="closed" string="Closed / Cancelled" domain='[["state","in",["closed","cancelled"]]]'/>
+            <filter name="urgent" string="Urgent" domain='[["priority","=","urgent"]]'/>
+            <filter name="high_priority" string="High Priority" domain='[["priority","in",["high","urgent"]]]'/>
+            <filter name="reopened" string="Reopened" domain='[["reopened_count","&gt;",0]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_priority" string="Priority" group_by="priority"/>
+            <filter name="group_team" string="Team" group_by="team_id"/>
+            <filter name="group_assignee" string="Assigned To" group_by="assigned_to"/>
+            <filter name="group_category" string="Category" group_by="category_id"/>
+            <filter name="group_type" string="Type" group_by="ticket_type"/>
+            <filter name="group_channel" string="Channel" group_by="channel"/>
+        </view>
+
+        <!-- ===================== Ticket Messages ===================== -->
+
+        <view id="view_helpdesk_ticket_message_list" model="helpdesk.ticket.message" type="list">
+            <field name="author_id" string="Author"/>
+            <field name="message_type" string="Type"/>
+            <field name="body" string="Message"/>
+            <field name="is_internal" string="Internal"/>
+        </view>
+        <view id="view_helpdesk_ticket_message_form" model="helpdesk.ticket.message" type="form">
+            <sheet>
+                <group>
+                    <field name="ticket_id"/>
+                    <field name="author_id"/>
+                    <field name="message_type"/>
+                    <field name="is_internal"/>
+                </group>
+                <group>
+                    <field name="body"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Ticket History ===================== -->
+
+        <view id="view_helpdesk_ticket_history_list" model="helpdesk.ticket.history" type="list">
+            <field name="date" string="Date"/>
+            <field name="action" string="Action"/>
+            <field name="field" string="Field"/>
+            <field name="old_value" string="From"/>
+            <field name="new_value" string="To"/>
+            <field name="summary" string="Summary"/>
+            <field name="author_id" string="Changed By"/>
+        </view>
+        <view id="view_helpdesk_ticket_history_form" model="helpdesk.ticket.history" type="form">
+            <sheet>
+                <group>
+                    <field name="ticket_id"/>
+                    <field name="action"/>
+                    <field name="field"/>
+                    <field name="old_value"/>
+                    <field name="new_value"/>
+                    <field name="author_id"/>
+                    <field name="date"/>
+                </group>
+                <group>
+                    <field name="summary"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Ticket Links ===================== -->
+
+        <view id="view_helpdesk_ticket_link_list" model="helpdesk.ticket.link" type="list">
+            <field name="related_ticket_id" string="Related Ticket"/>
+            <field name="relation" string="Relation"/>
+            <field name="note" string="Note"/>
+        </view>
+        <view id="view_helpdesk_ticket_link_form" model="helpdesk.ticket.link" type="form">
+            <sheet>
+                <group>
+                    <field name="ticket_id"/>
+                    <field name="related_ticket_id"/>
+                    <field name="relation"/>
+                    <field name="note"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Canned Responses ===================== -->
+
+        <view id="view_helpdesk_canned_list" model="helpdesk.canned.response" type="list">
+            <field name="name" string="Shortcut"/>
+            <field name="team_id" string="Team"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_helpdesk_canned_form" model="helpdesk.canned.response" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="team_id"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="body"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_helpdesk_team" type="window" model="helpdesk.team" name="Teams" view_mode="list,form"/>
+        <action id="action_helpdesk_ticket" type="window" model="helpdesk.ticket" name="Tickets" view_mode="list,kanban,form"/>
+        <action id="action_helpdesk_ticket_my" type="window" model="helpdesk.ticket" name="My Tickets" view_mode="list,kanban,form" domain='[["assigned_to","=","$uid"]]'/>
+        <action id="action_helpdesk_ticket_category" type="window" model="helpdesk.ticket.category" name="Ticket Categories" view_mode="list,form"/>
+        <action id="action_helpdesk_ticket_tag" type="window" model="helpdesk.ticket.tag" name="Ticket Tags" view_mode="list,form"/>
+        <action id="action_helpdesk_ticket_message" type="window" model="helpdesk.ticket.message" name="Ticket Messages" view_mode="list,form"/>
+        <action id="action_helpdesk_ticket_history" type="window" model="helpdesk.ticket.history" name="Ticket History" view_mode="list,form"/>
+        <action id="action_helpdesk_canned" type="window" model="helpdesk.canned.response" name="Canned Responses" view_mode="list,form"/>
+    </data>
+</nexa>

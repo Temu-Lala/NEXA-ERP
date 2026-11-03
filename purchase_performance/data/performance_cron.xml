@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_purchase_performance_scorecard" model="sys.cron">
+            <field name="name">Purchase: Compute supplier scorecards</field>
+            <field name="code">purchase.performance.scorecard.compute</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

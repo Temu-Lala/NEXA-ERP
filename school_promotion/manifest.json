@@ -1,0 +1,19 @@
+{
+    "name": "school_promotion",
+    "display_name": "School Promotion & Import",
+    "version": "1.0.0",
+    "summary": "Automated grade promotion/retention batches and bulk student Excel import",
+    "description": "Academic progression and data-entry utilities for the school system: promotion batches record per-student pass/fail decisions and roll students to the next grade or repeat the same grade for a new academic year; import batches stage large sets of student rows (.xlsx/.csv) with duplicate/error detection before they are applied to enrollment. Running promotion is a Manager privilege.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

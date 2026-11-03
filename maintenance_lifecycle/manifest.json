@@ -1,0 +1,20 @@
+{
+  "name": "maintenance_lifecycle",
+  "display_name": "Maintenance Asset Lifecycle & Replacement Planning",
+  "version": "1.0.0",
+  "summary": "Asset condition scoring, health index, remaining useful life (RUL), repair-vs-replace analysis and decommissioning",
+  "description": "Comprehensive asset lifecycle strategy: multi-factor condition assessments and asset health index (AHI) calculation, remaining useful life estimation, capital replacement and refurbishment proposals with Capex budgeting, repair-vs-replace economic thresholds, and formal asset retirement, decommissioning and disposal workflows.",
+  "author": "Nexa",
+  "depends": [
+    "base",
+    "maintenance",
+    "maintenance_analytics"
+  ],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Operations"
+}

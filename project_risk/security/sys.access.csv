@@ -1,0 +1,4 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_project_risk_user,access_project_risk_user,project.risk,,1,1,1,1
+access_project_issue_user,access_project_issue_user,project.issue,,1,1,1,1
+access_project_change_request_user,access_project_change_request_user,project.change.request,,1,1,1,1

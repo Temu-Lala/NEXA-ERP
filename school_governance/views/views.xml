@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Policies -->
+        <view id="view_school_governance_policy_list" model="school.governance.policy" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Policy"/>
+            <field name="category" string="Category"/>
+            <field name="version" string="Version"/>
+            <field name="effective_from" string="From"/>
+            <field name="effective_to" string="To"/>
+            <field name="is_effective" string="Effective"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_governance_policy_form" model="school.governance.policy" type="form">
+            <header>
+                <button name="policy_submit_approval" string="Submit For Approval" type="object" class="sum_highlight"/>
+                <button name="policy_activate" string="Activate" type="object"/>
+                <button name="policy_archive" string="Archive" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Policy name"/></h1></div>
+                <group>
+                    <group string="Definition">
+                        <field name="code"/>
+                        <field name="category"/>
+                        <field name="version"/>
+                        <field name="campus_id"/>
+                        <field name="class_id"/>
+                    </group>
+                    <group string="Window &amp; Control">
+                        <field name="effective_from"/>
+                        <field name="effective_to"/>
+                        <field name="is_effective" readonly="true"/>
+                        <field name="approval_required"/>
+                        <field name="approver_group_xmlid"/>
+                        <field name="pending_approval" readonly="true"/>
+                    </group>
+                </group>
+                <group><field name="description"/></group>
+                <notebook>
+                    <page string="Parameters">
+                        <field name="parameters" nolabel="1">
+                            <list editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="name"/>
+                                <field name="value"/>
+                                <field name="param_type"/>
+                                <field name="description"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_governance_policy" type="window" model="school.governance.policy" name="Governance Policies" view_mode="list,form"/>
+
+        <!-- Approvals -->
+        <view id="view_school_governance_approval_list" model="school.governance.approval" type="list">
+            <field name="code" string="Reference"/>
+            <field name="policy_id" string="Policy"/>
+            <field name="action" string="Action"/>
+            <field name="requested_by" string="Requested By"/>
+            <field name="submitted_date" string="Submitted"/>
+            <field name="state" string="Status"/>
+            <field name="can_approve" string="You Can Approve"/>
+        </view>
+        <view id="view_school_governance_approval_form" model="school.governance.approval" type="form">
+            <header>
+                <button name="approval_approve" string="Approve" type="object" class="sum_highlight"/>
+                <button name="approval_reject" string="Reject" type="object"/>
+                <button name="approval_cancel" string="Cancel" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Request">
+                        <field name="code"/>
+                        <field name="policy_id"/>
+                        <field name="action"/>
+                        <field name="requested_by"/>
+                        <field name="submitted_date"/>
+                    </group>
+                    <group string="Decision">
+                        <field name="can_approve" readonly="true"/>
+                        <field name="decided_by"/>
+                        <field name="decided_date"/>
+                    </group>
+                </group>
+                <group><field name="reason"/></group>
+                <group><field name="decision_note"/></group>
+                <notebook>
+                    <page string="Decision Trail">
+                        <field name="decisions" nolabel="1" readonly="true">
+                            <list>
+                                <field name="timestamp"/>
+                                <field name="action"/>
+                                <field name="actor_id"/>
+                                <field name="note"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_governance_approval" type="window" model="school.governance.approval" name="Approvals" view_mode="list,form"/>
+
+        <!-- Decision Trail (read-only audit) -->
+        <view id="view_school_governance_approval_decision_list" model="school.governance.approval.decision" type="list">
+            <field name="timestamp" string="When"/>
+            <field name="approval_id" string="Approval"/>
+            <field name="action" string="Action"/>
+            <field name="actor_id" string="Actor"/>
+            <field name="note" string="Note"/>
+        </view>
+        <action id="action_school_governance_approval_decision" type="window" model="school.governance.approval.decision" name="Decision Trail" view_mode="list"/>
+
+        <!-- Access Roles -->
+        <view id="view_school_governance_access_role_list" model="school.governance.access.role" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Role"/>
+            <field name="group_xmlid" string="Security Group"/>
+            <field name="governed_area" string="Governed Area"/>
+            <field name="scope" string="Scope"/>
+            <field name="can_approve" string="Can Approve"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_governance_access_role_form" model="school.governance.access.role" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Role name"/></h1></div>
+                <group>
+                    <group string="Definition">
+                        <field name="code"/>
+                        <field name="group_xmlid"/>
+                        <field name="governed_area"/>
+                    </group>
+                    <group string="Access">
+                        <field name="scope"/>
+                        <field name="can_approve"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group><field name="description"/></group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_governance_access_role" type="window" model="school.governance.access.role" name="Access Roles" view_mode="list,form"/>
+
+        <!-- Integrations -->
+        <view id="view_school_governance_integration_list" model="school.governance.integration" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Connector"/>
+            <field name="system_type" string="System"/>
+            <field name="endpoint" string="Endpoint"/>
+            <field name="state" string="Status"/>
+            <field name="last_sync" string="Last Sync"/>
+            <field name="days_since_sync" string="Days Ago"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_governance_integration_form" model="school.governance.integration" type="form">
+            <header>
+                <button name="integration_test" string="Test Connection" type="object"/>
+                <button name="integration_enable" string="Enable" type="object" class="sum_highlight"/>
+                <button name="integration_disable" string="Pause" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Connector name"/></h1></div>
+                <group>
+                    <group string="Target">
+                        <field name="code"/>
+                        <field name="system_type"/>
+                        <field name="endpoint"/>
+                        <field name="api_user"/>
+                        <field name="secret_ref"/>
+                    </group>
+                    <group string="Sync">
+                        <field name="sync_interval_minutes"/>
+                        <field name="last_sync"/>
+                        <field name="days_since_sync" readonly="true"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Configuration"><field name="config" nolabel="1"/></group>
+                <group><field name="last_error"/></group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_governance_integration" type="window" model="school.governance.integration" name="Integrations" view_mode="list,form"/>
+    </data>
+</nexa>

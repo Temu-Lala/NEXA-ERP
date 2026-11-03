@@ -1,0 +1,21 @@
+{
+    "name": "hr_performance",
+    "display_name": "HR: Performance",
+    "version": "1.0.0",
+    "summary": "Objective hierarchy + KPIs, review templates, weighted 360 feedback, check-ins, development plans, improvement plans and calibration with an append-only audit",
+    "description": "Production performance management on top of hr_appraisal without migrating its tables: goals become a company / department / individual cascade with measurable targets, actuals and achievement percent plus discrete KPIs tracked over a period; appraisals are seeded from a reusable criteria template and rolled up with a weighted multi-rater (manager / peer / subordinate / self / external) 360 score; periodic check-ins, development plans with tracked actions and formal maker-checker improvement plans are captured; and calibration sessions let reviewers propose, adjust and approve ratings and apply them to the appraisal with an append-only audit trail. Consistent with the blueprint guardrail a performance rating NEVER mutates pay - finalization, PIP approval and calibration only record an evaluation. Extends the hr anchor, hr_appraisal and hr_skill; navigated under the single HR app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "hr",
+        "hr_appraisal",
+        "hr_skill"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

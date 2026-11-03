@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_kb_category_list" model="helpdesk.kb.category" type="list">
+            <field name="name" string="Category"/>
+            <field name="parent_id" string="Parent"/>
+            <field name="sequence" string="Sequence"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_kb_category_form" model="helpdesk.kb.category" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="parent_id"/>
+                    <field name="sequence"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_kb_article_list" model="helpdesk.kb.article" type="list">
+            <field name="name" string="Title"/>
+            <field name="category_id" string="Category"/>
+            <field name="author_id" string="Author"/>
+            <field name="visibility" string="Visibility"/>
+            <field name="state" string="Status"/>
+            <field name="view_count" string="Views"/>
+            <field name="helpful_count" string="Helpful"/>
+        </view>
+        <view id="view_kb_article_form" model="helpdesk.kb.article" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="summary"/>
+                    <field name="category_id"/>
+                    <field name="author_id"/>
+                    <field name="visibility"/>
+                    <field name="state"/>
+                    <field name="published_date"/>
+                </group>
+                <group>
+                    <field name="view_count"/>
+                    <field name="helpful_count"/>
+                    <field name="unhelpful_count"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="content"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_kb_category" type="window" model="helpdesk.kb.category" name="KB Categories" view_mode="list,form"/>
+        <action id="action_kb_article" type="window" model="helpdesk.kb.article" name="Knowledge Articles" view_mode="list,form"/>
+    </data>
+</nexa>

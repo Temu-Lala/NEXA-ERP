@@ -1,0 +1,20 @@
+{
+    "name": "hr_analytics",
+    "display_name": "HR: Workforce Planning & Analytics",
+    "version": "1.0.0",
+    "summary": "Headcount, turnover/retention, staffing budget, hiring-forecast and cost dashboards aggregated from the operational HR modules, with position plans (approved vs occupied) and forward workforce scenarios",
+    "description": "Presents the planning and analytics layer the anchor HR modules do not provide, without migrating or duplicating their tables. A scheduled refresh re-derives a per-department, per-period hr.workforce.snapshot from the operational data: active headcount, hires and terminations with an opening headcount so turnover and retention are reported with their explicit denominator and window, average tenure, open vs approved positions, absence and overtime trends, payroll cost and cost-per-head, and skills-gap counts. Source models (overtime, leave ledger, payslips, skill gaps, job openings) are read by runtime name and degrade to zero when a companion module is not installed, so this addon depends only on the hr anchor. hr.position.plan tracks approved headcount and staffing budget against live occupancy (filled vs vacancy projected from active employees), and hr.workforce.scenario projects headcount and cost forward under growth and attrition assumptions. Everything here is derived and read-oriented: no employee, payslip, ledger or requisition record is ever mutated, the only writes are this module's own snapshot rows and an explicit HR-Manager approval flag on a position plan. Navigated under the single HR app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "hr"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/refresh_cron.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

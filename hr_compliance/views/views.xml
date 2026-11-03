@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== Policies ===================== -->
+        <view id="view_policy_list" model="hr.policy" type="list">
+            <field name="name" string="Title"/>
+            <field name="code" string="Code"/>
+            <field name="category" string="Category"/>
+            <field name="version" string="Version"/>
+            <field name="effective_date" string="Effective"/>
+            <field name="ack_required_count" string="Pending"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_policy_form" model="hr.policy" type="form">
+            <header>
+                <button name="action_policy_publish" string="Publish" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_policy_archive" string="Archive" type="object" invisible="state != 'published'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Policy">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="category"/>
+                        <field name="version"/>
+                        <field name="effective_date" widget="date"/>
+                    </group>
+                    <group string="Handling">
+                        <field name="requires_ack"/>
+                        <field name="ack_required_count" readonly="true"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Content">
+                    <field name="body" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Policy Acknowledgements ===================== -->
+        <view id="view_policy_ack_list" model="hr.policy.ack" type="list">
+            <field name="policy_id" string="Policy"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="state" string="Status"/>
+            <field name="ack_date" string="Acknowledged"/>
+        </view>
+        <view id="view_policy_ack_form" model="hr.policy.ack" type="form">
+            <header>
+                <button name="action_policy_ack" string="Acknowledge" type="object" class="sum_highlight" invisible="state != 'pending'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <field name="policy_id"/>
+                    <field name="employee_id"/>
+                    <field name="ack_date" readonly="true"/>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Grievances ===================== -->
+        <view id="view_grievance_list" model="hr.grievance" type="list">
+            <field name="number" string="Reference"/>
+            <field name="name" string="Subject"/>
+            <field name="employee_id" string="Complainant"/>
+            <field name="category" string="Category"/>
+            <field name="severity" string="Severity"/>
+            <field name="assigned_id" string="Assigned"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_grievance_form" model="hr.grievance" type="form">
+            <header>
+                <button name="action_grievance_submit" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_grievance_investigate" string="Investigate" type="object" invisible="state != 'submitted'"/>
+                <button name="action_grievance_resolve" string="Resolve" type="object" class="sum_highlight" invisible="state != 'investigating'"/>
+                <button name="action_grievance_close" string="Close" type="object" invisible="state != 'resolved'"/>
+                <button name="action_grievance_reopen" string="Reopen" type="object" invisible="state != 'resolved' and state != 'closed'"/>
+                <button name="action_grievance_cancel" string="Cancel" type="object" invisible="state == 'closed' or state == 'cancelled'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Complaint">
+                        <field name="name"/>
+                        <field name="number" readonly="true"/>
+                        <field name="employee_id"/>
+                        <field name="respondent_id"/>
+                        <field name="category"/>
+                        <field name="severity"/>
+                        <field name="confidential"/>
+                    </group>
+                    <group string="Handling">
+                        <field name="assigned_id"/>
+                        <field name="created_by" readonly="true"/>
+                        <field name="closed_date" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <group string="Resolution">
+                    <field name="resolution" nolabel="1"/>
+                </group>
+                <notebook>
+                    <page string="History">
+                        <field name="history" nolabel="1">
+                            <list>
+                                <field name="performed_at"/>
+                                <field name="action"/>
+                                <field name="field"/>
+                                <field name="old_value"/>
+                                <field name="new_value"/>
+                                <field name="performed_by"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <!-- ===================== Disciplinary Cases ===================== -->
+        <view id="view_disciplinary_list" model="hr.disciplinary.case" type="list">
+            <field name="name" string="Title"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="case_type" string="Measure"/>
+            <field name="severity" string="Severity"/>
+            <field name="issue_date" string="Issued"/>
+            <field name="expiry_date" string="Expires"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_disciplinary_form" model="hr.disciplinary.case" type="form">
+            <header>
+                <button name="action_disc_issue" string="Issue" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_disc_appeal" string="Appeal" type="object" invisible="state != 'issued'"/>
+                <button name="action_disc_uphold" string="Uphold" type="object" invisible="state != 'appealed'"/>
+                <button name="action_disc_close" string="Close" type="object" invisible="state != 'issued' and state != 'appealed' and state != 'upheld'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Case">
+                        <field name="name"/>
+                        <field name="employee_id"/>
+                        <field name="case_type"/>
+                        <field name="severity"/>
+                        <field name="issue_date" widget="date"/>
+                        <field name="expiry_date" widget="date"/>
+                    </group>
+                    <group string="Links">
+                        <field name="grievance_id"/>
+                        <field name="incident_id"/>
+                        <field name="issued_by" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Measures">
+                    <field name="measures" nolabel="1"/>
+                </group>
+                <group string="Decision">
+                    <field name="decision" nolabel="1"/>
+                </group>
+                <notebook>
+                    <page string="History">
+                        <field name="history" nolabel="1">
+                            <list>
+                                <field name="performed_at"/>
+                                <field name="action"/>
+                                <field name="field"/>
+                                <field name="old_value"/>
+                                <field name="new_value"/>
+                                <field name="performed_by"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <!-- ===================== Incidents ===================== -->
+        <view id="view_incident_list" model="hr.incident" type="list">
+            <field name="number" string="Reference"/>
+            <field name="name" string="Title"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="category" string="Category"/>
+            <field name="severity" string="Severity"/>
+            <field name="incident_date" string="Date"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_incident_form" model="hr.incident" type="form">
+            <header>
+                <button name="action_incident_submit" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_incident_investigate" string="Investigate" type="object" invisible="state != 'submitted'"/>
+                <button name="action_incident_resolve" string="Resolve" type="object" class="sum_highlight" invisible="state != 'investigating'"/>
+                <button name="action_incident_close" string="Close" type="object" invisible="state != 'resolved'"/>
+                <button name="action_incident_cancel" string="Cancel" type="object" invisible="state == 'closed' or state == 'cancelled'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Incident">
+                        <field name="name"/>
+                        <field name="number" readonly="true"/>
+                        <field name="employee_id"/>
+                        <field name="incident_date"/>
+                        <field name="location"/>
+                        <field name="category"/>
+                        <field name="severity"/>
+                    </group>
+                    <group string="Reporting">
+                        <field name="reported_by" readonly="true"/>
+                        <field name="closed_date" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <group col="2">
+                    <group string="Immediate Action">
+                        <field name="immediate_action" nolabel="1"/>
+                    </group>
+                    <group string="Root Cause">
+                        <field name="root_cause" nolabel="1"/>
+                    </group>
+                </group>
+                <group string="Corrective Action">
+                    <field name="corrective_action" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Compliance Requirements ===================== -->
+        <view id="view_compliance_requirement_list" model="hr.compliance.requirement" type="list">
+            <field name="name" string="Requirement"/>
+            <field name="category" string="Type"/>
+            <field name="scope" string="Applies To"/>
+            <field name="frequency_days" string="Frequency (d)"/>
+            <field name="mandatory" string="Mandatory"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_compliance_requirement_form" model="hr.compliance.requirement" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Requirement">
+                        <field name="name"/>
+                        <field name="category"/>
+                        <field name="scope"/>
+                        <field name="department_id" invisible="scope != 'department'"/>
+                        <field name="job_id" invisible="scope != 'job'"/>
+                        <field name="policy_id" invisible="category != 'policy'"/>
+                    </group>
+                    <group string="Cadence">
+                        <field name="frequency_days"/>
+                        <field name="mandatory"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Compliance Lines (matrix) ===================== -->
+        <view id="view_compliance_line_list" model="hr.compliance.line" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="requirement_id" string="Requirement"/>
+            <field name="category" string="Type"/>
+            <field name="state" string="Status"/>
+            <field name="due_date" string="Due"/>
+            <field name="last_completed" string="Last Completed"/>
+            <field name="mandatory" string="Mandatory"/>
+        </view>
+        <view id="view_compliance_line_form" model="hr.compliance.line" type="form">
+            <header>
+                <button name="action_line_complete" string="Record Completion" type="object" class="sum_highlight"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <field name="employee_id"/>
+                    <field name="requirement_id"/>
+                    <field name="category" readonly="true"/>
+                    <field name="state" readonly="true"/>
+                    <field name="due_date" widget="date" readonly="true"/>
+                    <field name="last_completed" widget="date"/>
+                    <field name="evidence_ref"/>
+                    <field name="mandatory"/>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Terminations ===================== -->
+        <view id="view_termination_list" model="hr.termination" type="list">
+            <field name="name" string="Summary"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="type" string="Type"/>
+            <field name="init_date" string="Initiation"/>
+            <field name="last_working_day" string="Last Day"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_termination_form" model="hr.termination" type="form">
+            <header>
+                <button name="action_term_submit" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_term_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'submitted'"/>
+                <button name="action_term_reject" string="Reject" type="object" invisible="state != 'submitted'"/>
+                <button name="action_term_complete" string="Complete" type="object" class="sum_highlight" invisible="state != 'approved'"/>
+                <button name="action_term_cancel" string="Cancel" type="object" invisible="state == 'completed' or state == 'cancelled'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Separation">
+                        <field name="name"/>
+                        <field name="employee_id"/>
+                        <field name="type"/>
+                        <field name="init_date" widget="date"/>
+                        <field name="notice_days"/>
+                        <field name="last_working_day" widget="date"/>
+                        <field name="retention_until" widget="date"/>
+                    </group>
+                    <group string="Approval">
+                        <field name="requested_by" readonly="true"/>
+                        <field name="approved_by" readonly="true"/>
+                        <field name="decide_date" widget="date" readonly="true"/>
+                        <field name="final_leave_days"/>
+                        <field name="final_settlement_ref"/>
+                        <field name="archived"/>
+                    </group>
+                </group>
+                <group string="Reason">
+                    <field name="reason" nolabel="1"/>
+                </group>
+                <group string="Handover">
+                    <field name="handover_notes" nolabel="1"/>
+                </group>
+                <group string="Offboarding Checklist">
+                    <field name="lines" nolabel="1">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="category"/>
+                            <field name="name"/>
+                            <field name="responsible_id"/>
+                            <field name="required"/>
+                            <field name="done"/>
+                            <field name="done_date"/>
+                        </list>
+                    </field>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Medical Records (restricted) ===================== -->
+        <view id="view_medical_list" model="hr.medical.record" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="record_type" string="Type"/>
+            <field name="record_date" string="Date"/>
+            <field name="valid_until" string="Valid Until"/>
+        </view>
+        <view id="view_medical_form" model="hr.medical.record" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="employee_id"/>
+                    <field name="record_type"/>
+                    <field name="record_date" widget="date"/>
+                    <field name="valid_until" widget="date"/>
+                    <field name="practitioner"/>
+                    <field name="company_id"/>
+                </group>
+                <group string="Description (Confidential)">
+                    <field name="description" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+        <action id="action_policy" type="window" model="hr.policy" name="HR Policies" view_mode="list,form"/>
+        <action id="action_policy_ack" type="window" model="hr.policy.ack" name="Policy Acknowledgements" view_mode="list,form"/>
+        <action id="action_grievance" type="window" model="hr.grievance" name="Grievances" view_mode="list,form"/>
+        <action id="action_disciplinary" type="window" model="hr.disciplinary.case" name="Disciplinary Records" view_mode="list,form"/>
+        <action id="action_incident" type="window" model="hr.incident" name="Workplace Incidents" view_mode="list,form"/>
+        <action id="action_compliance_requirement" type="window" model="hr.compliance.requirement" name="Compliance Requirements" view_mode="list,form"/>
+        <action id="action_compliance_line" type="window" model="hr.compliance.line" name="Compliance Matrix" view_mode="list,form"/>
+        <action id="action_termination" type="window" model="hr.termination" name="Terminations &amp; Offboarding" view_mode="list,form"/>
+        <action id="action_medical" type="window" model="hr.medical.record" name="Medical Records" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_vehicle_brand,access_fleet_vehicle_brand,fleet.vehicle.brand,,1,1,1,1
+access_fleet_vehicle_model,access_fleet_vehicle_model,fleet.vehicle.model,,1,1,1,1
+access_fleet_vehicle_class,access_fleet_vehicle_class,fleet.vehicle.class,,1,1,1,1
+access_fleet_depot,access_fleet_depot,fleet.depot,,1,1,1,1
+access_fleet_vehicle,access_fleet_vehicle,fleet.vehicle,,1,1,1,1
+access_fleet_odometer_reading,access_fleet_odometer_reading,fleet.odometer.reading,,1,1,1,1
+access_fleet_vehicle_status_history,access_fleet_vehicle_status_history,fleet.vehicle.status.history,,1,1,1,1
+access_fleet_service,access_fleet_service,fleet.service,,1,1,1,1

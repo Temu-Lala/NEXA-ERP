@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Quotation Approval -->
+        <view id="view_sale_quotation_approval_list" model="sale.quotation.approval" type="list">
+            <field name="name" string="Reference"/>
+            <field name="order_id" string="Quotation"/>
+            <field name="trigger" string="Trigger"/>
+            <field name="discount_pct" string="Discount %"/>
+            <field name="requested_amt" string="Amount"/>
+            <field name="approver_id" string="Approver"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_sale_quotation_approval_form" model="sale.quotation.approval" type="form">
+            <header>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. SOA/0001"/></h1></div>
+                <group>
+                    <group string="Request">
+                        <field name="order_id" string="Quotation"/>
+                        <field name="trigger" string="Trigger"/>
+                        <field name="requested_amt" string="Amount"/>
+                        <field name="discount_pct" string="Discount %"/>
+                        <field name="margin_pct" string="Est. Margin %"/>
+                    </group>
+                    <group string="Decision">
+                        <field name="approver_id" string="Approver"/>
+                        <field name="state" string="Status"/>
+                        <field name="decision_date" string="Decision Date"/>
+                        <field name="approval_ref" string="Approval Request"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="reason" string="Reason"/>
+            </sheet>
+        </view>
+        <action id="action_sale_quotation_approval" type="window" model="sale.quotation.approval" name="Quotation Approvals" view_mode="list,form"/>
+
+        <!-- Quotation Revision -->
+        <view id="view_sale_quotation_revision_list" model="sale.quotation.revision" type="list">
+            <field name="name" string="Reference"/>
+            <field name="order_id" string="Quotation"/>
+            <field name="revision" string="Revision #"/>
+            <field name="issue_date" string="Issued On"/>
+            <field name="grand_total" string="Grand Total"/>
+            <field name="is_current" string="Current"/>
+        </view>
+        <view id="view_sale_quotation_revision_form" model="sale.quotation.revision" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. QT-0001 r2"/></h1></div>
+                <group>
+                    <group string="Document">
+                        <field name="order_id" string="Quotation"/>
+                        <field name="revision" string="Revision #"/>
+                        <field name="issue_date" string="Issued On"/>
+                        <field name="is_current" string="Current Revision"/>
+                    </group>
+                    <group string="Totals Snapshot">
+                        <field name="subtotal" string="Subtotal"/>
+                        <field name="discount_total" string="Discount Total"/>
+                        <field name="tax_total" string="Tax Total"/>
+                        <field name="grand_total" string="Grand Total"/>
+                    </group>
+                </group>
+                <group string="Acceptance">
+                    <field name="accepted_by" string="Accepted By"/>
+                    <field name="accepted_on" string="Accepted On"/>
+                </group>
+                <field name="snapshot" string="Document Snapshot"/>
+                <field name="notes" string="Change Notes"/>
+            </sheet>
+        </view>
+        <action id="action_sale_quotation_revision" type="window" model="sale.quotation.revision" name="Quotation Revisions" view_mode="list,form"/>
+
+        <!-- Credit Check -->
+        <view id="view_sale_credit_check_list" model="sale.credit.check" type="list">
+            <field name="name" string="Reference"/>
+            <field name="order_id" string="Order"/>
+            <field name="partner_id" string="Customer"/>
+            <field name="credit_limit" string="Credit Limit"/>
+            <field name="requested_exposure" string="Order Exposure"/>
+            <field name="decision" string="Decision"/>
+        </view>
+        <view id="view_sale_credit_check_form" model="sale.credit.check" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. CC/0001"/></h1></div>
+                <group>
+                    <group string="Request">
+                        <field name="order_id" string="Order"/>
+                        <field name="partner_id" string="Customer"/>
+                        <field name="check_date" string="Date"/>
+                    </group>
+                    <group string="Exposure">
+                        <field name="credit_limit" string="Credit Limit"/>
+                        <field name="outstanding_ar" string="Outstanding Receivables"/>
+                        <field name="overdue_amount" string="Overdue"/>
+                        <field name="requested_exposure" string="Order Exposure"/>
+                    </group>
+                </group>
+                <group string="Decision">
+                    <field name="decision" string="Decision"/>
+                    <field name="reviewer_id" string="Reviewed By"/>
+                </group>
+                <field name="conditions" string="Conditions"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_sale_credit_check" type="window" model="sale.credit.check" name="Credit Checks" view_mode="list,form"/>
+    </data>
+</nexa>

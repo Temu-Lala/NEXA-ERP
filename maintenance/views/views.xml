@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Asset Category -->
+        <view id="view_maint_asset_category_list" model="maintenance.asset.category" type="list">
+            <field name="name" string="Category"/>
+            <field name="code" string="Code"/>
+            <field name="parent_id" string="Parent"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_asset_category_form" model="maintenance.asset.category" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Category"/>
+                    <field name="code" string="Code"/>
+                    <field name="parent_id" string="Parent Category"/>
+                    <field name="active" string="Active"/>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_asset_category" type="window" model="maintenance.asset.category" name="Asset Categories" view_mode="list,form"/>
+
+        <!-- Asset Location -->
+        <view id="view_maint_asset_location_list" model="maintenance.asset.location" type="list">
+            <field name="name" string="Location"/>
+            <field name="code" string="Code"/>
+            <field name="site" string="Site"/>
+            <field name="room" string="Room"/>
+            <field name="parent_id" string="Parent"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_asset_location_form" model="maintenance.asset.location" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Location"/>
+                    <field name="code" string="Code"/>
+                    <field name="parent_id" string="Parent Location"/>
+                    <field name="site" string="Site"/>
+                    <field name="room" string="Room"/>
+                    <field name="gps" string="GPS Coordinate"/>
+                    <field name="active" string="Active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_maint_asset_location" type="window" model="maintenance.asset.location" name="Asset Locations" view_mode="list,form"/>
+
+        <!-- Asset -->
+        <view id="view_maint_asset_list" model="maintenance.asset" type="list">
+            <field name="code" string="Asset Code"/>
+            <field name="name" string="Asset"/>
+            <field name="category_id" string="Category"/>
+            <field name="location_id" string="Location"/>
+            <field name="serial_number" string="Serial Number"/>
+            <field name="criticality" string="Criticality"/>
+            <field name="state" string="Status"/>
+            <field name="next_due_date" string="Next Due"/>
+        </view>
+        <view id="view_maint_asset_form" model="maintenance.asset" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Asset Name..."/></h1>
+                </div>
+                <group>
+                    <group string="Identification">
+                        <field name="code" string="Asset Code"/>
+                        <field name="category_id" string="Category"/>
+                        <field name="serial_number" string="Serial Number"/>
+                        <field name="barcode" string="Barcode / QR"/>
+                        <field name="criticality" string="Criticality"/>
+                        <field name="state" string="Status"/>
+                    </group>
+                    <group string="Classification">
+                        <field name="manufacturer" string="Manufacturer"/>
+                        <field name="model_ref" string="Model"/>
+                        <field name="location_id" string="Location"/>
+                        <field name="parent_asset_id" string="Parent Asset"/>
+                        <field name="strategy" string="Maintenance Strategy"/>
+                        <field name="responsible_id" string="Responsible"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Specifications">
+                        <field name="specifications" string="Specifications"/>
+                        <field name="description" string="Description"/>
+                    </page>
+                    <page string="Ownership">
+                        <group>
+                            <field name="ownership" string="Ownership"/>
+                            <field name="owner_partner_id" string="Asset Owner"/>
+                            <field name="customer_id" string="Customer"/>
+                            <field name="supplier_id" string="Supplier"/>
+                        </group>
+                    </page>
+                    <page string="Acquisition">
+                        <group>
+                            <field name="acquisition_date" string="Acquisition Date"/>
+                            <field name="acquisition_cost" string="Acquisition Cost"/>
+                            <field name="install_date" string="Installation Date"/>
+                            <field name="commissioned_date" string="Commissioned Date"/>
+                            <field name="expected_life_years" string="Expected Service Life (yrs)"/>
+                            <field name="warranty_end" string="Warranty End"/>
+                            <field name="retired_date" string="Retired Date"/>
+                        </group>
+                    </page>
+                    <page string="Operation">
+                        <group>
+                            <field name="usage_meter_name" string="Usage Meter"/>
+                            <field name="current_reading" string="Current Reading"/>
+                            <field name="next_due_date" string="Next Due Maintenance"/>
+                        </group>
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_asset" type="window" model="maintenance.asset" name="Assets" view_mode="list,form"/>
+
+        <!-- Request -->
+        <view id="view_maint_request_list" model="maintenance.request" type="list">
+            <field name="name" string="Subject"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="requester_id" string="Requested By"/>
+            <field name="priority" string="Priority"/>
+            <field name="state" string="Status"/>
+            <field name="request_date" string="Request Date"/>
+        </view>
+        <view id="view_maint_request_form" model="maintenance.request" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Subject..."/></h1>
+                </div>
+                <group>
+                    <group string="Request">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="equipment" string="Equipment (free text)"/>
+                        <field name="requester_id" string="Requested By"/>
+                        <field name="department" string="Department"/>
+                        <field name="request_date" string="Request Date"/>
+                        <field name="requested_date" string="Requested Completion"/>
+                    </group>
+                    <group string="Triage">
+                        <field name="priority" string="Priority"/>
+                        <field name="strategy" string="Maintenance Type"/>
+                        <field name="state" string="Status"/>
+                        <field name="assigned_to" string="Assigned To"/>
+                        <field name="safety_concern" string="Safety Concern"/>
+                        <field name="work_order_id" string="Converted Work Order"/>
+                    </group>
+                </group>
+                <separator string="Problem Description"/>
+                <field name="description" string="Problem Description"/>
+            </sheet>
+        </view>
+        <action id="action_maint_request" type="window" model="maintenance.request" name="Maintenance Requests" view_mode="list,form"/>
+
+        <!-- Work Order Line (inline) -->
+        <view id="view_maint_wo_line_list" model="maintenance.work.order.line" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="line_type" string="Type"/>
+            <field name="name" string="Description"/>
+            <field name="product_id" string="Spare Part"/>
+            <field name="planned_qty" string="Planned Qty"/>
+            <field name="consumed_qty" string="Consumed Qty"/>
+            <field name="state" string="Status"/>
+            <field name="required" string="Required" widget="boolean_toggle"/>
+        </view>
+
+        <!-- Work Order Assignment (inline) -->
+        <view id="view_maint_wo_assignment_list" model="maintenance.work.order.assignment" type="list">
+            <field name="user_id" string="Technician"/>
+            <field name="role" string="Role"/>
+            <field name="planned_hours" string="Planned Hours"/>
+            <field name="actual_hours" string="Actual Hours"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+
+        <!-- Work Order Cost (inline) -->
+        <view id="view_maint_cost_list" model="maintenance.cost" type="list">
+            <field name="date" string="Date"/>
+            <field name="cost_type" string="Cost Type"/>
+            <field name="description" string="Description"/>
+            <field name="qty" string="Qty / Hours"/>
+            <field name="unit_cost" string="Unit Cost"/>
+            <field name="amount" string="Amount"/>
+            <field name="billable" string="Billable" widget="boolean_toggle"/>
+        </view>
+
+        <!-- Work Order -->
+        <view id="view_maint_work_order_list" model="maintenance.work.order" type="list">
+            <field name="name" string="Reference"/>
+            <field name="title" string="Title"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="work_type" string="Work Type"/>
+            <field name="priority" string="Priority"/>
+            <field name="technician_id" string="Technician"/>
+            <field name="state" string="Status"/>
+            <field name="planned_finish" string="Planned Finish"/>
+            <field name="actual_hours" string="Actual Hours"/>
+        </view>
+        <view id="view_maint_work_order_form" model="maintenance.work.order" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="WO-0001"/></h1>
+                    <h2><field name="title" placeholder="Short description..."/></h2>
+                </div>
+                <group>
+                    <group string="Work Order">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="location_id" string="Location"/>
+                        <field name="request_id" string="Source Request"/>
+                        <field name="work_type" string="Work Type"/>
+                        <field name="priority" string="Priority"/>
+                        <field name="state" string="Status"/>
+                    </group>
+                    <group string="Assignment and Timing">
+                        <field name="technician_id" string="Technician"/>
+                        <field name="team" string="Maintenance Team"/>
+                        <field name="planned_start" string="Planned Start"/>
+                        <field name="planned_finish" string="Planned Finish"/>
+                        <field name="actual_start" string="Actual Start"/>
+                        <field name="actual_finish" string="Actual Finish"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Instructions">
+                        <separator string="Diagnosis"/>
+                        <field name="diagnosis" string="Diagnosis"/>
+                        <separator string="Work Instructions"/>
+                        <field name="repair_plan" string="Work Instructions"/>
+                        <separator string="Findings"/>
+                        <field name="findings" string="Findings"/>
+                    </page>
+                    <page string="Lines">
+                        <field name="lines" nolabel="1"/>
+                    </page>
+                    <page string="Team">
+                        <field name="assignments" nolabel="1"/>
+                    </page>
+                    <page string="Safety and Verification">
+                        <group>
+                            <field name="safety_required" string="Safety Checklist Required"/>
+                            <field name="safety_done" string="Safety Checklist Completed"/>
+                            <field name="require_verify" string="Require Verification"/>
+                            <field name="verified_by" string="Verified By"/>
+                        </group>
+                    </page>
+                    <page string="Costs">
+                        <group>
+                            <field name="estimated_hours" string="Estimated Hours"/>
+                            <field name="actual_hours" string="Actual Hours"/>
+                            <field name="billable" string="Billable"/>
+                        </group>
+                        <field name="costs" nolabel="1"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_work_order" type="window" model="maintenance.work.order" name="Work Orders" view_mode="list,form"/>
+    </data>
+</nexa>

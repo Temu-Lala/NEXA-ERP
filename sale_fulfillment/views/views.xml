@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Reservation Link -->
+        <view id="view_sale_reservation_link_list" model="sale.order.reservation.link" type="list">
+            <field name="name" string="Reference"/>
+            <field name="order_id" string="Order"/>
+            <field name="product_id" string="Product"/>
+            <field name="reserved_qty" string="Reserved"/>
+            <field name="backorder_qty" string="Backordered"/>
+            <field name="warehouse_id" string="Warehouse"/>
+            <field name="link_date" string="Date"/>
+        </view>
+        <view id="view_sale_reservation_link_form" model="sale.order.reservation.link" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. RES-001"/></h1></div>
+                <group>
+                    <group string="Link">
+                        <field name="order_id" string="Sales Order"/>
+                        <field name="move_ref" string="Stock Move"/>
+                        <field name="product_id" string="Product"/>
+                    </group>
+                    <group string="Quantities">
+                        <field name="reserved_qty" string="Reserved Qty"/>
+                        <field name="backorder_qty" string="Backordered Qty"/>
+                        <field name="warehouse_id" string="Warehouse"/>
+                        <field name="link_date" string="Date"/>
+                    </group>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_sale_reservation_link" type="window" model="sale.order.reservation.link" name="Reservations" view_mode="list,form"/>
+
+        <!-- Shipment Link -->
+        <view id="view_sale_shipment_link_list" model="sale.shipment.link" type="list">
+            <field name="name" string="Reference"/>
+            <field name="order_id" string="Order"/>
+            <field name="carrier" string="Carrier"/>
+            <field name="tracking_ref" string="Tracking"/>
+            <field name="scheduled_date" string="Scheduled"/>
+            <field name="delivered_date" string="Delivered"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_sale_shipment_link_form" model="sale.shipment.link" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. SHIP-001"/></h1></div>
+                <group>
+                    <group string="Shipment">
+                        <field name="order_id" string="Sales Order"/>
+                        <field name="picking_ref" string="Inventory Transfer"/>
+                        <field name="carrier" string="Carrier"/>
+                        <field name="tracking_ref" string="Tracking Ref"/>
+                    </group>
+                    <group string="Dates &amp; Status">
+                        <field name="scheduled_date" string="Scheduled Date"/>
+                        <field name="delivered_date" string="Delivered Date"/>
+                        <field name="state" string="Status"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="delivery_addr" string="Delivery Address"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_sale_shipment_link" type="window" model="sale.shipment.link" name="Shipments" view_mode="list,form"/>
+
+        <!-- Return -->
+        <view id="view_sale_return_list" model="sale.return" type="list">
+            <field name="name" string="Reference"/>
+            <field name="order_id" string="Original Order"/>
+            <field name="partner_id" string="Customer"/>
+            <field name="return_date" string="Date"/>
+            <field name="reason" string="Reason"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_sale_return_form" model="sale.return" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. RET-001"/></h1></div>
+                <group>
+                    <group string="Return">
+                        <field name="order_id" string="Original Order"/>
+                        <field name="shipment_link_id" string="Shipment"/>
+                        <field name="partner_id" string="Customer"/>
+                        <field name="return_date" string="Date"/>
+                        <field name="reason" string="Reason"/>
+                    </group>
+                    <group string="References">
+                        <field name="picking_ref" string="Inventory Return"/>
+                        <field name="credit_note_ref" string="Credit Note"/>
+                        <field name="refund_note" string="Refund Reference"/>
+                        <field name="state" string="Status"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="inspection_note" string="Inspection Outcome"/>
+                <notebook>
+                    <page string="Returned Lines">
+                        <field name="lines" string="Lines">
+                            <view type="list">
+                                <field name="product_id" string="Product"/>
+                                <field name="description" string="Description"/>
+                                <field name="quantity" string="Qty"/>
+                                <field name="uom" string="Unit"/>
+                                <field name="disposition" string="Disposition"/>
+                                <field name="resealable" string="Resellable"/>
+                            </view>
+                        </field>
+                    </page>
+                </notebook>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_sale_return" type="window" model="sale.return" name="Returns" view_mode="list,form"/>
+
+        <!-- Return Line standalone -->
+        <view id="view_sale_return_line_list" model="sale.return.line" type="list">
+            <field name="return_id" string="Return"/>
+            <field name="product_id" string="Product"/>
+            <field name="description" string="Description"/>
+            <field name="quantity" string="Qty"/>
+            <field name="disposition" string="Disposition"/>
+        </view>
+        <action id="action_sale_return_line" type="window" model="sale.return.line" name="Return Lines" view_mode="list"/>
+    </data>
+</nexa>

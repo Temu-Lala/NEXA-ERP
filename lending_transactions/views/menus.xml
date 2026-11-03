@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+
+        <!-- Servicing (transactions) -->
+        <menuitem id="menu_loan_disbursement" name="Loan Disbursements" parent="lending.menu_lending_servicing" action="action_loan_disbursement" sequence="50" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_repayment" name="Loan Repayments" parent="lending.menu_lending_servicing" action="action_loan_repayment" sequence="60" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_repayment_allocation" name="Payment Allocations" parent="lending.menu_lending_servicing" action="action_loan_repayment_allocation" sequence="70" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_payment_reversal" name="Payment Reversals" parent="lending.menu_lending_servicing" action="action_loan_payment_reversal" sequence="80" groups="lending.group_lending_manager"/>
+
+    </data>
+</nexa>

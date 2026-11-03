@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_project_governance_root" name="Governance" sequence="67"/>
+
+        <menuitem id="menu_project_baselines" name="Baselines" parent="menu_project_governance_root" action="project_governance.action_project_baseline" sequence="10"/>
+        <menuitem id="menu_project_decisions" name="Decision Log" parent="menu_project_governance_root" action="project_governance.action_project_decision" sequence="20"/>
+        <menuitem id="menu_project_financial_snapshots" name="Financial Snapshots" parent="menu_project_governance_root" action="project_governance.action_project_financial_snapshot" sequence="30"/>
+    </data>
+</nexa>

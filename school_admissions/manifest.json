@@ -1,0 +1,21 @@
+{
+    "name": "school_admissions",
+    "display_name": "School Admissions",
+    "version": "1.0.0",
+    "summary": "Applicant pipeline (application to review to assessment to offer/waitlist/reject to accept to enroll), document checklists, append-only decision audit, seat-capacity guard and offer-expiry automation",
+    "description": "Implements the admissions workflow from the blueprint while honouring the rule that an applicant and an enrolled student are different lifecycle objects. school.applicant moves through a server-validated state machine (draft, submitted, under review, assessment, offered, waitlisted, accepted, rejected, enrolled, cancelled, expired); only the Manager-gated Enroll step creates a school.student and it is blocked when the chosen section has no free seat. school.application.document is a configurable required/received checklist that gates when an offer may be issued, and school.admission.decision is an append-only trail recording every transition, actor and reason. Duplicate-suspect detection compares a trimmed name-plus-date-of-birth fingerprint across applications; a daily cron expires offers and waitlist holds past their expiry date. Application-fee amounts are captured as references only; invoicing and payment stay in the Payments domain and are never duplicated here. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_setup"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/expire_cron.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

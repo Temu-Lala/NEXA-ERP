@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hr_employee_document_form" model="hr.employee.document" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Document">
+                        <field name="name" string="Title" placeholder="e.g. Passport, Employment Contract"/>
+                        <field name="employee_id" string="Employee"/>
+                        <field name="category"/>
+                        <field name="document_number" string="Reference No."/>
+                    </group>
+                    <group string="Validity">
+                        <field name="issue_date" widget="date"/>
+                        <field name="expiry_date" widget="date"/>
+                        <field name="reminder_days" string="Remind Before (Days)"/>
+                        <field name="status" widget="badge"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1" placeholder="Notes about this document..."/>
+                </group>
+            </sheet>
+            <chatter/>
+        </view>
+        <view id="view_hr_employee_document_list" model="hr.employee.document" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="name" string="Title"/>
+            <field name="category"/>
+            <field name="document_number" string="Reference No."/>
+            <field name="issue_date" widget="date"/>
+            <field name="expiry_date" widget="date"/>
+            <field name="status" widget="badge"/>
+        </view>
+        <view id="view_hr_employee_document_search" model="hr.employee.document" type="search">
+            <field name="name" string="Title"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="document_number" string="Reference No."/>
+            <filter name="archived" string="Archived" domain='[["active","=",false]]'/>
+            <filter name="group_category" string="Category" group_by="category"/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_status" string="Status" group_by="status"/>
+        </view>
+        <action id="action_hr_employee_document" type="window" model="hr.employee.document" name="Documents" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,6 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_downtime_category_user,access_maint_downtime_category_user,maintenance.downtime.category,,1,1,1,1
+access_maint_downtime_v2_user,access_maint_downtime_v2_user,maintenance.downtime.v2,,1,1,1,1
+access_maint_condition_rule_user,access_maint_condition_rule_user,maintenance.condition.rule,,1,1,1,1
+access_maint_condition_reading_user,access_maint_condition_reading_user,maintenance.condition.reading,,1,1,1,1
+access_maint_condition_alert_user,access_maint_condition_alert_user,maintenance.condition.alert,,1,1,1,1

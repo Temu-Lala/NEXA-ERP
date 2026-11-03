@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Job Plan Task (inline list)                                       -->
+        <!-- ================================================================ -->
+        <view id="view_maint_job_plan_task_list" model="maintenance.job.plan.task" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="task_type" string="Task Type"/>
+            <field name="name" string="Name"/>
+            <field name="expected_duration_minutes" string="Duration (min)"/>
+            <field name="required_skill" string="Required Skill"/>
+            <field name="requires_sign_off" string="Sign-Off" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_job_plan_task_form" model="maintenance.job.plan.task" type="form">
+            <sheet>
+                <group>
+                    <group string="Task">
+                        <field name="sequence" string="Sequence"/>
+                        <field name="task_type" string="Task Type"/>
+                        <field name="name" string="Name"/>
+                        <field name="required_skill" string="Required Skill"/>
+                        <field name="expected_duration_minutes" string="Duration (min)"/>
+                        <field name="requires_sign_off" string="Requires Sign-Off"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Measurement">
+                        <field name="measurement_unit" string="Unit"/>
+                        <field name="min_value" string="Min Value"/>
+                        <field name="max_value" string="Max Value"/>
+                    </group>
+                </group>
+                <separator string="Instructions"/>
+                <field name="instructions" string="Instructions"/>
+                <separator string="Safety Note"/>
+                <field name="safety_note" string="Safety Note"/>
+            </sheet>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Job Plan Checklist (inline list)                                  -->
+        <!-- ================================================================ -->
+        <view id="view_maint_job_plan_checklist_list" model="maintenance.job.plan.checklist" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="item_type" string="Item Type"/>
+            <field name="question" string="Question"/>
+            <field name="is_required" string="Required" widget="boolean_toggle"/>
+            <field name="expected_value" string="Expected Value"/>
+            <field name="unit" string="Unit"/>
+        </view>
+        <view id="view_maint_job_plan_checklist_form" model="maintenance.job.plan.checklist" type="form">
+            <sheet>
+                <group>
+                    <field name="sequence" string="Sequence"/>
+                    <field name="item_type" string="Item Type"/>
+                    <field name="question" string="Question"/>
+                    <field name="is_required" string="Required"/>
+                    <field name="expected_value" string="Expected Value"/>
+                    <field name="unit" string="Unit"/>
+                    <field name="active" string="Active"/>
+                </group>
+                <separator string="Fail Action"/>
+                <field name="fail_action" string="Fail Action"/>
+            </sheet>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Work Order Task (inline list)                                     -->
+        <!-- ================================================================ -->
+        <view id="view_maint_work_order_task_list" model="maintenance.work.order.task" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="task_type" string="Task Type"/>
+            <field name="name" string="Name"/>
+            <field name="result" string="Result"/>
+            <field name="actual_value" string="Actual Value"/>
+            <field name="measurement_unit" string="Unit"/>
+            <field name="completed_by" string="Completed By"/>
+            <field name="completed_at" string="Completed At"/>
+        </view>
+        <view id="view_maint_work_order_task_form" model="maintenance.work.order.task" type="form">
+            <sheet>
+                <group>
+                    <group string="Task">
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="job_plan_id" string="Job Plan"/>
+                        <field name="sequence" string="Sequence"/>
+                        <field name="task_type" string="Task Type"/>
+                        <field name="name" string="Name"/>
+                        <field name="result" string="Result"/>
+                    </group>
+                    <group string="Measurement">
+                        <field name="actual_value" string="Actual Value"/>
+                        <field name="measurement_unit" string="Unit"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Completion">
+                        <field name="completed_by" string="Completed By"/>
+                        <field name="completed_at" string="Completed At"/>
+                    </group>
+                    <group string="Sign-Off">
+                        <field name="signed_off_by" string="Signed Off By"/>
+                        <field name="signed_off_at" string="Signed Off At"/>
+                    </group>
+                </group>
+                <separator string="Instructions"/>
+                <field name="instructions" string="Instructions"/>
+                <separator string="Observation Note"/>
+                <field name="observation_note" string="Observation Note"/>
+            </sheet>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Work Order Checklist (inline list)                                -->
+        <!-- ================================================================ -->
+        <view id="view_maint_work_order_checklist_list" model="maintenance.work.order.checklist" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="question" string="Question"/>
+            <field name="item_type" string="Item Type"/>
+            <field name="response" string="Response"/>
+            <field name="numeric_value" string="Numeric Value"/>
+            <field name="result" string="Result"/>
+            <field name="completed_by" string="Completed By"/>
+        </view>
+        <view id="view_maint_work_order_checklist_form" model="maintenance.work.order.checklist" type="form">
+            <sheet>
+                <group>
+                    <group string="Item">
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="checklist_item_id" string="Checklist Item"/>
+                        <field name="sequence" string="Sequence"/>
+                        <field name="item_type" string="Item Type"/>
+                        <field name="question" string="Question"/>
+                        <field name="is_required" string="Required"/>
+                        <field name="result" string="Result"/>
+                    </group>
+                    <group string="Response">
+                        <field name="response" string="Response"/>
+                        <field name="numeric_value" string="Numeric Value"/>
+                        <field name="completed_by" string="Completed By"/>
+                        <field name="completed_at" string="Completed At"/>
+                    </group>
+                </group>
+                <separator string="Observation Note"/>
+                <field name="observation_note" string="Observation Note"/>
+            </sheet>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Job Plan Search View                                              -->
+        <!-- ================================================================ -->
+        <view id="view_maint_job_plan_search" model="maintenance.job.plan" type="search">
+            <filter name="active" string="Active" domain='[["active","=",true]]'/>
+            <filter name="draft" string="Draft" domain='[["status","=","draft"]]'/>
+            <filter name="active_status" string="Active Plans" domain='[["status","=","active"]]'/>
+            <filter name="archived_status" string="Archived" domain='[["status","=","archived"]]'/>
+            <filter name="preventive" string="Preventive" domain='[["strategy","=","preventive"]]'/>
+            <filter name="corrective" string="Corrective" domain='[["strategy","=","corrective"]]'/>
+            <filter name="group_category" string="By Category" group_by="asset_category_id"/>
+            <filter name="group_strategy" string="By Strategy" group_by="strategy"/>
+            <filter name="group_status" string="By Status" group_by="status"/>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Job Plan List                                                     -->
+        <!-- ================================================================ -->
+        <view id="view_maint_job_plan_list" model="maintenance.job.plan" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Name"/>
+            <field name="version" string="Version"/>
+            <field name="asset_category_id" string="Asset Category"/>
+            <field name="strategy" string="Strategy"/>
+            <field name="status" string="Status"/>
+            <field name="effective_date" string="Effective Date"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Job Plan Form                                                     -->
+        <!-- ================================================================ -->
+        <view id="view_maint_job_plan_form" model="maintenance.job.plan" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Job Plan Name..."/></h1>
+                </div>
+                <group>
+                    <group string="Identification">
+                        <field name="code" string="Code"/>
+                        <field name="version" string="Version"/>
+                        <field name="status" string="Status"/>
+                        <field name="strategy" string="Strategy"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Applicability">
+                        <field name="asset_category_id" string="Asset Category"/>
+                        <field name="asset_id" string="Asset"/>
+                        <field name="effective_date" string="Effective Date"/>
+                        <field name="expiry_date" string="Expiry Date"/>
+                        <field name="estimated_minutes" string="Estimated Duration (min)"/>
+                    </group>
+                </group>
+                <field name="description" string="Description"/>
+                <notebook>
+                    <page string="Tasks">
+                        <field name="tasks" nolabel="1"/>
+                    </page>
+                    <page string="Checklist">
+                        <field name="checklists" nolabel="1"/>
+                    </page>
+                    <page string="Safety &amp; Tools">
+                        <separator string="Safety Hazards"/>
+                        <field name="safety_hazards" string="Safety Hazards"/>
+                        <separator string="Required Tools"/>
+                        <field name="required_tools" string="Required Tools"/>
+                        <separator string="Required Skills"/>
+                        <field name="required_skills" string="Required Skills"/>
+                    </page>
+                    <page string="Approval">
+                        <group>
+                            <field name="approved_by" string="Approved By"/>
+                            <field name="approved_date" string="Approval Date"/>
+                        </group>
+                        <separator string="Notes"/>
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_job_plan" type="window" model="maintenance.job.plan" name="Job Plans" view_mode="list,form"/>
+    </data>
+</nexa>

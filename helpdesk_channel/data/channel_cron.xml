@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_helpdesk_channel_route" model="sys.cron">
+            <field name="name">Helpdesk: Auto-route unassigned tickets</field>
+            <field name="code">helpdesk.channel.route</field>
+            <field name="interval_number">1</field>
+            <field name="active">True</field>
+        </record>
+        <record id="cron_helpdesk_channel_delivery" model="sys.cron">
+            <field name="name">Helpdesk: Retry failed channel deliveries</field>
+            <field name="code">helpdesk.channel.delivery</field>
+            <field name="interval_number">5</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

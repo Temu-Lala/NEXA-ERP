@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Procurement Overview - read-only graph / pivot dashboards        -->
+        <!-- Every panel is a view over existing records contributed by the   -->
+        <!-- purchase anchor and its companions. This module adds no tables,  -->
+        <!-- no access rules and mutates nothing.                             -->
+        <!-- ================================================================ -->
+
+        <!-- Committed spend -->
+        <view id="view_purchase_ovw_po_state" model="purchase.order" type="graph" chart="bar" string="Committed PO Value by Status">
+            <field name="state" type="row"/>
+            <field name="amount_total" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_po_state" type="window" model="purchase.order" name="Committed Spend by Status" view_mode="graph"/>
+
+        <view id="view_purchase_ovw_spend_supplier" model="purchase.order" type="pivot" string="Spend by Supplier">
+            <field name="partner_id" type="row"/>
+            <field name="amount_total" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_spend_supplier" type="window" model="purchase.order" name="Spend by Supplier" view_mode="pivot"/>
+
+        <view id="view_purchase_ovw_spend_entity" model="purchase.order" type="graph" chart="pie" string="Committed Value by Entity">
+            <field name="company_id" type="row"/>
+            <field name="amount_total" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_spend_entity" type="window" model="purchase.order" name="Spend by Entity" view_mode="graph"/>
+
+        <!-- Requisition pipeline -->
+        <view id="view_purchase_ovw_req_state" model="purchase.requisition" type="graph" chart="bar" string="Requisitions by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_req_state" type="window" model="purchase.requisition" name="Requisition Aging" view_mode="graph" domain='[["state","not in",["closed","cancelled","rejected"]]]'/>
+
+        <view id="view_purchase_ovw_req_dept" model="purchase.requisition" type="pivot" string="Estimated Value by Department">
+            <field name="department" type="row"/>
+            <field name="est_total" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_req_dept" type="window" model="purchase.requisition" name="Requisition Value by Dept" view_mode="pivot"/>
+
+        <!-- Sourcing -->
+        <view id="view_purchase_ovw_rfq_state" model="purchase.rfq" type="graph" chart="bar" string="Open RFQs by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_rfq_state" type="window" model="purchase.rfq" name="Open RFQs" view_mode="graph" domain='[["state","not in",["draft","cancelled","awarded"]]]'/>
+
+        <view id="view_purchase_ovw_rfq_deadline" model="purchase.rfq" type="list" string="Tender Deadlines">
+            <field name="name" string="Reference"/>
+            <field name="deadline" string="Submission Deadline"/>
+            <field name="category" string="Category"/>
+            <field name="state" string="Status"/>
+        </view>
+        <action id="action_purchase_ovw_rfq_deadline" type="window" model="purchase.rfq" name="Tender Deadlines" view_mode="list" domain='[["state","not in",["draft","cancelled","awarded","expired"]]]'/>
+
+        <!-- Contracts -->
+        <view id="view_purchase_ovw_contract_state" model="purchase.contract" type="graph" chart="bar" string="Contract Coverage &amp; Consumption">
+            <field name="state" type="row"/>
+            <field name="value_ceiling" type="measure"/>
+            <field name="value_used" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_contract_state" type="window" model="purchase.contract" name="Contract Coverage" view_mode="graph"/>
+
+        <view id="view_purchase_ovw_contract_value" model="purchase.contract" type="pivot" string="Remaining Ceiling by Supplier">
+            <field name="partner_id" type="row"/>
+            <field name="value_ceiling" type="measure"/>
+            <field name="value_used" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_contract_value" type="window" model="purchase.contract" name="Ceiling vs Used" view_mode="pivot" domain='[["state","in",["active","expiring","renewed"]]]'/>
+
+        <!-- Receipts &amp; discrepancies -->
+        <view id="view_purchase_ovw_disc_issue" model="purchase.discrepancy.case" type="graph" chart="pie" string="Discrepancies by Issue">
+            <field name="issue_type" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_disc_issue" type="window" model="purchase.discrepancy.case" name="Discrepancy Mix" view_mode="graph" domain='[["state","in",["open","on_hold"]]]'/>
+
+        <!-- Matching -->
+        <view id="view_purchase_ovw_match_state" model="purchase.invoice.match.case" type="graph" chart="bar" string="Invoice Matching by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_match_state" type="window" model="purchase.invoice.match.case" name="Matching Load" view_mode="graph"/>
+
+        <view id="view_purchase_ovw_match_dup" model="purchase.invoice.match.case" type="list" string="Duplicate Bill Suspects">
+            <field name="name" string="Reference"/>
+            <field name="duplicate" string="Duplicate"/>
+            <field name="state" string="Status"/>
+        </view>
+        <action id="action_purchase_ovw_match_dup" type="window" model="purchase.invoice.match.case" name="Duplicate Bills" view_mode="list" domain='[["duplicate","=",true]]'/>
+
+        <!-- Performance -->
+        <view id="view_purchase_ovw_scorecard_grade" model="purchase.supplier.scorecard" type="graph" chart="bar" string="Supplier Grades">
+            <field name="grade" type="row"/>
+            <field name="composite_score" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_scorecard_grade" type="window" model="purchase.supplier.scorecard" name="Scorecard Grades" view_mode="graph"/>
+
+        <view id="view_purchase_ovw_metric_kpi" model="purchase.performance.metric" type="pivot" string="KPI Quality by Dimension">
+            <field name="dimension" type="row"/>
+            <field name="kpi" type="col"/>
+            <field name="score" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_metric_kpi" type="window" model="purchase.performance.metric" name="KPI Quality" view_mode="pivot" domain='[["has_data","=",true]]'/>
+
+        <view id="view_purchase_ovw_corrective_state" model="purchase.corrective.action" type="graph" chart="bar" string="Corrective Actions by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_corrective_state" type="window" model="purchase.corrective.action" name="Corrective Actions" view_mode="graph" domain='[["state","not in",["closed","cancelled"]]]'/>
+
+        <!-- Risk -->
+        <view id="view_purchase_ovw_supplier_risk" model="purchase.supplier" type="graph" chart="pie" string="Supplier Risk Spread">
+            <field name="risk" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_purchase_ovw_supplier_risk" type="window" model="purchase.supplier" name="Supplier Risk" view_mode="graph"/>
+    </data>
+</nexa>

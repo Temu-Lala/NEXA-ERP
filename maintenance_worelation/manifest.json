@@ -1,0 +1,16 @@
+{
+    "name": "maintenance_worelation",
+    "display_name": "Maintenance Work Order Relationships",
+    "version": "1.0.0",
+    "summary": "Parent/child work orders, scheduling dependencies and duplicate detection",
+    "description": "Model advanced work order structures: break large jobs into controlled parent and child work orders, express dependencies between work orders (blocking, predecessor and lag time) so sequencing is explicit, group related work into packages, and flag duplicate requests for consolidation - instead of capturing everything in one large free-text description.",
+    "author": "Nexa",
+    "depends": ["base", "maintenance"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

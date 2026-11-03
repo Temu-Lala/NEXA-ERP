@@ -1,0 +1,4 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_job_opening_user,access_hr_job_opening_user,hr.job.opening,,1,1,1,1
+access_hr_recruitment_interview_user,access_hr_recruitment_interview_user,hr.recruitment.interview,,1,1,1,1
+access_hr_recruitment_offer_user,access_hr_recruitment_offer_user,hr.recruitment.offer,,1,1,1,1

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+  <data>
+    <menuitem id="menu_stock_ovw_pickings" name="Open Transfers" parent="stock.menu_stock_overview" action="action_stock_overview_picking_state" sequence="10"/>
+    <menuitem id="menu_stock_ovw_operations" name="Transfers by Operation" parent="stock.menu_stock_overview" action="action_stock_overview_picking_op" sequence="20"/>
+    <menuitem id="menu_stock_ovw_onhand" name="On-Hand Matrix" parent="stock.menu_stock_overview" action="action_stock_overview_quant_pivot" sequence="30"/>
+    <menuitem id="menu_stock_ovw_valuation" name="Valuation by Type" parent="stock.menu_stock_overview" action="action_stock_overview_layer_source" sequence="40"/>
+    <menuitem id="menu_stock_ovw_value_product" name="Value by Product" parent="stock.menu_stock_overview" action="action_stock_overview_value_pivot" sequence="50"/>
+    <menuitem id="menu_stock_ovw_replenishment" name="Replenishment Pressure" parent="stock.menu_stock_overview" action="action_stock_overview_proposal_state" sequence="60"/>
+    <menuitem id="menu_stock_ovw_triggers" name="Proposals by Trigger" parent="stock.menu_stock_overview" action="action_stock_overview_proposal_trigger" sequence="70"/>
+    <menuitem id="menu_stock_ovw_alerts" name="Active Alerts" parent="stock.menu_stock_overview" action="action_stock_overview_alert_reason" sequence="80"/>
+    <menuitem id="menu_stock_ovw_expiry" name="Expiry Risk" parent="stock.menu_stock_overview" action="action_stock_overview_expiry_severity" sequence="90"/>
+    <menuitem id="menu_stock_ovw_lots" name="Lots by State" parent="stock.menu_stock_overview" action="action_stock_overview_lot_state" sequence="100"/>
+    <menuitem id="menu_stock_ovw_backlog" name="Move Backlog" parent="stock.menu_stock_overview" action="action_stock_overview_move_state" sequence="110"/>
+    <menuitem id="menu_stock_ovw_returns" name="Returns by Disposition" parent="stock.menu_stock_overview" action="action_stock_overview_return_disp" sequence="120"/>
+    <menuitem id="menu_stock_ovw_return_quality" name="Return Quality Matrix" parent="stock.menu_stock_overview" action="action_stock_overview_return_pivot" sequence="130"/>
+    <menuitem id="menu_stock_ovw_counts" name="Count Accuracy" parent="stock.menu_stock_overview" action="action_stock_overview_count_pivot" sequence="140"/>
+    <menuitem id="menu_stock_ovw_turnover" name="Turnover by Product" parent="stock.menu_stock_overview" action="action_stock_overview_turnover" sequence="150"/>
+    <menuitem id="menu_stock_ovw_classes" name="ABC / XYZ Spread" parent="stock.menu_stock_overview" action="action_stock_overview_class_pivot" sequence="160"/>
+  </data>
+</nexa>

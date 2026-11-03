@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_helpdesk_survey_root" name="Customer Satisfaction" sequence="66"/>
+
+        <menuitem id="menu_helpdesk_survey_responses" name="CSAT Responses" parent="menu_helpdesk_survey_root" action="helpdesk_survey.action_survey_response" sequence="10"/>
+        <menuitem id="menu_helpdesk_survey_templates" name="CSAT Surveys" parent="menu_helpdesk_survey_root" action="helpdesk_survey.action_survey" sequence="20"/>
+    </data>
+</nexa>

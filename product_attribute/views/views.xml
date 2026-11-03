@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_product_attribute_list" model="product.attribute" type="list">
+            <field name="name" string="Attribute"/>
+            <field name="kind" string="Type"/>
+            <field name="required" string="Required" widget="boolean_toggle"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_product_attribute_form" model="product.attribute" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Attribute"/>
+                    <field name="kind" string="Type"/>
+                    <field name="required" string="Required"/>
+                    <field name="active" string="Active"/>
+                </group>
+                <separator string="Values"/>
+                <field name="attribute_values" nolabel="1"/>
+            </sheet>
+        </view>
+        <action id="action_product_attribute" type="window" model="product.attribute" name="Attributes" view_mode="list,form"/>
+
+        <view id="view_product_attribute_value_list" model="product.attribute.value" type="list">
+            <field name="attribute_id" string="Attribute"/>
+            <field name="name" string="Value"/>
+            <field name="code" string="Code"/>
+            <field name="sequence" string="Sequence"/>
+        </view>
+        <view id="view_product_attribute_value_form" model="product.attribute.value" type="form">
+            <sheet>
+                <group>
+                    <field name="attribute_id" string="Attribute"/>
+                    <field name="name" string="Value"/>
+                    <field name="code" string="Code"/>
+                    <field name="sequence" string="Sequence"/>
+                    <field name="active" string="Active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_product_attribute_value" type="window" model="product.attribute.value" name="Attribute Values" view_mode="list,form"/>
+
+        <view id="view_product_attribute_line_list" model="product.attribute.line" type="list">
+            <field name="product_id" string="Product"/>
+            <field name="attribute_id" string="Attribute"/>
+            <field name="value_ids" string="Values" widget="many2many_tags"/>
+        </view>
+        <view id="view_product_attribute_line_form" model="product.attribute.line" type="form">
+            <sheet>
+                <group>
+                    <field name="product_id" string="Product"/>
+                    <field name="attribute_id" string="Attribute"/>
+                    <field name="value_ids" string="Values" widget="many2many_tags"/>
+                    <field name="required" string="Required"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_product_attribute_line" type="window" model="product.attribute.line" name="Product Attributes" view_mode="list,form"/>
+    </data>
+</nexa>

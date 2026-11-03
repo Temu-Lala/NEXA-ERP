@@ -1,0 +1,3 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_kb_category_user,access_helpdesk_kb_category_user,helpdesk.kb.category,,1,1,1,1
+access_helpdesk_kb_article_user,access_helpdesk_kb_article_user,helpdesk.kb.article,,1,1,1,1

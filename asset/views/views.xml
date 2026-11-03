@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_asset_category_list" model="asset.category" type="list">
+            <field name="name" string="Category"/>
+            <field name="code" string="Code"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_asset_category_form" model="asset.category" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_asset_asset_list" model="asset.asset" type="list">
+            <field name="name" string="Asset"/>
+            <field name="code" string="Reference"/>
+            <field name="category_id" string="Category"/>
+            <field name="purchase_date" string="Purchase Date"/>
+            <field name="purchase_value" string="Purchase Value"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_asset_asset_form" model="asset.asset" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="category_id"/>
+                    <field name="partner_id"/>
+                    <field name="purchase_date"/>
+                    <field name="purchase_value"/>
+                </group>
+                <group>
+                    <field name="residual_value"/>
+                    <field name="useful_life"/>
+                    <field name="assigned_to"/>
+                    <field name="state"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_asset_category" type="window" model="asset.category" name="Categories" view_mode="list,form"/>
+        <action id="action_asset_asset" type="window" model="asset.asset" name="Assets" view_mode="list,form"/>
+    </data>
+</nexa>

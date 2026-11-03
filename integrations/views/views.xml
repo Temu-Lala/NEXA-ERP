@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Connections -->
+        <view id="view_integration_connection_list" model="integration.connection" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Connection"/>
+            <field name="provider" string="Type"/>
+            <field name="endpoint" string="Endpoint"/>
+            <field name="auth_mode" string="Auth"/>
+            <field name="health" string="Health"/>
+            <field name="last_status_code" string="Last Status"/>
+            <field name="last_check" string="Last Check"/>
+            <field name="delivery_count" string="Deliveries"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_integration_connection_form" model="integration.connection" type="form">
+            <header>
+                <button name="connection_test" string="Test Connection" type="object" class="sum_highlight"/>
+                <button name="connection_enable" string="Enable" type="object"/>
+                <button name="connection_pause" string="Pause" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Connection name"/></h1></div>
+                <group>
+                   <group string="Target">
+                        <field name="code"/>
+                        <field name="provider"/>
+                        <field name="endpoint" placeholder="https://hooks.example.com/ingest  or  smtps://mail.example.com:465"/>
+                        <field name="http_method" invisible="provider == 'email'"/>
+                    </group>
+                    <group string="Live Status">
+                        <field name="health" readonly="true"/>
+                        <field name="last_status_code" readonly="true"/>
+                        <field name="last_latency_ms" readonly="true"/>
+                        <field name="last_check" readonly="true"/>
+                        <field name="days_since_check" readonly="true"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Authentication">
+                        <field name="auth_mode"/>
+                        <field name="header_name" invisible="auth_mode != 'api_key'"/>
+                        <field name="api_user" invisible="!(auth_mode == 'basic' || provider == 'email')"/>
+                        <field name="secret_ref" placeholder="ENV var / secret-store key name"/>
+                        <field name="sign_payload" invisible="provider == 'email'"/>
+                    </group>
+                    <group string="Request">
+                        <field name="timeout_seconds"/>
+                        <field name="delivery_count" readonly="true"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Additional Headers (JSON)"><field name="headers" nolabel="1" invisible="provider == 'email'" placeholder='{"X-Source":"nexa-erp"}'/></group>
+                <group string="Test Payload (JSON)"><field name="payload_template" nolabel="1" invisible="provider == 'email'"/></group>
+                <group><field name="last_error"/></group>
+                <notebook>
+                    <page string="Delivery Log">
+                        <field name="deliveries" nolabel="1" readonly="true">
+                            <list>
+                                <field name="timestamp"/>
+                                <field name="trigger"/>
+                                <field name="method"/>
+                                <field name="status_code"/>
+                                <field name="success"/>
+                                <field name="duration_ms"/>
+                                <field name="error"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_integration_connection" type="window" model="integration.connection" name="Connections" view_mode="list,form"/>
+
+        <!-- Delivery Log (append-only audit) -->
+        <view id="view_integration_delivery_list" model="integration.delivery" type="list">
+            <field name="timestamp" string="When"/>
+            <field name="connection_id" string="Connection"/>
+            <field name="trigger" string="Trigger"/>
+            <field name="provider" string="Adapter"/>
+            <field name="method" string="Method"/>
+            <field name="status_code" string="Status"/>
+            <field name="success" string="Success"/>
+            <field name="duration_ms" string="ms"/>
+            <field name="error" string="Error"/>
+        </view>
+        <view id="view_integration_delivery_form" model="integration.delivery" type="form">
+            <sheet>
+                <group>
+                    <group string="Call">
+                        <field name="connection_id"/>
+                        <field name="timestamp"/>
+                        <field name="trigger"/>
+                        <field name="provider"/>
+                        <field name="method"/>
+                        <field name="url"/>
+                    </group>
+                    <group string="Result">
+                        <field name="status_code"/>
+                        <field name="success"/>
+                        <field name="duration_ms"/>
+                        <field name="signature"/>
+                        <field name="actor_id"/>
+                    </group>
+                </group>
+                <group string="Request Digest"><field name="request_digest" nolabel="1" readonly="true"/></group>
+                <group string="Response"><field name="response_excerpt" nolabel="1" readonly="true"/></group>
+                <group string="Error"><field name="error" nolabel="1" readonly="true"/></group>
+            </sheet>
+        </view>
+        <action id="action_integration_delivery" type="window" model="integration.delivery" name="Delivery Log" view_mode="list,form"/>
+
+        <!-- Inbound Webhooks -->
+        <view id="view_integration_webhook_list" model="integration.webhook" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Webhook"/>
+            <field name="source" string="Source"/>
+            <field name="ingress_url" string="Ingress URL"/>
+            <field name="require_signature" string="Signed"/>
+            <field name="received_count" string="Events"/>
+            <field name="pending_count" string="Pending"/>
+            <field name="last_received" string="Last Delivery"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_integration_webhook_form" model="integration.webhook" type="form">
+            <header>
+                <button name="webhook_enable" string="Enable Intake" type="object" class="sum_highlight" invisible="state == 'active'"/>
+                <button name="webhook_pause" string="Pause Intake" type="object" invisible="state != 'active'"/>
+                <button name="webhook_rotate_token" string="Rotate URL" type="object" confirm="Rotating invalidates the current ingress URL. Continue?"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Webhook name"/></h1></div>
+                <group>
+                    <group string="Identity">
+                        <field name="code"/>
+                        <field name="source" placeholder="github, stripe, provider..."/>
+                        <field name="connection_id"/>
+                        <field name="ingress_url" readonly="true"/>
+                        <field name="token" readonly="true"/>
+                    </group>
+                    <group string="Intake">
+                        <field name="received_count" readonly="true"/>
+                        <field name="pending_count" readonly="true"/>
+                        <field name="last_received" readonly="true"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Verification">
+                        <field name="require_signature"/>
+                        <field name="secret_ref" placeholder="ENV var / secret-store key name"/>
+                        <field name="signature_header" placeholder="X-Signature"/>
+                    </group>
+                    <group string="Replay Guard">
+                        <field name="timestamp_header" placeholder="X-Timestamp"/>
+                        <field name="replay_window_seconds"/>
+                    </group>
+                </group>
+                <group><field name="notes" nolabel="1" placeholder="What this webhook receives and what it is for"/></group>
+                <notebook>
+                    <page string="Inbound Events">
+                        <field name="events" nolabel="1" readonly="true">
+                            <list>
+                                <field name="received_at"/>
+                                <field name="status"/>
+                                <field name="signature_ok"/>
+                                <field name="event_key"/>
+                                <field name="source_ip"/>
+                                <field name="body_bytes"/>
+                                <field name="error"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_integration_webhook" type="window" model="integration.webhook" name="Inbound Webhooks" view_mode="list,form"/>
+
+        <!-- Inbound Event Queue (durable store) -->
+        <view id="view_integration_inbound_event_list" model="integration.inbound.event" type="list">
+            <field name="received_at" string="Received"/>
+            <field name="webhook_id" string="Webhook"/>
+            <field name="status" string="Status"/>
+            <field name="signature_ok" string="Signature"/>
+            <field name="event_key" string="Idempotency Key"/>
+            <field name="source_ip" string="Source IP"/>
+            <field name="body_bytes" string="Bytes"/>
+            <field name="attempt_count" string="Attempts"/>
+            <field name="error" string="Error"/>
+        </view>
+        <view id="view_integration_inbound_event_form" model="integration.inbound.event" type="form">
+            <header>
+                <button name="inbound_event_requeue" string="Requeue" type="object" invisible="status == 'new' || status == 'processing'"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Delivery">
+                        <field name="webhook_id"/>
+                        <field name="received_at"/>
+                        <field name="event_key"/>
+                        <field name="nonce"/>
+                        <field name="source_ip"/>
+                        <field name="content_type"/>
+                        <field name="body_bytes"/>
+                    </group>
+                    <group string="Processing">
+                        <field name="status"/>
+                        <field name="signature_ok"/>
+                        <field name="attempt_count"/>
+                        <field name="processed_at"/>
+                    </group>
+                </group>
+                <group string="Payload Excerpt"><field name="payload_excerpt" nolabel="1" readonly="true"/></group>
+                <group string="Error"><field name="error" nolabel="1" readonly="true"/></group>
+            </sheet>
+        </view>
+        <action id="action_integration_inbound_event" type="window" model="integration.inbound.event" name="Inbound Events" view_mode="list,form"/>
+    </data>
+</nexa>

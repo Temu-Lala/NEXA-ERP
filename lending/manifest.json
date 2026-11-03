@@ -1,0 +1,18 @@
+{
+  "name": "lending",
+  "display_name": "Lending",
+  "version": "1.0.0",
+  "category": "Lending",
+  "summary": "Loan products, applications, accounts and the contractual loan subledger",
+  "description": "Anchor application for the lending module: configurable loan products with effective-dated versions, borrower loan applications through the origination lifecycle, and authoritative loan accounts (contractual subledger). Integrated with contacts and accounting via cross-module references; the lending subledger is separate from the accounting general ledger.",
+  "author": "Nexa",
+  "application": true,
+  "installable": true,
+  "depends": ["base"],
+  "data": [
+    "security/security.xml",
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ]
+}

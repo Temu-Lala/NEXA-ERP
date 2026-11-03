@@ -1,0 +1,23 @@
+{
+    "name": "stock_overview",
+    "display_name": "Inventory Overview Dashboard",
+    "version": "1.0.0",
+    "summary": "Executive landing dashboard: open transfers, on-hand pivots, valuation exposure, replenishment pressure, expiry risk, returns mix and turnover",
+    "description": "Provides the top-level Inventory Overview navigation described in the enterprise blueprint as a read-only visual layer, without adding or migrating any tables. Graph and pivot dashboards are built directly on top of operational models contributed by the stock anchor and its companions: transfers by state and operation, on-hand and reserved quantities pivoted by location and product, valuation layers by source type and a value-by-product matrix, open replenishment proposals by state and trigger, stockout and reservation alerts by reason, lot expiry alerts by severity, lot release states, in-transit move backlog, return lines by disposition with a condition-versus-disposition matrix, count accuracy from inventory line differences, turnover metrics per product and the ABC/XYZ classification spread. Every panel is a view over existing records, so the dashboard never mutates operational data and stays consistent with the source of truth in each module.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "product",
+        "stock",
+        "stock_traceability",
+        "stock_valuation",
+        "stock_planning",
+        "stock_returns"
+    ],
+    "data": [
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

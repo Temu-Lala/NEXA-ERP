@@ -1,0 +1,6 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_risk_assessment,maintenance.risk.assessment all,maintenance.risk.assessment,,1,1,1,1
+access_maint_risk_hazard,maintenance.risk.hazard all,maintenance.risk.hazard,,1,1,1,1
+access_maint_permit,maintenance.permit all,maintenance.permit,,1,1,1,1
+access_maint_loto_record,maintenance.loto.record all,maintenance.loto.record,,1,1,1,1
+access_maint_safety_incident,maintenance.safety.incident all,maintenance.safety.incident,,1,1,1,1

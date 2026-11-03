@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_library_loan_list" model="library.loan" type="list">
+            <field name="member_id" string="Member"/>
+            <field name="book_id" string="Book"/>
+            <field name="loan_date" string="Loan Date"/>
+            <field name="due_date" string="Due Date"/>
+            <field name="return_date" string="Return Date"/>
+            <field name="state" string="Status"/>
+            <field name="fine" string="Fine"/>
+        </view>
+    </data>
+</nexa>

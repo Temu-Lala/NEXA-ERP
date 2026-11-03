@@ -1,0 +1,6 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_channel_connection_user,access_helpdesk_channel_connection_user,helpdesk.channel.connection,,1,1,1,1
+access_helpdesk_channel_message_user,access_helpdesk_channel_message_user,helpdesk.channel.message,,1,1,1,0
+access_helpdesk_saved_view_user,access_helpdesk_saved_view_user,helpdesk.saved.view,,1,1,1,1
+access_helpdesk_routing_rule_user,access_helpdesk_routing_rule_user,helpdesk.routing.rule,,1,1,1,1
+access_helpdesk_agent_load_user,access_helpdesk_agent_load_user,helpdesk.agent.load,,1,1,1,1

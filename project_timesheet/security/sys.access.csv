@@ -1,0 +1,3 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_project_timesheet_user,access_project_timesheet_user,project.timesheet,,1,1,1,1
+access_project_timesheet_line_user,access_project_timesheet_line_user,project.timesheet.line,,1,1,1,1

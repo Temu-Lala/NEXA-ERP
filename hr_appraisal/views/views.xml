@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_appraisal_cycle_list" model="hr.appraisal.cycle" type="list">
+            <field name="name" string="Cycle"/>
+            <field name="date_start" string="Start"/>
+            <field name="date_end" string="End"/>
+            <field name="department_id" string="Department"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_appraisal_cycle_form" model="hr.appraisal.cycle" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="department_id"/>
+                    <field name="state"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_appraisal_list" model="hr.appraisal" type="list">
+            <field name="cycle_id" string="Cycle"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="manager_id" string="Appraiser"/>
+            <field name="overall_rating" string="Rating"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_appraisal_form" model="hr.appraisal" type="form">
+            <sheet>
+                <group>
+                    <field name="cycle_id"/>
+                    <field name="employee_id"/>
+                    <field name="manager_id"/>
+                    <field name="overall_rating"/>
+                    <field name="state"/>
+                </group>
+                <group>
+                    <field name="self_review"/>
+                    <field name="manager_feedback"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_appraisal_goal_list" model="hr.appraisal.goal" type="list">
+            <field name="name" string="Goal"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="target_date" string="Target Date"/>
+            <field name="progress" string="Progress"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_appraisal_goal_form" model="hr.appraisal.goal" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="target_date"/>
+                    <field name="progress"/>
+                    <field name="weight"/>
+                    <field name="state"/>
+                </group>
+                <group>
+                    <field name="description"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_appraisal_line_list" model="hr.appraisal.line" type="list">
+            <field name="appraisal_id" string="Appraisal"/>
+            <field name="skill_id" string="Competency"/>
+            <field name="name" string="Criteria"/>
+            <field name="rating" string="Rating"/>
+        </view>
+        <view id="view_appraisal_line_form" model="hr.appraisal.line" type="form">
+            <sheet>
+                <group>
+                    <field name="appraisal_id"/>
+                    <field name="skill_id"/>
+                    <field name="name"/>
+                    <field name="rating"/>
+                    <field name="feedback"/>
+                    <field name="sequence"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_appraisal_cycle" type="window" model="hr.appraisal.cycle" name="Appraisal Cycles" view_mode="list,form"/>
+        <action id="action_appraisal" type="window" model="hr.appraisal" name="Appraisals" view_mode="list,form"/>
+        <action id="action_appraisal_goal" type="window" model="hr.appraisal.goal" name="Goals" view_mode="list,form"/>
+        <action id="action_appraisal_line" type="window" model="hr.appraisal.line" name="Evaluation Lines" view_mode="list,form"/>
+    </data>
+</nexa>

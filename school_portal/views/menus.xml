@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_portal_root" name="Portal" parent="school.school_menu_root" sequence="18" web_icon="users" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_portal_profile" name="Portal Profiles" parent="school_menu_portal_root" action="school_portal.action_school_portal_profile" sequence="1" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_portal_widget" name="Dashboard Tiles" parent="school_menu_portal_root" action="school_portal.action_school_portal_widget" sequence="2" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_portal_request" name="Requests" parent="school_menu_portal_root" action="school_portal.action_school_portal_request" sequence="3" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_portal_history" name="Request History" parent="school_menu_portal_root" action="school_portal.action_school_portal_request_history" sequence="4" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_portal_access_log" name="Access Audit Log" parent="school_menu_portal_root" action="school_portal.action_school_portal_access_log" sequence="5" groups="school.group_school_manager"/>
+    </data>
+</nexa>

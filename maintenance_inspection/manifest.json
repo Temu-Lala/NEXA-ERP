@@ -1,0 +1,16 @@
+{
+  "name": "maintenance_inspection",
+  "display_name": "Maintenance Inspections & Calibration",
+  "version": "1.0.0",
+  "summary": "Inspection templates, inspection runs with results, and calibration records",
+  "description": "Define reusable inspection templates with pass/fail checklist items and measurement points; execute inspection runs against assets; capture results with pass, fail, NA and out-of-range outcomes; and manage calibration schedules, certificates and as-found/as-left readings for measurement equipment.",
+  "author": "Nexa",
+  "depends": ["base", "maintenance"],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Operations"
+}

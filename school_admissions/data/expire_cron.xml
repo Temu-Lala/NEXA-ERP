@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_school_applicant_expire" model="sys.cron">
+            <field name="name">School: Expire admission offers and waitlist holds past their date</field>
+            <field name="code">school.applicant.expire</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

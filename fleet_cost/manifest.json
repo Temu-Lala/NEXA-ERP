@@ -1,0 +1,16 @@
+{
+    "name": "fleet_cost",
+    "display_name": "Fleet Cost & TCO",
+    "version": "1.0.0",
+    "summary": "Vehicle operational expense logging, lifecycle Total Cost of Ownership (TCO) and per-km analytics",
+    "description": "Log fuel, maintenance, tolls, leases, and administrative expenses. Aggregate multi-period Total Cost of Ownership metrics per vehicle.",
+    "author": "Nexa",
+    "depends": ["base", "fleet", "fleet_trip"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

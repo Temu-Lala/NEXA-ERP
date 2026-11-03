@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_subscription_plan_list" model="subscription.plan" type="list">
+            <field name="name" string="Plan"/>
+            <field name="amount" string="Price"/>
+            <field name="interval" string="Interval"/>
+            <field name="interval_unit" string="Unit"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_subscription_plan_form" model="subscription.plan" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="amount"/>
+                    <field name="interval"/>
+                    <field name="interval_unit"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="description"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_subscription_subscription_list" model="subscription.subscription" type="list">
+            <field name="name" string="Reference"/>
+            <field name="partner_id" string="Customer"/>
+            <field name="plan_id" string="Plan"/>
+            <field name="start_date" string="Start Date"/>
+            <field name="amount" string="Recurring Amount"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_subscription_subscription_form" model="subscription.subscription" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="plan_id"/>
+                </group>
+                <group>
+                    <field name="start_date"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_subscription_plan" type="window" model="subscription.plan" name="Plans" view_mode="list,form"/>
+        <action id="action_subscription_subscription" type="window" model="subscription.subscription" name="Subscriptions" view_mode="list,form"/>
+    </data>
+</nexa>

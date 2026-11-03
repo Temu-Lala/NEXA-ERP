@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Cart -->
+        <view id="view_ecom_cart_list" model="ecom.cart" type="list">
+            <field name="name" string="Reference"/>
+            <field name="store_id" string="Store"/>
+            <field name="partner_id" string="Customer"/>
+            <field name="email" string="Email"/>
+            <field name="order_count" string="Items"/>
+            <field name="total_grand" string="Total"/>
+            <field name="state" string="State"/>
+        </view>
+        <view id="view_ecom_cart_form" model="ecom.cart" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Cart reference"/></h1></div>
+                <group>
+                    <group string="Cart">
+                        <field name="store_id" string="Store"/>
+                        <field name="partner_id" string="Customer"/>
+                        <field name="email" string="Email"/>
+                        <field name="currency_id" string="Currency"/>
+                        <field name="session_token" string="Session Token"/>
+                    </group>
+                    <group string="Status &amp; Totals">
+                        <field name="state" string="State"/>
+                        <field name="order_count" string="Item Count"/>
+                        <field name="total_untaxed" string="Subtotal"/>
+                        <field name="total_discount" string="Discount"/>
+                        <field name="total_tax" string="Tax"/>
+                        <field name="total_grand" string="Total"/>
+                        <field name="expires_at" string="Expires At"/>
+                        <field name="merged_into_id" string="Merged Into"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Lines">
+                        <field name="lines"/>
+                    </page>
+                </notebook>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_cart" type="window" model="ecom.cart" name="Carts" view_mode="list,form"/>
+
+        <!-- Cart Line -->
+        <view id="view_ecom_cart_line_list" model="ecom.cart.line" type="list">
+            <field name="cart_id" string="Cart"/>
+            <field name="product_id" string="Product"/>
+            <field name="variant_name" string="Variant"/>
+            <field name="quantity" string="Qty"/>
+            <field name="unit_price" string="Unit Price"/>
+            <field name="discount" string="Discount"/>
+            <field name="price_subtotal" string="Subtotal"/>
+            <field name="price_changed" string="Price Changed"/>
+        </view>
+        <view id="view_ecom_cart_line_form" model="ecom.cart.line" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="cart_id" string="Cart"/>
+                        <field name="product_id" string="Product"/>
+                        <field name="variant_name" string="Variant"/>
+                    </group>
+                    <group>
+                        <field name="quantity" string="Quantity"/>
+                        <field name="unit_price" string="Unit Price"/>
+                        <field name="discount" string="Discount"/>
+                        <field name="price_subtotal" string="Subtotal"/>
+                        <field name="price_changed" string="Price Changed"/>
+                        <field name="added_at" string="Added At"/>
+                    </group>
+                </group>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_cart_line" type="window" model="ecom.cart.line" name="Cart Lines" view_mode="list,form"/>
+
+        <!-- Cart Address -->
+        <view id="view_ecom_cart_address_list" model="ecom.cart.address" type="list">
+            <field name="cart_id" string="Cart"/>
+            <field name="type" string="Type"/>
+            <field name="contact_name" string="Contact"/>
+            <field name="city" string="City"/>
+            <field name="country" string="Country"/>
+        </view>
+        <view id="view_ecom_cart_address_form" model="ecom.cart.address" type="form">
+            <sheet>
+                <group>
+                    <group string="Cart &amp; Contact">
+                        <field name="cart_id" string="Cart"/>
+                        <field name="type" string="Type"/>
+                        <field name="partner_id" string="Contact"/>
+                        <field name="contact_name" string="Contact Name"/>
+                        <field name="phone" string="Phone"/>
+                        <field name="email" string="Email"/>
+                    </group>
+                    <group string="Address">
+                        <field name="street" string="Street"/>
+                        <field name="street2" string="Street 2"/>
+                        <field name="city" string="City"/>
+                        <field name="state_name" string="State"/>
+                        <field name="zip" string="ZIP"/>
+                        <field name="country" string="Country"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_cart_address" type="window" model="ecom.cart.address" name="Cart Addresses" view_mode="list,form"/>
+
+        <!-- Cart Event -->
+        <view id="view_ecom_cart_event_list" model="ecom.cart.event" type="list">
+            <field name="cart_id" string="Cart"/>
+            <field name="event_type" string="Type"/>
+            <field name="name" string="Event"/>
+            <field name="date" string="Date"/>
+        </view>
+        <view id="view_ecom_cart_event_form" model="ecom.cart.event" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="cart_id" string="Cart"/>
+                        <field name="event_type" string="Type"/>
+                        <field name="name" string="Event"/>
+                    </group>
+                    <group>
+                        <field name="date" string="Date"/>
+                    </group>
+                </group>
+                <field name="message" string="Message"/>
+            </sheet>
+        </view>
+        <action id="action_cart_event" type="window" model="ecom.cart.event" name="Cart Events" view_mode="list,form"/>
+    </data>
+</nexa>

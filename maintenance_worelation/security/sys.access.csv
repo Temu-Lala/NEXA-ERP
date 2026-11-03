@@ -1,0 +1,2 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_wo_relation_user,access_maint_wo_relation_user,maintenance.work.order.relation,,1,1,1,1

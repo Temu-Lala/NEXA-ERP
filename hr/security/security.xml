@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <record id="module_category_hr" model="sys.module.category">
+            <field name="name">Human Resources</field>
+            <field name="sequence">60</field>
+        </record>
+        <record id="group_hr_user" model="core.group">
+            <field name="name">Employees / Officer</field>
+            <field name="category_id" ref="module_category_hr"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_hr_manager" model="core.group">
+            <field name="name">Employees / Manager</field>
+            <field name="category_id" ref="module_category_hr"/>
+            <field name="implied_ids" eval="[(4, ref('group_hr_user'))]"/>
+        </record>
+        <!-- Self-service tier for ordinary employees: raises/sees only their own
+             HR requests and service-desk cases (ownership enforced by hr_selfservice
+             record rules). Defined here (anchor module) so companion modules that
+             reference it from their ACL CSV resolve it during their own re-sync. -->
+        <record id="group_hr_selfservice" model="core.group">
+            <field name="name">Employees / Self-Service</field>
+            <field name="category_id" ref="module_category_hr"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</nexa>

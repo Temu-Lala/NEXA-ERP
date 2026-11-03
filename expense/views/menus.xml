@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="expense_menu_root" name="Expenses" sequence="65"/>
+        <menuitem id="expense_menu_expenses" name="Expenses" parent="expense_menu_root" action="expense.action_expense_expense" sequence="1"/>
+        <menuitem id="expense_menu_categories" name="Categories" parent="expense_menu_root" action="expense.action_expense_category" sequence="2"/>
+    </data>
+</nexa>

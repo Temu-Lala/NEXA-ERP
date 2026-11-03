@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== Interview Scorecards ===================== -->
+
+        <view id="view_scorecard_list" model="hr.recruitment.scorecard" type="list">
+            <field name="interview_id" string="Interview"/>
+            <field name="criterion" string="Criterion"/>
+            <field name="score" string="Score"/>
+            <field name="max_score" string="Max"/>
+            <field name="weight" string="Weight"/>
+        </view>
+        <view id="view_scorecard_form" model="hr.recruitment.scorecard" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Scorecard">
+                        <field name="interview_id"/>
+                        <field name="criterion"/>
+                    </group>
+                    <group string="Scoring">
+                        <field name="max_score"/>
+                        <field name="score"/>
+                        <field name="weight"/>
+                    </group>
+                </group>
+                <group string="Feedback">
+                    <field name="feedback" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Offer Templates ===================== -->
+
+        <view id="view_offer_template_list" model="hr.recruitment.offer.template" type="list">
+            <field name="name" string="Name"/>
+            <field name="subject" string="Subject"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_offer_template_form" model="hr.recruitment.offer.template" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Template">
+                        <field name="name"/>
+                        <field name="subject"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Body (supports {{applicant}}, {{job}}, {{salary}}, {{start_date}})">
+                    <field name="body" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Onboarding Templates ===================== -->
+
+        <view id="view_onb_template_list" model="hr.onboarding.template" type="list">
+            <field name="name" string="Name"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_onb_template_form" model="hr.onboarding.template" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="description"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_onb_template_line_list" model="hr.onboarding.template.line" type="list">
+            <field name="template_id" string="Template"/>
+            <field name="name" string="Activity"/>
+            <field name="responsible" string="Responsible"/>
+            <field name="due_offset_days" string="Due Offset"/>
+            <field name="sequence" string="Sequence"/>
+        </view>
+        <view id="view_onb_template_line_form" model="hr.onboarding.template.line" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Activity">
+                        <field name="template_id"/>
+                        <field name="name"/>
+                        <field name="responsible"/>
+                    </group>
+                    <group string="Timing">
+                        <field name="due_offset_days"/>
+                        <field name="sequence"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+
+        <action id="action_scorecard" type="window" model="hr.recruitment.scorecard" name="Interview Scorecards" view_mode="list,form"/>
+        <action id="action_offer_template" type="window" model="hr.recruitment.offer.template" name="Offer Letter Templates" view_mode="list,form"/>
+        <action id="action_onboarding_template" type="window" model="hr.onboarding.template" name="Onboarding Templates" view_mode="list,form"/>
+        <action id="action_onboarding_template_line" type="window" model="hr.onboarding.template.line" name="Template Activities" view_mode="list,form"/>
+    </data>
+</nexa>

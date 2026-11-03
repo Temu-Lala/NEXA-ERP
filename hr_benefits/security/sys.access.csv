@@ -1,0 +1,15 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_benefit_plan_user,access_hr_benefit_plan_user,hr.benefit.plan,hr.group_hr_user,1,0,0,0
+access_hr_benefit_plan_manager,access_hr_benefit_plan_manager,hr.benefit.plan,hr.group_hr_manager,1,1,1,1
+access_hr_benefit_enrollment_user,access_hr_benefit_enrollment_user,hr.benefit.enrollment,hr.group_hr_user,1,1,1,0
+access_hr_benefit_enrollment_manager,access_hr_benefit_enrollment_manager,hr.benefit.enrollment,hr.group_hr_manager,1,1,1,1
+access_hr_benefit_dependent_user,access_hr_benefit_dependent_user,hr.benefit.dependent,hr.group_hr_user,1,1,1,0
+access_hr_benefit_dependent_manager,access_hr_benefit_dependent_manager,hr.benefit.dependent,hr.group_hr_manager,1,1,1,1
+access_hr_allowance_user,access_hr_allowance_user,hr.allowance,hr.group_hr_user,1,1,1,0
+access_hr_allowance_manager,access_hr_allowance_manager,hr.allowance,hr.group_hr_manager,1,1,1,1
+access_hr_compensation_change_user,access_hr_compensation_change_user,hr.compensation.change,hr.group_hr_user,1,1,1,0
+access_hr_compensation_change_manager,access_hr_compensation_change_manager,hr.compensation.change,hr.group_hr_manager,1,1,1,1
+access_hr_comp_review_cycle_user,access_hr_comp_review_cycle_user,hr.comp.review.cycle,hr.group_hr_user,1,0,0,0
+access_hr_comp_review_cycle_manager,access_hr_comp_review_cycle_manager,hr.comp.review.cycle,hr.group_hr_manager,1,1,1,1
+access_hr_comp_review_line_user,access_hr_comp_review_line_user,hr.comp.review.line,hr.group_hr_user,1,1,1,0
+access_hr_comp_review_line_manager,access_hr_comp_review_line_manager,hr.comp.review.line,hr.group_hr_manager,1,1,1,1

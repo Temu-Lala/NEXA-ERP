@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_payroll_category_list" model="hr.payroll.category" type="list">
+            <field name="name" string="Name"/>
+            <field name="code" string="Code"/>
+            <field name="kind" string="Type"/>
+            <field name="account_id" string="Account"/>
+        </view>
+        <view id="view_payroll_category_form" model="hr.payroll.category" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="kind"/>
+                    <field name="account_id"/>
+                    <field name="sequence"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_payroll_structure_list" model="hr.payroll.structure" type="list">
+            <field name="name" string="Name"/>
+            <field name="code" string="Code"/>
+            <field name="company_id" string="Company"/>
+            <field name="wage_type" string="Wage Type"/>
+        </view>
+        <view id="view_payroll_structure_form" model="hr.payroll.structure" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="company_id"/>
+                    <field name="wage_type"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_salary_rule_list" model="hr.salary.rule" type="list">
+            <field name="name" string="Name"/>
+            <field name="code" string="Code"/>
+            <field name="category_id" string="Category"/>
+            <field name="structure_id" string="Structure"/>
+            <field name="amount_type" string="Computation"/>
+        </view>
+        <view id="view_salary_rule_form" model="hr.salary.rule" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="category_id"/>
+                    <field name="structure_id"/>
+                    <field name="sequence"/>
+                    <field name="amount_type"/>
+                    <field name="amount_percent"/>
+                    <field name="amount_fixed"/>
+                    <field name="active"/>
+                </group>
+                <group string="Effective Dating">
+                    <field name="valid_from"/>
+                    <field name="valid_to"/>
+                    <field name="version"/>
+                    <field name="remark"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_payslip_run_list" model="hr.payslip.run" type="list">
+            <field name="name" string="Name"/>
+            <field name="structure_id" string="Structure"/>
+            <field name="period_start" string="Period Start"/>
+            <field name="period_end" string="Period End"/>
+            <field name="journal_id" string="Journal"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_payslip_run_form" model="hr.payslip.run" type="form">
+            <header>
+                <button name="action_approve" string="Approve &amp; Freeze" type="object" class="sum_highlight" invisible="approved"/>
+                <button name="action_refuse" string="Refuse" type="object" invisible="not approved"/>
+                <button name="action_generate_file" string="Generate Payment File" type="object" invisible="frozen"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="structure_id"/>
+                    <field name="period_start"/>
+                    <field name="period_end"/>
+                    <field name="journal_id"/>
+                    <field name="state"/>
+                </group>
+                <group string="Approval">
+                    <field name="approved"/>
+                    <field name="frozen"/>
+                    <field name="approve_note"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_payslip_list" model="hr.payslip" type="list">
+            <field name="number" string="Number"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="run_id" string="Payslip Run"/>
+            <field name="basic" string="Basic"/>
+            <field name="gross" string="Gross"/>
+            <field name="total_deduction" string="Deductions"/>
+            <field name="net" string="Net"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_payslip_form" model="hr.payslip" type="form">
+            <header>
+                <button name="action_generate_lines" string="Generate Lines" type="object" invisible="state != 'draft'"/>
+                <button name="action_compute" string="Recompute Totals" type="object" invisible="state != 'draft'"/>
+                <button name="action_release" string="Release to Employee" type="object" class="sum_highlight" invisible="released_to_employee"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="number"/>
+                    <field name="employee_id"/>
+                    <field name="run_id"/>
+                    <field name="structure_id"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </group>
+                <group>
+                    <field name="basic"/>
+                    <field name="gross"/>
+                    <field name="total_deduction"/>
+                    <field name="net"/>
+                    <field name="state"/>
+                </group>
+                <group string="Delivery &amp; Payment">
+                    <field name="released_to_employee"/>
+                    <field name="paid"/>
+                    <field name="payment_ref"/>
+                </group>
+                <group>
+                    <field name="note"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_payslip_line_list" model="hr.payslip.line" type="list">
+            <field name="payslip_id" string="Payslip"/>
+            <field name="name" string="Name"/>
+            <field name="category_id" string="Category"/>
+            <field name="rule_id" string="Salary Rule"/>
+            <field name="amount" string="Amount"/>
+        </view>
+        <view id="view_payslip_line_form" model="hr.payslip.line" type="form">
+            <sheet>
+                <group>
+                    <field name="payslip_id"/>
+                    <field name="name"/>
+                    <field name="category_id"/>
+                    <field name="rule_id"/>
+                    <field name="sequence"/>
+                    <field name="amount"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_payroll_category" type="window" model="hr.payroll.category" name="Payroll Categories" view_mode="list,form"/>
+        <action id="action_payroll_structure" type="window" model="hr.payroll.structure" name="Salary Structures" view_mode="list,form"/>
+        <action id="action_salary_rule" type="window" model="hr.salary.rule" name="Salary Rules" view_mode="list,form"/>
+        <action id="action_payslip_run" type="window" model="hr.payslip.run" name="Payslip Runs" view_mode="list,form"/>
+        <action id="action_payslip" type="window" model="hr.payslip" name="Payslips" view_mode="list,form"/>
+        <action id="action_payslip_line" type="window" model="hr.payslip.line" name="Payslip Lines" view_mode="list,form"/>
+    </data>
+</nexa>

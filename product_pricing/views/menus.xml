@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_product_pricing_root" name="Pricing" sequence="27"/>
+
+        <menuitem id="menu_product_pricelists" name="Price Lists" parent="menu_product_pricing_root" action="product_pricing.action_product_pricelist" sequence="10"/>
+        <menuitem id="menu_product_price_rules" name="Price Rules" parent="menu_product_pricing_root" action="product_pricing.action_product_pricelist_item" sequence="20"/>
+    </data>
+</nexa>

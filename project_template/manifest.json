@@ -1,0 +1,19 @@
+{
+    "name": "project_template",
+    "display_name": "Project Templates",
+    "version": "1.0.0",
+    "summary": "Reusable phase and task blueprints with one-click instantiation",
+    "description": "Standardise how repeatable projects start. Define a template as a blueprint of WBS phases and tasks with order, priority and estimated effort, then instantiate it to spin up a real draft project with the same phase and task structure automatically, preserving each task's phase. The template is never changed by instantiation so it stays a reusable standard, and a template without a task blueprint is blocked from producing an empty project.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "project"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Project"
+}

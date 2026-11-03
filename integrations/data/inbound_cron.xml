@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_integrations_inbound_process" model="sys.cron">
+            <field name="name">Integrations: Process inbound webhook events</field>
+            <field name="code">integrations.inbound.process</field>
+            <field name="interval_number">1</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

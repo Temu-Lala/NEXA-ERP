@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+
+        <!-- Root menu -->
+        <menuitem id="menu_lending_root" name="Lending" sequence="48" web_icon="landmark"/>
+
+        <!-- Section containers -->
+        <menuitem id="menu_lending_products" name="Products" parent="menu_lending_root" sequence="10"/>
+        <menuitem id="menu_lending_origination" name="Origination" parent="menu_lending_root" sequence="20"/>
+        <menuitem id="menu_lending_portfolio" name="Portfolio" parent="menu_lending_root" sequence="30"/>
+        <menuitem id="menu_lending_servicing" name="Servicing" parent="menu_lending_root" sequence="40"/>
+        <menuitem id="menu_lending_collections" name="Collections" parent="menu_lending_root" sequence="50"/>
+        <menuitem id="menu_lending_reporting" name="Reporting" parent="menu_lending_root" sequence="60"/>
+        <menuitem id="menu_lending_config" name="Configuration" parent="menu_lending_root" sequence="90" groups="group_lending_manager"/>
+
+        <!-- Products -->
+        <menuitem id="menu_lending_product" name="Loan Products" parent="menu_lending_products" action="action_lending_product" sequence="10" groups="group_lending_user"/>
+        <menuitem id="menu_lending_product_version" name="Product Versions" parent="menu_lending_products" action="action_lending_product_version" sequence="20" groups="group_lending_manager"/>
+
+        <!-- Origination -->
+        <menuitem id="menu_loan_application" name="Loan Applications" parent="menu_lending_origination" action="action_loan_application" sequence="10" groups="group_lending_user"/>
+
+        <!-- Portfolio -->
+        <menuitem id="menu_loan_account" name="Loan Accounts" parent="menu_lending_portfolio" action="action_loan_account" sequence="10" groups="group_lending_user"/>
+
+    </data>
+</nexa>

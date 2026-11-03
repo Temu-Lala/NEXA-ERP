@@ -1,0 +1,22 @@
+{
+    "name": "school_attendance",
+    "display_name": "School Attendance",
+    "version": "1.0.0",
+    "summary": "Roll-call attendance sessions with per-learner records, append-only post-finalization corrections, live session summaries and an automated absence-alert scan",
+    "description": "Implements the attendance module from the blueprint. A school.attendance.session is a roll-call for a class/section on a date, optionally tied to a timetable lesson, and moves through a server-validated draft, open, finalized and cancelled lifecycle. Each learner is marked on a school.attendance.line as present, absent, late or excused; a populate action seeds one line per active learner in the section and finalize is blocked while no marks exist. Once a session is finalized, amending a mark is not a silent edit: the correction action requires a reason, flags the record corrected and journals an immutable school.attendance.correction row capturing the actor and the from/to status. Live per-session summaries (present, absent, late, excused counts and the attendance rate) are exposed as non-stored computes. A nightly cron aggregates unexcused absences within a rolling window and raises deduplicated school.absence.alert records for learners crossing the threshold, which can be acknowledged and resolved. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_setup",
+        "school_academics"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "data/absence_cron.xml",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

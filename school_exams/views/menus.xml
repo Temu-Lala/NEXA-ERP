@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_exams_root" name="Examinations" parent="school.school_menu_root" sequence="13" web_icon="award" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_grading_scale" name="Grading Scales" parent="school_menu_exams_root" action="school_exams.action_school_grading_scale" sequence="1" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_exam" name="Exams" parent="school_menu_exams_root" action="school_exams.action_school_exam" sequence="2" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_gradebook" name="Gradebook" parent="school_menu_exams_root" action="school_exams.action_school_exam_score" sequence="3" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_report_card" name="Report Cards" parent="school_menu_exams_root" action="school_exams.action_school_report_card" sequence="4" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_transcript" name="Transcripts" parent="school_menu_exams_root" action="school_exams.action_school_transcript" sequence="5" groups="school.group_school_clerk"/>
+    </data>
+</nexa>

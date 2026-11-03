@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_documents_folder_list" model="documents.folder" type="list">
+            <field name="name" string="Folder"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_documents_folder_form" model="documents.folder" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_documents_document_list" model="documents.document" type="list">
+            <field name="name" string="Name"/>
+            <field name="folder_id" string="Folder"/>
+            <field name="owner_id" string="Owner"/>
+            <field name="doc_type" string="Type"/>
+            <field name="upload_date" string="Upload Date"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_documents_document_form" model="documents.document" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="folder_id"/>
+                    <field name="owner_id"/>
+                    <field name="doc_type"/>
+                </group>
+                <group>
+                    <field name="upload_date"/>
+                    <field name="state"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_documents_folder" type="window" model="documents.folder" name="Folders" view_mode="list,form"/>
+        <action id="action_documents_document" type="window" model="documents.document" name="Documents" view_mode="list,form"/>
+    </data>
+</nexa>

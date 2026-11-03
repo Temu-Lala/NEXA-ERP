@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_project_collab_root" name="Collaboration" sequence="69"/>
+        <menuitem id="menu_project_meetings" name="Meetings" parent="menu_project_collab_root" action="project_collab.action_project_meeting" sequence="10"/>
+        <menuitem id="menu_project_action_items" name="Action Items" parent="menu_project_collab_root" action="project_collab.action_project_action_item" sequence="20"/>
+        <menuitem id="menu_project_action_items_my" name="My Actions" parent="menu_project_collab_root" action="project_collab.action_project_action_item_my" sequence="30"/>
+        <menuitem id="menu_project_action_items_overdue" name="Overdue Actions" parent="menu_project_collab_root" action="project_collab.action_project_action_item_overdue" sequence="40"/>
+        <menuitem id="menu_project_documents" name="Documents" parent="menu_project_collab_root" action="project_collab.action_project_document" sequence="50"/>
+    </data>
+</nexa>

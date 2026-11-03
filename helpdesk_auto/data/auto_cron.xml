@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_helpdesk_auto_sweep" model="sys.cron">
+            <field name="name">Helpdesk: Run scheduled automation rules</field>
+            <field name="code">helpdesk.automation.sweep</field>
+            <field name="interval_number">5</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ==================== Quality Plans ==================== -->
+        <view id="view_quality_plan_list" model="stock.quality.plan" type="list">
+            <field name="name" string="Plan"/>
+            <field name="scope" string="Scope"/>
+            <field name="product_id" string="Product"/>
+            <field name="category_id" string="Category"/>
+            <field name="partner_id" string="Supplier"/>
+            <field name="sample_percent" string="Sample %"/>
+            <field name="pass_threshold_pct" string="Pass Threshold %"/>
+            <field name="auto_quarantine" string="Auto Quarantine"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_quality_plan_form" model="stock.quality.plan" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="scope"/>
+                    <field name="product_id" invisible="scope != 'product'"/>
+                    <field name="category_id" invisible="scope != 'category'"/>
+                    <field name="partner_id" invisible="scope != 'supplier'"/>
+                </group>
+                <group string="Rules">
+                    <field name="sample_percent"/>
+                    <field name="pass_threshold_pct"/>
+                    <field name="auto_quarantine"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Quality Checks ==================== -->
+        <view id="view_quality_check_list" model="stock.quality.check" type="list">
+            <field name="name" string="Reference"/>
+            <field name="product_id" string="Product"/>
+            <field name="lot_id" string="Lot"/>
+            <field name="picking_id" string="Transfer"/>
+            <field name="quantity" string="Received"/>
+            <field name="sample_qty" string="Sampled"/>
+            <field name="defect_qty" string="Defects"/>
+            <field name="result" string="Result"/>
+            <field name="state" string="Status"/>
+            <field name="inspector_id" string="Inspector"/>
+        </view>
+        <view id="view_quality_check_form" model="stock.quality.check" type="form">
+            <header>
+                <button name="action_start" string="Start Inspection" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_record" string="Record Result" type="object" class="sum_highlight" invisible="state != 'in_progress'"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state not in ('draft', 'in_progress')"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="plan_id"/>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="picking_id"/>
+                    <field name="move_id"/>
+                </group>
+                <group string="Inspection">
+                    <field name="quantity"/>
+                    <field name="sample_qty"/>
+                    <field name="defect_qty"/>
+                    <field name="result"/>
+                    <field name="inspector_id"/>
+                </group>
+                <group string="Measured Characteristics">
+                    <field name="measurements" nolabel="1"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Quarantine Holds ==================== -->
+        <view id="view_quality_hold_list" model="stock.quality.hold" type="list">
+            <field name="name" string="Reference"/>
+            <field name="product_id" string="Product"/>
+            <field name="lot_id" string="Lot"/>
+            <field name="quantity" string="Held Qty"/>
+            <field name="state" string="Status"/>
+            <field name="opened_by" string="Opened By"/>
+            <field name="released_by" string="Released By"/>
+        </view>
+        <view id="view_quality_hold_form" model="stock.quality.hold" type="form">
+            <header>
+                <button name="action_release" string="Release Hold" type="object" class="sum_highlight" invisible="state != 'on_hold'"/>
+                <button name="action_cancel" string="Cancel (in error)" type="object" invisible="state != 'on_hold'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="check_id"/>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="location_id"/>
+                    <field name="quantity"/>
+                </group>
+                <group string="Responsibility">
+                    <field name="opened_by"/>
+                    <field name="released_by"/>
+                </group>
+                <group string="Non-conformity">
+                    <field name="reason" nolabel="1"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Actions ==================== -->
+        <action id="action_quality_plan" type="window" model="stock.quality.plan" name="Quality Plans" view_mode="list,form"/>
+        <action id="action_quality_check" type="window" model="stock.quality.check" name="Quality Checks" view_mode="list,form"/>
+        <action id="action_quality_hold" type="window" model="stock.quality.hold" name="Quarantine Holds" view_mode="list,form"/>
+    </data>
+</nexa>

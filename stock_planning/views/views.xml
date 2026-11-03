@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ==================== Replenishment Rules ==================== -->
+        <view id="view_repl_rule_list" model="stock.replenishment.rule" type="list">
+            <field name="name" string="Reference"/>
+            <field name="product_id" string="Product"/>
+            <field name="warehouse_id" string="Warehouse"/>
+            <field name="method" string="Method"/>
+            <field name="min_qty" string="Min"/>
+            <field name="max_qty" string="Max"/>
+            <field name="safety_stock" string="Safety"/>
+            <field name="lead_time_days" string="Lead (d)"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_repl_rule_form" model="stock.replenishment.rule" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="method"/>
+                    <field name="active"/>
+                </group>
+                <group string="Policy">
+                    <field name="min_qty" invisible="method != 'minmax'"/>
+                    <field name="max_qty" invisible="method != 'minmax'"/>
+                    <field name="safety_stock"/>
+                    <field name="lead_time_days"/>
+                    <field name="fixed_qty"/>
+                    <field name="eoq_hint"/>
+                </group>
+                <group string="Purchase Constraints">
+                    <field name="min_order_qty"/>
+                    <field name="order_multiple"/>
+                    <field name="max_order_qty"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Replenishment Proposals ==================== -->
+        <view id="view_repl_proposal_list" model="stock.replenishment.proposal" type="list">
+            <field name="name" string="Reference"/>
+            <field name="product_id" string="Product"/>
+            <field name="warehouse_id" string="Warehouse"/>
+            <field name="trigger" string="Trigger"/>
+            <field name="position" string="Position"/>
+            <field name="suggested_qty" string="Suggested Qty"/>
+            <field name="state" string="Status"/>
+            <field name="date" string="Computed At"/>
+        </view>
+        <view id="view_repl_proposal_form" model="stock.replenishment.proposal" type="form">
+            <header>
+                <button name="action_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_convert" string="Convert to Requisition" type="object" class="sum_highlight" invisible="state != 'approved'"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state not in ('draft', 'approved')"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="rule_id"/>
+                    <field name="origin"/>
+                    <field name="trigger"/>
+                    <field name="date"/>
+                </group>
+                <group string="Computed Position">
+                    <field name="on_hand"/>
+                    <field name="incoming"/>
+                    <field name="committed"/>
+                    <field name="position"/>
+                    <field name="daily_demand"/>
+                </group>
+                <group string="Suggestion">
+                    <field name="target_qty"/>
+                    <field name="suggested_qty"/>
+                    <field name="requisition_id" invisible="requisition_id == 0"/>
+                </group>
+                <group string="Trigger &amp; Assumptions">
+                    <field name="explanation" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Stockout / Exception Alerts ==================== -->
+        <view id="view_stockout_alert_list" model="stock.stockout.alert" type="list">
+            <field name="name" string="Reference"/>
+            <field name="product_id" string="Product"/>
+            <field name="warehouse_id" string="Warehouse"/>
+            <field name="reason" string="Reason"/>
+            <field name="quantity" string="Qty at Risk"/>
+            <field name="state" string="Status"/>
+            <field name="date" string="Raised At"/>
+        </view>
+        <view id="view_stockout_alert_form" model="stock.stockout.alert" type="form">
+            <header>
+                <button name="action_acknowledge" string="Acknowledge" type="object" invisible="state != 'open'"/>
+                <button name="action_resolve" string="Resolve" type="object" invisible="state not in ('open', 'acknowledged')"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="reason"/>
+                    <field name="quantity"/>
+                    <field name="source_ref"/>
+                    <field name="date"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Report Metrics ==================== -->
+        <view id="view_report_metrics_list" model="stock.report.metrics" type="list">
+            <field name="name" string="Reference"/>
+            <field name="metric" string="Metric"/>
+            <field name="product_id" string="Product"/>
+            <field name="value" string="Value"/>
+            <field name="period_days" string="Period"/>
+            <field name="date_end" string="Period End"/>
+            <field name="detail" string="Numerator / Denominator"/>
+        </view>
+        <view id="view_report_metrics_form" model="stock.report.metrics" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="metric"/>
+                    <field name="product_id"/>
+                    <field name="value"/>
+                    <field name="period_days"/>
+                    <field name="date_end"/>
+                </group>
+                <group>
+                    <field name="detail" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== ABC/XYZ Classes ==================== -->
+        <view id="view_product_class_list" model="stock.product.class" type="list">
+            <field name="name" string="Reference"/>
+            <field name="product_id" string="Product"/>
+            <field name="abc_class" string="ABC"/>
+            <field name="xyz_class" string="XYZ"/>
+            <field name="annual_value" string="Annual Value"/>
+            <field name="rank" string="Rank"/>
+            <field name="demand_cv" string="CV"/>
+            <field name="last_run" string="Last Computed"/>
+        </view>
+        <view id="view_product_class_form" model="stock.product.class" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="abc_class"/>
+                    <field name="xyz_class"/>
+                    <field name="annual_value"/>
+                    <field name="rank"/>
+                    <field name="demand_cv"/>
+                    <field name="last_run"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Actions ==================== -->
+        <action id="action_repl_rule" type="window" model="stock.replenishment.rule" name="Replenishment Rules" view_mode="list,form"/>
+        <action id="action_repl_proposal" type="window" model="stock.replenishment.proposal" name="Replenishment Proposals" view_mode="list,form"/>
+        <action id="action_stockout_alert" type="window" model="stock.stockout.alert" name="Stockout Alerts" view_mode="list,form"/>
+        <action id="action_report_metrics" type="window" model="stock.report.metrics" name="Inventory Metrics" view_mode="list,form"/>
+        <action id="action_product_class" type="window" model="stock.product.class" name="ABC / XYZ Classes" view_mode="list,form"/>
+    </data>
+</nexa>

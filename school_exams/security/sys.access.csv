@@ -1,0 +1,17 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_school_grading_scale_clerk,access_school_grading_scale_clerk,school.grading.scale,group_school_clerk,1,0,0,0
+access_school_grading_scale_manager,access_school_grading_scale_manager,school.grading.scale,group_school_manager,1,1,1,1
+access_school_grading_band_clerk,access_school_grading_band_clerk,school.grading.band,group_school_clerk,1,0,0,0
+access_school_grading_band_manager,access_school_grading_band_manager,school.grading.band,group_school_manager,1,1,1,1
+access_school_exam_clerk,access_school_exam_clerk,school.exam,group_school_clerk,1,1,1,0
+access_school_exam_manager,access_school_exam_manager,school.exam,group_school_manager,1,1,1,1
+access_school_exam_score_clerk,access_school_exam_score_clerk,school.exam.score,group_school_clerk,1,1,1,0
+access_school_exam_score_manager,access_school_exam_score_manager,school.exam.score,group_school_manager,1,1,1,1
+access_school_report_card_clerk,access_school_report_card_clerk,school.report.card,group_school_clerk,1,1,1,0
+access_school_report_card_manager,access_school_report_card_manager,school.report.card,group_school_manager,1,1,1,1
+access_school_report_card_line_clerk,access_school_report_card_line_clerk,school.report.card.line,group_school_clerk,1,1,1,0
+access_school_report_card_line_manager,access_school_report_card_line_manager,school.report.card.line,group_school_manager,1,1,1,1
+access_school_transcript_clerk,access_school_transcript_clerk,school.transcript,group_school_clerk,1,1,1,0
+access_school_transcript_manager,access_school_transcript_manager,school.transcript,group_school_manager,1,1,1,1
+access_school_transcript_line_clerk,access_school_transcript_line_clerk,school.transcript.line,group_school_clerk,1,1,1,0
+access_school_transcript_line_manager,access_school_transcript_line_manager,school.transcript.line,group_school_manager,1,1,1,1

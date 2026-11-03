@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_project_timesheet_root" name="Timesheets" sequence="67"/>
+
+        <menuitem id="menu_project_timesheets" name="All Timesheets" parent="menu_project_timesheet_root" action="project_timesheet.action_project_timesheet" sequence="10"/>
+        <menuitem id="menu_project_timesheets_my" name="My Timesheets" parent="menu_project_timesheet_root" action="project_timesheet.action_project_timesheet_my" sequence="20"/>
+    </data>
+</nexa>

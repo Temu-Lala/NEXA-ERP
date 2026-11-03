@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_helpdesk_sla_check" model="sys.cron">
+            <field name="name">Helpdesk: Evaluate SLA timers</field>
+            <field name="code">helpdesk.sla.check</field>
+            <field name="interval_number">1</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

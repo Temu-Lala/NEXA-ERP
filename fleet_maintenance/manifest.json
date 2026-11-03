@@ -1,0 +1,16 @@
+{
+    "name": "fleet_maintenance",
+    "display_name": "Fleet Maintenance & Inspections",
+    "version": "1.0.0",
+    "summary": "Fleet Maintenance, Inspections, and Service Schedules",
+    "description": "Track vehicle defects, pre/post trip inspection templates and logs, and mileage/time-based service schedules.",
+    "author": "Nexa ERP",
+    "depends": ["base", "fleet", "fleet_driver", "maintenance"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

@@ -1,0 +1,4 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_asset_condition_score,maintenance.asset.condition.score all,maintenance.asset.condition.score,,1,1,1,1
+access_maint_replacement_proposal,maintenance.replacement.proposal all,maintenance.replacement.proposal,,1,1,1,1
+access_maint_asset_disposal,maintenance.asset.disposal all,maintenance.asset.disposal,,1,1,1,1

@@ -1,0 +1,16 @@
+{
+    "name": "website_shop_checkout",
+    "display_name": "E-Commerce Checkout & Orders",
+    "version": "1.0.0",
+    "summary": "Checkout sessions, shipping methods, payment sessions, and online order projection",
+    "description": "Checkout and order spine on top of the E-Commerce anchor: server-priced checkout sessions with idempotency keys, configurable shipping methods, payment-provider sessions kept separate from order state, and a storefront order projection that references the authoritative Sales order (sale.order). Payment, fulfillment, and return states are tracked independently.",
+    "author": "Nexa",
+    "depends": ["base", "website_shop", "website_shop_cart"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Website"
+}

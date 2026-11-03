@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Inspection Template Item (inline list)                            -->
+        <!-- ================================================================ -->
+        <view id="view_maint_inspection_template_item_list" model="maintenance.inspection.template.item" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="item_type" string="Item Type"/>
+            <field name="name" string="Name"/>
+            <field name="unit" string="Unit"/>
+            <field name="min_value" string="Min Value"/>
+            <field name="max_value" string="Max Value"/>
+            <field name="is_critical" string="Critical" widget="boolean_toggle"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_inspection_template_item_form" model="maintenance.inspection.template.item" type="form">
+            <sheet>
+                <group>
+                    <group string="Item">
+                        <field name="sequence" string="Sequence"/>
+                        <field name="item_type" string="Item Type"/>
+                        <field name="name" string="Name"/>
+                        <field name="is_critical" string="Critical Item"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Limits">
+                        <field name="unit" string="Unit"/>
+                        <field name="min_value" string="Min Value"/>
+                        <field name="max_value" string="Max Value"/>
+                    </group>
+                </group>
+                <separator string="Instructions"/>
+                <field name="instructions" string="Instructions"/>
+                <separator string="Fail Action"/>
+                <field name="fail_action" string="Fail Action"/>
+            </sheet>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Inspection Template List & Form                                   -->
+        <!-- ================================================================ -->
+        <view id="view_maint_inspection_template_list" model="maintenance.inspection.template" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Name"/>
+            <field name="insp_type" string="Type"/>
+            <field name="asset_category_id" string="Asset Category"/>
+            <field name="estimated_minutes" string="Duration (min)"/>
+            <field name="requires_approval" string="Requires Approval" widget="boolean_toggle"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_inspection_template_form" model="maintenance.inspection.template" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Inspection Template Name..."/></h1>
+                </div>
+                <group>
+                    <group string="Identification">
+                        <field name="code" string="Code"/>
+                        <field name="insp_type" string="Inspection Type"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Applicability">
+                        <field name="asset_category_id" string="Asset Category"/>
+                        <field name="asset_id" string="Asset"/>
+                        <field name="estimated_minutes" string="Estimated Duration (min)"/>
+                        <field name="requires_approval" string="Requires Approval"/>
+                        <field name="follow_up_required" string="Follow-Up Required"/>
+                    </group>
+                </group>
+                <field name="description" string="Description"/>
+                <notebook>
+                    <page string="Inspection Items">
+                        <field name="items" nolabel="1"/>
+                    </page>
+                    <page string="Instructions">
+                        <field name="instructions" string="General Instructions"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_inspection_template" type="window" model="maintenance.inspection.template" name="Inspection Templates" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Inspection Result (inline list)                                   -->
+        <!-- ================================================================ -->
+        <view id="view_maint_inspection_result_list" model="maintenance.inspection.result" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="name" string="Name"/>
+            <field name="item_type" string="Item Type"/>
+            <field name="outcome" string="Outcome"/>
+            <field name="measured_value" string="Measured Value"/>
+            <field name="unit" string="Unit"/>
+            <field name="text_response" string="Response"/>
+            <field name="is_critical" string="Critical" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_inspection_result_form" model="maintenance.inspection.result" type="form">
+            <sheet>
+                <group>
+                    <group string="Item">
+                        <field name="sequence" string="Sequence"/>
+                        <field name="name" string="Name"/>
+                        <field name="item_type" string="Item Type"/>
+                        <field name="outcome" string="Outcome"/>
+                        <field name="is_critical" string="Critical"/>
+                    </group>
+                    <group string="Result">
+                        <field name="measured_value" string="Measured Value"/>
+                        <field name="unit" string="Unit"/>
+                        <field name="text_response" string="Text Response"/>
+                    </group>
+                </group>
+                <separator string="Observation Note"/>
+                <field name="observation_note" string="Observation Note"/>
+            </sheet>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Inspection Run List, Form, Search                                -->
+        <!-- ================================================================ -->
+        <view id="view_maint_inspection_run_search" model="maintenance.inspection.run" type="search">
+            <filter name="planned" string="Planned" domain='[["state","=","planned"]]'/>
+            <filter name="in_progress" string="In Progress" domain='[["state","=","in_progress"]]'/>
+            <filter name="completed" string="Completed" domain='[["state","=","completed"]]'/>
+            <filter name="failed" string="Failed" domain='[["overall_outcome","=","fail"]]'/>
+            <filter name="group_asset" string="By Asset" group_by="asset_id"/>
+            <filter name="group_state" string="By State" group_by="state"/>
+            <filter name="group_inspector" string="By Inspector" group_by="inspector_id"/>
+        </view>
+        <view id="view_maint_inspection_run_list" model="maintenance.inspection.run" type="list">
+            <field name="name" string="Reference"/>
+            <field name="template_id" string="Template"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="inspector_id" string="Inspector"/>
+            <field name="scheduled_date" string="Scheduled Date"/>
+            <field name="state" string="State"/>
+            <field name="overall_outcome" string="Outcome"/>
+        </view>
+        <view id="view_maint_inspection_run_form" model="maintenance.inspection.run" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="INSP-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Inspection">
+                        <field name="template_id" string="Template"/>
+                        <field name="asset_id" string="Asset"/>
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="state" string="Status"/>
+                        <field name="overall_outcome" string="Overall Outcome"/>
+                    </group>
+                    <group string="Schedule &amp; Execution">
+                        <field name="scheduled_date" string="Scheduled Date"/>
+                        <field name="started_at" string="Started At"/>
+                        <field name="completed_at" string="Completed At"/>
+                        <field name="inspector_id" string="Inspector"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Results">
+                        <field name="results" nolabel="1"/>
+                    </page>
+                    <page string="Review &amp; Follow-up">
+                        <group>
+                            <field name="reviewed_by" string="Reviewed By"/>
+                            <field name="reviewed_at" string="Reviewed At"/>
+                            <field name="follow_up_work_order_id" string="Follow-Up Work Order"/>
+                        </group>
+                        <separator string="Summary"/>
+                        <field name="summary" string="Summary"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_inspection_run" type="window" model="maintenance.inspection.run" name="Inspection Runs" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Calibration Record List, Form, Search                             -->
+        <!-- ================================================================ -->
+        <view id="view_maint_calibration_record_search" model="maintenance.calibration.record" type="search">
+            <filter name="passed" string="Passed" domain='[["result","=","pass"]]'/>
+            <filter name="failed" string="Failed" domain='[["result","=","fail"]]'/>
+            <filter name="adjusted" string="Adjusted" domain='[["result","=","adjusted"]]'/>
+            <filter name="group_asset" string="By Asset" group_by="asset_id"/>
+            <filter name="group_result" string="By Result" group_by="result"/>
+        </view>
+        <view id="view_maint_calibration_record_list" model="maintenance.calibration.record" type="list">
+            <field name="name" string="Reference"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="calibration_date" string="Calibration Date"/>
+            <field name="next_calibration_date" string="Next Due"/>
+            <field name="result" string="Result"/>
+            <field name="certificate_ref" string="Certificate"/>
+        </view>
+        <view id="view_maint_calibration_record_form" model="maintenance.calibration.record" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="CAL-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Equipment">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="calibration_date" string="Calibration Date"/>
+                        <field name="next_calibration_date" string="Next Due Date"/>
+                        <field name="result" string="Result"/>
+                        <field name="work_order_id" string="Work Order"/>
+                    </group>
+                    <group string="Calibrator">
+                        <field name="calibrator_id" string="Calibrator (Internal)"/>
+                        <field name="calibrated_by" string="Calibrated By (External)"/>
+                        <field name="certificate_ref" string="Certificate Ref"/>
+                        <field name="certificate_expiry" string="Certificate Expiry"/>
+                        <field name="equipment_ref" string="Reference Standard"/>
+                    </group>
+                </group>
+                <group string="Readings">
+                    <field name="as_found_reading" string="As-Found Reading"/>
+                    <field name="as_left_reading" string="As-Left Reading"/>
+                    <field name="tolerance" string="Tolerance (+/-)"/>
+                    <field name="unit" string="Unit"/>
+                </group>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_calibration_record" type="window" model="maintenance.calibration.record" name="Calibration Records" view_mode="list,form"/>
+    </data>
+</nexa>

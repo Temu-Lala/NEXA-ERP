@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_fiscal_years" name="Fiscal Years" parent="account.account_menu_config" action="account_period.action_fiscal_years" sequence="20" groups="account.group_account_manager"/>
+        <menuitem id="menu_periods" name="Accounting Periods" parent="account.account_menu_config" action="account_period.action_periods" sequence="21" groups="account.group_account_manager"/>
+        <menuitem id="menu_close_root" name="Period Close" parent="account.account_menu_advanced" sequence="60" groups="account.group_account_manager"/>
+        <menuitem id="menu_close_runs" name="Close Runs" parent="account_period.menu_close_root" action="account_period.action_period_close_runs" sequence="1" groups="account.group_account_manager"/>
+        <menuitem id="menu_close_tasks" name="Checklist" parent="account_period.menu_close_root" action="account_period.action_period_close_tasks" sequence="2" groups="account.group_account_invoice"/>
+    </data>
+</nexa>

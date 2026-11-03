@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_job_opening_list" model="hr.job.opening" type="list">
+            <field name="name" string="Position"/>
+            <field name="job_id" string="Job"/>
+            <field name="department_id" string="Department"/>
+            <field name="recruiter_id" string="Recruiter"/>
+            <field name="number_of_positions" string="Positions"/>
+            <field name="expected_date" string="Expected Date"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_job_opening_form" model="hr.job.opening" type="form">
+            <header>
+                <button name="action_req_approve" string="Approve Requisition" type="object" class="sum_highlight" invisible="req_approved"/>
+                <button name="action_req_refuse" string="Refuse" type="object" invisible="req_approved"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="job_id"/>
+                    <field name="department_id"/>
+                    <field name="recruiter_id"/>
+                    <field name="number_of_positions"/>
+                    <field name="expected_date"/>
+                    <field name="state"/>
+                    <field name="active"/>
+                </group>
+                <group string="Requisition">
+                    <field name="headcount"/>
+                    <field name="budget_annual"/>
+                    <field name="req_approved"/>
+                    <field name="approved_date"/>
+                    <field name="rejection_reason"/>
+                </group>
+                <group>
+                    <field name="description"/>
+                    <field name="note"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_interview_list" model="hr.recruitment.interview" type="list">
+            <field name="applicant_id" string="Applicant"/>
+            <field name="opening_id" string="Job Opening"/>
+            <field name="interviewer_id" string="Interviewer"/>
+            <field name="interview_date" string="Date"/>
+            <field name="rating" string="Rating"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_interview_form" model="hr.recruitment.interview" type="form">
+            <sheet>
+                <group>
+                    <field name="applicant_id"/>
+                    <field name="opening_id"/>
+                    <field name="interviewer_id"/>
+                    <field name="interview_date"/>
+                    <field name="location"/>
+                    <field name="rating"/>
+                    <field name="state"/>
+                </group>
+                <group string="Assessment">
+                    <field name="avg_score"/>
+                    <field name="score_pct"/>
+                    <field name="recommend"/>
+                </group>
+                <group string="Scorecards">
+                    <field name="score_lines" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="criterion"/>
+                            <field name="max_score"/>
+                            <field name="score"/>
+                            <field name="weight"/>
+                            <field name="feedback"/>
+                        </tree>
+                    </field>
+                </group>
+                <group>
+                    <field name="note"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_offer_list" model="hr.recruitment.offer" type="list">
+            <field name="applicant_id" string="Applicant"/>
+            <field name="opening_id" string="Job Opening"/>
+            <field name="offer_date" string="Offer Date"/>
+            <field name="expected_start" string="Expected Start"/>
+            <field name="salary" string="Proposed Salary"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_offer_form" model="hr.recruitment.offer" type="form">
+            <header>
+                <button name="action_approve_offer" string="Approve Offer" type="object" class="sum_highlight" invisible="approved"/>
+                <button name="action_send_offer" string="Send" type="object" invisible="state != 'draft'"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="applicant_id"/>
+                    <field name="opening_id"/>
+                    <field name="offer_date"/>
+                    <field name="expected_start"/>
+                    <field name="salary"/>
+                    <field name="state"/>
+                    <field name="employee_id"/>
+                </group>
+                <group string="Approval">
+                    <field name="approved"/>
+                    <field name="approve_date"/>
+                    <field name="template_id"/>
+                </group>
+                <group>
+                    <field name="note"/>
+                </group>
+                <group string="Offer Letter">
+                    <field name="letter" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_job_opening" type="window" model="hr.job.opening" name="Job Openings" view_mode="list,form"/>
+        <action id="action_interview" type="window" model="hr.recruitment.interview" name="Interviews" view_mode="list,form"/>
+        <action id="action_offer" type="window" model="hr.recruitment.offer" name="Offers" view_mode="list,form"/>
+    </data>
+</nexa>

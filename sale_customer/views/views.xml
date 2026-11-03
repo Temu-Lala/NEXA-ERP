@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Customer Profile -->
+        <view id="view_sale_customer_profile_list" model="sale.customer.profile" type="list">
+            <field name="name" string="Reference"/>
+            <field name="partner_id" string="Customer"/>
+            <field name="customer_type" string="Type"/>
+            <field name="segment" string="Segment"/>
+            <field name="salesperson_id" string="Salesperson"/>
+            <field name="team_id" string="Team"/>
+            <field name="territory" string="Territory"/>
+            <field name="payer_status" string="Payer Status"/>
+        </view>
+        <view id="view_sale_customer_profile_form" model="sale.customer.profile" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. CUST-PROF"/></h1></div>
+                <group>
+                    <group string="Customer">
+                        <field name="partner_id" string="Customer"/>
+                        <field name="customer_type" string="Customer Type"/>
+                        <field name="code" string="Customer Code"/>
+                        <field name="segment" string="Segment"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Commercial">
+                        <field name="currency" string="Currency"/>
+                        <field name="price_list_ref" string="Price List"/>
+                        <field name="payment_terms" string="Payment Terms"/>
+                        <field name="delivery_terms" string="Delivery Terms"/>
+                        <field name="tax_treatment" string="Tax Treatment"/>
+                        <field name="payer_status" string="Payer Status"/>
+                        <field name="credit_policy_ref" string="Credit Policy"/>
+                    </group>
+                </group>
+                <group string="Ownership">
+                    <field name="salesperson_id" string="Assigned Salesperson"/>
+                    <field name="team_id" string="Sales Team"/>
+                    <field name="territory" string="Territory"/>
+                </group>
+                <field name="shipping_address" string="Preferred Shipping Address"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_sale_customer_profile" type="window" model="sale.customer.profile" name="Customer Profiles" view_mode="list,form"/>
+
+        <!-- Sales Team -->
+        <view id="view_sale_team_list" model="sale.team" type="list">
+            <field name="name" string="Team"/>
+            <field name="leader_id" string="Team Leader"/>
+            <field name="parent_id" string="Parent Team"/>
+        </view>
+        <view id="view_sale_team_form" model="sale.team" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Region North"/></h1></div>
+                <group>
+                    <group>
+                        <field name="leader_id" string="Team Leader"/>
+                        <field name="parent_id" string="Parent Team"/>
+                    </group>
+                    <group>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Members">
+                        <field name="members" string="Members">
+                            <view type="list">
+                                <field name="user_id" string="Salesperson"/>
+                                <field name="role" string="Role"/>
+                                <field name="territory" string="Territory"/>
+                                <field name="date_from" string="From"/>
+                                <field name="date_to" string="To"/>
+                                <field name="quota_amount" string="Period Quota"/>
+                            </view>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_sale_team" type="window" model="sale.team" name="Sales Teams" view_mode="list,form"/>
+
+        <!-- Team Members standalone -->
+        <view id="view_sale_team_member_list" model="sale.team.member" type="list">
+            <field name="team_id" string="Team"/>
+            <field name="user_id" string="Salesperson"/>
+            <field name="role" string="Role"/>
+            <field name="territory" string="Territory"/>
+            <field name="quota_amount" string="Period Quota"/>
+        </view>
+        <action id="action_sale_team_member" type="window" model="sale.team.member" name="Team Members" view_mode="list"/>
+    </data>
+</nexa>

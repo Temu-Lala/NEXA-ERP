@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hr_department_form" model="hr.department" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1>
+                        <field name="name" placeholder="Department Name..."/>
+                    </h1>
+                </div>
+                <group col="2">
+                    <group string="Department">
+                        <field name="parent_id"/>
+                        <field name="manager_id" string="Manager"/>
+                    </group>
+                    <group string="Summary">
+                        <field name="total_employees"/>
+                        <field name="active" widget="boolean_toggle"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Employees" name="employees">
+                        <field name="employee_ids">
+                            <list>
+                                <field name="name"/>
+                                <field name="job_id"/>
+                                <field name="work_email"/>
+                                <field name="state" widget="badge"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+    </data>
+</nexa>

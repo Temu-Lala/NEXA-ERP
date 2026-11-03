@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_operation_task_user,access_stock_operation_task_user,stock.operation.task,,1,1,1,1
+access_stock_wave_user,access_stock_wave_user,stock.wave,,1,1,1,1
+access_stock_wave_line_user,access_stock_wave_line_user,stock.wave.line,,1,1,1,1
+access_stock_ops_scan_log_user,access_stock_ops_scan_log_user,stock.ops.scan.log,,1,1,1,1

@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_ecom_store_user,access_ecom_store_user,ecom.store,group_website_shop_user,1,0,0,0
+access_ecom_store_manager,access_ecom_store_manager,ecom.store,group_website_shop_manager,1,1,1,1
+access_ecom_store_domain_user,access_ecom_store_domain_user,ecom.store.domain,group_website_shop_user,1,0,0,0
+access_ecom_store_domain_manager,access_ecom_store_domain_manager,ecom.store.domain,group_website_shop_manager,1,1,1,1
+access_ecom_store_settings_user,access_ecom_store_settings_user,ecom.store.settings,group_website_shop_user,1,0,0,0
+access_ecom_store_settings_manager,access_ecom_store_settings_manager,ecom.store.settings,group_website_shop_manager,1,1,1,1
+access_ecom_product_publication_user,access_ecom_product_publication_user,ecom.product.publication,group_website_shop_user,1,1,1,0
+access_ecom_product_publication_manager,access_ecom_product_publication_manager,ecom.product.publication,group_website_shop_manager,1,1,1,1

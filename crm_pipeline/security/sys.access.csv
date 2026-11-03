@@ -1,0 +1,11 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_pipeline_user,access_crm_pipeline_user,crm.pipeline,group_crm_user,1,0,0,0
+access_crm_pipeline_manager,access_crm_pipeline_manager,crm.pipeline,group_crm_manager,1,1,1,1
+access_crm_pipeline_stage_rel_user,access_crm_pipeline_stage_rel_user,crm.pipeline.stage.rel,group_crm_user,1,0,0,0
+access_crm_pipeline_stage_rel_manager,access_crm_pipeline_stage_rel_manager,crm.pipeline.stage.rel,group_crm_manager,1,1,1,1
+access_crm_stage_history_user,access_crm_stage_history_user,crm.stage.history,group_crm_user,1,1,1,0
+access_crm_stage_history_manager,access_crm_stage_history_manager,crm.stage.history,group_crm_manager,1,1,1,1
+access_crm_forecast_category_user,access_crm_forecast_category_user,crm.forecast.category,group_crm_user,1,0,0,0
+access_crm_forecast_category_manager,access_crm_forecast_category_manager,crm.forecast.category,group_crm_manager,1,1,1,1
+access_crm_lead_forecast_user,access_crm_lead_forecast_user,crm.lead.forecast,group_crm_user,1,1,1,0
+access_crm_lead_forecast_manager,access_crm_lead_forecast_manager,crm.lead.forecast,group_crm_manager,1,1,1,1

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Catalog categories -->
+        <view id="view_catalog_category_list" model="helpdesk.catalog.category" type="list">
+            <field name="name" string="Category"/>
+            <field name="code" string="Code"/>
+            <field name="parent_id" string="Parent"/>
+            <field name="sequence" string="Sequence"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_catalog_category_form" model="helpdesk.catalog.category" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="parent_id"/>
+                    <field name="icon"/>
+                    <field name="sequence"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- Catalog items -->
+        <view id="view_catalog_item_list" model="helpdesk.catalog.item" type="list">
+            <field name="name" string="Service"/>
+            <field name="code" string="Code"/>
+            <field name="category_id" string="Category"/>
+            <field name="team_id" string="Team"/>
+            <field name="state" string="Status"/>
+            <field name="approval_required" string="Approval"/>
+            <field name="field_count" string="# Fields"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_catalog_item_form" model="helpdesk.catalog.item" type="form">
+            <header>
+                <button name="action_submit_review" string="Submit for Review" type="object" invisible="state != 'draft'"/>
+                <button name="action_publish" string="Publish" type="object" invisible="state == 'published'"/>
+                <button name="action_archive" string="Archive" type="object" invisible="state != 'published'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Service">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="category_id"/>
+                        <field name="team_id"/>
+                        <field name="default_priority"/>
+                        <field name="internal_only"/>
+                    </group>
+                    <group string="Policy">
+                        <field name="expected_mins"/>
+                        <field name="approval_required"/>
+                        <field name="approver_user_id" invisible="approval_required != 1"/>
+                        <field name="chargeable"/>
+                        <field name="fee_cents" invisible="chargeable != 1"/>
+                        <field name="sequence"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <group string="How to Use">
+                    <field name="instructions" nolabel="1"/>
+                </group>
+                <group string="Request Form">
+                    <field name="fields" nolabel="1">
+                        <field name="label"/>
+                        <field name="field_type"/>
+                        <field name="required"/>
+                        <field name="options"/>
+                        <field name="sequence"/>
+                    </field>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- Service requests -->
+        <view id="view_service_request_list" model="helpdesk.service.request" type="list">
+            <field name="number" string="Reference"/>
+            <field name="item_id" string="Service"/>
+            <field name="requestor_id" string="Requested For"/>
+            <field name="department" string="Department"/>
+            <field name="priority" string="Priority"/>
+            <field name="state" string="Status"/>
+            <field name="task_progress_pct" string="Progress"/>
+            <field name="days_open" string="Days Open"/>
+        </view>
+        <view id="view_service_request_form" model="helpdesk.service.request" type="form">
+            <header>
+                <button name="action_submit" string="Submit" type="object" invisible="state != 'draft'"/>
+                <button name="action_approve" string="Approve" type="object" invisible="state != 'in_approval'"/>
+                <button name="action_reject" string="Reject" type="object" invisible="state != 'in_approval'"/>
+                <button name="action_complete" string="Complete" type="object" invisible="state != 'fulfilling'"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state == 'completed' or state == 'cancelled' or state == 'rejected'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Request">
+                        <field name="number"/>
+                        <field name="item_id"/>
+                        <field name="requestor_id"/>
+                        <field name="user_id"/>
+                        <field name="department"/>
+                        <field name="priority"/>
+                        <field name="required_by"/>
+                    </group>
+                    <group string="Status">
+                        <field name="ticket_id"/>
+                        <field name="company_id"/>
+                        <field name="submitted_at"/>
+                        <field name="completed_at"/>
+                        <field name="days_open"/>
+                        <field name="task_progress_pct"/>
+                        <field name="can_complete"/>
+                    </group>
+                </group>
+                <group string="Justification">
+                    <field name="justification" nolabel="1"/>
+                </group>
+                <notebook>
+                    <page string="Form Values">
+                        <field name="values" nolabel="1">
+                            <field name="label"/>
+                            <field name="value"/>
+                        </field>
+                    </page>
+                    <page string="Fulfilment Tasks">
+                        <field name="tasks" nolabel="1">
+                            <field name="name"/>
+                            <field name="team_id"/>
+                            <field name="assigned_to"/>
+                            <field name="required"/>
+                            <field name="depends_on_id"/>
+                            <field name="state"/>
+                        </field>
+                    </page>
+                    <page string="Approvals">
+                        <field name="approvals" nolabel="1">
+                            <field name="level"/>
+                            <field name="approver_id"/>
+                            <field name="state"/>
+                            <field name="decided_by"/>
+                            <field name="decided_at"/>
+                            <field name="note"/>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <!-- Fulfilment tasks -->
+        <view id="view_fulfillment_task_list" model="helpdesk.fulfillment.task" type="list">
+            <field name="request_id" string="Request"/>
+            <field name="name" string="Task"/>
+            <field name="team_id" string="Team"/>
+            <field name="assigned_to" string="Assignee"/>
+            <field name="required" string="Required"/>
+            <field name="state" string="Status"/>
+            <field name="is_ready" string="Ready"/>
+        </view>
+        <view id="view_fulfillment_task_form" model="helpdesk.fulfillment.task" type="form">
+            <header>
+                <button name="action_task_start" string="Start" type="object" invisible="state != 'pending'"/>
+                <button name="action_task_done" string="Done" type="object" invisible="state == 'done' or state == 'skipped'"/>
+                <button name="action_task_skip" string="Skip" type="object" invisible="state == 'done' or state == 'skipped'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Task">
+                        <field name="request_id"/>
+                        <field name="name"/>
+                        <field name="team_id"/>
+                        <field name="assigned_to"/>
+                        <field name="required"/>
+                    </group>
+                    <group string="Progress">
+                        <field name="depends_on_id"/>
+                        <field name="sequence"/>
+                        <field name="due_date"/>
+                        <field name="completed_at"/>
+                        <field name="is_ready"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- Request approvals (read/decision) -->
+        <view id="view_request_approval_list" model="helpdesk.request.approval" type="list">
+            <field name="request_id" string="Request"/>
+            <field name="level" string="Level"/>
+            <field name="approver_id" string="Approver"/>
+            <field name="state" string="Status"/>
+            <field name="decided_by" string="Decided By"/>
+            <field name="decided_at" string="Decided At"/>
+        </view>
+        <view id="view_request_approval_form" model="helpdesk.request.approval" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="request_id"/>
+                    <field name="level"/>
+                    <field name="approver_id"/>
+                    <field name="state"/>
+                    <field name="decided_by"/>
+                    <field name="decided_at"/>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- Request form values -->
+        <view id="view_request_value_list" model="helpdesk.service.request.value" type="list">
+            <field name="request_id" string="Request"/>
+            <field name="label" string="Field"/>
+            <field name="value" string="Value"/>
+        </view>
+        <view id="view_request_value_form" model="helpdesk.service.request.value" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="request_id"/>
+                    <field name="field_id"/>
+                    <field name="label"/>
+                    <field name="value"/>
+                    <field name="sequence"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_catalog_category" type="window" model="helpdesk.catalog.category" name="Catalog Categories" view_mode="list,form"/>
+        <action id="action_catalog_item" type="window" model="helpdesk.catalog.item" name="Services" view_mode="list,form"/>
+        <action id="action_service_request" type="window" model="helpdesk.service.request" name="Service Requests" view_mode="list,form"/>
+        <action id="action_fulfillment_task" type="window" model="helpdesk.fulfillment.task" name="Fulfilment Tasks" view_mode="list,form"/>
+        <action id="action_request_approval" type="window" model="helpdesk.request.approval" name="Request Approvals" view_mode="list,form"/>
+        <action id="action_request_value" type="window" model="helpdesk.service.request.value" name="Request Values" view_mode="list,form"/>
+    </data>
+</nexa>

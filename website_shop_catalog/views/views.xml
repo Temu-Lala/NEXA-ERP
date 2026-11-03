@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Category -->
+        <view id="view_ecom_category_list" model="ecom.category" type="list">
+            <field name="sequence" widget="handle"/>
+            <field name="complete_name" string="Category"/>
+            <field name="store_id" string="Store"/>
+            <field name="parent_id" string="Parent"/>
+            <field name="published" string="Published"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_ecom_category_form" model="ecom.category" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Men's Apparel"/></h1></div>
+                <group>
+                    <group>
+                        <field name="store_id" string="Store"/>
+                        <field name="parent_id" string="Parent Category"/>
+                        <field name="sequence" string="Sequence"/>
+                    </group>
+                    <group>
+                        <field name="slug" string="Slug"/>
+                        <field name="published" string="Published"/>
+                        <field name="active" string="Active"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+                <field name="image_url" string="Image URL"/>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_category" type="window" model="ecom.category" name="Categories" view_mode="list,form"/>
+
+        <!-- Collection -->
+        <view id="view_ecom_collection_list" model="ecom.collection" type="list">
+            <field name="sequence" widget="handle"/>
+            <field name="name" string="Collection"/>
+            <field name="code" string="Code"/>
+            <field name="store_id" string="Store"/>
+            <field name="type" string="Type"/>
+            <field name="published" string="Published"/>
+        </view>
+        <view id="view_ecom_collection_form" model="ecom.collection" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Summer Picks"/></h1></div>
+                <group>
+                    <group>
+                        <field name="store_id" string="Store"/>
+                        <field name="code" string="Code"/>
+                        <field name="type" string="Type"/>
+                    </group>
+                    <group>
+                        <field name="sequence" string="Sequence"/>
+                        <field name="published" string="Published"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+                <field name="banner" string="Banner"/>
+                <notebook>
+                    <page string="Products">
+                        <field name="items"/>
+                    </page>
+                    <page string="Rule">
+                        <field name="rule_domain" string="Rule (Domain)"/>
+                    </page>
+                </notebook>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_collection" type="window" model="ecom.collection" name="Collections" view_mode="list,form"/>
+
+        <!-- Collection Item -->
+        <view id="view_ecom_collection_item_list" model="ecom.collection.item" type="list">
+            <field name="sequence" widget="handle"/>
+            <field name="collection_id" string="Collection"/>
+            <field name="product_id" string="Product"/>
+            <field name="publication_id" string="Publication"/>
+        </view>
+        <view id="view_ecom_collection_item_form" model="ecom.collection.item" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="collection_id" string="Collection"/>
+                        <field name="product_id" string="Product"/>
+                    </group>
+                    <group>
+                        <field name="publication_id" string="Publication"/>
+                        <field name="sequence" string="Sequence"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_collection_item" type="window" model="ecom.collection.item" name="Collection Items" view_mode="list,form"/>
+
+        <!-- Wishlist -->
+        <view id="view_ecom_wishlist_list" model="ecom.wishlist" type="list">
+            <field name="name" string="Wishlist"/>
+            <field name="store_id" string="Store"/>
+            <field name="partner_id" string="Customer"/>
+            <field name="is_public" string="Public"/>
+            <field name="state" string="State"/>
+        </view>
+        <view id="view_ecom_wishlist_form" model="ecom.wishlist" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Wishlist name"/></h1></div>
+                <group>
+                    <group>
+                        <field name="store_id" string="Store"/>
+                        <field name="partner_id" string="Customer"/>
+                        <field name="created_date" string="Created"/>
+                    </group>
+                    <group>
+                        <field name="is_public" string="Public"/>
+                        <field name="share_token" string="Share Token"/>
+                        <field name="state" string="State"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_wishlist" type="window" model="ecom.wishlist" name="Wishlists" view_mode="list,form"/>
+    </data>
+</nexa>

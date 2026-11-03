@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_valuation_layer_user,access_stock_valuation_layer_user,stock.valuation.layer,,1,1,1,0
+access_stock_valuation_event_user,access_stock_valuation_event_user,stock.valuation.event,,1,1,0,0
+access_stock_landed_cost_user,access_stock_landed_cost_user,stock.landed.cost,,1,1,1,1
+access_stock_landed_cost_line_user,access_stock_landed_cost_line_user,stock.landed.cost.line,,1,1,1,1

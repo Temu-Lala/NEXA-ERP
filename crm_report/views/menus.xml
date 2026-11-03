@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="crm_menu_report_funnel" name="Lead Funnel" parent="crm.crm_menu_report" action="crm_report.action_crm_funnel_report" sequence="30" groups="crm.group_crm_user"/>
+        <menuitem id="crm_menu_report_pipeline" name="Pipeline Analysis" parent="crm.crm_menu_report" action="crm_report.action_crm_pipeline_report" sequence="31" groups="crm.group_crm_user"/>
+        <menuitem id="crm_menu_report_winloss" name="Win / Loss" parent="crm.crm_menu_report" action="crm_report.action_crm_winloss_report" sequence="32" groups="crm.group_crm_user"/>
+        <menuitem id="crm_menu_report_attribution" name="Lead Attribution" parent="crm.crm_menu_report" action="crm_report.action_crm_attribution_report" sequence="33" groups="crm.group_crm_user"/>
+    </data>
+</nexa>

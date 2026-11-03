@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="event_menu_root" name="Events" sequence="66"/>
+        <menuitem id="event_menu_events" name="Events" parent="event_menu_root" action="event.action_event_event" sequence="1"/>
+        <menuitem id="event_menu_registrations" name="Registrations" parent="event_menu_root" action="event.action_event_registration" sequence="2"/>
+    </data>
+</nexa>

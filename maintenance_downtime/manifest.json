@@ -1,0 +1,17 @@
+{
+  "name": "maintenance_downtime",
+  "display_name": "Maintenance Downtime & Condition Monitoring",
+  "version": "1.0.0",
+  "summary": "Enhanced downtime events, production impact, condition monitoring rules and threshold alerts",
+  "description": "Record structured downtime events with production impact measurements, define condition monitoring rules with configurable thresholds and alert severities, and capture condition readings that can trigger automatic maintenance alerts. Complements the reliability module's downtime and failure analysis.",
+  "author": "Nexa",
+  "depends": ["base", "maintenance", "maintenance_reliability"],
+  "data": [
+    "security/sys.access.csv",
+    "data/downtime_cron_data.xml",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Operations"
+}

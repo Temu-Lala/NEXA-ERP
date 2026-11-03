@@ -1,0 +1,17 @@
+{
+  "name": "lending_collections",
+  "display_name": "Lending - Collections",
+  "version": "1.0.0",
+  "category": "Lending",
+  "summary": "Delinquency snapshots, collection cases, collection actions and promises to pay",
+  "description": "Companion for the lending module: periodic delinquency snapshots with configurable days-past-due buckets, collection cases with collector assignment and priority, logged contact attempts and outcomes, and promise-to-pay tracking. Supports the controlled arrears and recovery workflow while keeping delinquency buckets institution-configurable rather than hardcoded regulatory classifications.",
+  "author": "Nexa",
+  "application": false,
+  "installable": true,
+  "depends": ["base", "lending"],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ]
+}

@@ -1,0 +1,11 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_payroll_statutory_user,access_hr_payroll_statutory_user,hr.payroll.statutory,hr.group_hr_user,1,0,0,0
+access_hr_payroll_statutory_manager,access_hr_payroll_statutory_manager,hr.payroll.statutory,hr.group_hr_manager,1,1,1,1
+access_hr_payslip_payment_user,access_hr_payslip_payment_user,hr.payslip.payment,hr.group_hr_user,1,0,0,0
+access_hr_payslip_payment_manager,access_hr_payslip_payment_manager,hr.payslip.payment,hr.group_hr_manager,1,1,1,1
+access_hr_payslip_adjustment_user,access_hr_payslip_adjustment_user,hr.payslip.adjustment,hr.group_hr_user,1,1,1,0
+access_hr_payslip_adjustment_manager,access_hr_payslip_adjustment_manager,hr.payslip.adjustment,hr.group_hr_manager,1,1,1,1
+access_hr_payroll_payment_file_user,access_hr_payroll_payment_file_user,hr.payroll.payment.file,hr.group_hr_user,1,0,0,0
+access_hr_payroll_payment_file_manager,access_hr_payroll_payment_file_manager,hr.payroll.payment.file,hr.group_hr_manager,1,1,1,1
+access_hr_payroll_reconciliation_user,access_hr_payroll_reconciliation_user,hr.payroll.reconciliation,hr.group_hr_user,1,1,1,0
+access_hr_payroll_reconciliation_manager,access_hr_payroll_reconciliation_manager,hr.payroll.reconciliation,hr.group_hr_manager,1,1,1,1

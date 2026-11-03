@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="library_menu_root" name="Library" sequence="60"/>
+        <menuitem id="library_menu_loans" name="Loans" parent="library_menu_root" action="library.action_library_loan" sequence="1"/>
+        <menuitem id="library_menu_catalog" name="Catalog" parent="library_menu_root" sequence="2"/>
+        <menuitem id="library_menu_books" name="Books" parent="library_menu_catalog" action="library.action_library_book" sequence="1"/>
+        <menuitem id="library_menu_categories" name="Categories" parent="library_menu_catalog" action="library.action_library_category" sequence="2"/>
+        <menuitem id="library_menu_members" name="Members" parent="library_menu_root" action="library.action_library_member" sequence="3"/>
+    </data>
+</nexa>

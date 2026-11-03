@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_analytics_root" name="Analytics" parent="school.school_menu_root" sequence="19" web_icon="users" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_analytics_kpi" name="KPIs" parent="school_menu_analytics_root" action="school_analytics.action_school_analytics_kpi" sequence="1" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_analytics_snapshot" name="Snapshots" parent="school_menu_analytics_root" action="school_analytics.action_school_analytics_snapshot" sequence="2" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_analytics_dashboard" name="Dashboards" parent="school_menu_analytics_root" action="school_analytics.action_school_analytics_dashboard" sequence="3" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_analytics_alert" name="Alert Rules" parent="school_menu_analytics_root" action="school_analytics.action_school_analytics_alert_rule" sequence="4" groups="school.group_school_manager"/>
+    </data>
+</nexa>

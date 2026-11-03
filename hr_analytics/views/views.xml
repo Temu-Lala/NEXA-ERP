@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== Workforce Snapshot ===================== -->
+        <view id="view_snapshot_list" model="hr.workforce.snapshot" type="list">
+            <field name="department_id" string="Department"/>
+            <field name="period" string="Period"/>
+            <field name="period_start" string="From" widget="date"/>
+            <field name="period_end" string="To" widget="date"/>
+            <field name="headcount_active" string="Headcount"/>
+            <field name="hires" string="Hires"/>
+            <field name="terminations" string="Exit"/>
+            <field name="turnover_rate" string="Turnover %"/>
+            <field name="retention_rate" string="Retention %"/>
+            <field name="open_positions" string="Open"/>
+            <field name="payroll_cost" string="Payroll Cost"/>
+        </view>
+        <view id="view_snapshot_form" model="hr.workforce.snapshot" type="form">
+            <header>
+                <button name="action_refresh_snapshot" string="Refresh This Department" type="object" class="sum_highlight"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Scope">
+                        <field name="department_id"/>
+                        <field name="period"/>
+                        <field name="period_start" widget="date"/>
+                        <field name="period_end" widget="date"/>
+                        <field name="computed_on" readonly="true"/>
+                        <field name="company_id"/>
+                    </group>
+                    <group string="Movement &amp; Rates">
+                        <field name="headcount_active" readonly="true"/>
+                        <field name="opening_headcount" readonly="true"/>
+                        <field name="hires" readonly="true"/>
+                        <field name="terminations" readonly="true"/>
+                        <field name="turnover_rate" readonly="true"/>
+                        <field name="retention_rate" readonly="true"/>
+                        <field name="avg_tenure_days" readonly="true"/>
+                    </group>
+                </group>
+                <group col="3" string="Planning">
+                    <group>
+                        <field name="planned_positions" readonly="true"/>
+                        <field name="filled_positions" readonly="true"/>
+                        <field name="open_positions" readonly="true"/>
+                    </group>
+                    <group>
+                        <field name="absence_days" readonly="true"/>
+                        <field name="overtime_hours" readonly="true"/>
+                        <field name="skills_gap_count" readonly="true"/>
+                    </group>
+                    <group>
+                        <field name="payroll_cost" readonly="true"/>
+                        <field name="avg_pay_cost" readonly="true"/>
+                        <field name="training_cost" readonly="true"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Position Plan ===================== -->
+        <view id="view_position_plan_list" model="hr.position.plan" type="list">
+            <field name="name" string="Reference"/>
+            <field name="department_id" string="Department"/>
+            <field name="job_id" string="Job"/>
+            <field name="planned_headcount" string="Planned"/>
+            <field name="filled_count" string="Filled"/>
+            <field name="vacancy" string="Vacancy"/>
+            <field name="budget_annual" string="Budget"/>
+            <field name="approved" string="Approved"/>
+        </view>
+        <view id="view_position_plan_form" model="hr.position.plan" type="form">
+            <header>
+                <button name="action_plan_approve" string="Approve" type="object" class="sum_highlight" invisible="approved"/>
+                <button name="action_plan_unapprove" string="Revoke Approval" type="object" invisible="!approved"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Plan">
+                        <field name="name"/>
+                        <field name="department_id"/>
+                        <field name="job_id"/>
+                        <field name="effective_from" widget="date"/>
+                        <field name="fiscal_year"/>
+                    </group>
+                    <group string="Headcount &amp; Budget">
+                        <field name="planned_headcount"/>
+                        <field name="filled_count" readonly="true"/>
+                        <field name="vacancy" readonly="true"/>
+                        <field name="budget_annual"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                <group string="Approval">
+                    <field name="approved" readonly="true"/>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Scenario ===================== -->
+        <view id="view_scenario_list" model="hr.workforce.scenario" type="list">
+            <field name="name" string="Scenario"/>
+            <field name="horizon_months" string="Horizon (mo)"/>
+            <field name="growth_pct" string="Growth %"/>
+            <field name="attrition_pct" string="Attrition %"/>
+            <field name="base_headcount" string="Base"/>
+            <field name="projected_headcount" string="Projected"/>
+            <field name="projected_net_add" string="Net Add"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_scenario_form" model="hr.workforce.scenario" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Assumptions">
+                        <field name="name"/>
+                        <field name="horizon_months"/>
+                        <field name="growth_pct"/>
+                        <field name="attrition_pct"/>
+                        <field name="base_override"/>
+                        <field name="avg_cost_per_head"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Projection">
+                        <field name="base_headcount" readonly="true"/>
+                        <field name="projected_headcount" readonly="true"/>
+                        <field name="projected_net_add" readonly="true"/>
+                        <field name="projected_cost" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Dashboards (graph / pivot) ===================== -->
+        <view id="view_headcount_graph" model="hr.workforce.snapshot" type="graph" chart="bar" string="Active Headcount by Department">
+            <field name="department_id" type="row"/>
+            <field name="headcount_active" type="measure"/>
+        </view>
+        <view id="view_turnover_graph" model="hr.workforce.snapshot" type="graph" chart="bar" string="Turnover % by Department">
+            <field name="department_id" type="row"/>
+            <field name="turnover_rate" type="measure"/>
+        </view>
+        <view id="view_payroll_graph" model="hr.workforce.snapshot" type="graph" chart="bar" string="Payroll Cost by Department">
+            <field name="department_id" type="row"/>
+            <field name="payroll_cost" type="measure"/>
+        </view>
+        <view id="view_movement_graph" model="hr.workforce.snapshot" type="graph" chart="bar" string="Hires vs Exits by Department">
+            <field name="department_id" type="row"/>
+            <field name="hires" type="measure"/>
+            <field name="terminations" type="measure"/>
+        </view>
+        <view id="view_workforce_pivot" model="hr.workforce.snapshot" type="pivot" string="Workforce Planning Matrix">
+            <field name="department_id" type="row"/>
+            <field name="period" type="col"/>
+            <field name="headcount_active" type="measure"/>
+            <field name="hires" type="measure"/>
+            <field name="terminations" type="measure"/>
+            <field name="turnover_rate" type="measure"/>
+            <field name="payroll_cost" type="measure"/>
+            <field name="open_positions" type="measure"/>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+        <action id="action_snapshot" type="window" model="hr.workforce.snapshot" name="Workforce Snapshots" view_mode="list,form"/>
+        <action id="action_position_plan" type="window" model="hr.position.plan" name="Position Plans" view_mode="list,form"/>
+        <action id="action_scenario" type="window" model="hr.workforce.scenario" name="Workforce Scenarios" view_mode="list,form"/>
+        <action id="action_headcount_graph" type="window" model="hr.workforce.snapshot" name="Headcount Dashboard" view_mode="graph"/>
+        <action id="action_turnover_graph" type="window" model="hr.workforce.snapshot" name="Turnover &amp; Retention" view_mode="graph"/>
+        <action id="action_payroll_graph" type="window" model="hr.workforce.snapshot" name="Payroll Cost" view_mode="graph"/>
+        <action id="action_movement_graph" type="window" model="hr.workforce.snapshot" name="Hires vs Exits" view_mode="graph"/>
+        <action id="action_workforce_pivot" type="window" model="hr.workforce.snapshot" name="Planning Matrix" view_mode="pivot"/>
+    </data>
+</nexa>

@@ -1,0 +1,21 @@
+{
+    "name": "maintenance_overview",
+    "display_name": "Maintenance Overview Dashboard",
+    "version": "1.0.0",
+    "summary": "Executive landing dashboard: work orders, asset availability, costs, PM compliance, downtime and critical alerts",
+    "description": "Provides the top-level Maintenance Overview navigation described in the enterprise blueprint as a read-only visual layer, without adding or migrating any tables. Graph and pivot dashboards are built directly on top of the operational models already contributed by the maintenance anchor and its companions: work orders by status, priority, type and a status-by-priority matrix; asset availability by lifecycle state and by criticality; maintenance cost by type and a cost-by-asset matrix; preventive maintenance schedule status (pending, generated, skipped, cancelled) as a compliance and overdue indicator; downtime hours by category; condition-monitoring alerts by severity; and criticality assessments by computed level. Every panel is a view over existing records, so the dashboard never mutates operational data and stays consistent with the source of truth in each module.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "maintenance",
+        "maintenance_criticality",
+        "maintenance_downtime",
+        "maintenance_equipment"
+    ],
+    "data": [
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_project_meeting_user,access_project_meeting_user,project.meeting,,1,1,1,1
+access_project_meeting_attendee_user,access_project_meeting_attendee_user,project.meeting.attendee,,1,1,1,1
+access_project_action_item_user,access_project_action_item_user,project.action.item,,1,1,1,1
+access_project_document_user,access_project_document_user,project.document,,1,1,1,1

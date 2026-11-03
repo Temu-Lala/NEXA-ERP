@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+
+        <!-- Origination -->
+        <menuitem id="menu_loan_credit_assessment" name="Credit Assessments" parent="lending.menu_lending_origination" action="action_loan_credit_assessment" sequence="20" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_credit_factor" name="Credit Factors" parent="lending.menu_lending_origination" action="action_loan_credit_factor" sequence="25" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_agreement" name="Loan Agreements" parent="lending.menu_lending_origination" action="action_loan_agreement" sequence="30" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_approval" name="Loan Approvals" parent="lending.menu_lending_origination" action="action_loan_approval" sequence="40" groups="lending.group_lending_manager"/>
+
+    </data>
+</nexa>

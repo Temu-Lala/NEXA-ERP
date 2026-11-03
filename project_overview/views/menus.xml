@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_project_overview_root" name="Dashboard" parent="project.project_menu_root" sequence="1" web_icon="pie-chart"/>
+
+        <menuitem id="menu_project_ovw_state" name="Projects by Status" parent="menu_project_overview_root" action="project_overview.action_project_ovw_state" sequence="1"/>
+        <menuitem id="menu_project_ovw_health" name="Portfolio Health" parent="menu_project_overview_root" action="project_overview.action_project_ovw_health" sequence="2"/>
+        <menuitem id="menu_project_ovw_budget" name="Budget vs Cost" parent="menu_project_overview_root" action="project_overview.action_project_ovw_budget" sequence="3"/>
+        <menuitem id="menu_project_ovw_priority" name="Priority Matrix" parent="menu_project_overview_root" action="project_overview.action_project_ovw_priority" sequence="4"/>
+        <menuitem id="menu_project_ovw_task_state" name="Tasks by Status" parent="menu_project_overview_root" action="project_overview.action_project_ovw_task_state" sequence="5"/>
+        <menuitem id="menu_project_ovw_task_assignee" name="Tasks by Assignee" parent="menu_project_overview_root" action="project_overview.action_project_ovw_task_assignee" sequence="6"/>
+        <menuitem id="menu_project_ovw_milestone" name="Milestone Status" parent="menu_project_overview_root" action="project_overview.action_project_ovw_milestone" sequence="7"/>
+        <menuitem id="menu_project_ovw_risk" name="Risk Exposure" parent="menu_project_overview_root" action="project_overview.action_project_ovw_risk_severity" sequence="8"/>
+        <menuitem id="menu_project_ovw_issue" name="Issue Load" parent="menu_project_overview_root" action="project_overview.action_project_ovw_issue_status" sequence="9"/>
+        <menuitem id="menu_project_ovw_change" name="Change Control" parent="menu_project_overview_root" action="project_overview.action_project_ovw_change_state" sequence="10"/>
+        <menuitem id="menu_project_ovw_cost" name="Cost by Category" parent="menu_project_overview_root" action="project_overview.action_project_ovw_cost_category" sequence="11"/>
+        <menuitem id="menu_project_ovw_budget_state" name="Budget Value" parent="menu_project_overview_root" action="project_overview.action_project_ovw_budget_state" sequence="12"/>
+        <menuitem id="menu_project_ovw_deliverable" name="Deliverable Acceptance" parent="menu_project_overview_root" action="project_overview.action_project_ovw_deliverable" sequence="13"/>
+        <menuitem id="menu_project_ovw_timesheet" name="Timesheet Effort" parent="menu_project_overview_root" action="project_overview.action_project_ovw_timesheet" sequence="14"/>
+        <menuitem id="menu_project_ovw_hours" name="Hours by Project" parent="menu_project_overview_root" action="project_overview.action_project_ovw_hours" sequence="15"/>
+        <menuitem id="menu_project_ovw_allocation" name="Resource Load" parent="menu_project_overview_root" action="project_overview.action_project_ovw_allocation" sequence="16"/>
+        <menuitem id="menu_project_ovw_overalloc" name="Over-allocated" parent="menu_project_overview_root" action="project_overview.action_project_ovw_overalloc" sequence="17"/>
+        <menuitem id="menu_project_ovw_action" name="Action Items" parent="menu_project_overview_root" action="project_overview.action_project_ovw_action" sequence="18"/>
+        <menuitem id="menu_project_ovw_action_overdue" name="Overdue Actions" parent="menu_project_overview_root" action="project_overview.action_project_ovw_action_overdue" sequence="19"/>
+    </data>
+</nexa>

@@ -1,0 +1,16 @@
+{
+    "name": "helpdesk_kb",
+    "display_name": "Helpdesk Knowledge Base",
+    "version": "1.0.0",
+    "summary": "Knowledge articles and self-service portal content",
+    "description": "Knowledge base categories and articles with publish workflow, internal/customer visibility, view and helpfulness tracking.",
+    "author": "Nexa",
+    "depends": ["base", "helpdesk"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Services"
+}

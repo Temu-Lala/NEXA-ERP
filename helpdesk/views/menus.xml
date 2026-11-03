@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="helpdesk_menu_root" name="Helpdesk" sequence="64"/>
+        <menuitem id="helpdesk_menu_tickets" name="Tickets" parent="helpdesk_menu_root" action="helpdesk.action_helpdesk_ticket" sequence="1"/>
+        <menuitem id="helpdesk_menu_my_tickets" name="My Tickets" parent="helpdesk_menu_root" action="helpdesk.action_helpdesk_ticket_my" sequence="2"/>
+        <menuitem id="helpdesk_menu_messages" name="Messages" parent="helpdesk_menu_root" action="helpdesk.action_helpdesk_ticket_message" sequence="3"/>
+        <menuitem id="helpdesk_menu_teams" name="Teams" parent="helpdesk_menu_root" action="helpdesk.action_helpdesk_team" sequence="4"/>
+
+        <menuitem id="helpdesk_menu_config" name="Configuration" parent="helpdesk_menu_root" sequence="10"/>
+        <menuitem id="helpdesk_menu_categories" name="Ticket Categories" parent="helpdesk_menu_config" action="helpdesk.action_helpdesk_ticket_category" sequence="5"/>
+        <menuitem id="helpdesk_menu_tags" name="Ticket Tags" parent="helpdesk_menu_config" action="helpdesk.action_helpdesk_ticket_tag" sequence="10"/>
+        <menuitem id="helpdesk_menu_history" name="Ticket History" parent="helpdesk_menu_config" action="helpdesk.action_helpdesk_ticket_history" sequence="15"/>
+        <menuitem id="helpdesk_menu_canned" name="Canned Responses" parent="helpdesk_menu_config" action="helpdesk.action_helpdesk_canned" sequence="20"/>
+    </data>
+</nexa>

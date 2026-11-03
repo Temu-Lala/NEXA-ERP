@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Courses -->
+        <view id="view_school_lms_course_list" model="school.lms.course" type="list">
+            <field name="title" string="Course"/>
+            <field name="code" string="Code"/>
+            <field name="subject_id" string="Subject"/>
+            <field name="teacher_id" string="Teacher"/>
+            <field name="term_id" string="Term"/>
+            <field name="state" string="Status"/>
+            <field name="material_count" string="Materials"/>
+            <field name="assignment_count" string="Assignments"/>
+            <field name="quiz_count" string="Quizzes"/>
+        </view>
+        <view id="view_school_lms_course_form" model="school.lms.course" type="form">
+            <header>
+                <button name="course_publish" string="Publish" type="object" class="sum_highlight"/>
+                <button name="course_archive" string="Archive" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="title" placeholder="Course title"/></h1></div>
+                <group>
+                    <group string="Context">
+                        <field name="code"/>
+                        <field name="subject_id"/>
+                        <field name="teacher_id"/>
+                        <field name="class_id"/>
+                        <field name="section_id"/>
+                    </group>
+                    <group string="Period &amp; Counts">
+                        <field name="academic_year_id"/>
+                        <field name="term_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="material_count" readonly="true"/>
+                        <field name="assignment_count" readonly="true"/>
+                        <field name="quiz_count" readonly="true"/>
+                        <field name="enrolled_count" readonly="true"/>
+                    </group>
+                </group>
+                <group><field name="description"/></group>
+                <notebook>
+                    <page string="Materials">
+                        <field name="materials" nolabel="1">
+                            <list>
+                                <field name="sequence" widget="handle"/>
+                                <field name="material_type"/>
+                                <field name="title"/>
+                                <field name="published"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Assignments">
+                        <field name="assignments" nolabel="1">
+                            <list>
+                                <field name="title"/>
+                                <field name="due_date"/>
+                                <field name="max_score"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Quizzes">
+                        <field name="quizzes" nolabel="1">
+                            <list>
+                                <field name="title"/>
+                                <field name="question_count"/>
+                                <field name="total_points"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_lms_course" type="window" model="school.lms.course" name="Courses" view_mode="list,form"/>
+
+        <!-- Materials -->
+        <view id="view_school_lms_material_list" model="school.lms.material" type="list">
+            <field name="course_id" string="Course"/>
+            <field name="material_type" string="Type"/>
+            <field name="title" string="Title"/>
+            <field name="published" string="Published"/>
+        </view>
+        <view id="view_school_lms_material_form" model="school.lms.material" type="form">
+            <sheet>
+                <group>
+                    <group string="Resource">
+                        <field name="course_id"/>
+                        <field name="title"/>
+                        <field name="material_type"/>
+                        <field name="sequence"/>
+                        <field name="published"/>
+                    </group>
+                    <group string="Source">
+                        <field name="link"/>
+                        <field name="file_ref"/>
+                    </group>
+                </group>
+                <group><field name="description"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_lms_material" type="window" model="school.lms.material" name="Materials" view_mode="list,form"/>
+
+        <!-- Assignments -->
+        <view id="view_school_lms_assignment_list" model="school.lms.assignment" type="list">
+            <field name="course_id" string="Course"/>
+            <field name="title" string="Assignment"/>
+            <field name="due_date" string="Due"/>
+            <field name="max_score" string="Max Score"/>
+            <field name="state" string="Status"/>
+            <field name="submission_count" string="Submissions"/>
+            <field name="graded_count" string="Graded"/>
+        </view>
+        <view id="view_school_lms_assignment_form" model="school.lms.assignment" type="form">
+            <header>
+                <button name="assignment_publish" string="Publish" type="object" class="sum_highlight"/>
+                <button name="assignment_close" string="Close" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="title" placeholder="Assignment title"/></h1></div>
+                <group>
+                    <group string="Details">
+                        <field name="course_id"/>
+                        <field name="due_date"/>
+                        <field name="max_score"/>
+                        <field name="weight"/>
+                    </group>
+                    <group string="Activity">
+                        <field name="submission_count" readonly="true"/>
+                        <field name="graded_count" readonly="true"/>
+                    </group>
+                </group>
+                <group><field name="instructions"/></group>
+                <notebook>
+                    <page string="Submissions">
+                        <field name="submissions" nolabel="1">
+                            <list>
+                                <field name="student_id"/>
+                                <field name="submitted_at"/>
+                                <field name="late"/>
+                                <field name="state"/>
+                                <field name="score"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_lms_assignment" type="window" model="school.lms.assignment" name="Assignments" view_mode="list,form"/>
+
+        <!-- Submissions -->
+        <view id="view_school_lms_submission_list" model="school.lms.submission" type="list">
+            <field name="assignment_id" string="Assignment"/>
+            <field name="student_id" string="Student"/>
+            <field name="submitted_at" string="Submitted"/>
+            <field name="late" string="Late"/>
+            <field name="state" string="Status"/>
+            <field name="score" string="Score"/>
+        </view>
+        <view id="view_school_lms_submission_form" model="school.lms.submission" type="form">
+            <header>
+                <button name="submission_grade" string="Grade" type="object" class="sum_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Submission">
+                        <field name="assignment_id"/>
+                        <field name="student_id"/>
+                        <field name="submitted_at"/>
+                        <field name="late"/>
+                        <field name="file_ref"/>
+                    </group>
+                    <group string="Grading">
+                        <field name="score"/>
+                        <field name="graded_by_id" readonly="true"/>
+                    </group>
+                </group>
+                <group><field name="content"/></group>
+                <group><field name="feedback"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_lms_submission" type="window" model="school.lms.submission" name="Submissions" view_mode="list,form"/>
+
+        <!-- Question bank -->
+        <view id="view_school_lms_question_list" model="school.lms.question" type="list">
+            <field name="question_type" string="Type"/>
+            <field name="difficulty" string="Difficulty"/>
+            <field name="points" string="Points"/>
+            <field name="option_count" string="Options"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_lms_question_form" model="school.lms.question" type="form">
+            <sheet>
+                <group>
+                    <group string="Item">
+                        <field name="course_id"/>
+                        <field name="subject_id"/>
+                        <field name="question_type"/>
+                        <field name="difficulty"/>
+                        <field name="points"/>
+                    </group>
+                    <group string="Answer Key">
+                        <field name="correct_answer"/>
+                        <field name="option_count" readonly="true"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group><field name="question_text"/></group>
+                <notebook>
+                    <page string="Options">
+                        <field name="options" nolabel="1">
+                            <list editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="option_text"/>
+                                <field name="correct"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_lms_question" type="window" model="school.lms.question" name="Question Bank" view_mode="list,form"/>
+
+        <!-- Quizzes -->
+        <view id="view_school_lms_quiz_list" model="school.lms.quiz" type="list">
+            <field name="course_id" string="Course"/>
+            <field name="title" string="Quiz"/>
+            <field name="question_count" string="Questions"/>
+            <field name="total_points" string="Points"/>
+            <field name="pass_percentage" string="Pass %"/>
+            <field name="state" string="Status"/>
+            <field name="attempt_count" string="Attempts"/>
+        </view>
+        <view id="view_school_lms_quiz_form" model="school.lms.quiz" type="form">
+            <header>
+                <button name="quiz_publish" string="Publish" type="object" class="sum_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="title" placeholder="Quiz title"/></h1></div>
+                <group>
+                    <group string="Configuration">
+                        <field name="course_id"/>
+                        <field name="time_limit_minutes"/>
+                        <field name="max_attempts"/>
+                        <field name="pass_percentage"/>
+                    </group>
+                    <group string="Totals">
+                        <field name="question_count" readonly="true"/>
+                        <field name="total_points" readonly="true"/>
+                        <field name="attempt_count" readonly="true"/>
+                    </group>
+                </group>
+                <group><field name="description"/></group>
+                <notebook>
+                    <page string="Questions">
+                        <field name="lines" nolabel="1">
+                            <list editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="question_id"/>
+                                <field name="points"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Attempts">
+                        <field name="attempts" nolabel="1">
+                            <list>
+                                <field name="student_id"/>
+                                <field name="submitted_at"/>
+                                <field name="score"/>
+                                <field name="percentage"/>
+                                <field name="passed"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_lms_quiz" type="window" model="school.lms.quiz" name="Quizzes" view_mode="list,form"/>
+
+        <!-- Quiz attempts -->
+        <view id="view_school_lms_quiz_attempt_list" model="school.lms.quiz.attempt" type="list">
+            <field name="quiz_id" string="Quiz"/>
+            <field name="student_id" string="Student"/>
+            <field name="submitted_at" string="Submitted"/>
+            <field name="score" string="Score"/>
+            <field name="max_points" string="Max"/>
+            <field name="percentage" string="%"/>
+            <field name="passed" string="Passed"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_lms_quiz_attempt_form" model="school.lms.quiz.attempt" type="form">
+            <header>
+                <button name="quiz_attempt_submit" string="Submit &amp; Grade" type="object" class="sum_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Attempt">
+                        <field name="quiz_id"/>
+                        <field name="student_id"/>
+                        <field name="started_at"/>
+                        <field name="submitted_at"/>
+                    </group>
+                    <group string="Result">
+                        <field name="score"/>
+                        <field name="max_points"/>
+                        <field name="percentage"/>
+                        <field name="passed"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Answers">
+                        <field name="answers" nolabel="1">
+                            <list editable="bottom">
+                                <field name="question_id"/>
+                                <field name="selected_option_id"/>
+                                <field name="answer_text"/>
+                                <field name="correct"/>
+                                <field name="points_scored"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_lms_quiz_attempt" type="window" model="school.lms.quiz.attempt" name="Quiz Attempts" view_mode="list,form"/>
+
+        <!-- Progress -->
+        <view id="view_school_lms_progress_list" model="school.lms.progress" type="list">
+            <field name="course_id" string="Course"/>
+            <field name="student_id" string="Student"/>
+            <field name="materials_viewed" string="Viewed"/>
+            <field name="percent_complete" string="Complete %"/>
+            <field name="status" string="Status"/>
+            <field name="last_accessed" string="Last Accessed"/>
+        </view>
+        <view id="view_school_lms_progress_form" model="school.lms.progress" type="form">
+            <sheet>
+                <group>
+                    <group string="Learner">
+                        <field name="course_id"/>
+                        <field name="student_id"/>
+                        <field name="materials_viewed"/>
+                    </group>
+                    <group string="Progress">
+                        <field name="percent_complete" readonly="true"/>
+                        <field name="status"/>
+                        <field name="last_accessed"/>
+                    </group>
+                </group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_lms_progress" type="window" model="school.lms.progress" name="Course Progress" view_mode="list,form"/>
+    </data>
+</nexa>

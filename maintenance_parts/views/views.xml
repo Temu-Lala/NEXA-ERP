@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_maint_part_request_list" model="maintenance.part.request" type="list">
+            <field name="name" string="Reference"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="product_id" string="Spare Part"/>
+            <field name="requested_qty" string="Requested Qty"/>
+            <field name="reserved_qty" string="Reserved Qty"/>
+            <field name="need_date" string="Needed By"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_maint_part_request_form" model="maintenance.part.request" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="PR-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Request">
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="asset_id" string="Asset"/>
+                        <field name="product_id" string="Spare Part"/>
+                        <field name="requested_qty" string="Requested Qty"/>
+                        <field name="reserved_qty" string="Reserved Qty"/>
+                    </group>
+                    <group string="Handling">
+                        <field name="requested_by" string="Requested By"/>
+                        <field name="date" string="Request Date"/>
+                        <field name="need_date" string="Needed By"/>
+                        <field name="state" string="Status"/>
+                        <field name="purchase_ref" string="Purchase Reference"/>
+                    </group>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_maint_part_request" type="window" model="maintenance.part.request" name="Part Requests" view_mode="list,form"/>
+
+        <view id="view_maint_part_consumed_list" model="maintenance.part.consumed" type="list">
+            <field name="date" string="Date"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="product_id" string="Spare Part"/>
+            <field name="quantity" string="Quantity"/>
+            <field name="returned_qty" string="Returned Qty"/>
+            <field name="serial_number" string="Serial Number"/>
+            <field name="lot" string="Lot / Batch"/>
+        </view>
+        <view id="view_maint_part_consumed_form" model="maintenance.part.consumed" type="form">
+            <sheet>
+                <group>
+                    <field name="work_order_id" string="Work Order"/>
+                    <field name="product_id" string="Spare Part"/>
+                    <field name="quantity" string="Quantity"/>
+                    <field name="returned_qty" string="Returned Qty"/>
+                    <field name="serial_number" string="Serial Number"/>
+                    <field name="lot" string="Lot / Batch"/>
+                    <field name="date" string="Date"/>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_maint_part_consumed" type="window" model="maintenance.part.consumed" name="Parts Consumed" view_mode="list,form"/>
+
+        <view id="view_maint_component_list" model="maintenance.component" type="list">
+            <field name="name" string="Component"/>
+            <field name="asset_id" string="Parent Asset"/>
+            <field name="product_id" string="Spare Part"/>
+            <field name="serial_number" string="Serial Number"/>
+            <field name="install_date" string="Install Date"/>
+            <field name="quantity" string="Quantity"/>
+        </view>
+        <view id="view_maint_component_form" model="maintenance.component" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Component"/>
+                    <field name="asset_id" string="Parent Asset"/>
+                    <field name="child_asset_id" string="Child Asset"/>
+                    <field name="product_id" string="Spare Part"/>
+                    <field name="serial_number" string="Serial Number"/>
+                    <field name="install_date" string="Install Date"/>
+                    <field name="remove_date" string="Remove Date"/>
+                    <field name="quantity" string="Quantity"/>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_maint_component" type="window" model="maintenance.component" name="Components" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,23 @@
+{
+    "name": "purchase_performance",
+    "display_name": "Supplier Performance, Risk & Corrective Actions",
+    "version": "1.0.0",
+    "summary": "Evidence-based scorecards, KPI periods, composite grading and corrective-action closure",
+    "description": "Supplier performance management for the Procurement module. Defines measurement periods that document each KPI's denominator, exclusions and partial-delivery treatment so results are comparable across suppliers, and computes evidence-based metrics (on-time, fill rate, acceptance, defect rate and corrective-action closure) server-side from the purchase-order, delivery-schedule and receipt transactional records. Builds weighted composite scorecards across quality, delivery, cost, service and compliance dimensions with configurable per-category weights and grade bands. A low composite raises a review or escalation for a human to authorize - it never automatically blocks a supplier. Corrective actions track root cause, plan, owner, due date and closure with independent verification (the verifier is not the responsible owner). Roll-up links to the supplier risk assessment. Physical stock and payables remain owned by Inventory and Accounting; this module only reads transactional evidence.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "purchase",
+        "purchase_supplier",
+        "purchase_receipt",
+        "purchase_match"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "data/performance_cron.xml",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Purchase"
+}

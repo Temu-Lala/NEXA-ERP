@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hr_employee_kanban" model="hr.employee" type="kanban" columns_per_row="4" default_group_by="department_id">
+            <field name="color" invisible="true"/>
+            <field name="image"/>
+            <field name="name" string="Employee"/>
+            <field name="job_id" string="Job Position"/>
+            <field name="department_id" string="Department"/>
+            <field name="work_email" string="Work Email"/>
+            <field name="work_phone" string="Work Phone"/>
+            <field name="state" string="Status"/>
+        </view>
+    </data>
+</nexa>

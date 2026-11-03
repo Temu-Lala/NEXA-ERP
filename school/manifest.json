@@ -1,0 +1,19 @@
+{
+    "name": "school",
+    "display_name": "School Management",
+    "version": "1.0.0",
+    "summary": "Core school management: academic years, classes, sections, students, and fee categories",
+    "description": "Foundation for the School Student Payment Management system. Defines the academic structure (academic years, classes/grades, sections), student enrollments with guardian details and teacher-child flag, and income fee categories. Establishes role-based access (Data Entry Clerk, Cashier, Manager/Director). Payments, fee structures, penalties, discounts, promotion and reporting are layered by companion modules.",
+    "author": "Nexa",
+    "depends": [
+        "base"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "School"
+}

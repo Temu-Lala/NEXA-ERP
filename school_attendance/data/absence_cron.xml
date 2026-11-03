@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_school_attendance_absence" model="sys.cron">
+            <field name="name">School: Scan attendance and raise absence alerts for chronic unexcused absences</field>
+            <field name="code">school.attendance.absence</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

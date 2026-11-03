@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_exchange_rate_list" model="account.exchange.rate" type="list">
+            <field name="currency_id"/>
+            <field name="date"/>
+            <field name="rate"/>
+            <field name="company_id"/>
+            <field name="source"/>
+        </view>
+        <view id="view_exchange_rate_form" model="account.exchange.rate" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="currency_id"/>
+                        <field name="date"/>
+                        <field name="source"/>
+                    </group>
+                    <group>
+                        <field name="rate"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_reval_config_list" model="account.revaluation.config" type="list">
+            <field name="company_id"/>
+            <field name="currency_id"/>
+            <field name="gain_account_id"/>
+            <field name="loss_account_id"/>
+            <field name="journal_id"/>
+            <field name="fx_account_mode"/>
+        </view>
+        <view id="view_reval_config_form" model="account.revaluation.config" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="company_id"/>
+                        <field name="currency_id"/>
+                        <field name="fx_account_mode"/>
+                    </group>
+                    <group>
+                        <field name="gain_account_id"/>
+                        <field name="loss_account_id"/>
+                        <field name="journal_id"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_reval_run_list" model="account.revaluation.run" type="list">
+            <field name="name"/>
+            <field name="company_id"/>
+            <field name="date"/>
+            <field name="state"/>
+            <field name="total_gain_loss"/>
+        </view>
+        <view id="view_reval_run_form" model="account.revaluation.run" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="company_id"/>
+                        <field name="date"/>
+                        <field name="config_id"/>
+                    </group>
+                    <group>
+                        <field name="state"/>
+                        <field name="journal_entry_id"/>
+                        <field name="total_gain_loss"/>
+                    </group>
+                </group>
+                <group string="Lines">
+                    <field name="lines" nolabel="1"/>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_reval_line_list" model="account.revaluation.line" type="list">
+            <field name="run_id"/>
+            <field name="account_id"/>
+            <field name="partner_id"/>
+            <field name="currency_id"/>
+            <field name="book_amount"/>
+            <field name="revalued_amount"/>
+            <field name="gain_loss"/>
+            <field name="type"/>
+        </view>
+        <action id="action_exchange_rates" type="window" model="account.exchange.rate" name="Exchange Rates" view_mode="list,form"/>
+        <action id="action_reval_configs" type="window" model="account.revaluation.config" name="Revaluation Configuration" view_mode="list,form"/>
+        <action id="action_reval_runs" type="window" model="account.revaluation.run" name="Revaluation Runs" view_mode="list,form"/>
+        <action id="action_reval_lines" type="window" model="account.revaluation.line" name="Revaluation Lines" view_mode="list,form"/>
+    </data>
+</nexa>

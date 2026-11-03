@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Subjects + prerequisite graph -->
+        <view id="view_school_subject_list" model="school.subject" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Subject"/>
+            <field name="category" string="Category"/>
+            <field name="credit_hours" string="Credits"/>
+            <field name="prereq_count" string="Prereqs"/>
+        </view>
+        <view id="view_school_subject_form" model="school.subject" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Subject name"/></h1></div>
+                <group>
+                    <group string="Subject">
+                        <field name="code"/>
+                        <field name="category"/>
+                        <field name="credit_hours"/>
+                    </group>
+                    <group string="Record">
+                        <field name="prereq_count" readonly="true"/>
+                        <field name="company_id"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Prerequisites">
+                        <field name="prerequisites" nolabel="1">
+                            <list editable="bottom">
+                                <field name="prerequisite_subject_id"/>
+                                <field name="notes"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Description">
+                        <field name="description" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_school_subject" type="window" model="school.subject" name="Subjects" view_mode="list,form"/>
+
+        <!-- Versioned curriculum + learning outcomes -->
+        <view id="view_school_curriculum_list" model="school.curriculum" type="list">
+            <field name="name" string="Curriculum"/>
+            <field name="subject_id" string="Subject"/>
+            <field name="class_id" string="Grade"/>
+            <field name="academic_year_id" string="Academic Year"/>
+            <field name="version" string="Version"/>
+            <field name="status" string="Status"/>
+            <field name="outcome_count" string="Outcomes"/>
+        </view>
+        <view id="view_school_curriculum_form" model="school.curriculum" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Curriculum name"/></h1></div>
+                <group>
+                    <group string="Curriculum">
+                        <field name="subject_id"/>
+                        <field name="class_id"/>
+                        <field name="academic_year_id"/>
+                        <field name="version"/>
+                    </group>
+                    <group string="Lifecycle">
+                        <field name="status"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="outcome_count" readonly="true"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Learning Outcomes">
+                        <field name="outcomes" nolabel="1">
+                            <list editable="bottom">
+                                <field name="code"/>
+                                <field name="statement"/>
+                                <field name="level"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_curriculum" type="window" model="school.curriculum" name="Curricula" view_mode="list,form"/>
+
+        <!-- Teaching assignments -->
+        <view id="view_school_teaching_assignment_list" model="school.teaching.assignment" type="list">
+            <field name="subject_id" string="Subject"/>
+            <field name="class_id" string="Class"/>
+            <field name="section_id" string="Section"/>
+            <field name="teacher_id" string="Teacher"/>
+            <field name="academic_year_id" string="Academic Year"/>
+            <field name="periods_per_week" string="Periods/wk"/>
+        </view>
+        <view id="view_school_teaching_assignment_form" model="school.teaching.assignment" type="form">
+            <sheet>
+                <group>
+                    <group string="Assignment">
+                        <field name="subject_id"/>
+                        <field name="academic_year_id"/>
+                        <field name="class_id"/>
+                        <field name="section_id"/>
+                        <field name="teacher_id"/>
+                    </group>
+                    <group string="Workload &amp; Availability">
+                        <field name="periods_per_week"/>
+                        <field name="allowed_weekdays"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_teaching_assignment" type="window" model="school.teaching.assignment" name="Teacher Assignments" view_mode="list,form"/>
+
+        <!-- Timetable entries (conflict-validated) -->
+        <view id="view_school_timetable_entry_list" model="school.timetable.entry" type="list">
+            <field name="weekday" string="Day"/>
+            <field name="period_number" string="Period"/>
+            <field name="duration" string="Len"/>
+            <field name="subject_id" string="Subject"/>
+            <field name="section_id" string="Section"/>
+            <field name="teacher_id" string="Teacher"/>
+            <field name="classroom_id" string="Room"/>
+            <field name="has_conflict" string="Conflict?"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_timetable_entry_form" model="school.timetable.entry" type="form">
+            <header>
+                <button name="timetable_check" string="Check Conflicts" type="object"/>
+                <button name="timetable_publish" string="Publish" type="object" class="sum_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Lesson">
+                        <field name="assignment_id"/>
+                        <field name="subject_id"/>
+                        <field name="section_id"/>
+                        <field name="teacher_id"/>
+                        <field name="academic_year_id"/>
+                    </group>
+                    <group string="Slot">
+                        <field name="weekday"/>
+                        <field name="period_number"/>
+                        <field name="duration"/>
+                        <field name="classroom_id"/>
+                        <field name="student_count"/>
+                        <field name="has_conflict" readonly="true"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_timetable_entry" type="window" model="school.timetable.entry" name="Timetable" view_mode="list,form"/>
+
+        <!-- Lesson plans -->
+        <view id="view_school_lesson_plan_list" model="school.lesson.plan" type="list">
+            <field name="planned_date" string="Date"/>
+            <field name="topic" string="Topic"/>
+            <field name="subject_id" string="Subject"/>
+            <field name="assignment_id" string="Assignment"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_lesson_plan_form" model="school.lesson.plan" type="form">
+            <header>
+                <button name="lesson_submit" string="Submit" type="object"/>
+                <button name="lesson_approve" string="Approve" type="object" class="sum_highlight"/>
+                <button name="lesson_reject" string="Reject" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="topic" placeholder="Lesson topic"/></h1></div>
+                <group>
+                    <group string="Plan">
+                        <field name="assignment_id"/>
+                        <field name="subject_id"/>
+                        <field name="planned_date"/>
+                    </group>
+                    <group string="Review">
+                        <field name="approved_by_id" readonly="true"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="objectives"/>
+                    <field name="materials"/>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_lesson_plan" type="window" model="school.lesson.plan" name="Lesson Plans" view_mode="list,form"/>
+    </data>
+</nexa>

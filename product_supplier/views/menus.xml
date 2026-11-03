@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_product_supplier_root" name="Suppliers" sequence="28"/>
+
+        <menuitem id="menu_product_supplierinfo" name="Supplier Info" parent="menu_product_supplier_root" action="product_supplier.action_product_supplierinfo" sequence="10"/>
+    </data>
+</nexa>

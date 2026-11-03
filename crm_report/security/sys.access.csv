@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_funnel_report_user,access_crm_funnel_report_user,crm.funnel.report,group_crm_user,1,0,0,0
+access_crm_funnel_report_manager,access_crm_funnel_report_manager,crm.funnel.report,group_crm_manager,1,1,1,1
+access_crm_pipeline_report_user,access_crm_pipeline_report_user,crm.pipeline.report,group_crm_user,1,0,0,0
+access_crm_pipeline_report_manager,access_crm_pipeline_report_manager,crm.pipeline.report,group_crm_manager,1,1,1,1
+access_crm_winloss_report_user,access_crm_winloss_report_user,crm.winloss.report,group_crm_user,1,0,0,0
+access_crm_winloss_report_manager,access_crm_winloss_report_manager,crm.winloss.report,group_crm_manager,1,1,1,1
+access_crm_attribution_report_user,access_crm_attribution_report_user,crm.attribution.report,group_crm_user,1,0,0,0
+access_crm_attribution_report_manager,access_crm_attribution_report_manager,crm.attribution.report,group_crm_manager,1,1,1,1

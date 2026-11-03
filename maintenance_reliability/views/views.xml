@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_maint_failure_code_list" model="maintenance.failure.code" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Description"/>
+            <field name="failure_mode" string="Failure Mode"/>
+            <field name="failure_cause" string="Failure Cause"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_failure_code_form" model="maintenance.failure.code" type="form">
+            <sheet>
+                <group>
+                    <field name="code" string="Code"/>
+                    <field name="name" string="Description"/>
+                    <field name="failure_mode" string="Failure Mode"/>
+                    <field name="failure_cause" string="Failure Cause"/>
+                    <field name="detection" string="Detection Method"/>
+                    <field name="repair_action" string="Repair Action"/>
+                    <field name="active" string="Active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_maint_failure_code" type="window" model="maintenance.failure.code" name="Failure Codes" view_mode="list,form"/>
+
+        <view id="view_maint_downtime_list" model="maintenance.downtime.event" type="list">
+            <field name="name" string="Reference"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="downtime_type" string="Type"/>
+            <field name="failure_code" string="Failure Code"/>
+            <field name="start_time" string="Downtime Start"/>
+            <field name="end_time" string="Return to Service"/>
+            <field name="duration_hours" string="Duration (hrs)"/>
+        </view>
+        <view id="view_maint_downtime_form" model="maintenance.downtime.event" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="DT-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Event">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="downtime_type" string="Type"/>
+                        <field name="failure_code" string="Failure Code"/>
+                    </group>
+                    <group string="Timing">
+                        <field name="start_time" string="Downtime Start"/>
+                        <field name="end_time" string="Return to Service"/>
+                        <field name="duration_hours" string="Duration (hours)"/>
+                        <field name="follow_up_date" string="Follow-Up Date"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Analysis">
+                        <separator string="Impact"/>
+                        <field name="impact" string="Production / Service Impact"/>
+                        <separator string="Root Cause"/>
+                        <field name="root_cause" string="Root Cause"/>
+                        <separator string="Corrective Action"/>
+                        <field name="corrective_action" string="Corrective Action"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_downtime" type="window" model="maintenance.downtime.event" name="Downtime Events" view_mode="list,form"/>
+
+        <view id="view_maint_warranty_list" model="maintenance.warranty" type="list">
+            <field name="name" string="Warranty"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="provider_id" string="Provider"/>
+            <field name="start_date" string="Start Date"/>
+            <field name="end_date" string="Expiration Date"/>
+            <field name="claim_state" string="Claim Status"/>
+        </view>
+        <view id="view_maint_warranty_form" model="maintenance.warranty" type="form">
+            <sheet>
+                <group>
+                    <group string="Coverage">
+                        <field name="name" string="Warranty"/>
+                        <field name="asset_id" string="Asset"/>
+                        <field name="provider_id" string="Provider / Supplier"/>
+                        <field name="start_date" string="Start Date"/>
+                        <field name="end_date" string="Expiration Date"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Claim">
+                        <field name="claim_ref" string="Claim Reference"/>
+                        <field name="claim_state" string="Claim Status"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Details">
+                        <separator string="Coverage"/>
+                        <field name="coverage" string="Coverage"/>
+                        <separator string="Exclusions"/>
+                        <field name="exclusions" string="Exclusions"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_warranty" type="window" model="maintenance.warranty" name="Warranties" view_mode="list,form"/>
+
+        <view id="view_maint_service_contract_list" model="maintenance.service.contract" type="list">
+            <field name="name" string="Contract"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="provider_id" string="Service Provider"/>
+            <field name="start_date" string="Start Date"/>
+            <field name="end_date" string="End Date"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_maint_service_contract_form" model="maintenance.service.contract" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Contract Reference..."/></h1>
+                </div>
+                <group>
+                    <group string="Agreement">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="provider_id" string="Service Provider"/>
+                        <field name="responsible_id" string="Internal Contact"/>
+                        <field name="state" string="Status"/>
+                        <field name="start_date" string="Start Date"/>
+                        <field name="end_date" string="End Date"/>
+                        <field name="renewal_reminder_date" string="Renewal Reminder"/>
+                    </group>
+                    <group string="Service Levels">
+                        <field name="response_target_hours" string="Response Target (hours)"/>
+                        <field name="resolution_target_hours" string="Resolution Target (hours)"/>
+                        <field name="contract_value" string="Contract Value"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Coverage">
+                        <field name="coverage" string="Coverage"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_service_contract" type="window" model="maintenance.service.contract" name="Service Contracts" view_mode="list,form"/>
+    </data>
+</nexa>

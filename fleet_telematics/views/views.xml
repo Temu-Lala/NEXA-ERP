@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Telematics Device Views -->
+        <view id="view_fleet_telematics_device_list" model="fleet.telematics.device" type="list">
+            <field name="name" string="IMEI / Serial"/>
+            <field name="model" string="Model"/>
+            <field name="provider" string="Provider"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="status" string="Status"/>
+            <field name="sim_card_number" string="SIM Number"/>
+            <field name="last_report_time" string="Last Report"/>
+            <field name="active" string="Active"/>
+        </view>
+
+        <view id="view_fleet_telematics_device_form" model="fleet.telematics.device" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="model"/>
+                    <field name="provider"/>
+                    <field name="vehicle_id"/>
+                    <field name="status"/>
+                </group>
+                <group>
+                    <field name="sim_card_number"/>
+                    <field name="firmware_version"/>
+                    <field name="last_report_time"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_telematics_device_search" model="fleet.telematics.device" type="search">
+            <field name="name" string="IMEI / Serial"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="provider" string="Provider"/>
+            <filter name="online" string="Online" domain='[["status","=","online"]]'/>
+            <filter name="offline" string="Offline" domain='[["status","=","offline"]]'/>
+            <filter name="group_provider" string="Provider" group_by="provider"/>
+            <filter name="group_status" string="Status" group_by="status"/>
+        </view>
+
+        <action id="action_fleet_telematics_device" type="window" model="fleet.telematics.device" name="Telematics Devices" view_mode="list,form"/>
+
+        <!-- Telemetry Event Views -->
+        <view id="view_fleet_telemetry_event_list" model="fleet.telemetry.event" type="list">
+            <field name="timestamp" string="Timestamp"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="event_type" string="Event Type"/>
+            <field name="speed_kmh" string="Speed (km/h)"/>
+            <field name="odometer_km" string="Odometer"/>
+            <field name="fuel_level_pct" string="Fuel (%)"/>
+            <field name="battery_volts" string="Battery (V)"/>
+            <field name="ignition_on" string="Ignition"/>
+        </view>
+
+        <view id="view_fleet_telemetry_event_form" model="fleet.telemetry.event" type="form">
+            <sheet>
+                <group>
+                    <field name="timestamp"/>
+                    <field name="vehicle_id"/>
+                    <field name="device_id"/>
+                    <field name="event_type"/>
+                    <field name="ignition_on"/>
+                </group>
+                <group>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <field name="altitude"/>
+                    <field name="speed_kmh"/>
+                    <field name="heading_degrees"/>
+                </group>
+                <group string="Sensors &amp; Counters">
+                    <field name="odometer_km"/>
+                    <field name="fuel_level_pct"/>
+                    <field name="battery_volts"/>
+                    <field name="engine_rpm"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_telemetry_event_search" model="fleet.telemetry.event" type="search">
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="device_id" string="Device"/>
+            <filter name="group_vehicle" string="Vehicle" group_by="vehicle_id"/>
+            <filter name="group_event_type" string="Event Type" group_by="event_type"/>
+        </view>
+
+        <action id="action_fleet_telemetry_event" type="window" model="fleet.telemetry.event" name="Telemetry Stream" view_mode="list,form"/>
+
+        <!-- Fleet Geofence Views -->
+        <view id="view_fleet_geofence_list" model="fleet.geofence" type="list">
+            <field name="name" string="Geofence Name"/>
+            <field name="zone_type" string="Zone Type"/>
+            <field name="shape" string="Shape"/>
+            <field name="speed_limit_kmh" string="Speed Limit (km/h)"/>
+            <field name="radius_meters" string="Radius (m)"/>
+            <field name="alert_on_entry" string="Alert Entry"/>
+            <field name="alert_on_exit" string="Alert Exit"/>
+            <field name="active" string="Active"/>
+        </view>
+
+        <view id="view_fleet_geofence_form" model="fleet.geofence" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="zone_type"/>
+                    <field name="shape"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="center_lat"/>
+                    <field name="center_lng"/>
+                    <field name="radius_meters"/>
+                    <field name="speed_limit_kmh"/>
+                    <field name="alert_on_entry"/>
+                    <field name="alert_on_exit"/>
+                </group>
+                <group string="Boundary Definition">
+                    <field name="coordinates_json"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_geofence_search" model="fleet.geofence" type="search">
+            <field name="name" string="Geofence Name"/>
+            <filter name="group_zone_type" string="Zone Type" group_by="zone_type"/>
+            <filter name="active_geofences" string="Active" domain='[["active","=",true]]'/>
+        </view>
+
+        <action id="action_fleet_geofence" type="window" model="fleet.geofence" name="Geofences" view_mode="list,form"/>
+
+        <!-- Fleet Driving Event Views -->
+        <view id="view_fleet_driving_event_list" model="fleet.driving.event" type="list">
+            <field name="timestamp" string="Timestamp"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <field name="driving_event_type" string="Event"/>
+            <field name="severity" string="Severity"/>
+            <field name="speed_kmh" string="Speed (km/h)"/>
+            <field name="limit_kmh" string="Limit (km/h)"/>
+            <field name="duration_seconds" string="Duration (s)"/>
+            <field name="acknowledged" string="Ack"/>
+        </view>
+
+        <view id="view_fleet_driving_event_form" model="fleet.driving.event" type="form">
+            <sheet>
+                <group>
+                    <field name="timestamp"/>
+                    <field name="vehicle_id"/>
+                    <field name="driver_id"/>
+                    <field name="driving_event_type"/>
+                    <field name="severity"/>
+                </group>
+                <group>
+                    <field name="speed_kmh"/>
+                    <field name="limit_kmh"/>
+                    <field name="duration_seconds"/>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <field name="acknowledged"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_driving_event_search" model="fleet.driving.event" type="search">
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <filter name="critical" string="Critical" domain='[["severity","=","critical"]]'/>
+            <filter name="unacknowledged" string="Pending Review" domain='[["acknowledged","=",false]]'/>
+            <filter name="group_type" string="Event Type" group_by="driving_event_type"/>
+            <filter name="group_severity" string="Severity" group_by="severity"/>
+            <filter name="group_driver" string="Driver" group_by="driver_id"/>
+        </view>
+
+        <action id="action_fleet_driving_event" type="window" model="fleet.driving.event" name="Driving Behavior Events" view_mode="list,form"/>
+    </data>
+</nexa>

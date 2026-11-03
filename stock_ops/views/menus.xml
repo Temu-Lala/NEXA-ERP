@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+  <data>
+    <menuitem id="menu_stock_ops_task" name="Operation Tasks" parent="stock.menu_stock_ops" action="action_ops_task" sequence="10"/>
+    <menuitem id="menu_stock_ops_wave" name="Waves" parent="stock.menu_stock_ops" action="action_ops_wave" sequence="20"/>
+    <menuitem id="menu_stock_ops_scan" name="Scan Log" parent="stock.menu_stock_ops" action="action_ops_scan_log" sequence="30"/>
+  </data>
+</nexa>

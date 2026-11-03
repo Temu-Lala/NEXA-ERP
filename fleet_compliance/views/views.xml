@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Vehicle Document Views -->
+        <view id="view_fleet_vehicle_document_list" model="fleet.vehicle.document" type="list">
+            <field name="document_number" string="Document #"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="category" string="Category"/>
+            <field name="issuing_authority" string="Authority"/>
+            <field name="issue_date" string="Issue Date"/>
+            <field name="expiry_date" string="Expiry Date"/>
+            <field name="status" string="Status"/>
+            <field name="action_on_expiry" string="Expiry Policy"/>
+        </view>
+
+        <view id="view_fleet_vehicle_document_form" model="fleet.vehicle.document" type="form">
+            <sheet>
+                <group>
+                    <field name="document_number"/>
+                    <field name="vehicle_id"/>
+                    <field name="category"/>
+                    <field name="status"/>
+                    <field name="action_on_expiry"/>
+                </group>
+                <group>
+                    <field name="issuing_authority"/>
+                    <field name="issue_date"/>
+                    <field name="expiry_date"/>
+                    <field name="verified_by"/>
+                    <field name="verified_date"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_vehicle_document_search" model="fleet.vehicle.document" type="search">
+            <field name="document_number" string="Document #"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <filter name="valid_docs" string="Valid" domain='[["status","=","valid"]]'/>
+            <filter name="expiring_soon" string="Expiring Soon" domain='[["status","=","expiring_soon"]]'/>
+            <filter name="expired" string="Expired" domain='[["status","=","expired"]]'/>
+            <filter name="group_category" string="Category" group_by="category"/>
+            <filter name="group_status" string="Status" group_by="status"/>
+            <filter name="group_vehicle" string="Vehicle" group_by="vehicle_id"/>
+        </view>
+
+        <action id="action_fleet_vehicle_document" type="window" model="fleet.vehicle.document" name="Compliance Documents" view_mode="list,form"/>
+
+        <!-- Insurance Policy Views -->
+        <view id="view_fleet_insurance_policy_list" model="fleet.insurance.policy" type="list">
+            <field name="policy_number" string="Policy #"/>
+            <field name="insurer" string="Insurer"/>
+            <field name="broker" string="Broker"/>
+            <field name="coverage_type" string="Coverage"/>
+            <field name="effective_date" string="Effective"/>
+            <field name="expiry_date" string="Expiry"/>
+            <field name="premium_amount" string="Premium"/>
+            <field name="policy_status" string="Status"/>
+        </view>
+
+        <view id="view_fleet_insurance_policy_form" model="fleet.insurance.policy" type="form">
+            <sheet>
+                <group>
+                    <field name="policy_number"/>
+                    <field name="insurer"/>
+                    <field name="broker"/>
+                    <field name="coverage_type"/>
+                    <field name="policy_status"/>
+                </group>
+                <group>
+                    <field name="effective_date"/>
+                    <field name="expiry_date"/>
+                    <field name="premium_amount"/>
+                    <field name="deductible_amount"/>
+                    <field name="currency"/>
+                    <field name="policy_limit"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_insurance_policy_search" model="fleet.insurance.policy" type="search">
+            <field name="policy_number" string="Policy #"/>
+            <field name="insurer" string="Insurer"/>
+            <filter name="active_policies" string="Active" domain='[["policy_status","=","active"]]'/>
+            <filter name="expired_policies" string="Expired" domain='[["policy_status","=","expired"]]'/>
+            <filter name="group_coverage" string="Coverage" group_by="coverage_type"/>
+            <filter name="group_status" string="Status" group_by="policy_status"/>
+        </view>
+
+        <action id="action_fleet_insurance_policy" type="window" model="fleet.insurance.policy" name="Insurance Policies" view_mode="list,form"/>
+
+        <!-- Fleet Incident Views -->
+        <view id="view_fleet_incident_list" model="fleet.incident" type="list">
+            <field name="name" string="Incident #"/>
+            <field name="incident_date" string="Date &amp; Time"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <field name="incident_type" string="Type"/>
+            <field name="incident_severity" string="Severity"/>
+            <field name="claim_status" string="Claim"/>
+            <field name="incident_state" string="Status"/>
+        </view>
+
+        <view id="view_fleet_incident_form" model="fleet.incident" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="vehicle_id"/>
+                    <field name="driver_id"/>
+                    <field name="trip_id"/>
+                    <field name="incident_date"/>
+                    <field name="location"/>
+                </group>
+                <group>
+                    <field name="incident_type"/>
+                    <field name="incident_severity"/>
+                    <field name="injury_involved"/>
+                    <field name="police_report_number"/>
+                    <field name="incident_state"/>
+                </group>
+                <group string="Financials &amp; Insurance">
+                    <field name="estimated_cost"/>
+                    <field name="actual_cost"/>
+                    <field name="claim_status"/>
+                    <field name="insurance_claim_number"/>
+                </group>
+                <group string="Third Party">
+                    <field name="third_party_details"/>
+                </group>
+                <group string="Investigation &amp; Corrective Action">
+                    <field name="root_cause"/>
+                    <field name="corrective_actions"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_incident_search" model="fleet.incident" type="search">
+            <field name="name" string="Incident #"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <filter name="injuries" string="Injuries Involved" domain='[["injury_involved","=",true]]'/>
+            <filter name="open_incidents" string="Active" domain='[["incident_state","in",["reported","investigating","corrective_action"]]]'/>
+            <filter name="group_type" string="Incident Type" group_by="incident_type"/>
+            <filter name="group_severity" string="Severity" group_by="incident_severity"/>
+            <filter name="group_state" string="Status" group_by="incident_state"/>
+        </view>
+
+        <action id="action_fleet_incident" type="window" model="fleet.incident" name="Incidents &amp; Accidents" view_mode="list,form"/>
+    </data>
+</nexa>

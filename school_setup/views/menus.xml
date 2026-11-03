@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_setup_root" name="School Setup" parent="school.school_menu_root" sequence="5" web_icon="building-2" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_campus" name="Campuses" parent="school_menu_setup_root" action="school_setup.action_school_campus" sequence="1" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_term" name="Terms / Semesters" parent="school_menu_setup_root" action="school_setup.action_school_term" sequence="2" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_classroom" name="Classrooms" parent="school_menu_setup_root" action="school_setup.action_school_classroom" sequence="3" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_calendar" name="School Calendar" parent="school_menu_setup_root" action="school_setup.action_school_calendar_event" sequence="4" groups="school.group_school_manager"/>
+    </data>
+</nexa>

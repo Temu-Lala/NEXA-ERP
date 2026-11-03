@@ -1,0 +1,16 @@
+{
+    "name": "account_period",
+    "display_name": "Accounting Periods & Close",
+    "version": "1.0.0",
+    "summary": "Fiscal years, posting periods, and controlled period-close checklists",
+    "description": "Deep period controls on top of the account anchor: fiscal-year calendars, open/soft-closed/closed periods, and a reviewable close run with checklist tasks and exception tracking.",
+    "author": "Nexa",
+    "depends": ["base", "account"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Accounting"
+}

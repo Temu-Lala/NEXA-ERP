@@ -1,0 +1,6 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_crit_factor_user,access_maint_crit_factor_user,maintenance.criticality.factor,,1,1,1,1
+access_maint_crit_model_user,access_maint_crit_model_user,maintenance.criticality.model,,1,1,1,1
+access_maint_crit_model_factor_user,access_maint_crit_model_factor_user,maintenance.criticality.model.factor,,1,1,1,1
+access_maint_crit_assessment_user,access_maint_crit_assessment_user,maintenance.criticality.assessment,,1,1,1,1
+access_maint_crit_assess_line_user,access_maint_crit_assess_line_user,maintenance.criticality.assessment.line,,1,1,1,1

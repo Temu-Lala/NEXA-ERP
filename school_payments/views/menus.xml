@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_billing_root" name="Billing &amp; Payments" parent="school.school_menu_root" sequence="30" web_icon="receipt" groups="school.group_school_cashier"/>
+        <menuitem id="school_menu_fee_bill" name="Fee Bills" parent="school_menu_billing_root" action="school_payments.action_school_fee_bill" sequence="1" groups="school.group_school_cashier"/>
+        <menuitem id="school_menu_payment" name="Payments" parent="school_menu_billing_root" action="school_payments.action_school_payment" sequence="2" groups="school.group_school_cashier"/>
+        <menuitem id="school_menu_penalty" name="Penalties" parent="school_menu_billing_root" action="school_payments.action_school_penalty" sequence="3" groups="school.group_school_cashier"/>
+        <menuitem id="school_menu_penalty_waiver" name="Penalty Waivers" parent="school_menu_billing_root" action="school_payments.action_school_penalty_waiver" sequence="4" groups="school.group_school_manager"/>
+    </data>
+</nexa>

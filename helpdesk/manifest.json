@@ -1,0 +1,16 @@
+{
+    "name": "helpdesk",
+    "display_name": "Helpdesk",
+    "version": "1.1.0",
+    "summary": "Support tickets, teams, categories, lifecycle and audit history",
+    "description": "Manage support tickets, teams, priorities, and resolution workflow.",
+    "author": "Nexa",
+    "depends": ["base"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Services"
+}

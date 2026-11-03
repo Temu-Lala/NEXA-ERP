@@ -1,0 +1,16 @@
+{
+    "name": "account_dimension",
+    "display_name": "Analytic Dimensions",
+    "version": "1.0.0",
+    "summary": "Structured analytic dimensions, values, and journal-line allocations",
+    "description": "Deep analytic accounting on top of the account anchor: configurable dimensions (branch, department, cost center, project, product line, territory, grant), their valid values with hierarchy, per-journal-item dimension tags, and validated split allocations.",
+    "author": "Nexa",
+    "depends": ["base", "account"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Accounting"
+}

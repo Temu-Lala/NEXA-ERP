@@ -1,0 +1,17 @@
+{
+  "name": "lending_credit",
+  "display_name": "Lending - Credit",
+  "version": "1.0.0",
+  "category": "Lending",
+  "summary": "Credit assessment, underwriting decisioning, maker-checker approvals and loan agreements",
+  "description": "Companion for the lending module: credit assessments with stored scoring inputs and factors, underwriting recommendations, maker-checker approval workflow with delegated authority levels, and loan agreements capturing the accepted contractual terms. References loan applications and accounts from the lending anchor; scoring results remain separate from the final decision.",
+  "author": "Nexa",
+  "application": false,
+  "installable": true,
+  "depends": ["base", "lending"],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ]
+}

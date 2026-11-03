@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_team_user,access_helpdesk_team_user,helpdesk.team,,1,1,1,1
+access_helpdesk_ticket_user,access_helpdesk_ticket_user,helpdesk.ticket,,1,1,1,1
+access_helpdesk_ticket_category_user,access_helpdesk_ticket_category_user,helpdesk.ticket.category,,1,1,1,1
+access_helpdesk_ticket_tag_user,access_helpdesk_ticket_tag_user,helpdesk.ticket.tag,,1,1,1,1
+access_helpdesk_ticket_message_user,access_helpdesk_ticket_message_user,helpdesk.ticket.message,,1,1,1,1
+access_helpdesk_ticket_history_user,access_helpdesk_ticket_history_user,helpdesk.ticket.history,,1,1,1,0
+access_helpdesk_ticket_link_user,access_helpdesk_ticket_link_user,helpdesk.ticket.link,,1,1,1,1
+access_helpdesk_canned_response_user,access_helpdesk_canned_response_user,helpdesk.canned.response,,1,1,1,1

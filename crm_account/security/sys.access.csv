@@ -1,0 +1,10 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_account_profile_user,access_crm_account_profile_user,crm.account.profile,group_crm_user,1,1,1,0
+access_crm_account_profile_manager,access_crm_account_profile_manager,crm.account.profile,group_crm_manager,1,1,1,1
+access_crm_account_tag_user,access_crm_account_tag_user,crm.account.tag,group_crm_user,1,0,0,0
+access_crm_account_tag_manager,access_crm_account_tag_manager,crm.account.tag,group_crm_manager,1,1,1,1
+access_crm_account_tag_link_user,access_crm_account_tag_link_user,crm.account.tag.link,group_crm_user,1,1,1,1
+access_crm_account_segment_user,access_crm_account_segment_user,crm.account.segment,group_crm_user,1,1,1,0
+access_crm_account_segment_manager,access_crm_account_segment_manager,crm.account.segment,group_crm_manager,1,1,1,1
+access_crm_account_renewal_user,access_crm_account_renewal_user,crm.account.renewal,group_crm_user,1,1,1,0
+access_crm_account_renewal_manager,access_crm_account_renewal_manager,crm.account.renewal,group_crm_manager,1,1,1,1

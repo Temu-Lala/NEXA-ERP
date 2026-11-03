@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="subscription_menu_root" name="Subscriptions" sequence="71"/>
+        <menuitem id="subscription_menu_subs" name="Subscriptions" parent="subscription_menu_root" action="subscription.action_subscription_subscription" sequence="1"/>
+        <menuitem id="subscription_menu_plans" name="Plans" parent="subscription_menu_root" action="subscription.action_subscription_plan" sequence="2"/>
+    </data>
+</nexa>

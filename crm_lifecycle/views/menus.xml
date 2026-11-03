@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="crm_menu_status_history" name="Status History" parent="crm.crm_menu_leads" action="crm_lifecycle.action_crm_lead_status_history" sequence="19" groups="crm.group_crm_user"/>
+        <menuitem id="crm_menu_assignment_history" name="Assignment History" parent="crm.crm_menu_leads" action="crm_lifecycle.action_crm_lead_assignment" sequence="20" groups="crm.group_crm_user"/>
+        <menuitem id="crm_menu_duplicates" name="Duplicate Review" parent="crm.crm_menu_leads" action="crm_lifecycle.action_crm_lead_duplicate" sequence="21" groups="crm.group_crm_user"/>
+        <menuitem id="crm_menu_assignment_rules" name="Assignment Rules" parent="crm.crm_menu_config" action="crm_lifecycle.action_crm_assignment_rule" sequence="40" groups="crm.group_crm_manager"/>
+        <menuitem id="crm_menu_workflow_rules" name="Workflow Rules" parent="crm.crm_menu_config" action="crm_lifecycle.action_crm_workflow_rule" sequence="41" groups="crm.group_crm_manager"/>
+    </data>
+</nexa>

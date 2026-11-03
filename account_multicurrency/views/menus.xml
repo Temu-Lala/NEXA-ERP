@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_exchange_rates" name="Exchange Rates" parent="account.account_menu_config" action="account_multicurrency.action_exchange_rates" sequence="30" groups="account.group_account_manager"/>
+        <menuitem id="menu_reval_configs" name="Revaluation Configuration" parent="account.account_menu_config" action="account_multicurrency.action_reval_configs" sequence="31" groups="account.group_account_manager"/>
+        <menuitem id="menu_reval_runs" name="Revaluation Runs" parent="account.account_menu_accounting" action="account_multicurrency.action_reval_runs" sequence="40" groups="account.group_account_invoice"/>
+        <menuitem id="menu_reval_lines" name="Revaluation Lines" parent="account.account_menu_accounting" action="account_multicurrency.action_reval_lines" sequence="41" groups="account.group_account_invoice"/>
+    </data>
+</nexa>

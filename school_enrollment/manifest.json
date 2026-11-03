@@ -1,0 +1,20 @@
+{
+    "name": "school_enrollment",
+    "display_name": "School Enrollment",
+    "version": "1.0.0",
+    "summary": "Enrollment placed separately from the student profile, with transfer/withdraw/graduate/cancel lifecycle, re-enrollment, duplicate-active protection, append-only placement history and an alumni ledger with graduation certificates",
+    "description": "Implements the enrollment lifecycle from the blueprint while honouring the rules that enrollment is modelled separately from the permanent student profile and that admission approval does not itself complete enrollment, placement or payment. school.enrollment is a learner's placement for one academic year in a class/section/campus; a server-validated state machine moves it draft, active, transferred, withdrawn, graduated or cancelled. Confirm is blocked when the learner already holds an active enrollment for that academic year (duplicate-enrollment protection). Transfer never rewrites history: it closes the current enrollment and opens a fresh one in the destination section/year. Graduate closes the enrollment and writes a school.alumni record carrying the graduation classification and certificate reference, and a Manager can re-enroll a learner for a later academic year. Every move is captured on the append-only school.enrollment.history log recording the actor, the from/to states and the from/to section so academic records stay traceable. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_setup"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

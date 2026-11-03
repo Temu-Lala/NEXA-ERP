@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_fees_root" name="Fees &amp; Discounts" parent="school.school_menu_root" sequence="20" web_icon="money" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_fee_structure" name="Fee Structures" parent="school_menu_fees_root" action="school_fees.action_school_fee_structure" sequence="1" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_penalty_rule" name="Penalty Rules" parent="school_menu_fees_root" action="school_fees.action_school_penalty_rule" sequence="2" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_discount_family" name="Family Discounts" parent="school_menu_fees_root" action="school_fees.action_school_discount_family" sequence="3" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_discount_teacher" name="Teacher Discounts" parent="school_menu_fees_root" action="school_fees.action_school_discount_teacher" sequence="4" groups="school.group_school_manager"/>
+    </data>
+</nexa>

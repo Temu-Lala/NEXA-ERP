@@ -1,0 +1,19 @@
+{
+    "name": "website_shop",
+    "display_name": "E-Commerce",
+    "version": "1.0.0",
+    "summary": "Online store management, storefront configuration, and product publication",
+    "description": "Application anchor for E-commerce: define one or more online stores/channels, attach domains, configure per-store SEO/policy/checkout settings, and publish products to a storefront. Integrates with Product (catalog), Sales (orders), Inventory (availability), and Accounting (financial records) without duplicating their data.",
+    "author": "Nexa",
+    "depends": [
+        "base"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Website"
+}

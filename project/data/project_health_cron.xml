@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_project_health_recompute" model="sys.cron">
+            <field name="name">Project: Recompute portfolio health and progress</field>
+            <field name="code">project.health.recompute</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

@@ -1,0 +1,23 @@
+{
+    "name": "school_comm",
+    "display_name": "School Communication",
+    "version": "1.0.0",
+    "summary": "Delivery channels, targeted announcements that fan out into retry-aware notifications, a dispatch cron and a direct message desk for learners and guardians",
+    "description": "Implements the communication module from the blueprint. A school.communication.channel is a delivery medium (email, SMS, in-app, push) with a routing priority. A school.announcement is a titled broadcast aimed at an audience (everyone, all students, all guardians, all staff, or a specific class or section, optionally narrowed by campus), carries a priority and a publish/expiry window and is authored by a staff member; publishing it stamps the publish date and fans it out into one pending school.notification per active channel (the queue is rebuilt idempotently so re-publishing refreshes it). Each notification holds a delivery state machine (pending, sent, failed, cancelled) with an attempt counter, a maximum-attempt ceiling and a scheduled retry date driven by exponential backoff; a daily cron dispatches due pending and eligible failed deliveries, and a manual retry re-queues a failed one while attempts remain. A school.message is one-to-one correspondence (inbound or outbound) with a learner or guardian across a category and a draft/sent lifecycle. Retry eligibility and backoff arithmetic are server-validated and unit-tested. Announcements reuse staff authors and campuses and messages reuse guardians, so the module reuses the existing school data model. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_setup",
+        "school_staff",
+        "school_guardians"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/dispatch_cron.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Maintenance Overview - read-only graph / pivot dashboards        -->
+        <!-- Every panel is a view over existing operational records; this     -->
+        <!-- module adds no tables and mutates no data.                         -->
+        <!-- ================================================================ -->
+
+        <!-- Work Orders -->
+        <view id="view_maint_overview_wo_state" model="maintenance.work.order" type="graph" chart="bar" string="Work Orders by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_maint_overview_wo_state" type="window" model="maintenance.work.order" name="Work Orders by Status" view_mode="graph"/>
+
+        <view id="view_maint_overview_wo_priority" model="maintenance.work.order" type="graph" chart="pie" string="Work Orders by Priority">
+            <field name="priority" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_maint_overview_wo_priority" type="window" model="maintenance.work.order" name="Work Orders by Priority" view_mode="graph"/>
+
+        <view id="view_maint_overview_wo_type" model="maintenance.work.order" type="graph" chart="bar" string="Work Orders by Type">
+            <field name="work_type" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_maint_overview_wo_type" type="window" model="maintenance.work.order" name="Work Orders by Type" view_mode="graph"/>
+
+        <view id="view_maint_overview_wo_pivot" model="maintenance.work.order" type="pivot" string="Work Order Matrix">
+            <field name="state" type="row"/>
+            <field name="priority" type="col"/>
+            <field name="id" type="measure"/>
+            <field name="actual_hours" type="measure"/>
+        </view>
+        <action id="action_maint_overview_wo_pivot" type="window" model="maintenance.work.order" name="Work Order Matrix" view_mode="pivot"/>
+
+        <!-- Asset availability & criticality -->
+        <view id="view_maint_overview_asset_state" model="maintenance.asset" type="graph" chart="bar" string="Asset Availability by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_maint_overview_asset_state" type="window" model="maintenance.asset" name="Asset Availability" view_mode="graph"/>
+
+        <view id="view_maint_overview_asset_criticality" model="maintenance.asset" type="graph" chart="pie" string="Assets by Criticality">
+            <field name="criticality" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_maint_overview_asset_criticality" type="window" model="maintenance.asset" name="Assets by Criticality" view_mode="graph"/>
+
+        <!-- Costs -->
+        <view id="view_maint_overview_cost_type" model="maintenance.cost" type="graph" chart="bar" string="Maintenance Cost by Type">
+            <field name="cost_type" type="row"/>
+            <field name="amount" type="measure"/>
+        </view>
+        <action id="action_maint_overview_cost_type" type="window" model="maintenance.cost" name="Maintenance Cost by Type" view_mode="graph"/>
+
+        <view id="view_maint_overview_cost_asset_pivot" model="maintenance.cost" type="pivot" string="Cost by Asset">
+            <field name="asset_id" type="row"/>
+            <field name="cost_type" type="col"/>
+            <field name="amount" type="measure"/>
+        </view>
+        <action id="action_maint_overview_cost_asset_pivot" type="window" model="maintenance.cost" name="Cost by Asset" view_mode="pivot"/>
+
+        <!-- Preventive maintenance compliance / overdue -->
+        <view id="view_maint_overview_occurrence_state" model="maintenance.plan.occurrence" type="graph" chart="bar" string="PM Schedule Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_maint_overview_occurrence_state" type="window" model="maintenance.plan.occurrence" name="PM Compliance &amp; Overdue" view_mode="graph"/>
+
+        <!-- Downtime -->
+        <view id="view_maint_overview_downtime_cat" model="maintenance.downtime.v2" type="graph" chart="bar" string="Downtime by Category">
+            <field name="category_id" type="row"/>
+            <field name="total_duration_hours" type="measure"/>
+        </view>
+        <action id="action_maint_overview_downtime_cat" type="window" model="maintenance.downtime.v2" name="Downtime by Category" view_mode="graph"/>
+
+        <!-- Critical alerts -->
+        <view id="view_maint_overview_alert_severity" model="maintenance.condition.alert" type="graph" chart="bar" string="Condition Alerts by Severity">
+            <field name="alert_severity" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_maint_overview_alert_severity" type="window" model="maintenance.condition.alert" name="Critical Alerts" view_mode="graph"/>
+
+        <!-- Criticality assessments -->
+        <view id="view_maint_overview_crit_level" model="maintenance.criticality.assessment" type="graph" chart="bar" string="Asset Criticality Levels">
+            <field name="criticality_level" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_maint_overview_crit_level" type="window" model="maintenance.criticality.assessment" name="Asset Criticality Levels" view_mode="graph"/>
+    </data>
+</nexa>

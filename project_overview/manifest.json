@@ -1,0 +1,24 @@
+{
+    "name": "project_overview",
+    "display_name": "Project Portfolio Dashboard & Analytics",
+    "version": "1.0.0",
+    "summary": "Read-only portfolio, execution, risk, finance, effort and collaboration dashboards",
+    "description": "Executive landing dashboard for the Project Management platform, delivered as a purely read-only visual layer that adds no tables and mutates no operational data. Panels are graphs, pivots and list hybrids built directly over the records contributed by the project anchor and its companions: portfolio status, health, budget versus actual and committed cost, and a priority matrix; task and milestone execution load; risk exposure by severity, issue load and change control; cost by category and budget value by state; deliverable acceptance; timesheet effort and logged hours by project; committed resource load and an over-allocated watchlist; and action-item status with an overdue list. A Dashboard section is added to the Project app so leaders land on analytics first. Every panel is a view over existing records, keeping the dashboard consistent with each module as its own source of truth.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "project",
+        "project_planning",
+        "project_risk",
+        "project_finance",
+        "project_timesheet",
+        "project_resource",
+        "project_collab"
+    ],
+    "data": [
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Project"
+}

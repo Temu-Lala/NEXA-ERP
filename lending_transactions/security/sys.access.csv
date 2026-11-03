@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_loan_disbursement_user,loan.disbursement.user,loan.disbursement,lending.group_lending_user,1,1,1,0
+access_loan_disbursement_manager,loan.disbursement.manager,loan.disbursement,lending.group_lending_manager,1,1,1,1
+access_loan_repayment_user,loan.repayment.user,loan.repayment,lending.group_lending_user,1,1,1,0
+access_loan_repayment_manager,loan.repayment.manager,loan.repayment,lending.group_lending_manager,1,1,1,1
+access_loan_repayment_allocation_user,loan.repayment.allocation.user,loan.repayment.allocation,lending.group_lending_user,1,1,1,0
+access_loan_repayment_allocation_manager,loan.repayment.allocation.manager,loan.repayment.allocation,lending.group_lending_manager,1,1,1,1
+access_loan_payment_reversal_user,loan.payment.reversal.user,loan.payment.reversal,lending.group_lending_user,1,0,0,0
+access_loan_payment_reversal_manager,loan.payment.reversal.manager,loan.payment.reversal,lending.group_lending_manager,1,1,1,1

@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_school_campus_clerk,access_school_campus_clerk,school.campus,group_school_clerk,1,0,0,0
+access_school_campus_manager,access_school_campus_manager,school.campus,group_school_manager,1,1,1,1
+access_school_term_clerk,access_school_term_clerk,school.term,group_school_clerk,1,0,0,0
+access_school_term_manager,access_school_term_manager,school.term,group_school_manager,1,1,1,1
+access_school_classroom_clerk,access_school_classroom_clerk,school.classroom,group_school_clerk,1,0,0,0
+access_school_classroom_manager,access_school_classroom_manager,school.classroom,group_school_manager,1,1,1,1
+access_school_calendar_event_clerk,access_school_calendar_event_clerk,school.calendar.event,group_school_clerk,1,0,0,0
+access_school_calendar_event_manager,access_school_calendar_event_manager,school.calendar.event,group_school_manager,1,1,1,1

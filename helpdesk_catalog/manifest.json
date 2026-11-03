@@ -1,0 +1,16 @@
+{
+    "name": "helpdesk_catalog",
+    "display_name": "Helpdesk Service Catalog",
+    "version": "1.0.0",
+    "summary": "Service catalog, request forms, approvals and fulfilment tasks",
+    "description": "Self-service catalog of governed services with configurable request forms, approval gates and multi-team fulfilment tasks. Requests advance through a validated lifecycle (draft, approval, fulfilment, completion) and are recorded as business processes rather than plain tickets.",
+    "author": "Nexa",
+    "depends": ["base", "helpdesk"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Services"
+}

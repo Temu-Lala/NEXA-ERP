@@ -1,0 +1,16 @@
+{
+    "name": "product_bundle",
+    "display_name": "Product Bundles & Kits",
+    "version": "1.0.0",
+    "summary": "Bundle and kit definitions with component lines",
+    "description": "Group component products and quantities into a single commercial bundle or kit offer, linked to a canonical bundle product.",
+    "author": "Nexa",
+    "depends": ["base", "product"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Inventory"
+}

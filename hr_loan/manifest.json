@@ -1,0 +1,16 @@
+{
+    "name": "hr_loan",
+    "display_name": "HR Loans",
+    "version": "1.0.0",
+    "summary": "Employee loans, advances and repayment tracking",
+    "description": "Loan types with eligibility policies, loan/advance requests with approval workflow, repayment schedules with payroll deduction lines, and accounting integration for disbursement and repayments.",
+    "author": "Nexa",
+    "depends": ["base", "hr", "account"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

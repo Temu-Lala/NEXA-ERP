@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_product_product_list" model="product.product" type="list">
+            <field name="default_code" string="Internal Reference"/>
+            <field name="barcode" string="Barcode"/>
+            <field name="name" string="Product"/>
+            <field name="type" string="Type"/>
+            <field name="state" string="Lifecycle"/>
+            <field name="categ_id" string="Category"/>
+            <field name="brand_id" string="Brand"/>
+            <field name="list_price" string="Sales Price"/>
+            <field name="standard_price" string="Cost"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+    </data>
+</nexa>

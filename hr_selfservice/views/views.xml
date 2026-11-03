@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== Service Teams / Queues ===================== -->
+        <view id="view_service_team_list" model="hr.service.team" type="list">
+            <field name="name" string="Queue"/>
+            <field name="department_id" string="Department"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_service_team_form" model="hr.service.team" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="name"/>
+                    <field name="department_id"/>
+                    <field name="active"/>
+                </group>
+                <group string="Members">
+                    <field name="member_ids" widget="many2many_tags" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Service Categories ===================== -->
+        <view id="view_service_category_list" model="hr.service.category" type="list">
+            <field name="name" string="Category"/>
+            <field name="kind" string="Kind"/>
+            <field name="response_hours" string="Response (h)"/>
+            <field name="resolution_hours" string="Resolution (h)"/>
+            <field name="default_team_id" string="Queue"/>
+            <field name="requires_approval" string="Approval"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_service_category_form" model="hr.service.category" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Category">
+                        <field name="name"/>
+                        <field name="kind"/>
+                        <field name="default_team_id"/>
+                    </group>
+                    <group string="SLA &amp; Handling">
+                        <field name="response_hours"/>
+                        <field name="resolution_hours"/>
+                        <field name="requires_approval"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Service Cases ===================== -->
+        <view id="view_service_case_list" model="hr.service.case" type="list">
+            <field name="number" string="Number"/>
+            <field name="name" string="Subject"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="category_id" string="Category"/>
+            <field name="team_id" string="Queue"/>
+            <field name="assigned_to" string="Assigned To"/>
+            <field name="priority" string="Priority"/>
+            <field name="sla_state" string="SLA"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_service_case_form" model="hr.service.case" type="form">
+            <header>
+                <button name="action_case_assign" string="Assign To Me" type="object" class="sum_highlight" invisible="state != 'new'"/>
+                <button name="action_case_start" string="Start" type="object" invisible="state != 'assigned' and state != 'pending'"/>
+                <button name="action_case_pending" string="Hold Pending" type="object" invisible="state != 'in_progress'"/>
+                <button name="action_case_resolve" string="Resolve" type="object" class="sum_highlight" invisible="state != 'assigned' and state != 'in_progress' and state != 'pending'"/>
+                <button name="action_case_close" string="Close" type="object" invisible="state != 'resolved'"/>
+                <button name="action_case_reopen" string="Reopen" type="object" invisible="state != 'resolved' and state != 'closed'"/>
+                <button name="action_case_cancel" string="Cancel" type="object" invisible="state == 'closed' or state == 'cancelled'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Case">
+                        <field name="name"/>
+                        <field name="number"/>
+                        <field name="employee_id"/>
+                        <field name="department_id"/>
+                        <field name="category_id"/>
+                    </group>
+                    <group string="Assignment &amp; SLA">
+                        <field name="team_id"/>
+                        <field name="assigned_to"/>
+                        <field name="priority"/>
+                        <field name="response_due"/>
+                        <field name="resolution_due"/>
+                        <field name="sla_state" readonly="true"/>
+                        <field name="breached" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <group string="Resolution">
+                    <field name="resolution" nolabel="1"/>
+                </group>
+                <notebook>
+                    <page string="Messages">
+                        <field name="messages" nolabel="1">
+                            <list editable="bottom">
+                                <field name="date"/>
+                                <field name="author_id"/>
+                                <field name="body"/>
+                                <field name="is_internal"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="History">
+                        <field name="history" nolabel="1">
+                            <list>
+                                <field name="performed_at"/>
+                                <field name="action"/>
+                                <field name="field"/>
+                                <field name="old_value"/>
+                                <field name="new_value"/>
+                                <field name="performed_by"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <!-- ===================== Case Messages (standalone) ===================== -->
+        <view id="view_service_case_message_list" model="hr.service.case.message" type="list">
+            <field name="case_id" string="Case"/>
+            <field name="author_id" string="Author"/>
+            <field name="body" string="Message"/>
+            <field name="is_internal" string="Internal"/>
+            <field name="date" string="Date"/>
+        </view>
+        <view id="view_service_case_message_form" model="hr.service.case.message" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="case_id"/>
+                    <field name="author_id"/>
+                    <field name="date"/>
+                    <field name="is_internal"/>
+                </group>
+                <group string="Message">
+                    <field name="body" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Case History (standalone, read-only) ===================== -->
+        <view id="view_service_case_history_list" model="hr.service.case.history" type="list">
+            <field name="case_id" string="Case"/>
+            <field name="action" string="Action"/>
+            <field name="field" string="Field"/>
+            <field name="old_value" string="From"/>
+            <field name="new_value" string="To"/>
+            <field name="performed_by" string="By"/>
+            <field name="performed_at" string="Date"/>
+        </view>
+        <view id="view_service_case_history_form" model="hr.service.case.history" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="case_id"/>
+                    <field name="action"/>
+                    <field name="field"/>
+                    <field name="old_value"/>
+                    <field name="new_value"/>
+                    <field name="performed_by"/>
+                    <field name="performed_at"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Self-Service Requests ===================== -->
+        <view id="view_selfservice_request_list" model="hr.selfservice.request" type="list">
+            <field name="name" string="Summary"/>
+            <field name="category" string="Type"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="approver_id" string="Approver"/>
+            <field name="effective_date" string="Effective"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_selfservice_request_form" model="hr.selfservice.request" type="form">
+            <header>
+                <button name="action_request_submit" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_request_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'submitted'"/>
+                <button name="action_request_reject" string="Reject" type="object" invisible="state != 'submitted'"/>
+                <button name="action_request_cancel" string="Cancel" type="object" invisible="state == 'cancelled' or state == 'approved' or state == 'rejected'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Request">
+                        <field name="name"/>
+                        <field name="category"/>
+                        <field name="employee_id"/>
+                        <field name="department_id"/>
+                        <field name="effective_date" widget="date"/>
+                        <field name="amount"/>
+                    </group>
+                    <group string="Approval">
+                        <field name="approver_id" readonly="true"/>
+                        <field name="requested_by" readonly="true"/>
+                        <field name="decide_date" widget="date" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Details">
+                    <field name="details" nolabel="1"/>
+                </group>
+                <group string="Decision">
+                    <field name="decision_note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+        <action id="action_service_team" type="window" model="hr.service.team" name="HR Service Queues" view_mode="list,form"/>
+        <action id="action_service_category" type="window" model="hr.service.category" name="HR Service Categories" view_mode="list,form"/>
+        <action id="action_service_case" type="window" model="hr.service.case" name="HR Service Cases" view_mode="list,form"/>
+        <action id="action_service_case_message" type="window" model="hr.service.case.message" name="Case Messages" view_mode="list,form"/>
+        <action id="action_service_case_history" type="window" model="hr.service.case.history" name="Case History" view_mode="list,form"/>
+        <action id="action_selfservice_request" type="window" model="hr.selfservice.request" name="My HR Requests" view_mode="list,form"/>
+    </data>
+</nexa>

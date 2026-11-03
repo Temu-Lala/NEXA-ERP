@@ -1,0 +1,3 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_vehicle_expense_all,access_fleet_vehicle_expense_all,fleet.vehicle.expense,,1,1,1,1
+access_fleet_tco_summary_all,access_fleet_tco_summary_all,fleet.tco.summary,,1,1,1,1

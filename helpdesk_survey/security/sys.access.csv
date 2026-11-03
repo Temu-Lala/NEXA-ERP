@@ -1,0 +1,3 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_survey_user,access_helpdesk_survey_user,helpdesk.survey,,1,1,1,1
+access_helpdesk_survey_response_user,access_helpdesk_survey_response_user,helpdesk.survey.response,,1,1,1,1

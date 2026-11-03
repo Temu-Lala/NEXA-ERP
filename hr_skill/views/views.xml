@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hr_skill_type_list" model="hr.skill.type" type="list">
+            <field name="name" string="Skill Type"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_hr_skill_type_form" model="hr.skill.type" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_hr_skill_list" model="hr.skill" type="list">
+            <field name="name" string="Skill"/>
+            <field name="type_id" string="Type"/>
+        </view>
+        <view id="view_hr_skill_form" model="hr.skill" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="type_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_hr_employee_skill_list" model="hr.employee.skill" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="skill_id" string="Skill"/>
+            <field name="level" string="Proficiency"/>
+        </view>
+        <view id="view_hr_employee_skill_form" model="hr.employee.skill" type="form">
+            <sheet>
+                <group>
+                    <field name="employee_id"/>
+                    <field name="skill_id"/>
+                    <field name="level"/>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_hr_job_skill_list" model="hr.job.skill" type="list">
+            <field name="job_id" string="Job Position"/>
+            <field name="skill_id" string="Skill"/>
+            <field name="level" string="Minimum Level"/>
+        </view>
+        <view id="view_hr_job_skill_form" model="hr.job.skill" type="form">
+            <sheet>
+                <group>
+                    <field name="job_id"/>
+                    <field name="skill_id"/>
+                    <field name="level"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_hr_skill_type" type="window" model="hr.skill.type" name="Skill Types" view_mode="list,form"/>
+        <action id="action_hr_skill" type="window" model="hr.skill" name="Skills" view_mode="list,form"/>
+        <action id="action_hr_employee_skill" type="window" model="hr.employee.skill" name="Employee Skills" view_mode="list,form"/>
+        <action id="action_hr_job_skill" type="window" model="hr.job.skill" name="Job Skill Requirements" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+
+        <!-- ============================================================ -->
+        <!-- Credit Assessment views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_credit_assessment_list" model="loan.credit.assessment" type="list">
+            <field name="application_id"/>
+            <field name="borrower_id"/>
+            <field name="score_value"/>
+            <field name="debt_service_ratio"/>
+            <field name="affordability_result" widget="badge"/>
+            <field name="recommendation" widget="badge"/>
+            <field name="factor_count"/>
+        </view>
+
+        <view id="view_loan_credit_assessment_form" model="loan.credit.assessment" type="form">
+            <header>
+                <button name="action_assessment_compute" string="Compute Score" type="object" class="sum_highlight"/>
+                <field name="recommendation" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title">
+                    <div>
+                        <h1><field name="borrower_id" placeholder="Borrower..."/></h1>
+                        <div class="sum_title_sub"><field name="application_id" placeholder="Application"/></div>
+                    </div>
+                </div>
+                <group col="2">
+                    <group string="Assessment">
+                        <field name="application_id"/>
+                        <field name="borrower_id"/>
+                        <field name="assessed_by"/>
+                        <field name="assessed_at"/>
+                    </group>
+                    <group string="Scoring">
+                        <field name="score_value"/>
+                        <field name="score_provider"/>
+                        <field name="model_version"/>
+                        <field name="score_date"/>
+                    </group>
+                </group>
+                <group col="2">
+                    <group string="Affordability">
+                        <field name="verified_income"/>
+                        <field name="existing_obligations"/>
+                        <field name="debt_service_ratio"/>
+                        <field name="affordability_result"/>
+                    </group>
+                    <group string="Activity">
+                        <field name="factor_count"/>
+                        <field name="total_weight"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Factors">
+                        <field name="factors"/>
+                    </page>
+                    <page string="Note">
+                        <field name="note" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <view id="view_loan_credit_assessment_search" model="loan.credit.assessment" type="search">
+            <field name="application_id"/>
+            <field name="borrower_id"/>
+            <field name="score_provider"/>
+            <filter name="afford_pass" string="Affordable" domain='[["affordability_result","=","pass"]]'/>
+            <filter name="afford_refer" string="Refer" domain='[["affordability_result","=","refer"]]'/>
+            <filter name="afford_fail" string="Not Affordable" domain='[["affordability_result","=","fail"]]'/>
+            <filter name="rec_approve" string="Recommended: Approve" domain='[["recommendation","=","approve"]]'/>
+            <filter name="rec_reject" string="Recommended: Reject" domain='[["recommendation","=","reject"]]'/>
+            <filter name="group_borrower" string="Borrower" group_by="borrower_id"/>
+            <filter name="group_recommendation" string="Recommendation" group_by="recommendation"/>
+        </view>
+
+        <action id="action_loan_credit_assessment" type="window" model="loan.credit.assessment" name="Credit Assessments">
+            <field name="view_mode">list,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Credit Factor views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_credit_factor_list" model="loan.credit.factor" type="list">
+            <field name="assessment_id"/>
+            <field name="name"/>
+            <field name="factor_type"/>
+            <field name="value"/>
+            <field name="weight"/>
+            <field name="impact" widget="badge"/>
+        </view>
+
+        <view id="view_loan_credit_factor_form" model="loan.credit.factor" type="form">
+            <sheet>
+                <group string="Factor">
+                    <field name="assessment_id"/>
+                    <field name="name"/>
+                    <field name="factor_type"/>
+                    <field name="value"/>
+                    <field name="weight"/>
+                    <field name="impact"/>
+                    <field name="note"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_credit_factor_search" model="loan.credit.factor" type="search">
+            <field name="name"/>
+            <field name="assessment_id"/>
+            <filter name="impact_positive" string="Positive" domain='[["impact","=","positive"]]'/>
+            <filter name="impact_negative" string="Negative" domain='[["impact","=","negative"]]'/>
+            <filter name="group_type" string="Factor Type" group_by="factor_type"/>
+            <filter name="group_impact" string="Impact" group_by="impact"/>
+        </view>
+
+        <action id="action_loan_credit_factor" type="window" model="loan.credit.factor" name="Credit Factors">
+            <field name="view_mode">list,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Loan Approval views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_approval_kanban" model="loan.approval" type="kanban" default_group_by="decision" records_draggable="false">
+        </view>
+
+        <view id="view_loan_approval_list" model="loan.approval" type="list">
+            <field name="application_id"/>
+            <field name="approval_type"/>
+            <field name="requested_amount"/>
+            <field name="level"/>
+            <field name="approver_id"/>
+            <field name="decision" widget="badge"/>
+        </view>
+
+        <view id="view_loan_approval_form" model="loan.approval" type="form">
+            <header>
+                <button name="action_approval_approve" string="Approve" type="object" class="sum_highlight" invisible="decision != 'pending' &amp;&amp; decision != 'escalated'"/>
+                <button name="action_approval_reject" string="Reject" type="object" invisible="decision != 'pending' &amp;&amp; decision != 'escalated'"/>
+                <button name="action_approval_escalate" string="Escalate" type="object" invisible="decision != 'pending'"/>
+                <field name="decision" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Approval">
+                        <field name="application_id"/>
+                        <field name="approval_type"/>
+                        <field name="requested_amount"/>
+                        <field name="level"/>
+                        <field name="decided_at"/>
+                    </group>
+                    <group string="Authority">
+                        <field name="maker_id"/>
+                        <field name="checker_id"/>
+                        <field name="approver_id"/>
+                    </group>
+                </group>
+                <group string="Rationale">
+                    <field name="rationale" nolabel="1" placeholder="Decision rationale..."/>
+                    <field name="conditions" nolabel="1"/>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_approval_search" model="loan.approval" type="search">
+            <field name="application_id"/>
+            <field name="approver_id"/>
+            <filter name="pending" string="Pending" domain='[["decision","=","pending"]]'/>
+            <filter name="escalated" string="Escalated" domain='[["decision","=","escalated"]]'/>
+            <filter name="approved" string="Approved" domain='[["decision","=","approved"]]'/>
+            <filter name="rejected" string="Rejected" domain='[["decision","=","rejected"]]'/>
+            <filter name="type_credit" string="Credit" domain='[["approval_type","=","credit"]]'/>
+            <filter name="type_disbursement" string="Disbursement" domain='[["approval_type","=","disbursement"]]'/>
+            <filter name="group_decision" string="Decision" group_by="decision"/>
+            <filter name="group_type" string="Approval Type" group_by="approval_type"/>
+        </view>
+
+        <action id="action_loan_approval" type="window" model="loan.approval" name="Loan Approvals">
+            <field name="view_mode">list,kanban,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Loan Agreement views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_agreement_list" model="loan.agreement" type="list">
+            <field name="application_id"/>
+            <field name="account_id"/>
+            <field name="borrower_id"/>
+            <field name="principal"/>
+            <field name="interest_rate"/>
+            <field name="accepted" widget="badge"/>
+        </view>
+
+        <view id="view_loan_agreement_form" model="loan.agreement" type="form">
+            <header>
+                <button name="action_agreement_accept" string="Mark Accepted" type="object" class="sum_highlight"/>
+            </header>
+            <sheet>
+                <div class="sum_title">
+                    <div>
+                        <h1><field name="borrower_id" placeholder="Borrower..."/></h1>
+                        <div class="sum_title_sub"><field name="application_id" placeholder="Application"/></div>
+                    </div>
+                </div>
+                <group col="2">
+                    <group string="Agreement">
+                        <field name="application_id"/>
+                        <field name="account_id"/>
+                        <field name="borrower_id"/>
+                        <field name="agreement_version"/>
+                        <field name="effective_date"/>
+                        <field name="accepted"/>
+                    </group>
+                    <group string="Terms">
+                        <field name="principal"/>
+                        <field name="interest_rate"/>
+                        <field name="tenor"/>
+                        <field name="repayment_frequency"/>
+                        <field name="due_date_policy"/>
+                        <field name="account_outstanding"/>
+                    </group>
+                </group>
+                <group string="Evidence">
+                    <field name="document_ref"/>
+                    <field name="signature_ref"/>
+                    <field name="disbursement_conditions" nolabel="1"/>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_agreement_search" model="loan.agreement" type="search">
+            <field name="application_id"/>
+            <field name="account_id"/>
+            <field name="borrower_id"/>
+            <filter name="accepted" string="Accepted" domain='[["accepted","=",true]]'/>
+            <filter name="pending_signature" string="Not Accepted" domain='[["accepted","=",false]]'/>
+            <filter name="group_borrower" string="Borrower" group_by="borrower_id"/>
+            <filter name="group_frequency" string="Repayment Frequency" group_by="repayment_frequency"/>
+        </view>
+
+        <action id="action_loan_agreement" type="window" model="loan.agreement" name="Loan Agreements">
+            <field name="view_mode">list,form</field>
+        </action>
+
+    </data>
+</nexa>

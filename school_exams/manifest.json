@@ -1,0 +1,21 @@
+{
+    "name": "school_exams",
+    "display_name": "School Examinations & Assessment",
+    "version": "1.0.0",
+    "summary": "Reusable grading scales, exam plans, a gradebook, aggregated report cards with an approval gate and cumulative transcripts driven by a flexible grading engine",
+    "description": "Implements the examinations and assessment module from the blueprint. A school.grading.scale is a reusable scheme of percentage bands mapping to a letter grade, GPA points and a pass mark; it is the flexible grading backbone shared by exams, report cards and transcripts. A school.exam is an assessment plan for a subject in a class/section and term and moves draft, scheduled, conducted and published, with grades only enterable once conducted and frozen on publish. Each learner mark is a school.exam.score gradebook cell whose percentage, letter grade and points are projected through the resolved scale. A school.report.card aggregates the learner's published-exam scores per subject, computes total marks, overall percentage, weighted GPA, letter grade and class rank, and must be generated, submitted and approved by a manager before use. A school.transcript is generated from all approved report cards, carrying credit-weighted course results and a cumulative GPA, and is issued with a certificate reference. The grading arithmetic (percentage, band lookup, weighted mean, ranking) is server-validated and unit-tested. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_setup",
+        "school_academics"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

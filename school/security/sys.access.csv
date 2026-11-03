@@ -1,0 +1,12 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_school_academic_year_clerk,access_school_academic_year_clerk,school.academic.year,group_school_clerk,1,0,0,0
+access_school_academic_year_manager,access_school_academic_year_manager,school.academic.year,group_school_manager,1,1,1,1
+access_school_class_clerk,access_school_class_clerk,school.class,group_school_clerk,1,0,0,0
+access_school_class_manager,access_school_class_manager,school.class,group_school_manager,1,1,1,1
+access_school_section_clerk,access_school_section_clerk,school.section,group_school_clerk,1,0,0,0
+access_school_section_manager,access_school_section_manager,school.section,group_school_manager,1,1,1,1
+access_school_student_clerk,access_school_student_clerk,school.student,group_school_clerk,1,1,1,0
+access_school_student_cashier,access_school_student_cashier,school.student,group_school_cashier,1,1,1,0
+access_school_student_manager,access_school_student_manager,school.student,group_school_manager,1,1,1,1
+access_school_fee_category_clerk,access_school_fee_category_clerk,school.fee.category,group_school_clerk,1,0,0,0
+access_school_fee_category_manager,access_school_fee_category_manager,school.fee.category,group_school_manager,1,1,1,1

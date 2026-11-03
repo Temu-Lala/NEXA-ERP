@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_ecom_carts" name="Carts" parent="website_shop.menu_ecom_sales" action="website_shop_cart.action_cart" sequence="10" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_cart_events" name="Cart Events" parent="website_shop.menu_ecom_sales" action="website_shop_cart.action_cart_event" sequence="14" groups="website_shop.group_website_shop_user"/>
+    </data>
+</nexa>

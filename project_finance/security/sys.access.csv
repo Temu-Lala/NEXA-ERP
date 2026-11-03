@@ -1,0 +1,4 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_project_budget_user,access_project_budget_user,project.budget,,1,1,1,1
+access_project_budget_line_user,access_project_budget_line_user,project.budget.line,,1,1,1,1
+access_project_cost_user,access_project_cost_user,project.cost,,1,1,1,1

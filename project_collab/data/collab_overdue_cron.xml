@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_project_collab_overdue" model="sys.cron">
+            <field name="name">Project: Refresh action item overdue flags</field>
+            <field name="code">project.collab.overdue</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

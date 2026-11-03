@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== Statutory Rules ===================== -->
+
+        <view id="view_statutory_list" model="hr.payroll.statutory" type="list">
+            <field name="name" string="Name"/>
+            <field name="jurisdiction" string="Jurisdiction"/>
+            <field name="kind" string="Kind"/>
+            <field name="amount_type" string="Computation"/>
+            <field name="percent" string="%"/>
+            <field name="fixed" string="Fixed"/>
+            <field name="cap" string="Cap"/>
+            <field name="valid_from" string="Valid From"/>
+            <field name="valid_to" string="Valid To"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_statutory_form" model="hr.payroll.statutory" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Definition">
+                        <field name="name"/>
+                        <field name="jurisdiction"/>
+                        <field name="kind"/>
+                        <field name="category_id"/>
+                        <field name="company_id"/>
+                    </group>
+                    <group string="Computation">
+                        <field name="amount_type"/>
+                        <field name="applies_to"/>
+                        <field name="percent"/>
+                        <field name="fixed"/>
+                        <field name="cap"/>
+                        <field name="sequence"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Effective Dating">
+                    <field name="valid_from"/>
+                    <field name="valid_to"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Payments (idempotent disbursement) ===================== -->
+
+        <view id="view_payment_list" model="hr.payslip.payment" type="list">
+            <field name="payslip_id" string="Payslip"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="run_id" string="Run"/>
+            <field name="amount" string="Amount"/>
+            <field name="payment_ref" string="Ref"/>
+            <field name="date" widget="date" string="Date"/>
+            <field name="state" widget="badge" string="Status"/>
+        </view>
+        <view id="view_payment_form" model="hr.payslip.payment" type="form">
+            <header>
+                <button name="action_pay" string="Mark Paid" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_void" string="Void" type="object" invisible="state != 'draft'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Payment">
+                        <field name="payslip_id"/>
+                        <field name="employee_id"/>
+                        <field name="run_id"/>
+                        <field name="amount"/>
+                    </group>
+                    <group string="Reference">
+                        <field name="payment_ref"/>
+                        <field name="date" widget="date"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_payment_search" model="hr.payslip.payment" type="search">
+            <field name="employee_id" string="Employee"/>
+            <filter name="paid" string="Paid" domain='[["state","=","paid"]]'/>
+            <filter name="pending" string="Pending" domain='[["state","=","draft"]]'/>
+            <filter name="group_run" string="Run" group_by="run_id"/>
+        </view>
+
+        <!-- ===================== Adjustments (traceable) ===================== -->
+
+        <view id="view_adjustment_list" model="hr.payslip.adjustment" type="list">
+            <field name="payslip_id" string="Payslip"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="direction" string="Direction"/>
+            <field name="amount" string="Amount"/>
+            <field name="state" widget="badge" string="Status"/>
+            <field name="applied" string="Applied"/>
+        </view>
+        <view id="view_adjustment_form" model="hr.payslip.adjustment" type="form">
+            <header>
+                <button name="action_apply" string="Apply" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_refuse" string="Refuse" type="object" invisible="state != 'draft'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Correction">
+                        <field name="payslip_id"/>
+                        <field name="employee_id"/>
+                        <field name="run_id"/>
+                        <field name="category_id"/>
+                    </group>
+                    <group string="Amount">
+                        <field name="direction"/>
+                        <field name="amount"/>
+                        <field name="reverses_id"/>
+                        <field name="applied"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                <group string="Reason">
+                    <field name="reason" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_adjustment_search" model="hr.payslip.adjustment" type="search">
+            <field name="payslip_id" string="Payslip"/>
+            <filter name="pending" string="Waiting" domain='[["state","=","draft"]]'/>
+            <filter name="group_payslip" string="Payslip" group_by="payslip_id"/>
+        </view>
+
+        <!-- ===================== Payment Files ===================== -->
+
+        <view id="view_payment_file_list" model="hr.payroll.payment.file" type="list">
+            <field name="name" string="Name"/>
+            <field name="run_id" string="Run"/>
+            <field name="generated_on" widget="datetime" string="Generated"/>
+            <field name="total_amount" string="Total"/>
+            <field name="line_count" string="Lines"/>
+            <field name="state" widget="badge" string="Status"/>
+        </view>
+        <view id="view_payment_file_form" model="hr.payroll.payment.file" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="File">
+                        <field name="name"/>
+                        <field name="run_id"/>
+                        <field name="state"/>
+                    </group>
+                    <group string="Totals">
+                        <field name="generated_on" widget="datetime"/>
+                        <field name="total_amount"/>
+                        <field name="line_count"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Reconciliation ===================== -->
+
+        <view id="view_reconciliation_list" model="hr.payroll.reconciliation" type="list">
+            <field name="name" string="Name"/>
+            <field name="run_id" string="Run"/>
+            <field name="date" widget="date" string="Date"/>
+            <field name="expected_net" string="Expected Net"/>
+            <field name="paid_net" string="Paid Net"/>
+            <field name="difference" string="Difference"/>
+            <field name="state" widget="badge" string="Status"/>
+        </view>
+        <view id="view_reconciliation_form" model="hr.payroll.reconciliation" type="form">
+            <header>
+                <button name="action_refresh" string="Refresh" type="object" class="sum_highlight"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Reconciliation">
+                        <field name="name"/>
+                        <field name="run_id"/>
+                        <field name="date" widget="date"/>
+                        <field name="company_id"/>
+                    </group>
+                    <group string="Amounts">
+                        <field name="expected_net"/>
+                        <field name="paid_net"/>
+                        <field name="difference"/>
+                        <field name="state"/>
+                    </group>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+
+        <action id="action_statutory" type="window" model="hr.payroll.statutory" name="Statutory Rules" view_mode="list,form"/>
+        <action id="action_payment" type="window" model="hr.payslip.payment" name="Payroll Payments" view_mode="list,search,form"/>
+        <action id="action_adjustment" type="window" model="hr.payslip.adjustment" name="Payslip Adjustments" view_mode="list,search,form"/>
+        <action id="action_payment_file" type="window" model="hr.payroll.payment.file" name="Payment Files" view_mode="list,form"/>
+        <action id="action_reconciliation" type="window" model="hr.payroll.reconciliation" name="Payroll Reconciliations" view_mode="list,form"/>
+    </data>
+</nexa>

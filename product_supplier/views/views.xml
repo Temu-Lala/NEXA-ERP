@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_product_supplierinfo_list" model="product.supplierinfo" type="list">
+            <field name="partner_id" string="Supplier"/>
+            <field name="product_id" string="Product"/>
+            <field name="product_code" string="Supplier Code"/>
+            <field name="price" string="Price"/>
+            <field name="currency_id" string="Currency"/>
+            <field name="min_qty" string="Min Qty"/>
+            <field name="delay" string="Lead Time"/>
+            <field name="sequence" string="Rank"/>
+        </view>
+        <view id="view_product_supplierinfo_form" model="product.supplierinfo" type="form">
+            <sheet>
+                <group>
+                    <group string="Supplier">
+                        <field name="partner_id" string="Supplier"/>
+                        <field name="product_id" string="Product"/>
+                        <field name="product_code" string="Supplier Product Code"/>
+                        <field name="product_name" string="Supplier Product Name"/>
+                    </group>
+                    <group string="Terms">
+                        <field name="price" string="Supplier Price"/>
+                        <field name="currency_id" string="Currency"/>
+                        <field name="min_qty" string="Min Quantity"/>
+                        <field name="delay" string="Lead Time (days)"/>
+                        <field name="date_start" string="Valid From"/>
+                        <field name="date_end" string="Valid Until"/>
+                        <field name="sequence" string="Preferred Rank"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_product_supplierinfo" type="window" model="product.supplierinfo" name="Supplier Info" view_mode="list,form"/>
+    </data>
+</nexa>

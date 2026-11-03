@@ -1,0 +1,19 @@
+{
+    "name": "integrations",
+    "display_name": "Integrations",
+    "version": "1.1.0",
+    "summary": "Platform-level outbound integration connections with secure credential references, SSRF-safe live connection testing, signed requests and an append-only delivery log, plus signed inbound webhooks with replay protection and a durable event queue",
+    "description": "A platform app for governing every outbound connection the ERP makes to an external system (webhooks, REST APIs, SMS/email gateways, storage). A integration.connection records the endpoint, HTTP method, authentication mode (none, API-key header, bearer, basic or an HMAC-SHA256 request signature) and a Secret Reference: the connector never stores the secret itself, only the name of the environment variable or secret-store key from which it is resolved at call time. Enabling a connection requires a valid HTTPS endpoint; the Test Connection action performs a real, transport-correct probe (an SSRF-guarded HTTPS request for webhook/REST/SMS/storage targets, a guarded SMTP handshake for email gateways) and writes an append-only integration.delivery row capturing the true status code, adapter, latency, request digest, truncated response excerpt and any transport error. Health, days-since-check and delivery-count computes project live status; connection enable, pause and test are server-guarded and gated to administrators. Inbound: an integration.webhook owns an unguessable URL path token and a signing Secret Reference; the public ingress verifies the HMAC-SHA256 signature over the raw body, applies a timestamp replay window, deduplicates by idempotency key and durably stores each accepted delivery as an integration.inbound.event row before acknowledging it - processing happens asynchronously in a scheduled, guarded, idempotent worker, never in the request path. The URL policy, outcome classification, HMAC signing and verification, auth-header construction, replay-window arithmetic, latency/health computation and response truncation are pure and unit-tested. Navigated under its own Integrations app.",
+    "author": "Nexa",
+    "depends": [
+        "base"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/inbound_cron.xml"
+    ],
+    "application": true,
+    "category": "Integrations"
+}

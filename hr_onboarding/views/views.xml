@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_onboarding_plan_list" model="hr.onboarding.plan" type="list">
+            <field name="name" string="Plan"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="department_id" string="Department"/>
+            <field name="start_date" string="Start Date"/>
+            <field name="target_date" string="Target Date"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_onboarding_plan_form" model="hr.onboarding.plan" type="form">
+            <header>
+                <button name="action_instantiate" string="Provision Checklist" type="object" class="sum_highlight"/>
+                <button name="action_start_plan" string="Start" type="object" invisible="state != 'draft'"/>
+                <button name="action_complete_plan" string="Complete" type="object" invisible="state != 'in_progress'"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="employee_id"/>
+                    <field name="department_id"/>
+                    <field name="start_date"/>
+                    <field name="target_date"/>
+                    <field name="state"/>
+                </group>
+                <group string="Checklist">
+                    <field name="template_id"/>
+                    <field name="provisioned"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_onboarding_activity_list" model="hr.onboarding.activity" type="list">
+            <field name="plan_id" string="Plan"/>
+            <field name="name" string="Activity"/>
+            <field name="responsible" string="Responsible"/>
+            <field name="employee_id_lvl" string="Assigned To"/>
+            <field name="due_date" string="Due Date"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_onboarding_activity_form" model="hr.onboarding.activity" type="form">
+            <sheet>
+                <group>
+                    <field name="plan_id"/>
+                    <field name="name"/>
+                    <field name="responsible"/>
+                    <field name="employee_id_lvl"/>
+                    <field name="due_date"/>
+                    <field name="sequence"/>
+                    <field name="state"/>
+                    <field name="done_date"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_onboarding_plan" type="window" model="hr.onboarding.plan" name="Onboarding Plans" view_mode="list,form"/>
+        <action id="action_onboarding_activity" type="window" model="hr.onboarding.activity" name="Onboarding Activities" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_maint_crit_factor_list" model="maintenance.criticality.factor" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Name"/>
+            <field name="impact_category" string="Impact Category"/>
+            <field name="default_weight" string="Default Weight"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_crit_factor_form" model="maintenance.criticality.factor" type="form">
+            <sheet>
+                <group>
+                    <group string="Factor">
+                        <field name="code" string="Code"/>
+                        <field name="name" string="Name"/>
+                        <field name="impact_category" string="Impact Category"/>
+                    </group>
+                    <group string="Configuration">
+                        <field name="default_weight" string="Default Weight"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <separator string="Description"/>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_maint_crit_factor" type="window" model="maintenance.criticality.factor" name="Criticality Factors" view_mode="list,form"/>
+
+        <view id="view_maint_crit_model_factor_list" model="maintenance.criticality.model.factor" type="list">
+            <field name="factor_id" string="Factor"/>
+            <field name="weight" string="Weight"/>
+            <field name="scale_max" string="Max Rating"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_crit_model_factor_form" model="maintenance.criticality.model.factor" type="form">
+            <sheet>
+                <group>
+                    <field name="model_id" string="Scoring Model"/>
+                    <field name="factor_id" string="Factor"/>
+                    <field name="weight" string="Weight"/>
+                    <field name="scale_max" string="Max Rating"/>
+                    <field name="active" string="Active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_maint_crit_model_list" model="maintenance.criticality.model" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Name"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_crit_model_form" model="maintenance.criticality.model" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Scoring model name..."/></h1>
+                </div>
+                <group>
+                    <group string="Model">
+                        <field name="code" string="Code"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <separator string="Description"/>
+                <field name="description" string="Description"/>
+                <notebook>
+                    <page string="Weighting">
+                        <field name="factors" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_crit_model" type="window" model="maintenance.criticality.model" name="Criticality Scoring Models" view_mode="list,form"/>
+
+        <view id="view_maint_crit_assess_line_list" model="maintenance.criticality.assessment.line" type="list">
+            <field name="factor_id" string="Factor"/>
+            <field name="weight" string="Weight"/>
+            <field name="rating" string="Rating"/>
+            <field name="scale_max" string="Max Rating"/>
+            <field name="weighted_score" string="Weighted Score"/>
+        </view>
+        <view id="view_maint_crit_assess_line_form" model="maintenance.criticality.assessment.line" type="form">
+            <sheet>
+                <group>
+                    <field name="assessment_id" string="Assessment"/>
+                    <field name="factor_id" string="Factor"/>
+                    <field name="weight" string="Weight"/>
+                    <field name="rating" string="Rating"/>
+                    <field name="scale_max" string="Max Rating"/>
+                    <field name="weighted_score" string="Weighted Score"/>
+                </group>
+                <separator string="Note"/>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+
+        <view id="view_maint_crit_assessment_list" model="maintenance.criticality.assessment" type="list">
+            <field name="name" string="Reference"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="model_id" string="Scoring Model"/>
+            <field name="assessment_date" string="Assessment Date"/>
+            <field name="total_score" string="Total Score"/>
+            <field name="score_index" string="Index (%)"/>
+            <field name="criticality_level" string="Criticality Level"/>
+            <field name="status" string="Status"/>
+        </view>
+        <view id="view_maint_crit_assessment_form" model="maintenance.criticality.assessment" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="CRIT-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Assessment">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="model_id" string="Scoring Model"/>
+                        <field name="assessment_date" string="Assessment Date"/>
+                        <field name="responsible_id" string="Responsible"/>
+                        <field name="status" string="Status"/>
+                    </group>
+                    <group string="Result">
+                        <field name="total_score" string="Total Score"/>
+                        <field name="score_index" string="Criticality Index (%)"/>
+                        <field name="criticality_level" string="Criticality Level"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Scores">
+                        <field name="lines" nolabel="1"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_crit_assessment" type="window" model="maintenance.criticality.assessment" name="Criticality Assessments" view_mode="list,form"/>
+    </data>
+</nexa>

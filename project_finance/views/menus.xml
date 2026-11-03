@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_project_finance_root" name="Project Finance" sequence="64"/>
+
+        <menuitem id="menu_project_budgets" name="Budgets" parent="menu_project_finance_root" action="project_finance.action_project_budget" sequence="10"/>
+        <menuitem id="menu_project_costs" name="Costs" parent="menu_project_finance_root" action="project_finance.action_project_cost" sequence="20"/>
+    </data>
+</nexa>

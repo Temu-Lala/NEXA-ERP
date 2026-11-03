@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+  <data>
+    <menuitem id="menu_stock_return_order" name="Returns (RMA / DTV)" parent="stock.menu_stock_returns" action="action_return_order" sequence="10"/>
+    <menuitem id="menu_stock_return_line" name="Return Lines" parent="stock.menu_stock_returns" action="action_return_line" sequence="20"/>
+    <menuitem id="menu_stock_return_policy" name="Return Policies" parent="stock.menu_stock_returns" action="action_return_policy" sequence="30"/>
+  </data>
+</nexa>

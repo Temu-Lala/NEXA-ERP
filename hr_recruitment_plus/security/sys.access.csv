@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_recruitment_scorecard_user,access_hr_recruitment_scorecard_user,hr.recruitment.scorecard,hr.group_hr_user,1,1,1,0
+access_hr_recruitment_scorecard_manager,access_hr_recruitment_scorecard_manager,hr.recruitment.scorecard,hr.group_hr_manager,1,1,1,1
+access_hr_recruitment_offer_template_user,access_hr_recruitment_offer_template_user,hr.recruitment.offer.template,hr.group_hr_user,1,0,0,0
+access_hr_recruitment_offer_template_manager,access_hr_recruitment_offer_template_manager,hr.recruitment.offer.template,hr.group_hr_manager,1,1,1,1
+access_hr_onboarding_template_user,access_hr_onboarding_template_user,hr.onboarding.template,hr.group_hr_user,1,0,0,0
+access_hr_onboarding_template_manager,access_hr_onboarding_template_manager,hr.onboarding.template,hr.group_hr_manager,1,1,1,1
+access_hr_onboarding_template_line_user,access_hr_onboarding_template_line_user,hr.onboarding.template.line,hr.group_hr_user,1,0,0,0
+access_hr_onboarding_template_line_manager,access_hr_onboarding_template_line_manager,hr.onboarding.template.line,hr.group_hr_manager,1,1,1,1

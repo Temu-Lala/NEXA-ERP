@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Fee Structure -->
+        <view id="view_school_fee_structure_list" model="school.fee.structure" type="list">
+            <field name="name" string="Name"/>
+            <field name="class_id" string="Class"/>
+            <field name="section_id" string="Section"/>
+            <field name="fee_category_id" string="Fee Category"/>
+            <field name="amount" string="Amount"/>
+            <field name="frequency" string="Frequency"/>
+            <field name="due_day" string="Due Day"/>
+        </view>
+        <view id="view_school_fee_structure_form" model="school.fee.structure" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Grade 1 Tuition"/></h1></div>
+                <group>
+                    <group string="Scope">
+                        <field name="class_id" string="Class"/>
+                        <field name="section_id" string="Section"/>
+                        <field name="fee_category_id" string="Fee Category"/>
+                        <field name="academic_year_id" string="Academic Year"/>
+                    </group>
+                    <group string="Terms">
+                        <field name="amount" string="Amount"/>
+                        <field name="frequency" string="Frequency"/>
+                        <field name="due_day" string="Due Day of Month"/>
+                        <field name="currency" string="Currency"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_fee_structure" type="window" model="school.fee.structure" name="Fee Structures" view_mode="list,form"/>
+
+        <!-- Penalty Rule -->
+        <view id="view_school_penalty_rule_list" model="school.penalty.rule" type="list">
+            <field name="name" string="Name"/>
+            <field name="fee_category_id" string="Applies To"/>
+            <field name="calculation" string="Calculation"/>
+            <field name="rate" string="Rate"/>
+            <field name="grace_days" string="Grace Days"/>
+            <field name="max_penalty" string="Max Penalty"/>
+        </view>
+        <view id="view_school_penalty_rule_form" model="school.penalty.rule" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Daily Late Fee"/></h1></div>
+                <group>
+                    <group>
+                        <field name="fee_category_id" string="Applies To Category"/>
+                        <field name="calculation" string="Calculation"/>
+                        <field name="rate" string="Rate"/>
+                    </group>
+                    <group>
+                        <field name="grace_days" string="Grace Days"/>
+                        <field name="max_penalty" string="Max Penalty (0=uncapped)"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_penalty_rule" type="window" model="school.penalty.rule" name="Penalty Rules" view_mode="list,form"/>
+
+        <!-- Family Discount -->
+        <view id="view_school_discount_family_list" model="school.discount.family" type="list">
+            <field name="name" string="Name"/>
+            <field name="min_siblings" string="Min Siblings"/>
+            <field name="discount_pct" string="Discount %"/>
+            <field name="priority" string="Priority"/>
+        </view>
+        <view id="view_school_discount_family_form" model="school.discount.family" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Family &gt; 3"/></h1></div>
+                <group>
+                    <group>
+                        <field name="min_siblings" string="Min Siblings"/>
+                        <field name="discount_pct" string="Discount %"/>
+                    </group>
+                    <group>
+                        <field name="academic_year_id" string="Academic Year"/>
+                        <field name="priority" string="Priority"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_discount_family" type="window" model="school.discount.family" name="Family Discounts" view_mode="list,form"/>
+
+        <!-- Teacher Discount -->
+        <view id="view_school_discount_teacher_list" model="school.discount.teacher" type="list">
+            <field name="name" string="Name"/>
+            <field name="min_years_service" string="Min Years of Service"/>
+            <field name="discount_pct" string="Monthly Discount %"/>
+            <field name="priority" string="Priority"/>
+        </view>
+        <view id="view_school_discount_teacher_form" model="school.discount.teacher" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. 5 Years = 40%"/></h1></div>
+                <group>
+                    <group>
+                        <field name="min_years_service" string="Min Years of Service"/>
+                        <field name="discount_pct" string="Monthly Discount %"/>
+                    </group>
+                    <group>
+                        <field name="priority" string="Priority"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_discount_teacher" type="window" model="school.discount.teacher" name="Teacher Discounts" view_mode="list,form"/>
+    </data>
+</nexa>

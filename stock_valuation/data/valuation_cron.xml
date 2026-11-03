@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_stock_valuation_sync" model="sys.cron">
+            <field name="name">Inventory: Sync valuation layers from move ledger</field>
+            <field name="code">stock.valuation.sync</field>
+            <field name="interval_number">15</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

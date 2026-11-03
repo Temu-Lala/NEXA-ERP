@@ -1,0 +1,16 @@
+{
+    "name": "project_planning",
+    "display_name": "Project Planning & Deliverables",
+    "version": "1.0.0",
+    "summary": "Task dependencies, deliverables and status history",
+    "description": "Model finish-to-start / start-to-start / finish-to-finish / start-to-finish task dependencies with lag, track deliverables that require review and acceptance, and preserve an audit timeline of project and task status transitions.",
+    "author": "Nexa",
+    "depends": ["base", "project"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Project"
+}

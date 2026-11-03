@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_quotation_approval_user,access_sale_quotation_approval_user,sale.quotation.approval,group_sale_user,1,0,1,0
+access_sale_quotation_approval_manager,access_sale_quotation_approval_manager,sale.quotation.approval,group_sale_manager,1,1,1,1
+access_sale_quotation_revision_user,access_sale_quotation_revision_user,sale.quotation.revision,group_sale_user,1,1,1,0
+access_sale_quotation_revision_manager,access_sale_quotation_revision_manager,sale.quotation.revision,group_sale_manager,1,1,1,1
+access_sale_quotation_history_user,access_sale_quotation_history_user,sale.quotation.status.history,group_sale_user,1,0,1,0
+access_sale_quotation_history_manager,access_sale_quotation_history_manager,sale.quotation.status.history,group_sale_manager,1,1,1,1
+access_sale_credit_check_user,access_sale_credit_check_user,sale.credit.check,group_sale_user,1,0,1,0
+access_sale_credit_check_manager,access_sale_credit_check_manager,sale.credit.check,group_sale_manager,1,1,1,1

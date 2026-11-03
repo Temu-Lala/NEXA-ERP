@@ -1,0 +1,17 @@
+{
+    "name": "helpdesk_sla",
+    "display_name": "Helpdesk SLA",
+    "version": "1.1.0",
+    "summary": "SLA engine: policy auto-timers, business calendars, breach/escalation evaluation",
+    "description": "Automatically starts first-response and resolution SLA clocks on ticket creation per matching policy, computes deadlines against business calendars and holidays, pauses clocks on pending tickets, evaluates warning/breach thresholds via a scheduled job, fires escalation rules, and keeps an append-only SLA audit trail.",
+    "author": "Nexa",
+    "depends": ["base", "helpdesk"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/sla_cron.xml"
+    ],
+    "application": false,
+    "category": "Services"
+}

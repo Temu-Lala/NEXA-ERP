@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_fleet_lease_contract_list" model="fleet.lease.contract" type="list">
+            <field name="name" string="Contract #"/>
+            <field name="lessor_name" string="Lessor"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="contract_type" string="Type"/>
+            <field name="contract_state" string="Status"/>
+            <field name="start_date" string="Start Date"/>
+            <field name="end_date" string="End Date"/>
+            <field name="monthly_rate" string="Monthly Rate"/>
+            <field name="currency" string="Currency"/>
+            <field name="mileage_allowance_total_km" string="Allowance (km)"/>
+        </view>
+
+        <view id="view_fleet_lease_contract_form" model="fleet.lease.contract" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="lessor_name"/>
+                    <field name="vehicle_id"/>
+                    <field name="contract_type"/>
+                    <field name="contract_state"/>
+                </group>
+                <group>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="monthly_rate"/>
+                    <field name="currency"/>
+                    <field name="deposit_amount"/>
+                </group>
+                <group string="Mileage &amp; Terms">
+                    <field name="mileage_allowance_total_km"/>
+                    <field name="excess_mileage_rate_per_km"/>
+                    <field name="maintenance_included"/>
+                    <field name="insurance_included"/>
+                    <field name="replacement_vehicle_entitled"/>
+                </group>
+                <group string="Settlement &amp; Return">
+                    <field name="return_odometer"/>
+                    <field name="excess_mileage_cost"/>
+                    <field name="damage_deductions"/>
+                    <field name="closed_date"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_lease_contract_search" model="fleet.lease.contract" type="search">
+            <field name="name" string="Contract #"/>
+            <field name="lessor_name" string="Lessor"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <filter name="active_contracts" string="Active" domain='[["contract_state","=","active"]]'/>
+            <filter name="expiring_soon" string="Expiring Soon" domain='[["contract_state","=","expiring_soon"]]'/>
+            <filter name="draft" string="Draft" domain='[["contract_state","=","draft"]]'/>
+            <filter name="group_type" string="Contract Type" group_by="contract_type"/>
+            <filter name="group_state" string="Status" group_by="contract_state"/>
+            <filter name="group_lessor" string="Lessor" group_by="lessor_name"/>
+        </view>
+
+        <action id="action_fleet_lease_contract" type="window" model="fleet.lease.contract" name="Lease &amp; Rental Contracts" view_mode="list,form"/>
+    </data>
+</nexa>

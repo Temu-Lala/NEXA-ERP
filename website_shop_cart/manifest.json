@@ -1,0 +1,16 @@
+{
+    "name": "website_shop_cart",
+    "display_name": "E-Commerce Cart",
+    "version": "1.0.0",
+    "summary": "Shopping carts, cart lines with price snapshots, addresses, and cart events",
+    "description": "Cart lifecycle on top of the E-Commerce anchor: guest and registered carts with secure session tokens, line-level price snapshots, billing/shipping address snapshots, and cart lifecycle events for abandonment/recovery analytics. Amounts are treated as session snapshots; the backend remains the only trusted source of pricing.",
+    "author": "Nexa",
+    "depends": ["base", "website_shop"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Website"
+}

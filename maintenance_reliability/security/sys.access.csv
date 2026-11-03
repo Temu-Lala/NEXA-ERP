@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_failure_code_user,access_maint_failure_code_user,maintenance.failure.code,,1,1,1,1
+access_maint_downtime_user,access_maint_downtime_user,maintenance.downtime.event,,1,1,1,1
+access_maint_warranty_user,access_maint_warranty_user,maintenance.warranty,,1,1,1,1
+access_maint_service_contract_user,access_maint_service_contract_user,maintenance.service.contract,,1,1,1,1

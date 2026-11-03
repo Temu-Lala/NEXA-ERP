@@ -1,0 +1,7 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_school_enrollment_clerk,access_school_enrollment_clerk,school.enrollment,group_school_clerk,1,1,1,0
+access_school_enrollment_manager,access_school_enrollment_manager,school.enrollment,group_school_manager,1,1,1,1
+access_school_enrollment_history_clerk,access_school_enrollment_history_clerk,school.enrollment.history,group_school_clerk,1,0,0,0
+access_school_enrollment_history_manager,access_school_enrollment_history_manager,school.enrollment.history,group_school_manager,1,1,1,0
+access_school_alumni_clerk,access_school_alumni_clerk,school.alumni,group_school_clerk,1,1,1,0
+access_school_alumni_manager,access_school_alumni_manager,school.alumni,group_school_manager,1,1,1,1

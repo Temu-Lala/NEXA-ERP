@@ -1,0 +1,21 @@
+{
+    "name": "purchase_receipt",
+    "display_name": "Purchase Receiving",
+    "version": "1.0.0",
+    "summary": "Delivery schedules, receipt coordination and supplier returns",
+    "description": "Goods receipt and service acceptance for the Procure-to-Pay flow: delivery schedules, receiving coordination with inspection and discrepancies, and supplier returns/claims. References authoritative Inventory receipts (stock.picking) instead of owning stock movements.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "purchase",
+        "stock"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "data/delivery_cron.xml",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Purchase"
+}

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Requisition -->
+        <view id="view_purchase_requisition_list" model="purchase.requisition" type="list">
+            <field name="name" string="Reference"/>
+            <field name="date_req" string="Date"/>
+            <field name="requester_id" string="Requested By"/>
+            <field name="department" string="Department"/>
+            <field name="req_type" string="Type"/>
+            <field name="priority" string="Priority"/>
+            <field name="est_total" string="Estimated Total"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_requisition_form" model="purchase.requisition" type="form">
+            <header>
+                <button name="action_submit" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_check_budget" string="Re-check Budget" type="object" invisible="state not in ('submitted', 'budget_validation')"/>
+                <button name="action_override_budget" string="Override Budget" type="object" invisible="state != 'budget_validation' or budget_result != 'exceeded'"/>
+                <button name="action_request_approval" string="Request Approval" type="object" class="sum_highlight" invisible="state not in ('submitted', 'budget_validation')"/>
+                <button name="action_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'approval'"/>
+                <button name="action_reject" string="Reject" type="object" invisible="state not in ('submitted', 'budget_validation', 'approval')"/>
+                <button name="action_resubmit" string="Re-submit for Approval" type="object" invisible="state not in ('approved', 'rejected', 'cancelled')"/>
+                <button name="action_start_sourcing" string="Open Sourcing" type="object" invisible="state != 'approved'"/>
+                <button name="action_mark_ordered" string="Mark Ordered" type="object" invisible="state != 'sourcing'"/>
+                <button name="action_mark_partial" string="Mark Partial" type="object" invisible="state != 'ordered'"/>
+                <button name="action_mark_fulfilled" string="Mark Fulfilled" type="object" invisible="state not in ('ordered', 'partial')"/>
+                <button name="action_close" string="Close" type="object" invisible="state not in ('fulfilled', 'ordered', 'partial')"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state in ('fulfilled', 'closed', 'cancelled')"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. REQ/0001"/></h1></div>
+                <group>
+                    <group string="Request">
+                        <field name="date_req" string="Date"/>
+                        <field name="requester_id" string="Requested By"/>
+                        <field name="department" string="Department"/>
+                        <field name="cost_center" string="Cost Center"/>
+                        <field name="branch" string="Branch"/>
+                        <field name="req_type" string="Type"/>
+                        <field name="priority" string="Priority"/>
+                        <field name="required_date" string="Required By"/>
+                        <field name="delivery_location" string="Delivery Location"/>
+                        <field name="category" string="Purchase Category"/>
+                    </group>
+                    <group string="Sourcing &amp; Control">
+                        <field name="method" string="Procurement Method"/>
+                        <field name="preferred_supp_id" string="Preferred Supplier"/>
+                        <field name="single_source" string="Single Source Justified"/>
+                        <field name="project_ref" string="Project"/>
+                        <field name="maint_order_ref" string="Work Order"/>
+                        <field name="budget_id" string="Budget"/>
+                        <field name="budget_policy" string="Budget Policy"/>
+                        <field name="budget_result" string="Budget Check"/>
+                        <field name="approval_instance" string="Procurement Approval"/>
+                        <field name="currency" string="Currency"/>
+                        <field name="est_total" string="Estimated Total"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Lines">
+                        <field name="lines" string="Lines">
+                            <view type="list">
+                                <field name="sequence" widget="handle"/>
+                                <field name="product_id" string="Product"/>
+                                <field name="name" string="Description"/>
+                                <field name="quantity" string="Quantity"/>
+                                <field name="uom" string="Unit"/>
+                                <field name="est_price" string="Est. Unit Price"/>
+                                <field name="est_subtotal" string="Est. Subtotal"/>
+                                <field name="approved_qty" string="Approved Qty"/>
+                                <field name="ordered_qty" string="Ordered Qty"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Justification">
+                        <field name="justification" string="Business Justification"/>
+                        <field name="notes" string="Notes"/>
+                    </page>
+                    <page string="History">
+                        <field name="history" string="Status History">
+                            <view type="list">
+                                <field name="from_state" string="From"/>
+                                <field name="to_state" string="To"/>
+                                <field name="user_id" string="Changed By"/>
+                                <field name="reason" string="Reason"/>
+                                <field name="timestamp" string="At"/>
+                            </view>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_requisition" type="window" model="purchase.requisition" name="Purchase Requisitions" view_mode="list,form"/>
+
+        <!-- Requisition Line (standalone) -->
+        <view id="view_purchase_requisition_line_list" model="purchase.requisition.line" type="list">
+            <field name="requisition_id" string="Requisition"/>
+            <field name="product_id" string="Product"/>
+            <field name="name" string="Description"/>
+            <field name="quantity" string="Quantity"/>
+            <field name="est_price" string="Est. Unit Price"/>
+            <field name="est_subtotal" string="Est. Subtotal"/>
+            <field name="ordered_qty" string="Ordered Qty"/>
+        </view>
+        <action id="action_purchase_requisition_line" type="window" model="purchase.requisition.line" name="Requisition Lines" view_mode="list,form"/>
+
+        <!-- Budget Check -->
+        <view id="view_purchase_budget_check_list" model="purchase.budget.check" type="list">
+            <field name="name" string="Reference"/>
+            <field name="requisition_id" string="Requisition"/>
+            <field name="budget_id" string="Budget"/>
+            <field name="proposed_amt" string="Proposed"/>
+            <field name="remaining" string="Remaining"/>
+            <field name="result" string="Result"/>
+        </view>
+        <view id="view_purchase_budget_check_form" model="purchase.budget.check" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name"/></h1></div>
+                <group>
+                    <group>
+                        <field name="requisition_id" string="Requisition"/>
+                        <field name="budget_id" string="Budget"/>
+                        <field name="check_date" string="Check Date"/>
+                        <field name="result" string="Result"/>
+                    </group>
+                    <group>
+                        <field name="approved_budget" string="Approved Budget"/>
+                        <field name="actual_spend" string="Actual Expenditure"/>
+                        <field name="commitments" string="Existing Commitments"/>
+                        <field name="proposed_amt" string="Proposed Amount"/>
+                        <field name="remaining" string="Remaining"/>
+                    </group>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_budget_check" type="window" model="purchase.budget.check" name="Budget Checks" view_mode="list,form"/>
+
+        <!-- Approval matrix (versioned routing) -->
+        <view id="view_purchase_approval_matrix_list" model="purchase.approval.matrix" type="list">
+            <field name="name" string="Reference"/>
+            <field name="version" string="Version"/>
+            <field name="level" string="Level"/>
+            <field name="amount_from" string="From"/>
+            <field name="amount_to" string="To"/>
+            <field name="approver_role" string="Approver Role"/>
+            <field name="mode" string="Mode"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_purchase_approval_matrix_form" model="purchase.approval.matrix" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. APPROVAL/..."></field></h1></div>
+                <group>
+                    <group string="Matching">
+                        <field name="version" string="Version"/>
+                        <field name="priority" string="Priority"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="req_type" string="Requisition Type"/>
+                        <field name="department" string="Department"/>
+                        <field name="branch" string="Entity / Branch"/>
+                        <field name="category" string="Category"/>
+                        <field name="emergency_only" string="Emergency Only"/>
+                        <field name="capex_only" string="Capex Only"/>
+                        <field name="single_source_only" string="Single Source Only"/>
+                    </group>
+                    <group string="Band &amp; Routing">
+                        <field name="amount_from" string="Amount From"/>
+                        <field name="amount_to" string="Amount To"/>
+                        <field name="level" string="Level"/>
+                        <field name="approver_role" string="Approver Role"/>
+                        <field name="approver_id" string="Approver User"/>
+                        <field name="mode" string="Mode"/>
+                        <field name="min_approvers" string="Min Approvers"/>
+                    </group>
+                    <group string="Timing">
+                        <field name="delegate_start" string="Delegation Start"/>
+                        <field name="delegate_end" string="Delegation End"/>
+                        <field name="escalate_hours" string="Escalation (hours)"/>
+                        <field name="expiry_days" string="Expiry (days)"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_approval_matrix" type="window" model="purchase.approval.matrix" name="Approval Matrix" view_mode="list,form"/>
+
+        <!-- Approval instance (runtime) -->
+        <view id="view_purchase_approval_instance_list" model="purchase.approval.instance" type="list">
+            <field name="name" string="Reference"/>
+            <field name="requisition_id" string="Requisition"/>
+            <field name="requested_amount" string="Amount"/>
+            <field name="total_levels" string="Levels"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_approval_instance_form" model="purchase.approval.instance" type="form">
+            <header>
+                <button name="action_review_approve" string="Approve Level" type="object" class="sum_highlight" invisible="state != 'pending'"/>
+                <button name="action_review_reject" string="Reject" type="object" invisible="state != 'pending'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name"/></h1></div>
+                <group>
+                    <group>
+                        <field name="requisition_id" string="Requisition"/>
+                        <field name="matrix_version" string="Matrix Version"/>
+                        <field name="requested_amount" string="Amount"/>
+                        <field name="currency" string="Currency"/>
+                    </group>
+                    <group>
+                        <field name="requester_id" string="Requested By"/>
+                        <field name="total_levels" string="Total Levels"/>
+                        <field name="started_on" string="Started On"/>
+                        <field name="completed_on" string="Completed On"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Steps">
+                        <field name="steps" string="Steps">
+                            <view type="list">
+                                <field name="sequence" widget="handle"/>
+                                <field name="level" string="Level"/>
+                                <field name="approver_role" string="Approver Role"/>
+                                <field name="approver_id" string="Approver User"/>
+                                <field name="mode" string="Mode"/>
+                                <field name="min_approvers" string="Min Approvers"/>
+                                <field name="state" string="Status"/>
+                                <field name="decision" string="Decision"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Audit">
+                        <field name="events" string="Events">
+                            <view type="list">
+                                <field name="timestamp" string="At"/>
+                                <field name="actor_id" string="Actor"/>
+                                <field name="action" string="Action"/>
+                                <field name="detail" string="Detail"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Snapshot">
+                        <field name="snapshot" string="Reviewed Version Snapshot"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_approval_instance" type="window" model="purchase.approval.instance" name="Approval Instances" view_mode="list,form"/>
+
+        <!-- Commitment ledger -->
+        <view id="view_purchase_budget_commitment_list" model="purchase.budget.commitment" type="list">
+            <field name="name" string="Reference"/>
+            <field name="requisition_id" string="Requisition"/>
+            <field name="budget_id" string="Budget"/>
+            <field name="kind" string="Movement"/>
+            <field name="amount" string="Amount"/>
+            <field name="occured_on" string="Date"/>
+        </view>
+        <view id="view_purchase_budget_commitment_form" model="purchase.budget.commitment" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name"/></h1></div>
+                <group>
+                    <group>
+                        <field name="requisition_id" string="Requisition"/>
+                        <field name="budget_id" string="Budget"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                    <group>
+                        <field name="kind" string="Movement"/>
+                        <field name="amount" string="Amount"/>
+                        <field name="occured_on" string="Date"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="reason" string="Reason"/>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_budget_commitment" type="window" model="purchase.budget.commitment" name="Budget Commitments" view_mode="list,form"/>
+
+        <!-- Budget overrides -->
+        <view id="view_purchase_budget_override_list" model="purchase.budget.override" type="list">
+            <field name="name" string="Reference"/>
+            <field name="requisition_id" string="Requisition"/>
+            <field name="policy" string="Policy"/>
+            <field name="over_amount" string="Over Amount"/>
+            <field name="authority_id" string="Authorized By"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_budget_override_form" model="purchase.budget.override" type="form">
+            <header>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name"/></h1></div>
+                <group>
+                    <group>
+                        <field name="requisition_id" string="Requisition"/>
+                        <field name="budget_id" string="Budget"/>
+                        <field name="policy" string="Budget Policy"/>
+                        <field name="over_amount" string="Amount Over Budget"/>
+                    </group>
+                    <group>
+                        <field name="state" string="Status"/>
+                        <field name="authority_id" string="Authorized By"/>
+                        <field name="granted_on" string="Granted On"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="reason" string="Business Reason"/>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_budget_override" type="window" model="purchase.budget.override" name="Budget Overrides" view_mode="list,form"/>
+    </data>
+</nexa>

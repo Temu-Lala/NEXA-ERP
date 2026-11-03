@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Contractor Dispatch List, Form, Search, Action                    -->
+        <!-- ================================================================ -->
+        <view id="view_maint_contractor_dispatch_search" model="maintenance.contractor.dispatch" type="search">
+            <filter name="active" string="Active / On-Site" domain='[["state","in",["dispatched","acknowledged","on_site"]]]'/>
+            <filter name="completed" string="Completed" domain='[["state","=","work_done"]]'/>
+            <filter name="verified" string="Verified" domain='[["state","in",["verified","invoiced"]]]'/>
+            <filter name="group_contractor" string="By Contractor" group_by="contractor_id"/>
+            <filter name="group_state" string="By Status" group_by="state"/>
+        </view>
+        <view id="view_maint_contractor_dispatch_list" model="maintenance.contractor.dispatch" type="list">
+            <field name="name" string="Dispatch Ref"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="contractor_id" string="Contractor"/>
+            <field name="state" string="Status"/>
+            <field name="pricing_type" string="Pricing"/>
+            <field name="dispatched_at" string="Dispatched"/>
+            <field name="expected_arrival" string="Expected"/>
+            <field name="actual_arrival" string="Arrived"/>
+            <field name="estimated_amount" string="Est. ($)"/>
+            <field name="actual_invoiced_amount" string="Invoiced ($)"/>
+            <field name="quality_score" string="Rating (1-5)"/>
+        </view>
+        <view id="view_maint_contractor_dispatch_form" model="maintenance.contractor.dispatch" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="DISP-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Dispatch Details">
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="contractor_id" string="Contractor / Vendor"/>
+                        <field name="service_contract_id" string="Service Contract Ref"/>
+                        <field name="state" string="Status"/>
+                        <field name="pricing_type" string="Pricing Basis"/>
+                    </group>
+                    <group string="Schedule &amp; Tracking">
+                        <field name="dispatched_at" string="Dispatched At"/>
+                        <field name="expected_arrival" string="Expected Arrival"/>
+                        <field name="actual_arrival" string="Actual Arrival"/>
+                        <field name="completed_at" string="Work Completed At"/>
+                        <field name="contractor_technician" string="Contractor Tech Name"/>
+                    </group>
+                </group>
+                <group string="Commercial &amp; Financials">
+                    <group string="Cost Estimates">
+                        <field name="estimated_amount" string="Estimated Cost ($)"/>
+                        <field name="actual_invoiced_amount" string="Actual Invoiced ($)"/>
+                    </group>
+                    <group string="ERP References">
+                        <field name="purchase_order_ref" string="Purchase Order Ref"/>
+                        <field name="vendor_invoice_ref" string="Vendor Invoice Ref"/>
+                    </group>
+                </group>
+                <group string="Quality Acceptance &amp; Sign-Off">
+                    <field name="quality_score" string="Quality Rating (1-5)"/>
+                    <field name="quality_verified_by" string="Verified By"/>
+                    <field name="quality_verified_at" string="Verified At"/>
+                </group>
+                <separator string="Scope of Work"/>
+                <field name="scope_of_work" string="Scope of Work"/>
+                <separator string="Work Acceptance Notes"/>
+                <field name="work_acceptance_notes" string="Work Acceptance Notes"/>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_contractor_dispatch" type="window" model="maintenance.contractor.dispatch" name="Contractor Dispatches" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Warranty Claim V2 List, Form, Search, Action                      -->
+        <!-- ================================================================ -->
+        <view id="view_maint_warranty_claim_v2_search" model="maintenance.warranty.claim" type="search">
+            <filter name="open" string="Open Claims" domain='[["state","in",["draft","submitted","acknowledged"]]]'/>
+            <filter name="approved" string="Approved / Pending Pay" domain='[["state","=","approved"]]'/>
+            <filter name="reimbursed" string="Reimbursed" domain='[["state","=","reimbursed"]]'/>
+            <filter name="group_asset" string="By Asset" group_by="asset_id"/>
+            <filter name="group_state" string="By Status" group_by="state"/>
+        </view>
+        <view id="view_maint_warranty_claim_v2_list" model="maintenance.warranty.claim" type="list">
+            <field name="name" string="Claim Ref"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="manufacturer_id" string="Manufacturer"/>
+            <field name="state" string="Status"/>
+            <field name="claim_date" string="Date"/>
+            <field name="claimed_amount" string="Claimed ($)"/>
+            <field name="approved_amount" string="Approved ($)"/>
+            <field name="reimbursed_amount" string="Reimbursed ($)"/>
+            <field name="rma_number" string="RMA #"/>
+        </view>
+        <view id="view_maint_warranty_claim_v2_form" model="maintenance.warranty.claim" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="CLM-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Claim Context">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="warranty_id" string="Warranty Policy"/>
+                        <field name="work_order_id" string="Related Work Order"/>
+                        <field name="manufacturer_id" string="Manufacturer / Supplier"/>
+                        <field name="state" string="Claim Status"/>
+                    </group>
+                    <group string="Timetable &amp; RMA">
+                        <field name="claim_date" string="Claim Date"/>
+                        <field name="submission_date" string="Submitted Date"/>
+                        <field name="resolution_date" string="Resolution Date"/>
+                        <field name="rma_number" string="RMA # (Return Auth)"/>
+                        <field name="replacement_part_issued" string="Replacement Part Provided"/>
+                        <field name="prepared_by" string="Prepared By"/>
+                    </group>
+                </group>
+                <group string="Financial Recovery">
+                    <field name="claimed_amount" string="Claimed Amount ($)"/>
+                    <field name="approved_amount" string="Approved Amount ($)"/>
+                    <field name="reimbursed_amount" string="Reimbursed / Credit Note ($)"/>
+                </group>
+                <separator string="Failure Description &amp; Defect Evidence"/>
+                <field name="failure_description" string="Failure Description &amp; Defect Evidence"/>
+                <separator string="Settlement Details"/>
+                <field name="settlement_details" string="Settlement Details"/>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_warranty_claim_v2" type="window" model="maintenance.warranty.claim" name="Warranty Claims" view_mode="list,form"/>
+    </data>
+</nexa>

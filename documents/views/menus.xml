@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="documents_menu_root" name="Documents" sequence="69"/>
+        <menuitem id="documents_menu_documents" name="Documents" parent="documents_menu_root" action="documents.action_documents_document" sequence="1"/>
+        <menuitem id="documents_menu_folders" name="Folders" parent="documents_menu_root" action="documents.action_documents_folder" sequence="2"/>
+    </data>
+</nexa>

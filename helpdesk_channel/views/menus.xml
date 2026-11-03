@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_helpdesk_channel_root" name="Omnichannel" sequence="67"/>
+
+        <menuitem id="menu_helpdesk_channel_connections" name="Channel Connections" parent="menu_helpdesk_channel_root" action="helpdesk_channel.action_channel_connection" sequence="10"/>
+        <menuitem id="menu_helpdesk_channel_inbox" name="Unified Inbox" parent="menu_helpdesk_channel_root" action="helpdesk_channel.action_channel_message" sequence="20"/>
+        <menuitem id="menu_helpdesk_channel_saved_views" name="Saved Views" parent="menu_helpdesk_channel_root" action="helpdesk_channel.action_saved_view" sequence="30"/>
+
+        <menuitem id="menu_helpdesk_channel_config" name="Configuration" parent="menu_helpdesk_channel_root" sequence="40"/>
+        <menuitem id="menu_helpdesk_channel_routing" name="Routing Rules" parent="menu_helpdesk_channel_config" action="helpdesk_channel.action_routing_rule" sequence="10"/>
+        <menuitem id="menu_helpdesk_channel_agents" name="Agent Capacity" parent="menu_helpdesk_channel_config" action="helpdesk_channel.action_agent_load" sequence="20"/>
+    </data>
+</nexa>

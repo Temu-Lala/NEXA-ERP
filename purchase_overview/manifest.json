@@ -1,0 +1,25 @@
+{
+    "name": "purchase_overview",
+    "display_name": "Procurement Analytics & Overview Dashboard",
+    "version": "1.0.0",
+    "summary": "Read-only spend, sourcing, contract, receipt, matching, performance and risk dashboards",
+    "description": "Executive landing dashboard for the Procurement platform, delivered as a purely read-only visual layer that adds no tables and mutates no operational data. Panels are graphs, pivots and list hybrids built directly over the transactional and analytical models contributed by the purchase anchor and its companions: committed purchase-order value by status and a spend-by-supplier matrix; requisition pipeline aging and estimated value by department; open RFQ / tender status and submission deadlines; contract coverage, remaining ceiling value and expiry spread; receipt discrepancy mix; three-way-matching exception load and duplicate flags; supplier scorecard grade distribution, KPI quality by metric and risk spread; and corrective-action status by severity. The purchase section root is repointed to open the committed-spend dashboard so procurement leaders land on analytics without an app redirect. Every panel is a view over existing records, keeping the dashboard consistent with each module as its own source of truth.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "purchase",
+        "purchase_supplier",
+        "purchase_requisition",
+        "purchase_sourcing",
+        "purchase_receipt",
+        "purchase_match",
+        "purchase_contract",
+        "purchase_performance"
+    ],
+    "data": [
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Purchase"
+}

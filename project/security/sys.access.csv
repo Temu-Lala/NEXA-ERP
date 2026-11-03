@@ -1,0 +1,11 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_project_project_user,access_project_project_user,project.project,,1,1,1,1
+access_project_task_user,access_project_task_user,project.task,,1,1,1,1
+access_project_type_user,access_project_type_user,project.type,,1,1,1,1
+access_project_phase_user,access_project_phase_user,project.phase,,1,1,1,1
+access_project_milestone_user,access_project_milestone_user,project.milestone,,1,1,1,1
+access_project_member_user,access_project_member_user,project.member,,1,1,1,1
+access_project_task_comment_user,access_project_task_comment_user,project.task.comment,,1,1,1,1
+access_project_board_stage_user,access_project_board_stage_user,project.board.stage,,1,1,1,1
+access_project_issue_type_user,access_project_issue_type_user,project.issue.type,,1,1,1,1
+access_project_worklog_user,access_project_worklog_user,project.worklog,,1,1,1,1

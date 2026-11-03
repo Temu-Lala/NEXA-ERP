@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===== Leave Type ===== -->
+        <view id="view_hr_leave_type_list" model="hr.leave.type" type="list">
+            <field name="name"/>
+            <field name="requires_allocation" widget="boolean_toggle"/>
+            <field name="max_days"/>
+        </view>
+        <view id="view_hr_leave_type_form" model="hr.leave.type" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Leave Type Name..."/></h1>
+                </div>
+                <group col="2">
+                    <group string="Configuration">
+                        <field name="requires_allocation"/>
+                        <field name="max_days"/>
+                    </group>
+                    <group string="Status">
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_hr_leave_type" type="window" model="hr.leave.type" name="Leave Types" view_mode="list,form"/>
+
+        <!-- ===== Leave Allocation ===== -->
+        <view id="view_hr_leave_allocation_form" model="hr.leave.allocation" type="form">
+            <header>
+                <button name="action_confirm" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_validate" string="Approve" type="object" class="sum_highlight" invisible="state != 'confirm'"/>
+                <button name="action_refuse" string="Refuse" type="object" invisible="state != 'draft' &amp;&amp; state != 'confirm'"/>
+                <button name="action_reset" string="Reset to Draft" type="object" invisible="state != 'refuse' &amp;&amp; state != 'confirm'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Allocation">
+                        <field name="employee_id" string="Employee"/>
+                        <field name="leave_type_id" string="Leave Type"/>
+                        <field name="number_of_days" string="Days"/>
+                    </group>
+                    <group string="Validity">
+                        <field name="date_from" widget="date"/>
+                        <field name="date_to" widget="date"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1" placeholder="Internal notes..."/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_hr_leave_allocation_list" model="hr.leave.allocation" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="leave_type_id" string="Leave Type"/>
+            <field name="number_of_days" string="Days"/>
+            <field name="date_from" widget="date" string="Valid From"/>
+            <field name="date_to" widget="date" string="Valid To"/>
+            <field name="state" string="Status" widget="badge"/>
+        </view>
+        <view id="view_hr_leave_allocation_search" model="hr.leave.allocation" type="search">
+            <field name="employee_id" string="Employee"/>
+            <field name="leave_type_id" string="Leave Type"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="confirm" string="Waiting Approval" domain='[["state","=","confirm"]]'/>
+            <filter name="validate" string="Approved" domain='[["state","=","validate"]]'/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_type" string="Leave Type" group_by="leave_type_id"/>
+        </view>
+        <action id="action_hr_leave_allocation" type="window" model="hr.leave.allocation" name="Allocations" view_mode="list,form"/>
+
+        <!-- ===== Leave Request ===== -->
+        <view id="view_hr_leave_form" model="hr.leave" type="form">
+            <header>
+                <button name="action_confirm" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_validate" string="Approve" type="object" class="sum_highlight" invisible="state != 'confirm'"/>
+                <button name="action_refuse" string="Refuse" type="object" invisible="state != 'draft' &amp;&amp; state != 'confirm'"/>
+                <button name="action_reset" string="Reset to Draft" type="object" invisible="state != 'refuse' &amp;&amp; state != 'confirm'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Request">
+                        <field name="employee_id" string="Employee"/>
+                        <field name="leave_type_id" string="Leave Type"/>
+                    </group>
+                    <group string="Period">
+                        <field name="date_from" widget="date" string="Start Date"/>
+                        <field name="date_to" widget="date" string="End Date"/>
+                        <field name="number_of_days" string="Days"/>
+                        <field name="half_day"/>
+                        <field name="hours"/>
+                    </group>
+                </group>
+                <group string="Reason">
+                    <field name="reason" nolabel="1" placeholder="Describe the reason for this leave request..."/>
+                </group>
+            </sheet>
+            <chatter/>
+        </view>
+        <view id="view_hr_leave_list" model="hr.leave" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="leave_type_id" string="Leave Type"/>
+            <field name="date_from" widget="date" string="Start"/>
+            <field name="date_to" widget="date" string="End"/>
+            <field name="number_of_days" string="Days"/>
+            <field name="state" string="Status" widget="badge"/>
+        </view>
+        <view id="view_hr_leave_search" model="hr.leave" type="search">
+            <field name="employee_id" string="Employee"/>
+            <field name="leave_type_id" string="Leave Type"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="confirm" string="Waiting Approval" domain='[["state","=","confirm"]]'/>
+            <filter name="validate" string="Approved" domain='[["state","=","validate"]]'/>
+            <filter name="refuse" string="Refused" domain='[["state","=","refuse"]]'/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_type" string="Leave Type" group_by="leave_type_id"/>
+        </view>
+        <action id="action_hr_leave" type="window" model="hr.leave" name="Time Off" view_mode="list,form"/>
+    </data>
+</nexa>

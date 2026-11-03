@@ -1,0 +1,4 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_part_request_user,access_maint_part_request_user,maintenance.part.request,,1,1,1,1
+access_maint_part_consumed_user,access_maint_part_consumed_user,maintenance.part.consumed,,1,1,1,1
+access_maint_component_user,access_maint_component_user,maintenance.component,,1,1,1,1

@@ -1,0 +1,17 @@
+{
+  "name": "stock_traceability",
+  "display_name": "Stock Traceability",
+  "version": "1.0.0",
+  "summary": "Lot recall/quarantine workflows, expiry monitoring and a movement-derived traceability chain",
+  "description": "Builds on the Inventory anchor's lot and serial registries: a traceability event chain derived from posted operations, recall and quarantine workflows that block lots from reservation and issue, an expiry-monitor cron with idempotent alerts, and FEFO-aware disposition handling (blueprint section 8).",
+  "author": "Nexa",
+  "depends": ["base", "product", "stock"],
+  "data": [
+    "security/sys.access.csv",
+    "data/trace_cron.xml",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Inventory"
+}

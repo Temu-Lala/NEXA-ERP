@@ -1,0 +1,16 @@
+{
+    "name": "account_multicurrency",
+    "display_name": "Multi-Currency & Revaluation",
+    "version": "1.0.0",
+    "summary": "Effective-dated exchange rates and period-end foreign-currency revaluation",
+    "description": "Deep multi-currency controls on top of the account anchor: effective-dated exchange-rate history, revaluation configuration with gain/loss accounts, and reviewable revaluation runs with per-balance realized/unrealized lines.",
+    "author": "Nexa",
+    "depends": ["base", "account"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Accounting"
+}

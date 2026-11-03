@@ -1,0 +1,16 @@
+{
+    "name": "fleet_compliance",
+    "display_name": "Fleet Compliance & Safety",
+    "version": "1.0.0",
+    "summary": "Vehicle permits, insurance policies, and incident/accident tracking",
+    "description": "Manage vehicle documents (registrations, roadworthiness, operating permits), insurance policies, and road incidents with safety investigations.",
+    "author": "Nexa",
+    "depends": ["base", "fleet", "fleet_driver", "fleet_trip"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

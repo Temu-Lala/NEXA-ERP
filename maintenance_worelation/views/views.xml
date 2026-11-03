@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_maint_wo_relation_list" model="maintenance.work.order.relation" type="list">
+            <field name="name" string="Reference"/>
+            <field name="source_wo_id" string="Source Work Order"/>
+            <field name="target_wo_id" string="Target Work Order"/>
+            <field name="type" string="Relation Type"/>
+            <field name="lag_hours" string="Lag (hours)"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_wo_relation_form" model="maintenance.work.order.relation" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="REL-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Relationship">
+                        <field name="source_wo_id" string="Source Work Order"/>
+                        <field name="target_wo_id" string="Target Work Order"/>
+                        <field name="type" string="Relation Type"/>
+                    </group>
+                    <group string="Details">
+                        <field name="lag_hours" string="Lag (hours)"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <separator string="Note"/>
+                <field name="description" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_maint_wo_relation" type="window" model="maintenance.work.order.relation" name="Work Order Relationships" view_mode="list,form"/>
+    </data>
+</nexa>

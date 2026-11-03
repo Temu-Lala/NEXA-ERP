@@ -1,0 +1,4 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_tire_all,access_fleet_tire_all,fleet.tire,,1,1,1,1
+access_fleet_tire_installation_all,access_fleet_tire_installation_all,fleet.tire.installation,,1,1,1,1
+access_fleet_tire_inspection_all,access_fleet_tire_inspection_all,fleet.tire.inspection,,1,1,1,1

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_project_template_phase_list" model="project.template.phase" type="list">
+            <field name="sequence" string="Seq"/>
+            <field name="name" string="Phase"/>
+            <field name="duration_days" string="Duration (days)"/>
+        </view>
+        <view id="view_project_template_phase_form" model="project.template.phase" type="form">
+            <sheet>
+                <group>
+                    <field name="template_id" string="Template"/>
+                    <field name="name" string="Phase"/>
+                    <field name="duration_days" string="Duration (days)"/>
+                    <field name="sequence" string="Sequence"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_project_template_task_list" model="project.template.task" type="list">
+            <field name="sequence" string="Seq"/>
+            <field name="phase_id" string="Phase"/>
+            <field name="name" string="Task"/>
+            <field name="priority" string="Priority"/>
+            <field name="est_hours" string="Est. Hours"/>
+        </view>
+        <view id="view_project_template_task_form" model="project.template.task" type="form">
+            <sheet>
+                <group>
+                    <group string="Task">
+                        <field name="template_id" string="Template"/>
+                        <field name="phase_id" string="Phase"/>
+                        <field name="name" string="Task"/>
+                    </group>
+                    <group string="Plan">
+                        <field name="priority" string="Priority"/>
+                        <field name="est_hours" string="Estimated Hours"/>
+                        <field name="sequence" string="Sequence"/>
+                    </group>
+                </group>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+
+        <view id="view_project_template_list" model="project.template" type="list">
+            <field name="name" string="Template"/>
+            <field name="category" string="Category"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_project_template_form" model="project.template" type="form">
+            <header>
+                <button name="action_instantiate" string="Instantiate Project" type="object" class="sum_highlight"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Template">
+                        <field name="name" string="Template"/>
+                        <field name="category" string="Category"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="description" string="Description"/>
+                <notebook>
+                    <page string="Phase Blueprint">
+                        <field name="phases" nolabel="1"/>
+                    </page>
+                    <page string="Task Blueprint">
+                        <field name="tasks" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <action id="action_project_template" type="window" model="project.template" name="Project Templates" view_mode="list,form"/>
+    </data>
+</nexa>

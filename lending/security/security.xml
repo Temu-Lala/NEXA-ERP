@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Module Category: Lending -->
+        <!-- ================================================================ -->
+        <record id="module_category_lending" model="sys.module.category">
+            <field name="name">Lending</field>
+            <field name="sequence">48</field>
+        </record>
+
+        <!-- ================================================================ -->
+        <!-- Security Groups -->
+        <!-- ================================================================ -->
+        <record id="group_lending_user" model="core.group">
+            <field name="name">Lending / User</field>
+            <field name="category_id" ref="module_category_lending"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="group_lending_manager" model="core.group">
+            <field name="name">Lending / Manager</field>
+            <field name="category_id" ref="module_category_lending"/>
+            <field name="implied_ids" eval="[(4, ref('group_lending_user'))]"/>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</nexa>

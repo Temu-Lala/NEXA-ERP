@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+  <data>
+    <menuitem id="menu_stock_repl_rule" name="Replenishment Rules" parent="stock.menu_stock_planning" action="action_repl_rule" sequence="10"/>
+    <menuitem id="menu_stock_repl_proposal" name="Proposals" parent="stock.menu_stock_planning" action="action_repl_proposal" sequence="20"/>
+    <menuitem id="menu_stock_stockout_alert" name="Stockout Alerts" parent="stock.menu_stock_planning" action="action_stockout_alert" sequence="30"/>
+    <menuitem id="menu_stock_report_metrics" name="Inventory Metrics" parent="stock.menu_stock_planning" action="action_report_metrics" sequence="40"/>
+    <menuitem id="menu_stock_product_class" name="ABC / XYZ Classes" parent="stock.menu_stock_planning" action="action_product_class" sequence="50"/>
+  </data>
+</nexa>

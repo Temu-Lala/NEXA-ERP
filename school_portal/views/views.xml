@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Portal Profiles -->
+        <view id="view_school_portal_profile_list" model="school.portal.profile" type="list">
+            <field name="name" string="Portal User"/>
+            <field name="code" string="Code"/>
+            <field name="role_label" string="Role"/>
+            <field name="student_id" string="Student"/>
+            <field name="guardian_id" string="Guardian"/>
+            <field name="accessible_learner_count" string="In Scope"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_portal_profile_form" model="school.portal.profile" type="form">
+            <header>
+                <button name="profile_deactivate" string="Deactivate Access" type="object" confirm="This revokes the portal profile. Continue?"/>
+                <field name="active" widget="boolean_toggle"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Display name"/></h1></div>
+                <group>
+                    <group string="Identity">
+                        <field name="code"/>
+                        <field name="user_id"/>
+                        <field name="role"/>
+                        <field name="role_label" readonly="true"/>
+                    </group>
+                    <group string="Owned Records">
+                        <field name="guardian_id"/>
+                        <field name="student_id"/>
+                        <field name="staff_id"/>
+                        <field name="default_student_id"/>
+                        <field name="accessible_learner_count" readonly="true"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Access Flags">
+                        <field name="can_view_financial"/>
+                        <field name="can_submit_requests"/>
+                    </group>
+                    <group string="Activity">
+                        <field name="last_access"/>
+                    </group>
+                </group>
+                <group><field name="notes"/></group>
+                <group>
+                    <field name="company_id"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_portal_profile" type="window" model="school.portal.profile" name="Portal Profiles" view_mode="list,form"/>
+
+        <!-- Dashboard Widgets -->
+        <view id="view_school_portal_widget_list" model="school.portal.widget" type="list">
+            <field name="sequence" widget="handle"/>
+            <field name="code" string="Code"/>
+            <field name="name" string="Widget"/>
+            <field name="show_for_parent" string="Parents"/>
+            <field name="show_for_student" string="Students"/>
+            <field name="show_for_staff" string="Staff"/>
+            <field name="financial" string="Financial"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_portal_widget_form" model="school.portal.widget" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Widget name"/></h1></div>
+                <group>
+                    <group string="Definition">
+                        <field name="code"/>
+                        <field name="sequence"/>
+                        <field name="icon"/>
+                        <field name="link_model"/>
+                    </group>
+                    <group string="Visibility">
+                        <field name="show_for_parent"/>
+                        <field name="show_for_student"/>
+                        <field name="show_for_staff"/>
+                        <field name="financial"/>
+                    </group>
+                </group>
+                <group><field name="description"/></group>
+                <group><field name="notes"/></group>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_portal_widget" type="window" model="school.portal.widget" name="Dashboard Tiles" view_mode="list,form"/>
+
+        <!-- Self-Service Requests -->
+        <view id="view_school_portal_request_list" model="school.portal.request" type="list">
+            <field name="reference" string="Reference"/>
+            <field name="category" string="Category"/>
+            <field name="student_id" string="Student"/>
+            <field name="profile_id" string="Submitted By"/>
+            <field name="submitted_date" string="Submitted"/>
+            <field name="age_days" string="Age"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_portal_request_form" model="school.portal.request" type="form">
+            <header>
+                <button name="request_submit" string="Submit" type="object" class="sum_highlight"/>
+                <button name="request_review" string="Start Review" type="object"/>
+                <button name="request_approve" string="Approve" type="object"/>
+                <button name="request_reject" string="Reject" type="object"/>
+                <button name="request_fulfil" string="Mark Fulfilled" type="object"/>
+                <button name="request_cancel" string="Cancel" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="reference" placeholder="Reference"/></h1></div>
+                <group>
+                    <group string="Request">
+                        <field name="category"/>
+                        <field name="profile_id"/>
+                        <field name="student_id"/>
+                        <field name="guardian_id"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group string="Progress">
+                        <field name="submitted_date"/>
+                        <field name="resolved_date"/>
+                        <field name="age_days" readonly="true"/>
+                        <field name="actionable" readonly="true"/>
+                    </group>
+                </group>
+                <group><field name="reason"/></group>
+                <notebook>
+                    <page string="Details">
+                        <field name="details" nolabel="1"/>
+                    </page>
+                    <page string="Resolution">
+                        <group>
+                            <field name="resolution_note"/>
+                            <field name="reject_reason"/>
+                        </group>
+                    </page>
+                    <page string="History">
+                        <field name="histories" nolabel="1" readonly="true">
+                            <list>
+                                <field name="timestamp"/>
+                                <field name="from_state"/>
+                                <field name="to_state"/>
+                                <field name="action"/>
+                                <field name="actor_id"/>
+                                <field name="note"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_portal_request" type="window" model="school.portal.request" name="Self-Service Requests" view_mode="list,form"/>
+
+        <!-- Request History (read-only audit) -->
+        <view id="view_school_portal_request_history_list" model="school.portal.request.history" type="list">
+            <field name="timestamp" string="When"/>
+            <field name="request_id" string="Request"/>
+            <field name="from_state" string="From"/>
+            <field name="to_state" string="To"/>
+            <field name="action" string="Action"/>
+            <field name="actor_id" string="Actor"/>
+        </view>
+        <action id="action_school_portal_request_history" type="window" model="school.portal.request.history" name="Request History" view_mode="list"/>
+
+        <!-- Access Log (read-only audit) -->
+        <view id="view_school_portal_access_log_list" model="school.portal.access.log" type="list">
+            <field name="accessed_at" string="When"/>
+            <field name="profile_id" string="Profile"/>
+            <field name="student_id" string="Student"/>
+            <field name="target_model" string="Data Model"/>
+            <field name="record_id" string="Record"/>
+            <field name="action" string="Action"/>
+            <field name="financial" string="Financial"/>
+        </view>
+        <action id="action_school_portal_access_log" type="window" model="school.portal.access.log" name="Access Audit Log" view_mode="list"/>
+    </data>
+</nexa>

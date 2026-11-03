@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_approval_category_list" model="approval.category" type="list">
+            <field name="name" string="Name"/>
+            <field name="resource_model" string="Model (technical)"/>
+        </view>
+        <view id="view_approval_category_form" model="approval.category" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="resource_model"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_approval_level_list" model="approval.level" type="list">
+            <field name="name" string="Level"/>
+            <field name="category_id" string="Category"/>
+            <field name="sequence" string="Sequence"/>
+            <field name="approver_id" string="Approver"/>
+            <field name="amount_from" string="Amount From"/>
+            <field name="amount_to" string="Amount To"/>
+        </view>
+        <view id="view_approval_level_form" model="approval.level" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="category_id"/>
+                    <field name="sequence"/>
+                    <field name="approver_id"/>
+                    <field name="amount_from"/>
+                    <field name="amount_to"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_approval_request_list" model="approval.request" type="list">
+            <field name="name" string="Reference"/>
+            <field name="category_id" string="Category"/>
+            <field name="amount" string="Amount"/>
+            <field name="requester_id" string="Requested By"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_approval_request_form" model="approval.request" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="category_id"/>
+                    <field name="resource_model"/>
+                    <field name="resource_id"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                    <field name="requester_id"/>
+                </group>
+                <group>
+                    <field name="description"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_approval_action_list" model="approval.action" type="list">
+            <field name="request_id" string="Request"/>
+            <field name="level_id" string="Level"/>
+            <field name="approver_id" string="Approver"/>
+            <field name="decision" string="Decision"/>
+            <field name="action_date" string="Date"/>
+        </view>
+        <view id="view_approval_action_form" model="approval.action" type="form">
+            <sheet>
+                <group>
+                    <field name="request_id"/>
+                    <field name="level_id"/>
+                    <field name="approver_id"/>
+                    <field name="decision"/>
+                    <field name="action_date"/>
+                </group>
+                <group>
+                    <field name="comment"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_approval_category" type="window" model="approval.category" name="Approval Categories" view_mode="list,form"/>
+        <action id="action_approval_level" type="window" model="approval.level" name="Approval Levels" view_mode="list,form"/>
+        <action id="action_approval_request" type="window" model="approval.request" name="Approval Requests" view_mode="list,form"/>
+        <action id="action_approval_action" type="window" model="approval.action" name="Approval History" view_mode="list,form"/>
+    </data>
+</nexa>

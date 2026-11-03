@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+  <data>
+    <menuitem id="menu_stock_quality_plan" name="Quality Plans" parent="stock.menu_stock_quality" action="action_quality_plan" sequence="10"/>
+    <menuitem id="menu_stock_quality_check" name="Quality Checks" parent="stock.menu_stock_quality" action="action_quality_check" sequence="20"/>
+    <menuitem id="menu_stock_quality_hold" name="Quarantine Holds" parent="stock.menu_stock_quality" action="action_quality_hold" sequence="30"/>
+  </data>
+</nexa>

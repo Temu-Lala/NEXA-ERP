@@ -1,0 +1,8 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_catalog_category_user,access_helpdesk_catalog_category_user,helpdesk.catalog.category,,1,1,1,1
+access_helpdesk_catalog_item_user,access_helpdesk_catalog_item_user,helpdesk.catalog.item,,1,1,1,1
+access_helpdesk_catalog_field_user,access_helpdesk_catalog_field_user,helpdesk.catalog.field,,1,1,1,1
+access_helpdesk_service_request_user,access_helpdesk_service_request_user,helpdesk.service.request,,1,1,1,1
+access_helpdesk_service_request_value_user,access_helpdesk_service_request_value_user,helpdesk.service.request.value,,1,1,1,1
+access_helpdesk_fulfillment_task_user,access_helpdesk_fulfillment_task_user,helpdesk.fulfillment.task,,1,1,1,1
+access_helpdesk_request_approval_user,access_helpdesk_request_approval_user,helpdesk.request.approval,,1,1,1,0

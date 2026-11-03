@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_ecom_orders" name="Orders" parent="website_shop.menu_ecom_sales" action="website_shop_checkout.action_order" sequence="1" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_checkouts" name="Checkouts" parent="website_shop.menu_ecom_sales" action="website_shop_checkout.action_checkout" sequence="2" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_payment_sessions" name="Payment Sessions" parent="website_shop.menu_ecom_sales" action="website_shop_checkout.action_payment_session" sequence="3" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_shipping" name="Shipping Methods" parent="website_shop.menu_ecom_config" action="website_shop_checkout.action_shipping_method" sequence="10" groups="website_shop.group_website_shop_manager"/>
+    </data>
+</nexa>

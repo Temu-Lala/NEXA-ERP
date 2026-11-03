@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+
+        <!-- Collections -->
+        <menuitem id="menu_loan_delinquency_snapshot" name="Delinquency Snapshots" parent="lending.menu_lending_collections" action="action_loan_delinquency_snapshot" sequence="10" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_collection_case" name="Collection Cases" parent="lending.menu_lending_collections" action="action_loan_collection_case" sequence="20" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_collection_action" name="Collection Actions" parent="lending.menu_lending_collections" action="action_loan_collection_action" sequence="30" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_promise_to_pay" name="Promises to Pay" parent="lending.menu_lending_collections" action="action_loan_promise_to_pay" sequence="40" groups="lending.group_lending_user"/>
+
+    </data>
+</nexa>

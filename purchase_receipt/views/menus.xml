@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_purchase_receipt_root" name="Receiving" parent="purchase.purchase_menu_root" sequence="25" web_icon="package" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_receipt" name="Receipts" parent="menu_purchase_receipt_root" action="purchase_receipt.action_purchase_receipt" sequence="1" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_delivery_schedule" name="Delivery Schedules" parent="menu_purchase_receipt_root" action="purchase_receipt.action_purchase_delivery_schedule" sequence="2" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_supplier_return" name="Supplier Returns" parent="menu_purchase_receipt_root" action="purchase_receipt.action_purchase_supplier_return" sequence="3" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_discrepancy" name="Discrepancy Cases" parent="menu_purchase_receipt_root" action="purchase_receipt.action_purchase_discrepancy_case" sequence="4" groups="purchase.group_purchase_receiving"/>
+        <menuitem id="menu_purchase_claim" name="Supplier Claims" parent="menu_purchase_receipt_root" action="purchase_receipt.action_purchase_supplier_claim" sequence="5" groups="purchase.group_purchase_user"/>
+    </data>
+</nexa>

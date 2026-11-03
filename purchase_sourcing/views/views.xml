@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Supplier Profile -->
+        <view id="view_purchase_supplier_profile_list" model="purchase.supplier.profile" type="list">
+            <field name="name" string="Reference"/>
+            <field name="partner_id" string="Supplier"/>
+            <field name="supplier_code" string="Code"/>
+            <field name="classification" string="Classification"/>
+            <field name="status" string="Status"/>
+            <field name="risk" string="Risk"/>
+            <field name="quality_rating" string="Quality"/>
+        </view>
+        <view id="view_purchase_supplier_profile_form" model="purchase.supplier.profile" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. SUP-PROF"/></h1></div>
+                <group>
+                    <group string="Identity">
+                        <field name="partner_id" string="Supplier"/>
+                        <field name="supplier_code" string="Supplier Code"/>
+                        <field name="classification" string="Business Classification"/>
+                        <field name="status" string="Status"/>
+                        <field name="risk" string="Risk"/>
+                        <field name="onboard_date" string="Onboard Date"/>
+                        <field name="due_diligence" string="Due Diligence Complete"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Terms &amp; Performance">
+                        <field name="currencies" string="Supported Currencies"/>
+                        <field name="payment_terms" string="Payment Terms"/>
+                        <field name="delivery_terms" string="Delivery Terms"/>
+                        <field name="quality_rating" string="Quality Rating"/>
+                        <field name="on_time_delivery" string="On-Time Delivery %"/>
+                    </group>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_supplier_profile" type="window" model="purchase.supplier.profile" name="Supplier Profiles" view_mode="list,form"/>
+
+        <!-- RFQ -->
+        <view id="view_purchase_rfq_list" model="purchase.rfq" type="list">
+            <field name="name" string="Reference"/>
+            <field name="date_rfq" string="Date"/>
+            <field name="owner_id" string="Procurement Owner"/>
+            <field name="category" string="Category"/>
+            <field name="deadline" string="Deadline"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_rfq_form" model="purchase.rfq" type="form">
+            <header>
+                <button name="action_approve" string="Approve" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                <button name="action_send" string="Send to Suppliers" type="object" class="btn-primary" invisible="state != 'approved'"/>
+                <button name="action_record_responses" string="Lock Bids / Responses" type="object" invisible="state != 'sent'"/>
+                <button name="action_open_evaluation" string="Evaluate" type="object" invisible="state != 'responses'"/>
+                <button name="action_expire" string="Expire" type="object" invisible="state not in 'sent,responses'"/>
+                <button name="action_cancel" string="Cancel" type="object" warn="Cancel or retender this RFQ?" invisible="state not in 'draft,approved,sent,responses,evaluation'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. RFQ/0001"/></h1></div>
+                <group>
+                    <group string="RFQ">
+                        <field name="date_rfq" string="Date"/>
+                        <field name="owner_id" string="Procurement Owner"/>
+                        <field name="requisition_ref" string="Requisition"/>
+                        <field name="category" string="Purchase Category"/>
+                        <field name="deadline" string="Submission Deadline"/>
+                        <field name="currency" string="Currency"/>
+                    </group>
+                    <group string="Terms">
+                        <field name="tax_assumption" string="Tax Assumptions"/>
+                        <field name="delivery_terms" string="Delivery Terms"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Line Items">
+                        <field name="lines" string="Line Items">
+                            <view type="list">
+                                <field name="sequence" widget="handle"/>
+                                <field name="product_id" string="Product"/>
+                                <field name="description" string="Description"/>
+                                <field name="quantity" string="Quantity"/>
+                                <field name="uom" string="Unit"/>
+                                <field name="delivery_req" string="Required Delivery"/>
+                                <field name="location" string="Delivery Location"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Invited Suppliers">
+                        <field name="invited" string="Invited Suppliers">
+                            <view type="list">
+                                <field name="partner_id" string="Supplier"/>
+                                <field name="invited_date" string="Invited On"/>
+                                <field name="response_state" string="Response"/>
+                                <field name="responded_on" string="Responded On"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Requirements">
+                        <field name="req_documents" string="Required Supplier Documents"/>
+                        <field name="eval_criteria" string="Evaluation Criteria"/>
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_rfq" type="window" model="purchase.rfq" name="Requests for Quotation" view_mode="list,form"/>
+
+        <!-- Quotation -->
+        <view id="view_purchase_quotation_list" model="purchase.quotation" type="list">
+            <field name="name" string="Reference"/>
+            <field name="rfq_id" string="RFQ"/>
+            <field name="partner_id" string="Supplier"/>
+            <field name="date_quote" string="Date"/>
+            <field name="valid_until" string="Validity"/>
+            <field name="total_landed" string="Landed Total"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_quotation_form" model="purchase.quotation" type="form">
+            <header>
+                <button name="action_receive" string="Receive" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                <button name="action_compute" string="Recompute Landed" type="object" invisible="state not in 'draft,received,evaluated'"/>
+                <button name="action_round" string="Log Negotiation Round" type="object" invisible="state not in 'draft,received,evaluated'"/>
+                <button name="action_propose_award" string="Propose Award" type="object" class="btn-primary" invisible="state != 'evaluated'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. QT/0001"/></h1></div>
+                <group>
+                    <group string="Offer">
+                        <field name="rfq_id" string="RFQ"/>
+                        <field name="partner_id" string="Supplier"/>
+                        <field name="quotation_ref" string="Supplier Quote No."/>
+                        <field name="date_quote" string="Date"/>
+                        <field name="valid_until" string="Validity"/>
+                        <field name="currency" string="Currency"/>
+                        <field name="exchange_rate" string="Exchange Rate"/>
+                    </group>
+                    <group string="Costs &amp; Terms">
+                        <field name="payment_terms" string="Payment Terms"/>
+                        <field name="delivery_terms" string="Delivery Terms"/>
+                        <field name="lead_time_days" string="Lead Time (days)"/>
+                        <field name="freight" string="Freight &amp; Charges"/>
+                        <field name="tax_amount" string="Tax"/>
+                        <field name="total_landed" string="Landed Total"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Lines">
+                        <field name="lines" string="Lines">
+                            <view type="list">
+                                <field name="sequence" widget="handle"/>
+                                <field name="rfq_line_id" string="RFQ Line"/>
+                                <field name="product_id" string="Product"/>
+                                <field name="supplier_code" string="Supplier Code"/>
+                                <field name="description" string="Description"/>
+                                <field name="quantity" string="Quantity"/>
+                                <field name="unit_price" string="Unit Price"/>
+                                <field name="discount" string="Discount"/>
+                                <field name="line_total" string="Line Total"/>
+                                <field name="promise_date" string="Promised Delivery"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_quotation" type="window" model="purchase.quotation" name="Supplier Quotations" view_mode="list,form"/>
+
+        <!-- Evaluation -->
+        <view id="view_purchase_evaluation_list" model="purchase.evaluation" type="list">
+            <field name="name" string="Reference"/>
+            <field name="rfq_id" string="RFQ"/>
+            <field name="evaluator_id" string="Evaluator"/>
+            <field name="eval_date" string="Date"/>
+        </view>
+        <view id="view_purchase_evaluation_form" model="purchase.evaluation" type="form">
+            <header>
+                <button name="action_rank" string="Compute Ranking" type="object" class="btn-primary"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. EVAL/0001"/></h1></div>
+                <group>
+                    <group>
+                        <field name="rfq_id" string="RFQ"/>
+                        <field name="evaluator_id" string="Evaluator"/>
+                        <field name="eval_date" string="Date"/>
+                    </group>
+                    <group string="Criteria Weights">
+                        <field name="weight_price" string="Weight: Price"/>
+                        <field name="weight_landed" string="Weight: Landed Cost"/>
+                        <field name="weight_delivery" string="Weight: Delivery"/>
+                        <field name="weight_quality" string="Weight: Quality"/>
+                        <field name="weight_terms" string="Weight: Terms"/>
+                        <field name="weight_risk" string="Weight: Risk"/>
+                    </group>
+                </group>
+                <field name="summary" string="Assumptions &amp; Summary"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_evaluation" type="window" model="purchase.evaluation" name="Evaluations" view_mode="list,form"/>
+
+        <!-- Award -->
+        <view id="view_purchase_award_list" model="purchase.award" type="list">
+            <field name="name" string="Reference"/>
+            <field name="rfq_id" string="RFQ"/>
+            <field name="partner_id" string="Selected Supplier"/>
+            <field name="awarded_value" string="Awarded Value"/>
+            <field name="approver_id" string="Approved By"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_award_form" model="purchase.award" type="form">
+            <header>
+                <button name="action_approve" string="Approve &amp; Create Draft PO" type="object" class="btn-primary" invisible="state != 'proposed'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. AWD/0001"/></h1></div>
+                <group>
+                    <group string="Award">
+                        <field name="rfq_id" string="RFQ"/>
+                        <field name="evaluation_id" string="Evaluation"/>
+                        <field name="quotation_id" string="Selected Quotation"/>
+                        <field name="partner_id" string="Selected Supplier"/>
+                        <field name="award_date" string="Date"/>
+                        <field name="awarded_value" string="Awarded Value"/>
+                    </group>
+                    <group string="Decision">
+                        <field name="approver_id" string="Approved By"/>
+                        <field name="po_ref" string="Purchase Order"/>
+                        <field name="state" string="Status"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="selection_rationale" string="Reason for Selection"/>
+                <field name="policy_exceptions" string="Policy Exceptions"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_award" type="window" model="purchase.award" name="Supplier Awards" view_mode="list,form"/>
+
+        <!-- Negotiation Round -->
+        <view id="view_purchase_quotation_round_list" model="purchase.quotation.round" type="list">
+            <field name="name" string="Reference"/>
+            <field name="rfq_id" string="RFQ"/>
+            <field name="quotation_id" string="Quotation"/>
+            <field name="partner_id" string="Supplier"/>
+            <field name="round_no" string="Round"/>
+            <field name="kind" string="Type"/>
+            <field name="round_date" string="Date"/>
+            <field name="offered_total" string="Offered Total"/>
+            <field name="outcome" string="Outcome"/>
+            <field name="locked" string="Locked"/>
+        </view>
+        <view id="view_purchase_quotation_round_form" model="purchase.quotation.round" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. RND/0001"/></h1></div>
+                <group>
+                    <group string="Round">
+                        <field name="rfq_id" string="RFQ"/>
+                        <field name="quotation_id" string="Quotation"/>
+                        <field name="partner_id" string="Supplier"/>
+                        <field name="round_no" string="Round No."/>
+                        <field name="kind" string="Type"/>
+                        <field name="round_date" string="Date"/>
+                    </group>
+                    <group string="Outcome">
+                        <field name="offered_total" string="Offered Landed Total"/>
+                        <field name="outcome" string="Outcome"/>
+                        <field name="participants" string="Participants"/>
+                        <field name="locked" string="Locked"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="terms_note" string="Commercial Notes (restricted)"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_quotation_round" type="window" model="purchase.quotation.round" name="Negotiation Rounds" view_mode="list,form"/>
+    </data>
+</nexa>

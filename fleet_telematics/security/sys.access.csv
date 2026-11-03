@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_telematics_device_all,access_fleet_telematics_device_all,fleet.telematics.device,,1,1,1,1
+access_fleet_telemetry_event_all,access_fleet_telemetry_event_all,fleet.telemetry.event,,1,1,1,1
+access_fleet_geofence_all,access_fleet_geofence_all,fleet.geofence,,1,1,1,1
+access_fleet_driving_event_all,access_fleet_driving_event_all,fleet.driving.event,,1,1,1,1

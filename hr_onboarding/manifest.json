@@ -1,0 +1,16 @@
+{
+    "name": "hr_onboarding",
+    "display_name": "HR Onboarding",
+    "version": "1.0.0",
+    "summary": "Employee onboarding plans and activity checklists",
+    "description": "Onboarding plans per employee with configurable activity checklists covering HR, IT, manager, finance, and employee tasks with due dates, responsible parties, and completion tracking.",
+    "author": "Nexa",
+    "depends": ["base", "hr"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

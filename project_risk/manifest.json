@@ -1,0 +1,16 @@
+{
+    "name": "project_risk",
+    "display_name": "Project Risks & Changes",
+    "version": "1.0.0",
+    "summary": "Risk register, issue log and change control",
+    "description": "Track project risks with probability/impact/severity and mitigation, manage delivery issues and blockers, and run controlled change requests for scope, budget and dates with approval outcomes preserved.",
+    "author": "Nexa",
+    "depends": ["base", "project"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Project"
+}

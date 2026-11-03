@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Transport: routes -->
+        <view id="view_school_transport_route_list" model="school.transport.route" type="list">
+            <field name="name" string="Route"/>
+            <field name="code" string="Code"/>
+            <field name="campus_id" string="Campus"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="origin" string="Origin"/>
+            <field name="destination" string="Destination"/>
+            <field name="stop_count" string="Stops"/>
+            <field name="assigned_count" string="Assigned"/>
+        </view>
+        <view id="view_school_transport_route_form" model="school.transport.route" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Route name"/></h1></div>
+                <group>
+                    <group string="Route">
+                        <field name="code"/>
+                        <field name="campus_id"/>
+                        <field name="vehicle_id"/>
+                        <field name="origin"/>
+                        <field name="destination"/>
+                        <field name="distance_km"/>
+                    </group>
+                    <group string="Activity">
+                        <field name="stop_count" readonly="true"/>
+                        <field name="assigned_count" readonly="true"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Stops">
+                        <field name="stops" nolabel="1">
+                            <list editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="name"/>
+                                <field name="pickup_time"/>
+                                <field name="drop_time"/>
+                                <field name="location"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_transport_route" type="window" model="school.transport.route" name="Transport Routes" view_mode="list,form"/>
+
+        <!-- Transport: vehicles -->
+        <view id="view_school_transport_vehicle_list" model="school.transport.vehicle" type="list">
+            <field name="license_plate" string="Plate"/>
+            <field name="name" string="Vehicle"/>
+            <field name="capacity_seats" string="Seats"/>
+            <field name="driver_id" string="Driver"/>
+            <field name="status" string="Status"/>
+        </view>
+        <view id="view_school_transport_vehicle_form" model="school.transport.vehicle" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="license_plate" placeholder="License plate"/></h1></div>
+                <group>
+                    <group string="Vehicle">
+                        <field name="name"/>
+                        <field name="capacity_seats"/>
+                        <field name="driver_id"/>
+                        <field name="status"/>
+                    </group>
+                </group>
+                <group><field name="notes"/></group>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_transport_vehicle" type="window" model="school.transport.vehicle" name="Vehicles" view_mode="list,form"/>
+
+        <!-- Transport: assignments -->
+        <view id="view_school_transport_assignment_list" model="school.transport.assignment" type="list">
+            <field name="student_id" string="Student"/>
+            <field name="route_id" string="Route"/>
+            <field name="stop_id" string="Stop"/>
+            <field name="academic_year_id" string="Year"/>
+            <field name="mode" string="Mode"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_transport_assignment_form" model="school.transport.assignment" type="form">
+            <header>
+                <button name="transport_assignment_confirm" string="Confirm" type="object" class="sum_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Assignment">
+                        <field name="student_id"/>
+                        <field name="route_id"/>
+                        <field name="stop_id"/>
+                        <field name="academic_year_id"/>
+                        <field name="mode"/>
+                    </group>
+                </group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_transport_assignment" type="window" model="school.transport.assignment" name="Transport Assignments" view_mode="list,form"/>
+
+        <!-- Library: books -->
+        <view id="view_school_library_book_list" model="school.library.book" type="list">
+            <field name="title" string="Title"/>
+            <field name="isbn" string="ISBN"/>
+            <field name="author" string="Author"/>
+            <field name="category" string="Category"/>
+            <field name="total_copies" string="Total"/>
+            <field name="available_copies" string="Available"/>
+            <field name="borrowed_count" string="On Loan"/>
+        </view>
+        <view id="view_school_library_book_form" model="school.library.book" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="title" placeholder="Book title"/></h1></div>
+                <group>
+                    <group string="Catalogue">
+                        <field name="isbn"/>
+                        <field name="author"/>
+                        <field name="category"/>
+                        <field name="shelf"/>
+                        <field name="price"/>
+                    </group>
+                    <group string="Copies">
+                        <field name="total_copies"/>
+                        <field name="available_copies"/>
+                        <field name="borrowed_count" readonly="true"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Loans">
+                        <field name="loans" nolabel="1">
+                            <list>
+                                <field name="student_id"/>
+                                <field name="loan_date"/>
+                                <field name="due_date"/>
+                                <field name="return_date"/>
+                                <field name="state"/>
+                                <field name="fine_amount"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_library_book" type="window" model="school.library.book" name="Library Books" view_mode="list,form"/>
+
+        <!-- Library: loans -->
+        <view id="view_school_library_loan_list" model="school.library.loan" type="list">
+            <field name="book_id" string="Book"/>
+            <field name="student_id" string="Borrower"/>
+            <field name="loan_date" string="Loan"/>
+            <field name="due_date" string="Due"/>
+            <field name="return_date" string="Returned"/>
+            <field name="state" string="Status"/>
+            <field name="fine_amount" string="Fine"/>
+        </view>
+        <view id="view_school_library_loan_form" model="school.library.loan" type="form">
+            <header>
+                <button name="loan_issue" string="Issue" type="object" class="sum_highlight"/>
+                <button name="loan_return" string="Return" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Loan">
+                        <field name="book_id"/>
+                        <field name="student_id"/>
+                        <field name="loan_date"/>
+                        <field name="due_date"/>
+                    </group>
+                    <group string="Outcome">
+                        <field name="return_date"/>
+                        <field name="fine_amount"/>
+                    </group>
+                </group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_library_loan" type="window" model="school.library.loan" name="Library Loans" view_mode="list,form"/>
+
+        <!-- Boarding: houses -->
+        <view id="view_school_boarding_house_list" model="school.boarding.house" type="list">
+            <field name="name" string="House"/>
+            <field name="campus_id" string="Campus"/>
+            <field name="matron_id" string="Matron/Warden"/>
+            <field name="dorm_count" string="Dormitories"/>
+        </view>
+        <view id="view_school_boarding_house_form" model="school.boarding.house" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="House name"/></h1></div>
+                <group>
+                    <group string="House">
+                        <field name="campus_id"/>
+                        <field name="matron_id"/>
+                        <field name="dorm_count" readonly="true"/>
+                    </group>
+                </group>
+                <group><field name="description"/></group>
+                <notebook>
+                    <page string="Dormitories">
+                        <field name="dormitories" nolabel="1">
+                            <list>
+                                <field name="name"/>
+                                <field name="capacity"/>
+                                <field name="gender_type"/>
+                                <field name="boarder_count"/>
+                                <field name="available_beds"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_boarding_house" type="window" model="school.boarding.house" name="Boarding Houses" view_mode="list,form"/>
+
+        <!-- Boarding: dormitories -->
+        <view id="view_school_boarding_dormitory_list" model="school.boarding.dormitory" type="list">
+            <field name="house_id" string="House"/>
+            <field name="name" string="Dormitory"/>
+            <field name="capacity" string="Capacity"/>
+            <field name="gender_type" string="Gender"/>
+            <field name="boarder_count" string="Occupied"/>
+            <field name="available_beds" string="Free Beds"/>
+        </view>
+        <view id="view_school_boarding_dormitory_form" model="school.boarding.dormitory" type="form">
+            <sheet>
+                <group>
+                    <group string="Dormitory">
+                        <field name="house_id"/>
+                        <field name="name"/>
+                        <field name="capacity"/>
+                        <field name="gender_type"/>
+                        <field name="floor"/>
+                    </group>
+                    <group string="Occupancy">
+                        <field name="boarder_count" readonly="true"/>
+                        <field name="available_beds" readonly="true"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Boarders">
+                        <field name="boarders" nolabel="1">
+                            <list>
+                                <field name="student_id"/>
+                                <field name="bed_number"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_boarding_dormitory" type="window" model="school.boarding.dormitory" name="Dormitories" view_mode="list,form"/>
+
+        <!-- Boarding: boarders -->
+        <view id="view_school_boarding_boarder_list" model="school.boarding.boarder" type="list">
+            <field name="student_id" string="Student"/>
+            <field name="house_id" string="House"/>
+            <field name="dormitory_id" string="Dormitory"/>
+            <field name="bed_number" string="Bed"/>
+            <field name="academic_year_id" string="Year"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_boarding_boarder_form" model="school.boarding.boarder" type="form">
+            <header>
+                <button name="boarder_admit" string="Admit" type="object" class="sum_highlight"/>
+                <button name="boarder_release" string="Release" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Boarder">
+                        <field name="student_id"/>
+                        <field name="house_id"/>
+                        <field name="dormitory_id"/>
+                        <field name="bed_number"/>
+                        <field name="academic_year_id"/>
+                    </group>
+                    <group string="Period">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_boarding_boarder" type="window" model="school.boarding.boarder" name="Boarders" view_mode="list,form"/>
+
+        <!-- Inventory: items -->
+        <view id="view_school_inventory_item_list" model="school.inventory.item" type="list">
+            <field name="name" string="Item"/>
+            <field name="code" string="Code"/>
+            <field name="category" string="Category"/>
+            <field name="on_hand_qty" string="On Hand"/>
+            <field name="reorder_level" string="Reorder"/>
+            <field name="is_low" string="Low"/>
+        </view>
+        <view id="view_school_inventory_item_form" model="school.inventory.item" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Item name"/></h1></div>
+                <group>
+                    <group string="Item">
+                        <field name="code"/>
+                        <field name="category"/>
+                        <field name="unit_of_measure"/>
+                        <field name="location"/>
+                        <field name="unit_cost"/>
+                    </group>
+                    <group string="Stock">
+                        <field name="on_hand_qty"/>
+                        <field name="reorder_level"/>
+                        <field name="is_low" readonly="true"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Movements">
+                        <field name="movements" nolabel="1">
+                            <list>
+                                <field name="move_date"/>
+                                <field name="move_type"/>
+                                <field name="quantity"/>
+                                <field name="reference"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_inventory_item" type="window" model="school.inventory.item" name="Inventory Items" view_mode="list,form"/>
+
+        <!-- Inventory: movements -->
+        <view id="view_school_inventory_movement_list" model="school.inventory.movement" type="list">
+            <field name="item_id" string="Item"/>
+            <field name="move_date" string="Date"/>
+            <field name="move_type" string="Direction"/>
+            <field name="quantity" string="Quantity"/>
+            <field name="reference" string="Reference"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_inventory_movement_form" model="school.inventory.movement" type="form">
+            <header>
+                <button name="movement_post" string="Post" type="object" class="sum_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Movement">
+                        <field name="item_id"/>
+                        <field name="move_date"/>
+                        <field name="move_type"/>
+                        <field name="quantity"/>
+                    </group>
+                    <group string="Reference">
+                        <field name="reference"/>
+                    </group>
+                </group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_inventory_movement" type="window" model="school.inventory.movement" name="Stock Movements" view_mode="list,form"/>
+
+        <!-- Cafeteria: menus -->
+        <view id="view_school_cafeteria_menu_list" model="school.cafeteria.menu" type="list">
+            <field name="name" string="Menu"/>
+            <field name="campus_id" string="Campus"/>
+            <field name="term_id" string="Term"/>
+            <field name="meal_type" string="Meal"/>
+            <field name="price" string="Price"/>
+        </view>
+        <view id="view_school_cafeteria_menu_form" model="school.cafeteria.menu" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Menu name"/></h1></div>
+                <group>
+                    <group string="Menu">
+                        <field name="campus_id"/>
+                        <field name="term_id"/>
+                        <field name="meal_type"/>
+                        <field name="price"/>
+                    </group>
+                </group>
+                <group><field name="dishes"/></group>
+                <group><field name="notes"/></group>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_cafeteria_menu" type="window" model="school.cafeteria.menu" name="Cafeteria Menus" view_mode="list,form"/>
+
+        <!-- Cafeteria: subscriptions -->
+        <view id="view_school_cafeteria_subscription_list" model="school.cafeteria.subscription" type="list">
+            <field name="student_id" string="Student"/>
+            <field name="menu_id" string="Menu"/>
+            <field name="meal_plan" string="Plan"/>
+            <field name="daily_rate" string="Daily Rate"/>
+            <field name="date_from" string="From"/>
+            <field name="date_to" string="To"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_cafeteria_subscription_form" model="school.cafeteria.subscription" type="form">
+            <header>
+                <button name="subscription_activate" string="Activate" type="object" class="sum_highlight"/>
+                <button name="subscription_end" string="End" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Subscription">
+                        <field name="student_id"/>
+                        <field name="menu_id"/>
+                        <field name="meal_plan"/>
+                        <field name="daily_rate"/>
+                    </group>
+                    <group string="Period">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_cafeteria_subscription" type="window" model="school.cafeteria.subscription" name="Meal Subscriptions" view_mode="list,form"/>
+    </data>
+</nexa>

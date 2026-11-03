@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_project_baseline_list" model="project.baseline" type="list">
+            <field name="project_id" string="Project"/>
+            <field name="name" string="Baseline"/>
+            <field name="snapshot_date" string="Snapshot Date"/>
+            <field name="baseline_end" string="Planned End"/>
+            <field name="budget_amount" string="Budget"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_project_baseline_form" model="project.baseline" type="form">
+            <header>
+                <button name="action_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_supersede" string="Supersede" type="object" invisible="state != 'approved'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="project_id" string="Project"/>
+                    <field name="name" string="Baseline"/>
+                    <field name="state" string="Status"/>
+                    <field name="snapshot_date" string="Snapshot Date"/>
+                    <field name="baseline_start" string="Planned Start"/>
+                    <field name="baseline_end" string="Planned End"/>
+                    <field name="budget_amount" string="Budget"/>
+                    <field name="approved_by" string="Approved By"/>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_project_baseline" type="window" model="project.baseline" name="Baselines" view_mode="list,form"/>
+
+        <view id="view_project_decision_list" model="project.decision" type="list">
+            <field name="decision_date" string="Date"/>
+            <field name="project_id" string="Project"/>
+            <field name="name" string="Decision"/>
+            <field name="decided_by" string="Decided By"/>
+            <field name="status" string="Status"/>
+        </view>
+        <view id="view_project_decision_form" model="project.decision" type="form">
+            <header>
+                <button name="action_close" string="Close" type="object" class="sum_highlight" invisible="status == 'closed'"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="project_id" string="Project"/>
+                    <field name="name" string="Decision"/>
+                    <field name="decision_date" string="Date"/>
+                    <field name="decided_by" string="Decided By"/>
+                    <field name="owner_id" string="Owner"/>
+                    <field name="status" string="Status"/>
+                </group>
+                <separator string="Rationale"/>
+                <field name="rationale" string="Rationale"/>
+                <separator string="Impact"/>
+                <field name="impact" string="Impact"/>
+            </sheet>
+        </view>
+        <action id="action_project_decision" type="window" model="project.decision" name="Decision Log" view_mode="list,form"/>
+
+        <view id="view_project_financial_snapshot_list" model="project.financial.snapshot" type="list">
+            <field name="date" string="Date"/>
+            <field name="project_id" string="Project"/>
+            <field name="kind" string="Measure"/>
+            <field name="amount" string="Amount"/>
+        </view>
+        <view id="view_project_financial_snapshot_form" model="project.financial.snapshot" type="form">
+            <header>
+                <button name="action_capture" string="Capture From Project" type="object" class="sum_highlight"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="project_id" string="Project"/>
+                    <field name="date" string="Date"/>
+                    <field name="kind" string="Measure"/>
+                    <field name="amount" string="Amount"/>
+                </group>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_project_financial_snapshot" type="window" model="project.financial.snapshot" name="Financial Snapshots" view_mode="list,form"/>
+    </data>
+</nexa>

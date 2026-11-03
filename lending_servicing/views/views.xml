@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+
+        <!-- ============================================================ -->
+        <!-- Schedule Version views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_schedule_version_kanban" model="loan.schedule.version" type="kanban" default_group_by="status" records_draggable="false">
+        </view>
+
+        <view id="view_loan_schedule_version_list" model="loan.schedule.version" type="list">
+            <field name="account_id"/>
+            <field name="version"/>
+            <field name="interest_method"/>
+            <field name="total_amount"/>
+            <field name="installment_count"/>
+            <field name="paid_count"/>
+            <field name="status" widget="badge"/>
+        </view>
+
+        <view id="view_loan_schedule_version_form" model="loan.schedule.version" type="form">
+            <header>
+                <button name="action_schedule_generate" string="Generate" type="object" invisible="status != 'draft'"/>
+                <button name="action_schedule_approve" string="Approve" type="object" class="sum_highlight" invisible="status != 'draft'"/>
+                <field name="status" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Schedule">
+                        <field name="account_id"/>
+                        <field name="version"/>
+                        <field name="interest_method"/>
+                        <field name="generated_at"/>
+                    </group>
+                    <group string="Totals">
+                        <field name="total_principal"/>
+                        <field name="total_interest"/>
+                        <field name="total_fees"/>
+                        <field name="total_amount"/>
+                    </group>
+                </group>
+                <group string="Progress">
+                    <field name="installment_count"/>
+                    <field name="paid_count"/>
+                </group>
+                <notebook>
+                    <page string="Installments">
+                        <field name="installments"/>
+                    </page>
+                    <page string="Reason and Note">
+                        <field name="reason" nolabel="1"/>
+                        <field name="note" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <view id="view_loan_schedule_version_search" model="loan.schedule.version" type="search">
+            <field name="account_id"/>
+            <filter name="draft" string="Draft" domain='[["status","=","draft"]]'/>
+            <filter name="approved" string="Approved" domain='[["status","=","approved"]]'/>
+            <filter name="superseded" string="Superseded" domain='[["status","=","superseded"]]'/>
+            <filter name="group_status" string="Status" group_by="status"/>
+            <filter name="group_method" string="Interest Method" group_by="interest_method"/>
+        </view>
+
+        <action id="action_loan_schedule_version" type="window" model="loan.schedule.version" name="Repayment Schedules">
+            <field name="view_mode">list,kanban,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Installment views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_installment_list" model="loan.installment" type="list">
+            <field name="account_id"/>
+            <field name="number"/>
+            <field name="due_date"/>
+            <field name="total_due"/>
+            <field name="amount_due"/>
+            <field name="balance"/>
+            <field name="days_past_due"/>
+            <field name="state" widget="badge"/>
+        </view>
+
+        <view id="view_loan_installment_form" model="loan.installment" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Installment">
+                        <field name="schedule_id"/>
+                        <field name="account_id"/>
+                        <field name="number"/>
+                        <field name="due_date"/>
+                        <field name="state"/>
+                        <field name="days_past_due"/>
+                    </group>
+                    <group string="Due">
+                        <field name="opening_principal"/>
+                        <field name="principal_due"/>
+                        <field name="interest_due"/>
+                        <field name="fees_due"/>
+                        <field name="penalty_due"/>
+                        <field name="total_due"/>
+                    </group>
+                </group>
+                <group col="2">
+                    <group string="Paid">
+                        <field name="paid_principal"/>
+                        <field name="paid_interest"/>
+                        <field name="paid_fees"/>
+                        <field name="paid_penalty"/>
+                        <field name="total_paid"/>
+                    </group>
+                    <group string="Remaining">
+                        <field name="amount_due"/>
+                        <field name="balance"/>
+                    </group>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_installment_search" model="loan.installment" type="search">
+            <field name="account_id"/>
+            <field name="schedule_id"/>
+            <filter name="upcoming" string="Upcoming" domain='[["state","=","upcoming"]]'/>
+            <filter name="due" string="Due" domain='[["state","in",["due","partial"]]]'/>
+            <filter name="paid" string="Paid" domain='[["state","=","paid"]]'/>
+            <filter name="overdue" string="Overdue" domain='[["state","=","overdue"]]'/>
+            <filter name="past_due" string="Past Due" domain='[["days_past_due","&gt;",0]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_account" string="Loan Account" group_by="account_id"/>
+        </view>
+
+        <action id="action_loan_installment" type="window" model="loan.installment" name="Installments">
+            <field name="view_mode">list,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Accrual views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_accrual_list" model="loan.accrual" type="list">
+            <field name="account_id"/>
+            <field name="date"/>
+            <field name="period"/>
+            <field name="interest_accrued"/>
+            <field name="penalty_accrued"/>
+            <field name="outstanding_principal"/>
+        </view>
+
+        <view id="view_loan_accrual_form" model="loan.accrual" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Accrual">
+                        <field name="account_id"/>
+                        <field name="date"/>
+                        <field name="period"/>
+                    </group>
+                    <group string="Amounts">
+                        <field name="interest_accrued"/>
+                        <field name="interest_reversed"/>
+                        <field name="penalty_accrued"/>
+                        <field name="outstanding_principal"/>
+                    </group>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_accrual_search" model="loan.accrual" type="search">
+            <field name="account_id"/>
+            <filter name="group_account" string="Loan Account" group_by="account_id"/>
+        </view>
+
+        <action id="action_loan_accrual" type="window" model="loan.accrual" name="Accruals">
+            <field name="view_mode">list,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Adjustment views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_adjustment_list" model="loan.adjustment" type="list">
+            <field name="account_id"/>
+            <field name="type"/>
+            <field name="date"/>
+            <field name="amount"/>
+            <field name="approved"/>
+        </view>
+
+        <view id="view_loan_adjustment_form" model="loan.adjustment" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Adjustment">
+                        <field name="account_id"/>
+                        <field name="schedule_id"/>
+                        <field name="type"/>
+                        <field name="date"/>
+                        <field name="amount"/>
+                    </group>
+                    <group string="Approval">
+                        <field name="approved"/>
+                        <field name="approved_by"/>
+                    </group>
+                </group>
+                <group string="Reason">
+                    <field name="reason" nolabel="1"/>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_adjustment_search" model="loan.adjustment" type="search">
+            <field name="account_id"/>
+            <filter name="reschedule" string="Reschedule" domain='[["type","=","reschedule"]]'/>
+            <filter name="restructure" string="Restructure" domain='[["type","=","restructure"]]'/>
+            <filter name="waiver" string="Waiver" domain='[["type","=","waiver"]]'/>
+            <filter name="approved" string="Approved" domain='[["approved","=",true]]'/>
+            <filter name="group_type" string="Type" group_by="type"/>
+        </view>
+
+        <action id="action_loan_adjustment" type="window" model="loan.adjustment" name="Loan Adjustments">
+            <field name="view_mode">list,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Add Recompute Balances to the anchor loan account form -->
+        <!-- ============================================================ -->
+
+        <record id="view_loan_account_form_servicing_inherit" model="sys.view">
+            <field name="inherit_id" ref="lending.view_loan_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_account_recompute" string="Recompute Balances" type="object"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</nexa>

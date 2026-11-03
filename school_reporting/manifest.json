@@ -1,0 +1,19 @@
+{
+    "name": "school_reporting",
+    "display_name": "School Payment Reports",
+    "version": "1.0.0",
+    "summary": "Payment status, income-by-category, and defaulters read-models for reporting/export",
+    "description": "Reporting read-models for the school payment system: per-student payment status by class/section/academic year with fee required, paid and balance; income aggregated by fee category across daily/monthly/quarterly/yearly periods; and a defaulters list of students with outstanding balances including overdue months and accumulated penalties. Rows are refreshed snapshots intended for viewing and export.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

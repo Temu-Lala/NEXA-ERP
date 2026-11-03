@@ -1,0 +1,19 @@
+{
+    "name": "sale_fulfillment",
+    "display_name": "Fulfillment & Returns",
+    "version": "1.0.0",
+    "summary": "Inventory reservation links, shipment coordination, and customer return management",
+    "description": "Sales-side coordination records for order fulfillment: links to Inventory reservations and transfers, shipment visibility tracking, and structured return cases with disposition and inspection references. Inventory and Accounting remain the authoritative source for stock and credit notes.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "sale"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Sales"
+}

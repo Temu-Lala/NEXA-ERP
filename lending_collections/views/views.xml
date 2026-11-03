@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+
+        <!-- ============================================================ -->
+        <!-- Delinquency Snapshot views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_delinquency_snapshot_list" model="loan.delinquency.snapshot" type="list">
+            <field name="account_id"/>
+            <field name="date"/>
+            <field name="days_past_due"/>
+            <field name="overdue_principal"/>
+            <field name="overdue_interest"/>
+            <field name="overdue_total"/>
+            <field name="bucket" widget="badge"/>
+        </view>
+
+        <view id="view_loan_delinquency_snapshot_form" model="loan.delinquency.snapshot" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Snapshot">
+                        <field name="account_id"/>
+                        <field name="date"/>
+                        <field name="days_past_due"/>
+                        <field name="bucket"/>
+                    </group>
+                    <group string="Amounts">
+                        <field name="outstanding_principal"/>
+                        <field name="overdue_principal"/>
+                        <field name="overdue_interest"/>
+                        <field name="overdue_total"/>
+                    </group>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_delinquency_snapshot_search" model="loan.delinquency.snapshot" type="search">
+            <field name="account_id"/>
+            <filter name="delinquent" string="Delinquent (1+ DPD)" domain='[["days_past_due","&gt;",0]]'/>
+            <filter name="bucket_1_30" string="DPD 1-30" domain='[["bucket","=","dpd_1_30"]]'/>
+            <filter name="bucket_31_60" string="DPD 31-60" domain='[["bucket","=","dpd_31_60"]]'/>
+            <filter name="bucket_61_90" string="DPD 61-90" domain='[["bucket","=","dpd_61_90"]]'/>
+            <filter name="bucket_90_plus" string="DPD 90+" domain='[["bucket","=","dpd_90_plus"]]'/>
+            <filter name="group_bucket" string="Bucket" group_by="bucket"/>
+            <filter name="group_account" string="Loan Account" group_by="account_id"/>
+        </view>
+
+        <action id="action_loan_delinquency_snapshot" type="window" model="loan.delinquency.snapshot" name="Delinquency Snapshots">
+            <field name="view_mode">list,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Collection Case views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_collection_case_kanban" model="loan.collection.case" type="kanban" default_group_by="state" records_draggable="false">
+        </view>
+
+        <view id="view_loan_collection_case_list" model="loan.collection.case" type="list">
+            <field name="name"/>
+            <field name="account_id"/>
+            <field name="borrower_id"/>
+            <field name="collector_id"/>
+            <field name="total_overdue"/>
+            <field name="priority" widget="badge"/>
+            <field name="state" widget="badge"/>
+            <field name="action_count"/>
+            <field name="promise_count"/>
+        </view>
+
+        <view id="view_loan_collection_case_form" model="loan.collection.case" type="form">
+            <header>
+                <button name="action_case_contact" string="Mark Contacted" type="object" invisible="state != 'open'"/>
+                <button name="action_case_promise" string="Promise Recorded" type="object" invisible="state != 'open' &amp;&amp; state != 'contacted'"/>
+                <button name="action_case_arrange" string="Arrangement" type="object" invisible="state != 'open' &amp;&amp; state != 'contacted' &amp;&amp; state != 'promise'"/>
+                <button name="action_case_resolve" string="Resolve" type="object" class="sum_highlight" invisible="state != 'open' &amp;&amp; state != 'contacted' &amp;&amp; state != 'promise' &amp;&amp; state != 'arranged' &amp;&amp; state != 'escalated'"/>
+                <button name="action_case_escalate" string="Escalate" type="object" invisible="state != 'open' &amp;&amp; state != 'contacted' &amp;&amp; state != 'promise' &amp;&amp; state != 'arranged'"/>
+                <button name="action_case_close" string="Close" type="object" invisible="state != 'open' &amp;&amp; state != 'contacted' &amp;&amp; state != 'promise' &amp;&amp; state != 'arranged' &amp;&amp; state != 'resolved' &amp;&amp; state != 'escalated'"/>
+                <button name="action_case_reopen" string="Reopen" type="object" invisible="state != 'closed' &amp;&amp; state != 'resolved' &amp;&amp; state != 'escalated'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Case">
+                        <field name="name"/>
+                        <field name="account_id"/>
+                        <field name="borrower_id"/>
+                        <field name="collector_id"/>
+                        <field name="priority" widget="badge"/>
+                    </group>
+                    <group string="Details">
+                        <field name="total_overdue"/>
+                        <field name="opened_date"/>
+                        <field name="close_date"/>
+                        <field name="hardship_flag"/>
+                        <field name="dispute_flag"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Actions">
+                        <field name="actions"/>
+                    </page>
+                    <page string="Note">
+                        <field name="note" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <view id="view_loan_collection_case_search" model="loan.collection.case" type="search">
+            <field name="name"/>
+            <field name="account_id"/>
+            <field name="borrower_id"/>
+            <field name="collector_id"/>
+            <filter name="open_cases" string="Open" domain='[["state","in",["open","contacted","promise","arranged"]]]'/>
+            <filter name="escalated" string="Escalated" domain='[["state","=","escalated"]]'/>
+            <filter name="closed" string="Closed" domain='[["state","in",["resolved","closed"]]]'/>
+            <filter name="high_priority" string="High Priority" domain='[["priority","=","high"]]'/>
+            <filter name="hardship" string="Hardship" domain='[["hardship_flag","=",true]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_priority" string="Priority" group_by="priority"/>
+            <filter name="group_collector" string="Collector" group_by="collector_id"/>
+        </view>
+
+        <action id="action_loan_collection_case" type="window" model="loan.collection.case" name="Collection Cases">
+            <field name="view_mode">list,kanban,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Collection Action views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_collection_action_list" model="loan.collection.action" type="list">
+            <field name="case_id"/>
+            <field name="date"/>
+            <field name="action_type"/>
+            <field name="outcome"/>
+            <field name="performed_by"/>
+        </view>
+
+        <view id="view_loan_collection_action_form" model="loan.collection.action" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Action">
+                        <field name="case_id"/>
+                        <field name="date"/>
+                        <field name="action_type"/>
+                        <field name="performed_by"/>
+                    </group>
+                    <group string="Result">
+                        <field name="outcome"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_collection_action_search" model="loan.collection.action" type="search">
+            <field name="case_id"/>
+            <field name="performed_by"/>
+            <filter name="calls" string="Calls" domain='[["action_type","=","call"]]'/>
+            <filter name="visits" string="Visits" domain='[["action_type","=","visit"]]'/>
+            <filter name="group_action_type" string="Action" group_by="action_type"/>
+            <filter name="group_case" string="Case" group_by="case_id"/>
+        </view>
+
+        <action id="action_loan_collection_action" type="window" model="loan.collection.action" name="Collection Actions">
+            <field name="view_mode">list,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Promise To Pay views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_promise_to_pay_list" model="loan.promise.to.pay" type="list">
+            <field name="case_id"/>
+            <field name="account_id"/>
+            <field name="promised_date"/>
+            <field name="promised_amount"/>
+            <field name="status" widget="badge"/>
+        </view>
+
+        <view id="view_loan_promise_to_pay_form" model="loan.promise.to.pay" type="form">
+            <header>
+                <button name="action_promise_keep" string="Mark Kept" type="object" class="sum_highlight" invisible="status != 'pending'"/>
+                <button name="action_promise_break" string="Mark Broken" type="object" invisible="status != 'pending'"/>
+                <field name="status" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Promise">
+                        <field name="case_id"/>
+                        <field name="account_id"/>
+                        <field name="promised_date"/>
+                        <field name="promised_amount"/>
+                    </group>
+                    <group string="Status">
+                        <field name="status"/>
+                    </group>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_promise_to_pay_search" model="loan.promise.to.pay" type="search">
+            <field name="case_id"/>
+            <field name="account_id"/>
+            <filter name="pending" string="Pending" domain='[["status","=","pending"]]'/>
+            <filter name="kept" string="Kept" domain='[["status","=","kept"]]'/>
+            <filter name="broken" string="Broken" domain='[["status","=","broken"]]'/>
+            <filter name="group_status" string="Status" group_by="status"/>
+            <filter name="group_case" string="Case" group_by="case_id"/>
+        </view>
+
+        <action id="action_loan_promise_to_pay" type="window" model="loan.promise.to.pay" name="Promises to Pay">
+            <field name="view_mode">list,form</field>
+        </action>
+
+    </data>
+</nexa>

@@ -1,0 +1,16 @@
+{
+    "name": "maintenance_parts",
+    "display_name": "Maintenance Parts & Components",
+    "version": "1.0.0",
+    "summary": "Spare part requests, consumption and installed components",
+    "description": "Raise part requests for a job with reservation and purchase hand-off, record actual parts consumed and returns with serial or lot tracking, and maintain installed components on assets. Inventory remains authoritative for stock balances and valuation; Maintenance only records what a job needs and what was used.",
+    "author": "Nexa",
+    "depends": ["base", "maintenance"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

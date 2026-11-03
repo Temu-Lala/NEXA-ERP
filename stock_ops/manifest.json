@@ -1,0 +1,16 @@
+{
+  "name": "stock_ops",
+  "display_name": "Warehouse Operations",
+  "version": "1.0.0",
+  "summary": "Operation task board, putaway suggestions, wave picking and barcode scan verification",
+  "description": "Work-level task records for receive, inspect, putaway, pick, pack, count and return work; capacity- and priority-aware putaway location suggestions with operator override; wave planning that generates consolidated pick tasks across transfer orders; a barcode scan log that blocks completion on mismatch (blueprint sections 3.3, 5.4, 16).",
+  "author": "Nexa",
+  "depends": ["base", "product", "stock"],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Inventory"
+}

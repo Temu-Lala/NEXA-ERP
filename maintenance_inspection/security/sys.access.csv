@@ -1,0 +1,6 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_inspection_template,maintenance.inspection.template all,maintenance.inspection.template,,1,1,1,1
+access_maint_inspection_template_item,maintenance.inspection.template.item all,maintenance.inspection.template.item,,1,1,1,1
+access_maint_inspection_run,maintenance.inspection.run all,maintenance.inspection.run,,1,1,1,1
+access_maint_inspection_result,maintenance.inspection.result all,maintenance.inspection.result,,1,1,1,1
+access_maint_calibration_record,maintenance.calibration.record all,maintenance.calibration.record,,1,1,1,1

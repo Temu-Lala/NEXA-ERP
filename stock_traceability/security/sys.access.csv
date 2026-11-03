@@ -1,0 +1,3 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_traceability_event_user,access_stock_traceability_event_user,stock.traceability.event,,1,1,1,1
+access_stock_lot_expiry_alert_user,access_stock_lot_expiry_alert_user,stock.lot.expiry.alert,,1,1,1,1

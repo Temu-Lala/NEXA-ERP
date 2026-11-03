@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Store -->
+        <view id="view_ecom_store_list" model="ecom.store" type="list">
+            <field name="name" string="Store"/>
+            <field name="code" string="Code"/>
+            <field name="company_id" string="Company"/>
+            <field name="status" string="Status"/>
+            <field name="base_url" string="URL"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_ecom_store_form" model="ecom.store" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Main Store"/></h1></div>
+                <group>
+                    <group string="General">
+                        <field name="code" string="Code"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="status" string="Status"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Web">
+                        <field name="subdomain" string="Subdomain"/>
+                        <field name="domain_name" string="Domain"/>
+                        <field name="base_url" string="Storefront URL"/>
+                        <field name="maintenance_mode" string="Maintenance Mode"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Localization">
+                        <field name="currency_id" string="Currency"/>
+                        <field name="language" string="Language"/>
+                        <field name="timezone" string="Timezone"/>
+                    </group>
+                    <group string="Defaults">
+                        <field name="default_pricelist_id" string="Default Price List"/>
+                        <field name="default_warehouse_id" string="Default Warehouse"/>
+                        <field name="allow_guest_checkout" string="Allow Guest Checkout"/>
+                    </group>
+                </group>
+                <group string="Domains">
+                    <field name="domains"/>
+                </group>
+                <field name="description" string="Description"/>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_store" type="window" model="ecom.store" name="Stores" view_mode="list,form"/>
+
+        <!-- Store Domain -->
+        <view id="view_ecom_store_domain_list" model="ecom.store.domain" type="list">
+            <field name="store_id" string="Store"/>
+            <field name="name" string="Domain"/>
+            <field name="type" string="Type"/>
+            <field name="is_primary" string="Primary"/>
+            <field name="state" string="State"/>
+        </view>
+        <view id="view_ecom_store_domain_form" model="ecom.store.domain" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="shop.example.com"/></h1></div>
+                <group>
+                    <group>
+                        <field name="store_id" string="Store"/>
+                        <field name="type" string="Type"/>
+                    </group>
+                    <group>
+                        <field name="is_primary" string="Primary"/>
+                        <field name="verified" string="Verified"/>
+                        <field name="state" string="State"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_store_domain" type="window" model="ecom.store.domain" name="Store Domains" view_mode="list,form"/>
+
+        <!-- Store Settings -->
+        <view id="view_ecom_store_settings_list" model="ecom.store.settings" type="list">
+            <field name="store_id" string="Store"/>
+            <field name="seo_title" string="SEO Title"/>
+            <field name="contact_email" string="Contact Email"/>
+            <field name="min_order_amount" string="Min Order"/>
+            <field name="free_shipping_threshold" string="Free Shipping"/>
+        </view>
+        <view id="view_ecom_store_settings_form" model="ecom.store.settings" type="form">
+            <sheet>
+                <group>
+                    <group string="Store &amp; Contact">
+                        <field name="store_id" string="Store"/>
+                        <field name="contact_email" string="Contact Email"/>
+                        <field name="contact_phone" string="Contact Phone"/>
+                        <field name="support_hours" string="Support Hours"/>
+                    </group>
+                    <group string="Checkout Policy">
+                        <field name="min_order_amount" string="Minimum Order Amount"/>
+                        <field name="free_shipping_threshold" string="Free Shipping Threshold"/>
+                    </group>
+                </group>
+                <group string="SEO">
+                    <field name="seo_title" string="SEO Title"/>
+                    <field name="seo_description" string="SEO Description"/>
+                </group>
+                <notebook>
+                    <page string="Policies">
+                        <field name="terms_policy" string="Terms &amp; Conditions"/>
+                        <field name="privacy_policy" string="Privacy Policy"/>
+                        <field name="returns_policy" string="Returns Policy"/>
+                        <field name="shipping_policy" string="Shipping Policy"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_store_settings" type="window" model="ecom.store.settings" name="Store Settings" view_mode="list,form"/>
+
+        <!-- Product Publication -->
+        <view id="view_ecom_publication_list" model="ecom.product.publication" type="list">
+            <field name="sequence" widget="handle"/>
+            <field name="store_id" string="Store"/>
+            <field name="product_id" string="Product"/>
+            <field name="catalog_name" string="Catalog Name"/>
+            <field name="price" string="Price"/>
+            <field name="sale_availability" string="Availability"/>
+            <field name="state" string="State"/>
+            <field name="featured" string="Featured"/>
+        </view>
+        <view id="view_ecom_publication_form" model="ecom.product.publication" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="catalog_name" placeholder="Catalog display name"/></h1></div>
+                <group>
+                    <group string="Publication">
+                        <field name="store_id" string="Store"/>
+                        <field name="product_id" string="Product"/>
+                        <field name="state" string="State"/>
+                        <field name="sequence" string="Sequence"/>
+                        <field name="featured" string="Featured"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                    <group string="Pricing &amp; Availability">
+                        <field name="list_price" string="List Price"/>
+                        <field name="price" string="Price"/>
+                        <field name="discounted_price" string="Discounted Price"/>
+                        <field name="sale_availability" string="Availability"/>
+                        <field name="availability_message" string="Availability Message"/>
+                        <field name="show_quantity" string="Show Quantity"/>
+                    </group>
+                </group>
+                <group string="Schedule">
+                    <group>
+                        <field name="date_from" string="Publish From"/>
+                        <field name="date_to" string="Publish To"/>
+                    </group>
+                    <group>
+                        <field name="slug" string="URL Slug"/>
+                    </group>
+                </group>
+                <group string="SEO">
+                    <field name="seo_title" string="SEO Title"/>
+                    <field name="seo_description" string="SEO Description"/>
+                </group>
+                <field name="catalog_description" string="Catalog Description"/>
+            </sheet>
+        </view>
+        <action id="action_publication" type="window" model="ecom.product.publication" name="Product Publications" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Extend the base course + enrollment forms with the new overlay fields. -->
+        <record id="view_course_form_delivery_ext" model="sys.view">
+            <field name="inherit_id" ref="hr_training.view_training_course_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <group string="Delivery &amp; Certification">
+                        <field name="provider_id"/>
+                        <field name="certification_required"/>
+                        <field name="validity_months"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_enrollment_form_attendance_ext" model="sys.view">
+            <field name="inherit_id" ref="hr_training.view_training_enrollment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <group string="Attendance">
+                        <field name="attendance"/>
+                        <field name="hours_attended"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ===================== Providers ===================== -->
+        <view id="view_provider_list" model="hr.training.provider" type="list">
+            <field name="name" string="Provider"/>
+            <field name="type" string="Type"/>
+            <field name="contact" string="Contact"/>
+            <field name="email" string="Email"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_provider_form" model="hr.training.provider" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="name"/>
+                    <field name="type"/>
+                    <field name="contact"/>
+                    <field name="email"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Training Requests ===================== -->
+        <view id="view_request_list" model="hr.training.request" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="course_id" string="Course"/>
+            <field name="estimated_cost" string="Cost"/>
+            <field name="budget_code" string="Budget"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_request_form" model="hr.training.request" type="form">
+            <header>
+                <button name="action_request_submit" string="Submit" type="object" invisible="state != 'draft'"/>
+                <button name="action_request_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'submitted'"/>
+                <button name="action_request_refuse" string="Refuse" type="object" invisible="state != 'submitted'"/>
+                <button name="action_request_cancel" string="Cancel" type="object" invisible="state == 'cancelled'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Request">
+                        <field name="employee_id"/>
+                        <field name="course_id"/>
+                        <field name="session_id"/>
+                        <field name="request_date" widget="date"/>
+                    </group>
+                    <group string="Budget">
+                        <field name="estimated_cost"/>
+                        <field name="budget_code"/>
+                    </group>
+                </group>
+                <group string="Justification">
+                    <field name="reason" nolabel="1"/>
+                </group>
+                <group col="2" string="Approval">
+                    <field name="requested_by" readonly="true"/>
+                    <field name="approver_id" readonly="true"/>
+                    <field name="approve_date" widget="date" readonly="true"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Learning Paths ===================== -->
+        <view id="view_path_list" model="hr.training.path" type="list">
+            <field name="name" string="Path"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_path_form" model="hr.training.path" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="name"/>
+                    <field name="active"/>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <group string="Curriculum">
+                    <field name="courses" nolabel="1">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="course_id"/>
+                            <field name="mandatory"/>
+                        </list>
+                    </field>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_path_course_list" model="hr.training.path.course" type="list">
+            <field name="path_id" string="Path"/>
+            <field name="course_id" string="Course"/>
+            <field name="sequence" string="Sequence"/>
+            <field name="mandatory" string="Mandatory"/>
+        </view>
+        <view id="view_path_course_form" model="hr.training.path.course" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="path_id"/>
+                    <field name="course_id"/>
+                    <field name="sequence"/>
+                    <field name="mandatory"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Exams ===================== -->
+        <view id="view_exam_list" model="hr.training.exam" type="list">
+            <field name="name" string="Exam"/>
+            <field name="course_id" string="Course"/>
+            <field name="pass_mark" string="Pass Mark %"/>
+            <field name="duration_mins" string="Duration"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_exam_form" model="hr.training.exam" type="form">
+            <sheet>
+                <group col="2">
+                    <group>
+                        <field name="name"/>
+                        <field name="course_id"/>
+                    </group>
+                    <group>
+                        <field name="pass_mark"/>
+                        <field name="duration_mins"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Questions">
+                    <field name="questions" nolabel="1">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="question"/>
+                            <field name="max_score"/>
+                        </list>
+                    </field>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_exam_question_list" model="hr.training.exam.question" type="list">
+            <field name="exam_id" string="Exam"/>
+            <field name="question" string="Question"/>
+            <field name="max_score" string="Max Score"/>
+        </view>
+        <view id="view_exam_question_form" model="hr.training.exam.question" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="exam_id"/>
+                    <field name="max_score"/>
+                    <field name="sequence"/>
+                </group>
+                <group string="Question">
+                    <field name="question" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Exam Attempts ===================== -->
+        <view id="view_attempt_list" model="hr.training.attempt" type="list">
+            <field name="exam_id" string="Exam"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="total_score" string="Score"/>
+            <field name="percentage" string="%"/>
+            <field name="passed" string="Passed"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_attempt_form" model="hr.training.attempt" type="form">
+            <header>
+                <button name="action_attempt_submit" string="Submit" type="object" invisible="state != 'in_progress'"/>
+                <button name="action_attempt_score" string="Score" type="object" class="sum_highlight" invisible="state != 'submitted'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Attempt">
+                        <field name="exam_id"/>
+                        <field name="employee_id"/>
+                        <field name="attempt_date"/>
+                    </group>
+                    <group string="Result">
+                        <field name="total_score"/>
+                        <field name="max_score"/>
+                        <field name="percentage" readonly="true"/>
+                        <field name="passed" readonly="true"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Skill Gaps ===================== -->
+        <view id="view_skill_gap_list" model="hr.skill.gap" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="job_id" string="Job"/>
+            <field name="skill_id" string="Skill"/>
+            <field name="current_level" string="Current"/>
+            <field name="required_level" string="Required"/>
+            <field name="gap" string="Gap"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_skill_gap_form" model="hr.skill.gap" type="form">
+            <header>
+                <button name="action_gap_recompute" string="Recompute" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Gap">
+                        <field name="employee_id"/>
+                        <field name="job_id"/>
+                        <field name="skill_id"/>
+                    </group>
+                    <group string="Levels">
+                        <field name="current_level"/>
+                        <field name="required_level"/>
+                        <field name="gap" readonly="true"/>
+                        <field name="detected_date" widget="date"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Certificate Expiry Alerts ===================== -->
+        <view id="view_cert_alert_list" model="hr.training.cert.alert" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="certificate_id" string="Certificate"/>
+            <field name="expiry_date" string="Expiry"/>
+            <field name="days_remaining" string="Days Left"/>
+            <field name="open" string="Open"/>
+        </view>
+        <view id="view_cert_alert_form" model="hr.training.cert.alert" type="form">
+            <header>
+                <button name="action_cert_alert_resolve" string="Resolve" type="object" class="sum_highlight" invisible="open == false"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <field name="employee_id"/>
+                    <field name="certificate_id"/>
+                    <field name="course_id"/>
+                    <field name="expiry_date" widget="date"/>
+                    <field name="days_remaining" readonly="true"/>
+                    <field name="open" readonly="true"/>
+                </group>
+                <group string="Message">
+                    <field name="message" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+        <action id="action_provider" type="window" model="hr.training.provider" name="Training Providers" view_mode="list,form"/>
+        <action id="action_request" type="window" model="hr.training.request" name="Training Requests" view_mode="list,form"/>
+        <action id="action_path" type="window" model="hr.training.path" name="Learning Paths" view_mode="list,form"/>
+        <action id="action_path_course" type="window" model="hr.training.path.course" name="Path Courses" view_mode="list,form"/>
+        <action id="action_exam" type="window" model="hr.training.exam" name="Exams" view_mode="list,form"/>
+        <action id="action_exam_question" type="window" model="hr.training.exam.question" name="Exam Questions" view_mode="list,form"/>
+        <action id="action_attempt" type="window" model="hr.training.attempt" name="Exam Attempts" view_mode="list,form"/>
+        <action id="action_skill_gap" type="window" model="hr.skill.gap" name="Skill Gaps" view_mode="list,form"/>
+        <action id="action_cert_alert" type="window" model="hr.training.cert.alert" name="Certificate Alerts" view_mode="list,form"/>
+    </data>
+</nexa>

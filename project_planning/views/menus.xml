@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_project_planning_root" name="Planning &amp; Deliverables" sequence="66"/>
+
+        <menuitem id="menu_project_deliverables" name="Deliverables" parent="menu_project_planning_root" action="project_planning.action_project_deliverable" sequence="10"/>
+        <menuitem id="menu_project_task_dependencies" name="Task Dependencies" parent="menu_project_planning_root" action="project_planning.action_project_task_dependency" sequence="20"/>
+        <menuitem id="menu_project_status_history" name="Status History" parent="menu_project_planning_root" action="project_planning.action_project_status_history" sequence="30"/>
+    </data>
+</nexa>

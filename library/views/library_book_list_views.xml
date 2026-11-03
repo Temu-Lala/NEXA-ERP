@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_library_book_list" model="library.book" type="list">
+            <field name="name" string="Title"/>
+            <field name="reference" string="Reference"/>
+            <field name="author" string="Author"/>
+            <field name="category_id" string="Category"/>
+            <field name="copies" string="Copies"/>
+            <field name="available" string="Available"/>
+            <field name="active" string="Active"/>
+        </view>
+    </data>
+</nexa>

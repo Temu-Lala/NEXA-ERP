@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hr_contract_list" model="hr.contract" type="list">
+            <field name="name" string="Reference"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="type" string="Contract Type"/>
+            <field name="date_start" widget="date" string="Start"/>
+            <field name="date_end" widget="date" string="End"/>
+            <field name="state" string="Status" widget="badge"/>
+        </view>
+        <view id="view_hr_contract_form" model="hr.contract" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Contract Reference..."/></h1>
+                </div>
+                <group col="2">
+                    <group string="Contract">
+                        <field name="employee_id" string="Employee"/>
+                        <field name="type" string="Contract Type"/>
+                        <field name="state" string="Status" widget="badge"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Term">
+                        <field name="date_start" widget="date" string="Start Date"/>
+                        <field name="date_end" widget="date" string="End Date"/>
+                        <field name="trial_end_date" widget="date" string="Trial Period End"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+            <chatter/>
+        </view>
+        <view id="view_hr_contract_search" model="hr.contract" type="search">
+            <field name="name" string="Reference"/>
+            <field name="employee_id" string="Employee"/>
+            <filter name="running" string="Running" domain='[["state","=","running"]]'/>
+            <filter name="expiring" string="Expiring Soon" domain='[["state","=","expiring"]]'/>
+            <filter name="expired" string="Expired" domain='[["state","=","expired"]]'/>
+            <filter name="open" string="Open-Ended" domain='[["state","=","open"]]'/>
+            <filter name="group_type" string="Contract Type" group_by="type"/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+        </view>
+        <action id="action_hr_contract" type="window" model="hr.contract" name="Contracts" view_mode="list,form"/>
+    </data>
+</nexa>

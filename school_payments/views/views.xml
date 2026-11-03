@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Fee Bill -->
+        <view id="view_school_fee_bill_list" model="school.fee.bill" type="list">
+            <field name="name" string="Bill No"/>
+            <field name="student_id" string="Student"/>
+            <field name="fee_category_id" string="Category"/>
+            <field name="period_label" string="Period"/>
+            <field name="total_amount" string="Total"/>
+            <field name="amount_paid" string="Paid"/>
+            <field name="balance" string="Balance"/>
+            <field name="due_date" string="Due"/>
+            <field name="status" string="Status"/>
+        </view>
+        <view id="view_school_fee_bill_form" model="school.fee.bill" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. BILL-0001"/></h1></div>
+                <group>
+                    <group string="Bill">
+                        <field name="student_id" string="Student"/>
+                        <field name="fee_structure_id" string="Fee Structure"/>
+                        <field name="fee_category_id" string="Fee Category"/>
+                        <field name="academic_year_id" string="Academic Year"/>
+                        <field name="period_label" string="Period"/>
+                        <field name="due_date" string="Due Date"/>
+                    </group>
+                    <group string="Amounts">
+                        <field name="amount_due" string="Amount Due"/>
+                        <field name="discount_type" string="Discount Type"/>
+                        <field name="discount_pct" string="Discount %"/>
+                        <field name="discount_amount" string="Discount Amount"/>
+                        <field name="penalty_amount" string="Penalty"/>
+                        <field name="total_amount" string="Total Payable"/>
+                        <field name="currency" string="Currency"/>
+                    </group>
+                </group>
+                <group string="Settlement">
+                    <group>
+                        <field name="amount_paid" string="Amount Paid"/>
+                        <field name="balance" string="Balance"/>
+                    </group>
+                    <group>
+                        <field name="status" string="Status"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_fee_bill" type="window" model="school.fee.bill" name="Fee Bills" view_mode="list,form"/>
+
+        <!-- Payment -->
+        <view id="view_school_payment_list" model="school.payment" type="list">
+            <field name="name" string="Receipt No"/>
+            <field name="student_id" string="Student"/>
+            <field name="payment_date" string="Date"/>
+            <field name="period_label" string="Period"/>
+            <field name="amount" string="Amount"/>
+            <field name="method" string="Method"/>
+            <field name="cashier_id" string="Cashier"/>
+        </view>
+        <view id="view_school_payment_form" model="school.payment" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. RCP-0001"/></h1></div>
+                <group>
+                    <group string="Payment">
+                        <field name="student_id" string="Student"/>
+                        <field name="bill_id" string="Bill"/>
+                        <field name="fee_category_id" string="Fee Category"/>
+                        <field name="period_label" string="Period"/>
+                    </group>
+                    <group string="Details">
+                        <field name="payment_date" string="Payment Date"/>
+                        <field name="amount" string="Amount"/>
+                        <field name="penalty_paid" string="Penalty Paid"/>
+                        <field name="method" string="Method"/>
+                        <field name="reference" string="Reference"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="cashier_id" string="Cashier"/>
+                    <field name="company_id" string="Company"/>
+                    <field name="active" string="Active"/>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_payment" type="window" model="school.payment" name="Payments" view_mode="list,form"/>
+
+        <!-- Penalty -->
+        <view id="view_school_penalty_list" model="school.penalty" type="list">
+            <field name="name" string="Reference"/>
+            <field name="bill_id" string="Bill"/>
+            <field name="student_id" string="Student"/>
+            <field name="days_late" string="Days Late"/>
+            <field name="amount" string="Penalty"/>
+            <field name="waived_amount" string="Waived"/>
+        </view>
+        <view id="view_school_penalty_form" model="school.penalty" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. PEN-0001"/></h1></div>
+                <group>
+                    <group>
+                        <field name="bill_id" string="Bill"/>
+                        <field name="student_id" string="Student"/>
+                        <field name="penalty_rule_id" string="Penalty Rule"/>
+                    </group>
+                    <group>
+                        <field name="days_late" string="Days Late"/>
+                        <field name="date_from" string="From"/>
+                        <field name="date_to" string="To"/>
+                        <field name="amount" string="Penalty Amount"/>
+                        <field name="waived_amount" string="Waived Amount"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_penalty" type="window" model="school.penalty" name="Penalties" view_mode="list,form"/>
+
+        <!-- Penalty Waiver -->
+        <view id="view_school_penalty_waiver_list" model="school.penalty.waiver" type="list">
+            <field name="name" string="Reference"/>
+            <field name="penalty_id" string="Penalty"/>
+            <field name="student_id" string="Student"/>
+            <field name="waiver_type" string="Type"/>
+            <field name="amount_waived" string="Amount Waived"/>
+            <field name="waived_by" string="Approved By"/>
+            <field name="waiver_date" string="Date"/>
+        </view>
+        <view id="view_school_penalty_waiver_form" model="school.penalty.waiver" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. WVR-0001"/></h1></div>
+                <group>
+                    <group>
+                        <field name="penalty_id" string="Penalty"/>
+                        <field name="student_id" string="Student"/>
+                        <field name="waiver_type" string="Waiver Type"/>
+                        <field name="amount_waived" string="Amount Waived"/>
+                    </group>
+                    <group>
+                        <field name="waived_by" string="Approved By"/>
+                        <field name="waiver_date" string="Waiver Date"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="reason" string="Reason"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_penalty_waiver" type="window" model="school.penalty.waiver" name="Penalty Waivers" view_mode="list,form"/>
+    </data>
+</nexa>

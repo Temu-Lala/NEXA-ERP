@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_asset_books" name="Depreciation Books" parent="account.account_menu_advanced" action="account_asset.action_asset_books" sequence="10" groups="account.group_account_manager"/>
+        <menuitem id="menu_dep_lines" name="Depreciation Schedules" parent="account.account_menu_advanced" action="account_asset.action_dep_lines" sequence="11" groups="account.group_account_manager"/>
+        <menuitem id="menu_dep_runs" name="Depreciation Runs" parent="account.account_menu_advanced" action="account_asset.action_dep_runs" sequence="12" groups="account.group_account_manager"/>
+        <menuitem id="menu_disposals" name="Asset Disposals" parent="account.account_menu_advanced" action="account_asset.action_disposals" sequence="13" groups="account.group_account_manager"/>
+    </data>
+</nexa>

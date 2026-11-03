@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="asset_menu_root" name="Assets" sequence="62"/>
+        <menuitem id="asset_menu_assets" name="Assets" parent="asset_menu_root" action="asset.action_asset_asset" sequence="1"/>
+        <menuitem id="asset_menu_categories" name="Categories" parent="asset_menu_root" action="asset.action_asset_category" sequence="2"/>
+    </data>
+</nexa>

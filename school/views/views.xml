@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Academic Year -->
+        <view id="view_school_academic_year_list" model="school.academic.year" type="list">
+            <field name="name" string="Year"/>
+            <field name="code" string="Code"/>
+            <field name="date_start" string="Start"/>
+            <field name="date_end" string="End"/>
+            <field name="is_current" string="Current"/>
+        </view>
+        <view id="view_school_academic_year_form" model="school.academic.year" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. 2026"/></h1></div>
+                <group>
+                    <group>
+                        <field name="code" string="Code"/>
+                        <field name="date_start" string="Start Date"/>
+                        <field name="date_end" string="End Date"/>
+                    </group>
+                    <group>
+                        <field name="is_current" string="Current Year"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_academic_year" type="window" model="school.academic.year" name="Academic Years" view_mode="list,form"/>
+
+        <!-- Class -->
+        <view id="view_school_class_list" model="school.class" type="list">
+            <field name="name" string="Class"/>
+            <field name="code" string="Code"/>
+            <field name="level" string="Grade Level"/>
+        </view>
+        <view id="view_school_class_form" model="school.class" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Grade 1"/></h1></div>
+                <group>
+                    <group>
+                        <field name="code" string="Code"/>
+                        <field name="level" string="Grade Level"/>
+                    </group>
+                    <group>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_school_class" type="window" model="school.class" name="Classes" view_mode="list,form"/>
+
+        <!-- Section -->
+        <view id="view_school_section_list" model="school.section" type="list">
+            <field name="name" string="Section"/>
+            <field name="class_id" string="Class"/>
+            <field name="academic_year_id" string="Academic Year"/>
+            <field name="homeroom_teacher_id" string="Homeroom Teacher"/>
+            <field name="capacity" string="Capacity"/>
+        </view>
+        <view id="view_school_section_form" model="school.section" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. 1A"/></h1></div>
+                <group>
+                    <group>
+                        <field name="class_id" string="Class"/>
+                        <field name="academic_year_id" string="Academic Year"/>
+                        <field name="homeroom_teacher_id" string="Homeroom Teacher"/>
+                    </group>
+                    <group>
+                        <field name="capacity" string="Capacity"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_section" type="window" model="school.section" name="Sections" view_mode="list,form"/>
+
+        <!-- Student -->
+        <view id="view_school_student_list" model="school.student" type="list">
+            <field name="code" string="Student ID"/>
+            <field name="name" string="Name"/>
+            <field name="gender" string="Gender"/>
+            <field name="class_id" string="Class"/>
+            <field name="section_id" string="Section"/>
+            <field name="guardian_name" string="Parent/Guardian"/>
+            <field name="guardian_phone" string="Phone"/>
+            <field name="status" string="Status"/>
+        </view>
+        <view id="view_school_student_form" model="school.student" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Student Name"/></h1></div>
+                <group>
+                    <group string="Student">
+                        <field name="code" string="Student ID"/>
+                        <field name="gender" string="Gender"/>
+                        <field name="date_birth" string="Date of Birth"/>
+                        <field name="roll_number" string="Roll Number"/>
+                        <field name="partner_id" string="Contact"/>
+                        <field name="status" string="Status"/>
+                    </group>
+                    <group string="Placement">
+                        <field name="academic_year_id" string="Academic Year"/>
+                        <field name="class_id" string="Class"/>
+                        <field name="section_id" string="Section"/>
+                        <field name="admission_date" string="Admission Date"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group string="Parent / Guardian">
+                    <group>
+                        <field name="guardian_name" string="Guardian Name"/>
+                        <field name="guardian_phone" string="Guardian Phone"/>
+                        <field name="guardian_email" string="Guardian Email"/>
+                        <field name="guardian_partner_id" string="Guardian Contact"/>
+                    </group>
+                    <group string="Teacher's Child">
+                        <field name="is_teacher_child" string="Teacher's Child"/>
+                        <field name="teacher_partner_id" string="Teacher (Parent)"/>
+                    </group>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_student" type="window" model="school.student" name="Students" view_mode="list,form"/>
+
+        <!-- Fee Category -->
+        <view id="view_school_fee_category_list" model="school.fee.category" type="list">
+            <field name="sequence" widget="handle"/>
+            <field name="name" string="Category"/>
+            <field name="code" string="Code"/>
+            <field name="category_type" string="Type"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_fee_category_form" model="school.fee.category" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Tuition"/></h1></div>
+                <group>
+                    <group>
+                        <field name="code" string="Code"/>
+                        <field name="category_type" string="Category Type"/>
+                    </group>
+                    <group>
+                        <field name="product_id" string="Product"/>
+                        <field name="sequence" string="Sequence"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_fee_category" type="window" model="school.fee.category" name="Fee Categories" view_mode="list,form"/>
+    </data>
+</nexa>

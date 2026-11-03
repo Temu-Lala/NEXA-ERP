@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Inventory Overview - read-only graph / pivot dashboards          -->
+        <!-- Every panel is a view over existing operational records; this     -->
+        <!-- module adds no tables, no access rules and mutates nothing.        -->
+        <!-- ================================================================ -->
+
+        <!-- Transfers -->
+        <view id="view_stock_overview_picking_state" model="stock.picking" type="graph" chart="bar" string="Transfers by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_stock_overview_picking_state" type="window" model="stock.picking" name="Open Transfers" view_mode="graph"/>
+
+        <view id="view_stock_overview_picking_op" model="stock.picking" type="graph" chart="pie" string="Transfers by Operation">
+            <field name="operation" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_stock_overview_picking_op" type="window" model="stock.picking" name="Transfers by Operation" view_mode="graph"/>
+
+        <!-- On-hand book -->
+        <view id="view_stock_overview_quant_pivot" model="stock.quant" type="pivot" string="On-Hand by Location / Product">
+            <field name="location_id" type="row"/>
+            <field name="product_id" type="col"/>
+            <field name="quantity" type="measure"/>
+            <field name="reserved_quantity" type="measure"/>
+        </view>
+        <action id="action_stock_overview_quant_pivot" type="window" model="stock.quant" name="On-Hand Pivot" view_mode="pivot"/>
+
+        <!-- Valuation exposure -->
+        <view id="view_stock_overview_layer_source" model="stock.valuation.layer" type="graph" chart="bar" string="Layers by Type">
+            <field name="source" type="row"/>
+            <field name="remaining_value_cents" type="measure"/>
+        </view>
+        <action id="action_stock_overview_layer_source" type="window" model="stock.valuation.layer" name="Valuation by Type" view_mode="graph"/>
+
+        <view id="view_stock_overview_value_pivot" model="stock.valuation.layer" type="pivot" string="Value by Product">
+            <field name="product_id" type="row"/>
+            <field name="source" type="col"/>
+            <field name="remaining_qty" type="measure"/>
+            <field name="remaining_value_cents" type="measure"/>
+        </view>
+        <action id="action_stock_overview_value_pivot" type="window" model="stock.valuation.layer" name="Value by Product" view_mode="pivot"/>
+
+        <!-- Replenishment pressure -->
+        <view id="view_stock_overview_proposal_state" model="stock.replenishment.proposal" type="graph" chart="bar" string="Open Proposals by Status">
+            <field name="state" type="row"/>
+            <field name="suggested_qty" type="measure"/>
+        </view>
+        <action id="action_stock_overview_proposal_state" type="window" model="stock.replenishment.proposal" name="Replenishment Pressure" view_mode="graph" domain='[["state","in",["draft","approved"]]]'/>
+
+        <view id="view_stock_overview_proposal_trigger" model="stock.replenishment.proposal" type="graph" chart="pie" string="Proposals by Trigger">
+            <field name="trigger" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_stock_overview_proposal_trigger" type="window" model="stock.replenishment.proposal" name="Proposals by Trigger" view_mode="graph"/>
+
+        <!-- Risk &amp; alerts -->
+        <view id="view_stock_overview_alert_reason" model="stock.stockout.alert" type="graph" chart="bar" string="Alerts by Reason">
+            <field name="reason" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_stock_overview_alert_reason" type="window" model="stock.stockout.alert" name="Active Alerts" view_mode="graph" domain='[["state","in",["open","acknowledged"]]]'/>
+
+        <view id="view_stock_overview_expiry_severity" model="stock.lot.expiry.alert" type="graph" chart="pie" string="Expiry Alerts by Severity">
+            <field name="severity" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_stock_overview_expiry_severity" type="window" model="stock.lot.expiry.alert" name="Expiry Risk" view_mode="graph" domain='[["open","=",true]]'/>
+
+        <view id="view_stock_overview_lot_state" model="stock.lot" type="graph" chart="bar" string="Lots by Release State">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_stock_overview_lot_state" type="window" model="stock.lot" name="Lots by State" view_mode="graph"/>
+
+        <!-- In-transit backlog -->
+        <view id="view_stock_overview_move_state" model="stock.move" type="graph" chart="bar" string="Move Backlog by Status">
+            <field name="state" type="row"/>
+            <field name="quantity" type="measure"/>
+        </view>
+        <action id="action_stock_overview_move_state" type="window" model="stock.move" name="Move Backlog" view_mode="graph" domain='[["state","not in",["done","cancelled"]]]'/>
+
+        <!-- Returns mix -->
+        <view id="view_stock_overview_return_disp" model="stock.return.line" type="graph" chart="bar" string="Return Lines by Disposition">
+            <field name="disposition" type="row"/>
+            <field name="quantity" type="measure"/>
+        </view>
+        <action id="action_stock_overview_return_disp" type="window" model="stock.return.line" name="Returns by Disposition" view_mode="graph"/>
+
+        <view id="view_stock_overview_return_pivot" model="stock.return.line" type="pivot" string="Condition vs Disposition">
+            <field name="condition" type="row"/>
+            <field name="disposition" type="col"/>
+            <field name="quantity" type="measure"/>
+            <field name="eligible" type="measure"/>
+        </view>
+        <action id="action_stock_overview_return_pivot" type="window" model="stock.return.line" name="Return Quality Matrix" view_mode="pivot"/>
+
+        <!-- Count accuracy -->
+        <view id="view_stock_overview_count_pivot" model="stock.inventory.line" type="pivot" string="Count Accuracy">
+            <field name="inventory_id" type="row"/>
+            <field name="theoretical_qty" type="measure"/>
+            <field name="counted_qty" type="measure"/>
+            <field name="difference_qty" type="measure"/>
+        </view>
+        <action id="action_stock_overview_count_pivot" type="window" model="stock.inventory.line" name="Count Accuracy" view_mode="pivot"/>
+
+        <!-- Turnover &amp; classification -->
+        <view id="view_stock_overview_turnover" model="stock.report.metrics" type="list" string="Turnover by Product">
+            <field name="product_id" string="Product"/>
+            <field name="value" string="Turnover"/>
+            <field name="period_days" string="Period (days)"/>
+            <field name="date_end" string="Period End"/>
+        </view>
+        <action id="action_stock_overview_turnover" type="window" model="stock.report.metrics" name="Turnover Trend" view_mode="list" domain='[["metric","=","turnover"]]'/>
+
+        <view id="view_stock_overview_class_pivot" model="stock.product.class" type="pivot" string="ABC / XYZ Spread">
+            <field name="abc_class" type="row"/>
+            <field name="xyz_class" type="col"/>
+            <field name="id" type="measure"/>
+            <field name="annual_value" type="measure"/>
+        </view>
+        <action id="action_stock_overview_class_pivot" type="window" model="stock.product.class" name="ABC / XYZ Spread" view_mode="pivot"/>
+    </data>
+</nexa>

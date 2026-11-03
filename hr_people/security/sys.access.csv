@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_job_grade_user,access_hr_job_grade_user,hr.job.grade,hr.group_hr_user,1,0,0,0
+access_hr_job_grade_manager,access_hr_job_grade_manager,hr.job.grade,hr.group_hr_manager,1,1,1,1
+access_hr_employment_history_user,access_hr_employment_history_user,hr.employment.history,hr.group_hr_user,1,0,0,0
+access_hr_employment_history_manager,access_hr_employment_history_manager,hr.employment.history,hr.group_hr_manager,1,1,1,1
+access_hr_employee_relationship_user,access_hr_employee_relationship_user,hr.employee.relationship,hr.group_hr_user,1,1,1,0
+access_hr_employee_relationship_manager,access_hr_employee_relationship_manager,hr.employee.relationship,hr.group_hr_manager,1,1,1,1
+access_hr_expiry_alert_user,access_hr_expiry_alert_user,hr.expiry.alert,hr.group_hr_user,1,0,0,0
+access_hr_expiry_alert_manager,access_hr_expiry_alert_manager,hr.expiry.alert,hr.group_hr_manager,1,1,1,1

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Project Overview - read-only graph / pivot / list dashboards      -->
+        <!-- Every panel is a view over records contributed by the project     -->
+        <!-- anchor and its companions. This module adds no tables, no access  -->
+        <!-- rules and mutates nothing.                                        -->
+        <!-- ================================================================ -->
+
+        <!-- Portfolio -->
+        <view id="view_project_ovw_state" model="project.project" type="graph" chart="bar" string="Projects by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_project_ovw_state" type="window" model="project.project" name="Projects by Status" view_mode="graph"/>
+
+        <view id="view_project_ovw_health" model="project.project" type="graph" chart="pie" string="Portfolio Health">
+            <field name="health" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_project_ovw_health" type="window" model="project.project" name="Portfolio Health" view_mode="graph" domain='[["state","in",["planned","approved","active","onhold"]]]'/>
+
+        <view id="view_project_ovw_budget" model="project.project" type="graph" chart="bar" string="Budget vs Actual &amp; Committed">
+            <field name="health" type="row"/>
+            <field name="budget" type="measure"/>
+            <field name="actual_cost" type="measure"/>
+            <field name="committed_cost" type="measure"/>
+        </view>
+        <action id="action_project_ovw_budget" type="window" model="project.project" name="Budget vs Cost" view_mode="graph" domain='[["state","not in",["draft","archived","cancelled"]]]'/>
+
+        <view id="view_project_ovw_priority" model="project.project" type="pivot" string="Portfolio by Priority">
+            <field name="priority" type="row"/>
+            <field name="state" type="col"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_project_ovw_priority" type="window" model="project.project" name="Priority Matrix" view_mode="pivot"/>
+
+        <!-- Execution -->
+        <view id="view_project_ovw_task_state" model="project.task" type="graph" chart="bar" string="Tasks by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_project_ovw_task_state" type="window" model="project.task" name="Tasks by Status" view_mode="graph"/>
+
+        <view id="view_project_ovw_task_assignee" model="project.task" type="pivot" string="Open Tasks by Assignee">
+            <field name="assigned_to" type="row"/>
+            <field name="priority" type="col"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_project_ovw_task_assignee" type="window" model="project.task" name="Tasks by Assignee" view_mode="pivot" domain='[["state","not in",["done","cancelled"]]]'/>
+
+        <view id="view_project_ovw_milestone" model="project.milestone" type="graph" chart="pie" string="Milestones by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_project_ovw_milestone" type="window" model="project.milestone" name="Milestone Status" view_mode="graph"/>
+
+        <!-- Risk &amp; Change -->
+        <view id="view_project_ovw_risk_severity" model="project.risk" type="graph" chart="bar" string="Open Risks by Severity">
+            <field name="severity" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_project_ovw_risk_severity" type="window" model="project.risk" name="Risk Exposure" view_mode="graph" domain='[["status","not in",["closed"]]]'/>
+
+        <view id="view_project_ovw_issue_status" model="project.issue" type="graph" chart="pie" string="Issues by Status">
+            <field name="status" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_project_ovw_issue_status" type="window" model="project.issue" name="Issue Load" view_mode="graph" domain='[["status","not in",["closed"]]]'/>
+
+        <view id="view_project_ovw_change_state" model="project.change.request" type="graph" chart="bar" string="Change Requests by State">
+            <field name="state" type="row"/>
+            <field name="budget_impact" type="measure"/>
+        </view>
+        <action id="action_project_ovw_change_state" type="window" model="project.change.request" name="Change Control" view_mode="graph"/>
+
+        <!-- Finance -->
+        <view id="view_project_ovw_cost_category" model="project.cost" type="graph" chart="bar" string="Cost by Category">
+            <field name="category" type="row"/>
+            <field name="amount" type="measure"/>
+        </view>
+        <action id="action_project_ovw_cost_category" type="window" model="project.cost" name="Cost by Category" view_mode="graph"/>
+
+        <view id="view_project_ovw_budget_state" model="project.budget" type="graph" chart="bar" string="Budget Value by State">
+            <field name="state" type="row"/>
+            <field name="total_amount" type="measure"/>
+        </view>
+        <action id="action_project_ovw_budget_state" type="window" model="project.budget" name="Budget Value" view_mode="graph"/>
+
+        <!-- Deliverables -->
+        <view id="view_project_ovw_deliverable" model="project.deliverable" type="graph" chart="pie" string="Deliverables by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_project_ovw_deliverable" type="window" model="project.deliverable" name="Deliverable Acceptance" view_mode="graph"/>
+
+        <!-- Effort &amp; Resources -->
+        <view id="view_project_ovw_timesheet" model="project.timesheet" type="graph" chart="bar" string="Timesheets by Status">
+            <field name="state" type="row"/>
+            <field name="total_hours" type="measure"/>
+        </view>
+        <action id="action_project_ovw_timesheet" type="window" model="project.timesheet" name="Timesheet Effort" view_mode="graph"/>
+
+        <view id="view_project_ovw_hours" model="project.timesheet.line" type="pivot" string="Logged Hours by Project">
+            <field name="project_id" type="row"/>
+            <field name="billable" type="col"/>
+            <field name="hours" type="measure"/>
+        </view>
+        <action id="action_project_ovw_hours" type="window" model="project.timesheet.line" name="Hours by Project" view_mode="pivot"/>
+
+        <view id="view_project_ovw_allocation" model="project.resource.allocation" type="pivot" string="Committed Allocation % by Employee">
+            <field name="user_id" type="row"/>
+            <field name="alloc_pct" type="measure"/>
+        </view>
+        <action id="action_project_ovw_allocation" type="window" model="project.resource.allocation" name="Resource Load" view_mode="pivot" domain='[["state","=","confirmed"]]'/>
+
+        <view id="view_project_ovw_overalloc" model="project.resource.allocation" type="list" string="Over-allocated Employees">
+            <field name="project_id" string="Project"/>
+            <field name="user_id" string="Employee"/>
+            <field name="role" string="Role"/>
+            <field name="alloc_pct" string="Allocation %"/>
+            <field name="state" string="Status"/>
+        </view>
+        <action id="action_project_ovw_overalloc" type="window" model="project.resource.allocation" name="Over-allocated" view_mode="list" domain='[["overalloc","=","true"]]'/>
+
+        <!-- Collaboration -->
+        <view id="view_project_ovw_action" model="project.action.item" type="graph" chart="bar" string="Action Items by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_project_ovw_action" type="window" model="project.action.item" name="Action Items" view_mode="graph"/>
+
+        <view id="view_project_ovw_action_overdue" model="project.action.item" type="list" string="Overdue Action Items">
+            <field name="name" string="Action"/>
+            <field name="project_id" string="Project"/>
+            <field name="assigned_to" string="Owner"/>
+            <field name="due_date" string="Due Date"/>
+            <field name="priority" string="Priority"/>
+        </view>
+        <action id="action_project_ovw_action_overdue" type="window" model="project.action.item" name="Overdue Actions" view_mode="list" domain='[["overdue","=","true"]]'/>
+    </data>
+</nexa>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <!-- Consolidated into the HR anchor (hr/views/menus.xml). This module contributes
+         models/views/actions only; navigating them happens under the single HR app. -->
+    <data/>
+</nexa>

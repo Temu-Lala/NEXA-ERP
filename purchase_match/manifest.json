@@ -1,0 +1,20 @@
+{
+    "name": "purchase_match",
+    "display_name": "Purchase Invoice Matching",
+    "version": "1.0.0",
+    "summary": "Three-way matching (PO + receipt + invoice) and exception review",
+    "description": "Invoice validation for the Procure-to-Pay flow: three-way match cases comparing purchase orders, receipts and supplier invoices, per-line variance analysis and price/quantity/tax exception handling. References the authoritative Accounting bill; Accounting owns posting and payment.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "purchase",
+        "purchase_receipt"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Purchase"
+}

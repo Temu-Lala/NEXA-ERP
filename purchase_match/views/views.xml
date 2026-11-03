@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Invoice Match Case -->
+        <view id="view_purchase_invoice_match_case_list" model="purchase.invoice.match.case" type="list">
+            <field name="name" string="Reference"/>
+            <field name="order_id" string="Purchase Order"/>
+            <field name="bill_number" string="Invoice Reference"/>
+            <field name="partner_id" string="Supplier"/>
+            <field name="match_date" string="Match Date"/>
+            <field name="state" string="Matching"/>
+            <field name="result" string="Outcome"/>
+        </view>
+        <view id="view_purchase_invoice_match_case_form" model="purchase.invoice.match.case" type="form">
+            <header>
+                <button name="action_compute_match" string="Compute Match" type="object" class="btn-primary" invisible="state not in 'draft,in_progress'"/>
+                <button name="action_approve_exceptions" string="Approve Exceptions" type="object" invisible="state != 'in_progress'"/>
+                <button name="action_send_to_ap" string="Send to AP" type="object" class="btn-primary" invisible="state != 'in_progress'"/>
+                <button name="action_escalate" string="Escalate / Hold" type="object" invisible="state != 'in_progress'"/>
+                <button name="action_reset_draft" string="Reset to Draft" type="object" invisible="state = 'draft'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. MATCH/0001"/></h1></div>
+                <group>
+                    <group string="Documents">
+                        <field name="order_id" string="Purchase Order"/>
+                        <field name="receipt_ref" string="Receipt"/>
+                        <field name="bill_ref" string="Supplier Bill"/>
+                        <field name="bill_number" string="Invoice Reference"/>
+                        <field name="partner_id" string="Supplier"/>
+                        <field name="currency" string="Currency"/>
+                    </group>
+                    <group string="Outcome">
+                        <field name="match_date" string="Match Date"/>
+                        <field name="method" string="Match Method"/>
+                        <field name="state" string="Matching"/>
+                        <field name="result" string="Outcome"/>
+                        <field name="reviewer_id" string="Reviewed By"/>
+                        <field name="approved" string="Exceptions Approved"/>
+                        <field name="duplicate" string="Duplicate"/>
+                        <field name="escalated" string="Escalated"/>
+                        <field name="sent_to_ap" string="Sent To AP"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Tolerances">
+                        <field name="tolerance_pct" string="Price Tolerance %"/>
+                        <field name="tolerance_qty_pct" string="Qty Tolerance %"/>
+                        <field name="tolerance_tax_pct" string="Tax Tolerance %"/>
+                        <field name="rounding_tol" string="Rounding Tolerance"/>
+                    </group>
+                    <group string="Amounts">
+                        <field name="bill_amount" string="Invoice Total"/>
+                        <field name="bill_tax_amount" string="Invoice Tax"/>
+                        <field name="bill_date" string="Invoice Date"/>
+                        <field name="po_amount" string="PO Value"/>
+                        <field name="expected_amount" string="Expected (Accepted)"/>
+                        <field name="matched_amount" string="Matched (Approvable)"/>
+                    </group>
+                    <group string="AP / Budget Linkage">
+                        <field name="requisition_ref" string="Requisition"/>
+                        <field name="budget_ref" string="Budget"/>
+                        <field name="commitment_ref" string="Budget Commitment"/>
+                        <field name="fingerprint" string="Duplicate Fingerprint"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Compared Lines">
+                        <field name="lines" string="Compared Lines">
+                            <view type="list">
+                                <field name="order_line_id" string="PO Line"/>
+                                <field name="product_id" string="Product"/>
+                                <field name="description" string="Description"/>
+                                <field name="ordered_qty" string="Ordered"/>
+                                <field name="received_qty" string="Received"/>
+                                <field name="accepted_qty" string="Accepted"/>
+                                <field name="invoiced_qty" string="Invoiced"/>
+                                <field name="po_unit_price" string="PO Price"/>
+                                <field name="inv_unit_price" string="Invoice Price"/>
+                                <field name="price_variance" string="Price Variance"/>
+                                <field name="qty_variance" string="Qty Variance"/>
+                                <field name="po_amount" string="PO Amount"/>
+                                <field name="inv_amount" string="Invoice Amount"/>
+                                <field name="amount_variance" string="Amount Variance"/>
+                                <field name="within_tolerance" string="Within Tolerance"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Exceptions">
+                        <field name="exceptions" string="Exceptions">
+                            <view type="list">
+                                <field name="name" string="Reference"/>
+                                <field name="exc_type" string="Type"/>
+                                <field name="severity" string="Severity"/>
+                                <field name="diff_amount" string="Difference"/>
+                                <field name="state" string="Status"/>
+                                <field name="resolved_by" string="Resolved By"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                        <field name="waiver_reason" string="Waiver Reason"/>
+                    </page>
+                    <page string="Matching History">
+                        <field name="history" string="Matching History"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_invoice_match_case" type="window" model="purchase.invoice.match.case" name="Invoice Matches" view_mode="list,form"/>
+
+        <!-- Standalone Exception view -->
+        <view id="view_purchase_invoice_match_exception_list" model="purchase.invoice.match.exception" type="list">
+            <field name="name" string="Reference"/>
+            <field name="match_id" string="Match Case"/>
+            <field name="exc_type" string="Type"/>
+            <field name="severity" string="Severity"/>
+            <field name="diff_amount" string="Difference"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_invoice_match_exception_form" model="purchase.invoice.match.exception" type="form">
+            <header>
+                <button name="action_investigate" string="Investigate" type="object" invisible="state != 'open'"/>
+                <button name="action_resolve" string="Resolve" type="object" class="btn-primary" invisible="state not in 'open,investigating'"/>
+                <button name="action_waive" string="Waive" type="object" invisible="state not in 'open,investigating'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. EXC/0001"/></h1></div>
+                <group>
+                    <group string="Exception">
+                        <field name="match_id" string="Match Case"/>
+                        <field name="match_line_id" string="Match Line"/>
+                        <field name="exc_type" string="Type"/>
+                        <field name="severity" string="Severity"/>
+                        <field name="diff_amount" string="Difference Amount"/>
+                    </group>
+                    <group string="Resolution">
+                        <field name="state" string="Status"/>
+                        <field name="resolved_by" string="Resolved By"/>
+                        <field name="approval_ref" string="Approval"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="description" string="Description"/>
+                <field name="resolution" string="Resolution"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_invoice_match_exception" type="window" model="purchase.invoice.match.exception" name="Matching Exceptions" view_mode="list,form"/>
+
+        <!-- Matching Outbox (publish-only towards AP) -->
+        <view id="view_purchase_invoice_match_event_list" model="purchase.invoice.match.event" type="list">
+            <field name="name" string="Reference"/>
+            <field name="event_type" string="Event"/>
+            <field name="match_id" string="Match Case"/>
+            <field name="amount" string="Amount"/>
+            <field name="fingerprint" string="Fingerprint"/>
+            <field name="consumed" string="Consumed"/>
+            <field name="date" string="Published At"/>
+        </view>
+        <view id="view_purchase_invoice_match_event_form" model="purchase.invoice.match.event" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. MTEVT/0001"/></h1></div>
+                <group>
+                    <group string="Event">
+                        <field name="event_type" string="Event"/>
+                        <field name="match_id" string="Match Case"/>
+                        <field name="amount" string="Amount"/>
+                        <field name="fingerprint" string="Fingerprint"/>
+                    </group>
+                    <group string="Delivery">
+                        <field name="consumed" string="Consumed by AP"/>
+                        <field name="date" string="Published At"/>
+                    </group>
+                </group>
+                <field name="message" string="Details"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_invoice_match_event" type="window" model="purchase.invoice.match.event" name="Matching Outbox" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Policy acknowledgements are per-employee. A read-only ownership rule
+             keeps a self-service member's acknowledgement list scoped to their own
+             rows (so nobody sees a colleague's decline), while HR Officers /
+             Managers (empty domain => allow-all) see the whole register. The rule
+             governs the read only; recording an answer goes through the gated
+             acknowledge action, so ordinary staff hold read-only ACLs here. -->
+        <record id="rule_ack_own" model="sys.rule">
+            <field name="name">HR Policy Ack: own records</field>
+            <field name="model">hr.policy.ack</field>
+            <field name="domain_force">[["employee_user_id","=","$uid"]]</field>
+            <field name="active" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_selfservice'))]"/>
+        </record>
+        <record id="rule_ack_officer_all" model="sys.rule">
+            <field name="name">HR Policy Ack: officers see all</field>
+            <field name="model">hr.policy.ack</field>
+            <field name="domain_force">[]</field>
+            <field name="active" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        </record>
+    </data>
+</nexa>

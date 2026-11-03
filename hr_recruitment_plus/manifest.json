@@ -1,0 +1,21 @@
+{
+    "name": "hr_recruitment_plus",
+    "display_name": "HR: Recruitment & Onboarding",
+    "version": "1.0.0",
+    "summary": "Requisition budget/headcount approval, candidate consent + dedupe, weighted interview scorecards, offer maker-checker + letter templates, onboarding checklist templates + probation confirmation",
+    "description": "Production recruiting and onboarding on top of hr_recruitment and hr_onboarding without migrating their tables: job openings become budget- and headcount-validated requisitions needing HR-manager maker-checker approval before posting, applicants carry privacy consent and email-based duplicate detection (flagged, never silently merged), interviews are scored with weighted multi-criterion scorecards rolled up to an average / percent / hire recommendation, offers gate behind maker-checker approval and render a letter from a reusable {{token}} template, onboarding plans are seeded idempotently from a checklist template with responsible party and due-offset provisioning, and hires track a probation window with a guarded confirmation / extension workflow. Extends the hr anchor, hr_recruitment and hr_onboarding; navigated under the single HR app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "hr",
+        "hr_recruitment",
+        "hr_onboarding"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

@@ -1,0 +1,20 @@
+{
+    "name": "purchase_contract",
+    "display_name": "Purchase Contracts & Framework Agreements",
+    "version": "1.0.0",
+    "summary": "Commercial agreements, contracted price schedules, value ceilings, obligations and consumption tracking",
+    "description": "Authoritative contract and framework-agreement management for the Procurement module. Owns the master commercial agreement (fixed, framework, blanket, rate-card, volume, supply, support, subscription, milestone and consignment types), its versioned lifecycle (draft to pending approval to active, with suspend/resume, explicit versioned renewal and amendment, close and cancel), contracted price schedules with quantity tiers and indexation used to validate purchase-order and invoice prices server-side, SLA/monitoring obligations, and an append-only consumption ledger that tracks committed, invoiced and credited value against a ceiling. Exceeding the ceiling is a block/warn signal, never a silent approval. Holding a contract does not bypass requisition approval or budget control: it only supplies contracted rates and a ceiling the downstream engines respect. Physical goods remain owned by Inventory and payables by Accounting.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "purchase"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "data/contract_cron.xml",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Purchase"
+}

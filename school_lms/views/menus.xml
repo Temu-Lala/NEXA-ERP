@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_lms_root" name="Learning (LMS)" parent="school.school_menu_root" sequence="15" web_icon="users" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_lms_course" name="Courses" parent="school_menu_lms_root" action="school_lms.action_school_lms_course" sequence="1" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_lms_material" name="Materials" parent="school_menu_lms_root" action="school_lms.action_school_lms_material" sequence="2" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_lms_assignment" name="Assignments" parent="school_menu_lms_root" action="school_lms.action_school_lms_assignment" sequence="3" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_lms_submission" name="Submissions" parent="school_menu_lms_root" action="school_lms.action_school_lms_submission" sequence="4" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_lms_question" name="Question Bank" parent="school_menu_lms_root" action="school_lms.action_school_lms_question" sequence="5" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_lms_quiz" name="Quizzes" parent="school_menu_lms_root" action="school_lms.action_school_lms_quiz" sequence="6" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_lms_attempt" name="Quiz Attempts" parent="school_menu_lms_root" action="school_lms.action_school_lms_quiz_attempt" sequence="7" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_lms_progress" name="Course Progress" parent="school_menu_lms_root" action="school_lms.action_school_lms_progress" sequence="8" groups="school.group_school_clerk"/>
+    </data>
+</nexa>

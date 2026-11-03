@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+
+        <!-- ============================================================ -->
+        <!-- Loan Product views -->
+        <!-- ============================================================ -->
+
+        <view id="view_lending_product_list" model="lending.product" type="list">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="product_type"/>
+            <field name="interest_rate"/>
+            <field name="status" widget="badge"/>
+            <field name="company_id"/>
+        </view>
+
+        <view id="view_lending_product_form" model="lending.product" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <div>
+                        <h1><field name="name" placeholder="Product Name..."/></h1>
+                        <div class="sum_title_sub"><field name="code" placeholder="Code"/></div>
+                    </div>
+                </div>
+                <group col="2">
+                    <group string="General">
+                        <field name="company_id"/>
+                        <field name="product_type"/>
+                        <field name="currency_id"/>
+                        <field name="status"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Activity">
+                        <field name="application_count"/>
+                        <field name="active_loan_count"/>
+                    </group>
+                </group>
+                <group string="Eligibility">
+                    <field name="min_principal"/>
+                    <field name="max_principal"/>
+                    <field name="min_tenor"/>
+                    <field name="max_tenor"/>
+                    <field name="tenor_unit"/>
+                    <field name="max_exposure"/>
+                    <field name="required_guarantors"/>
+                    <field name="requires_collateral"/>
+                </group>
+                <group string="Pricing">
+                    <field name="interest_rate"/>
+                    <field name="rate_type"/>
+                    <field name="interest_method"/>
+                    <field name="day_count"/>
+                    <field name="repayment_frequency"/>
+                    <field name="origination_fee"/>
+                    <field name="service_fee"/>
+                    <field name="late_fee"/>
+                    <field name="fee_cap"/>
+                    <field name="grace_period"/>
+                </group>
+                <notebook>
+                    <page string="Versions">
+                        <field name="versions"/>
+                    </page>
+                    <page string="Description">
+                        <field name="description"/>
+                        <field name="note"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <view id="view_lending_product_search" model="lending.product" type="search">
+            <field name="name"/>
+            <field name="code"/>
+            <filter name="active" string="Active" domain='[["active","=",true]]'/>
+            <filter name="inactive" string="Archived" domain='[["active","=",false]]'/>
+            <filter name="group_type" string="Product Type" group_by="product_type"/>
+            <filter name="group_company" string="Company" group_by="company_id"/>
+        </view>
+
+        <action id="action_lending_product" type="window" model="lending.product" name="Loan Products">
+            <field name="view_mode">list,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Loan Product Version views -->
+        <!-- ============================================================ -->
+
+        <view id="view_lending_product_version_list" model="lending.product.version" type="list">
+            <field name="product_id"/>
+            <field name="version"/>
+            <field name="effective_date"/>
+            <field name="interest_rate"/>
+            <field name="interest_method"/>
+            <field name="status" widget="badge"/>
+        </view>
+
+        <view id="view_lending_product_version_form" model="lending.product.version" type="form">
+            <header>
+                <button name="action_version_activate" string="Activate" type="object" class="sum_highlight" invisible="status != 'draft'"/>
+                <field name="status" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group string="Version">
+                    <field name="product_id"/>
+                    <field name="version"/>
+                    <field name="effective_date"/>
+                    <field name="status"/>
+                </group>
+                <group string="Terms">
+                    <field name="interest_rate"/>
+                    <field name="rate_type"/>
+                    <field name="interest_method"/>
+                    <field name="day_count"/>
+                    <field name="repayment_frequency"/>
+                    <field name="min_principal"/>
+                    <field name="max_principal"/>
+                    <field name="min_tenor"/>
+                    <field name="max_tenor"/>
+                </group>
+                <group string="Fees">
+                    <field name="fee_schedule"/>
+                    <field name="note"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_lending_product_version_search" model="lending.product.version" type="search">
+            <field name="product_id"/>
+            <filter name="draft" string="Draft" domain='[["status","=","draft"]]'/>
+            <filter name="active" string="Active" domain='[["status","=","active"]]'/>
+            <filter name="superseded" string="Superseded" domain='[["status","=","superseded"]]'/>
+            <filter name="group_product" string="Product" group_by="product_id"/>
+        </view>
+
+        <action id="action_lending_product_version" type="window" model="lending.product.version" name="Product Versions">
+            <field name="view_mode">list,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Loan Application views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_application_kanban" model="loan.application" type="kanban" default_group_by="state" records_draggable="false">
+        </view>
+
+        <view id="view_loan_application_list" model="loan.application" type="list">
+            <field name="name"/>
+            <field name="number"/>
+            <field name="borrower_id"/>
+            <field name="product_id"/>
+            <field name="requested_amount"/>
+            <field name="state" widget="badge"/>
+        </view>
+
+        <view id="view_loan_application_form" model="loan.application" type="form">
+            <header>
+                <button name="action_application_submit" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_application_review" string="Send for Review" type="object" invisible="state != 'submitted'"/>
+                <button name="action_application_request_approval" string="Request Approval" type="object" invisible="state != 'under_review' &amp;&amp; state != 'assessment'"/>
+                <button name="action_application_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'pending_approval'"/>
+                <button name="action_application_reject" string="Reject" type="object" invisible="state != 'submitted' &amp;&amp; state != 'under_review' &amp;&amp; state != 'pending_approval'"/>
+                <button name="action_application_cancel" string="Cancel" type="object" invisible="state != 'draft' &amp;&amp; state != 'submitted'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title">
+                    <div>
+                        <h1><field name="name" placeholder="Application..."/></h1>
+                        <div class="sum_title_sub"><field name="number" placeholder="Number"/></div>
+                    </div>
+                </div>
+                <group col="2">
+                    <group string="Application">
+                        <field name="borrower_id"/>
+                        <field name="product_id"/>
+                        <field name="version_id"/>
+                        <field name="state"/>
+                        <field name="applied_date"/>
+                    </group>
+                    <group string="Request">
+                        <field name="requested_amount"/>
+                        <field name="currency_id"/>
+                        <field name="tenor"/>
+                        <field name="purpose"/>
+                        <field name="company_id"/>
+                        <field name="officer_id"/>
+                        <field name="guarantor_count"/>
+                        <field name="collateral_required"/>
+                    </group>
+                </group>
+                <group string="Decision">
+                    <field name="decision" nolabel="1" placeholder="Credit decision rationale..."/>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_application_search" model="loan.application" type="search">
+            <field name="name"/>
+            <field name="number"/>
+            <field name="borrower_id"/>
+            <field name="product_id"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="submitted" string="Submitted" domain='[["state","=","submitted"]]'/>
+            <filter name="in_review" string="In Review" domain='[["state","in",["under_review","assessment","pending_approval"]]]'/>
+            <filter name="approved" string="Approved" domain='[["state","=","approved"]]'/>
+            <filter name="rejected" string="Rejected" domain='[["state","=","rejected"]]'/>
+            <filter name="group_product" string="Product" group_by="product_id"/>
+            <filter name="group_officer" string="Loan Officer" group_by="officer_id"/>
+            <filter name="group_state" string="Status" group_by="state"/>
+        </view>
+
+        <action id="action_loan_application" type="window" model="loan.application" name="Loan Applications">
+            <field name="view_mode">list,kanban,form</field>
+        </action>
+
+        <!-- ============================================================ -->
+        <!-- Loan Account views -->
+        <!-- ============================================================ -->
+
+        <view id="view_loan_account_list" model="loan.account" type="list">
+            <field name="name"/>
+            <field name="number"/>
+            <field name="borrower_id"/>
+            <field name="principal"/>
+            <field name="outstanding_principal"/>
+            <field name="next_due_date"/>
+            <field name="days_past_due"/>
+            <field name="status" widget="badge"/>
+        </view>
+
+        <view id="view_loan_account_form" model="loan.account" type="form">
+            <header>
+                <button name="action_account_activate" string="Activate" type="object" class="sum_highlight" invisible="status != 'pending'"/>
+                <button name="action_account_close" string="Close" type="object" invisible="status != 'active' &amp;&amp; status != 'restructured'"/>
+                <button name="action_account_writeoff" string="Write Off" type="object" invisible="status != 'active' &amp;&amp; status != 'delinquent' &amp;&amp; status != 'restructured'"/>
+                <field name="status" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title">
+                    <div>
+                        <h1><field name="name" placeholder="Loan..."/></h1>
+                        <div class="sum_title_sub"><field name="number" placeholder="Number"/></div>
+                    </div>
+                </div>
+                <group col="2">
+                    <group string="Loan">
+                        <field name="application_id"/>
+                        <field name="borrower_id"/>
+                        <field name="officer_id"/>
+                        <field name="company_id"/>
+                        <field name="status"/>
+                    </group>
+                    <group string="Balances">
+                        <field name="outstanding_principal"/>
+                        <field name="accrued_interest"/>
+                        <field name="paid_total"/>
+                        <field name="next_due_date"/>
+                        <field name="days_past_due"/>
+                    </group>
+                </group>
+                <group string="Contract Terms">
+                    <field name="product_id"/>
+                    <field name="version_id"/>
+                    <field name="principal"/>
+                    <field name="disbursed_amount"/>
+                    <field name="currency_id"/>
+                    <field name="interest_rate"/>
+                    <field name="interest_method"/>
+                    <field name="day_count"/>
+                    <field name="tenor"/>
+                    <field name="start_date"/>
+                    <field name="maturity_date"/>
+                </group>
+                <group string="Internal Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_account_search" model="loan.account" type="search">
+            <field name="name"/>
+            <field name="number"/>
+            <field name="borrower_id"/>
+            <field name="product_id"/>
+            <filter name="pending" string="Pending" domain='[["status","=","pending"]]'/>
+            <filter name="active" string="Active" domain='[["status","=","active"]]'/>
+            <filter name="delinquent" string="Delinquent" domain='[["status","=","delinquent"]]'/>
+            <filter name="overdue" string="Past Due" domain='[["days_past_due","&gt;",0]]'/>
+            <filter name="closed" string="Closed" domain='[["status","in",["closed","written_off"]]]'/>
+            <filter name="group_borrower" string="Borrower" group_by="borrower_id"/>
+            <filter name="group_product" string="Product" group_by="product_id"/>
+            <filter name="group_status" string="Status" group_by="status"/>
+        </view>
+
+        <action id="action_loan_account" type="window" model="loan.account" name="Loan Accounts">
+            <field name="view_mode">list,form</field>
+        </action>
+
+    </data>
+</nexa>

@@ -1,0 +1,4 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_vehicle_document_all,access_fleet_vehicle_document_all,fleet.vehicle.document,,1,1,1,1
+access_fleet_insurance_policy_all,access_fleet_insurance_policy_all,fleet.insurance.policy,,1,1,1,1
+access_fleet_incident_all,access_fleet_incident_all,fleet.incident,,1,1,1,1

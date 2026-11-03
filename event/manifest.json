@@ -1,0 +1,16 @@
+{
+    "name": "event",
+    "display_name": "Events",
+    "version": "1.0.0",
+    "summary": "Events and registrations",
+    "description": "Manage events, scheduling, capacity, and attendee registrations.",
+    "author": "Nexa",
+    "depends": ["base"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Marketing"
+}

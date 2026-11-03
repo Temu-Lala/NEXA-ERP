@@ -1,0 +1,16 @@
+{
+    "name": "hr_training",
+    "display_name": "HR Training",
+    "version": "1.0.0",
+    "summary": "Learning and development management",
+    "description": "Course catalog, scheduled training sessions, employee enrollment with completion tracking, and certification records with expiry alerts.",
+    "author": "Nexa",
+    "depends": ["base", "hr"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

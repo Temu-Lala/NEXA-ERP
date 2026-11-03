@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <record id="module_category_project" model="sys.module.category">
+            <field name="name">Project</field>
+            <field name="sequence">62</field>
+        </record>
+    </data>
+</nexa>

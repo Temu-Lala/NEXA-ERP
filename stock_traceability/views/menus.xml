@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+  <data>
+    <menuitem id="menu_stock_trace_events" name="Traceability Chain" parent="stock.menu_stock_traceability" action="action_trace_event" sequence="30"/>
+    <menuitem id="menu_stock_trace_expiry" name="Expiry Alerts" parent="stock.menu_stock_traceability" action="action_expiry_alert" sequence="40"/>
+  </data>
+</nexa>

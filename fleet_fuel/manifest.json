@@ -1,0 +1,16 @@
+{
+    "name": "fleet_fuel",
+    "display_name": "Fleet Fuel & Energy",
+    "version": "1.0.0",
+    "summary": "Fleet Fuel and Energy Management",
+    "description": "Manage fuel cards, fuel transactions, EV charging sessions, and fuel anomaly detection.",
+    "author": "Nexa ERP",
+    "depends": ["base", "fleet", "fleet_driver", "fleet_trip"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

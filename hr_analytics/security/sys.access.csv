@@ -1,0 +1,7 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_snapshot_user,access_snapshot_user,hr.workforce.snapshot,hr.group_hr_user,1,0,0,0
+access_snapshot_manager,access_snapshot_manager,hr.workforce.snapshot,hr.group_hr_manager,1,1,1,1
+access_position_plan_user,access_position_plan_user,hr.position.plan,hr.group_hr_user,1,1,1,0
+access_position_plan_manager,access_position_plan_manager,hr.position.plan,hr.group_hr_manager,1,1,1,1
+access_scenario_user,access_scenario_user,hr.workforce.scenario,hr.group_hr_user,1,1,1,0
+access_scenario_manager,access_scenario_manager,hr.workforce.scenario,hr.group_hr_manager,1,1,1,1

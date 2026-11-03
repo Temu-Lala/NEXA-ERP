@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_loan_credit_assessment_user,loan.credit.assessment.user,loan.credit.assessment,lending.group_lending_user,1,1,1,0
+access_loan_credit_assessment_manager,loan.credit.assessment.manager,loan.credit.assessment,lending.group_lending_manager,1,1,1,1
+access_loan_credit_factor_user,loan.credit.factor.user,loan.credit.factor,lending.group_lending_user,1,1,1,0
+access_loan_credit_factor_manager,loan.credit.factor.manager,loan.credit.factor,lending.group_lending_manager,1,1,1,1
+access_loan_approval_user,loan.approval.user,loan.approval,lending.group_lending_user,1,0,0,0
+access_loan_approval_manager,loan.approval.manager,loan.approval,lending.group_lending_manager,1,1,1,1
+access_loan_agreement_user,loan.agreement.user,loan.agreement,lending.group_lending_user,1,1,1,0
+access_loan_agreement_manager,loan.agreement.manager,loan.agreement,lending.group_lending_manager,1,1,1,1

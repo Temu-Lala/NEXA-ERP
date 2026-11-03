@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_academics_root" name="Promotion &amp; Import" parent="school.school_menu_root" sequence="40" web_icon="users" groups="school.group_school_cashier"/>
+        <menuitem id="school_menu_promotion_batch" name="Promotion Batches" parent="school_menu_academics_root" action="school_promotion.action_school_promotion_batch" sequence="1" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_promotion_line" name="Promotion Decisions" parent="school_menu_academics_root" action="school_promotion.action_school_promotion_line" sequence="2" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_import_batch" name="Bulk Imports" parent="school_menu_academics_root" action="school_promotion.action_school_import_batch" sequence="3" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_import_line" name="Import Rows" parent="school_menu_academics_root" action="school_promotion.action_school_import_line" sequence="4" groups="school.group_school_clerk"/>
+    </data>
+</nexa>

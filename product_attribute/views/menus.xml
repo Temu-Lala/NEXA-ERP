@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_product_attribute_root" name="Attributes" sequence="26"/>
+
+        <menuitem id="menu_product_attribute_lines" name="Product Attributes" parent="menu_product_attribute_root" action="product_attribute.action_product_attribute_line" sequence="10"/>
+
+        <menuitem id="menu_product_attribute_config" name="Configuration" parent="menu_product_attribute_root" sequence="20"/>
+        <menuitem id="menu_product_attribute_defs" name="Attributes" parent="menu_product_attribute_config" action="product_attribute.action_product_attribute" sequence="10"/>
+        <menuitem id="menu_product_attribute_values" name="Values" parent="menu_product_attribute_config" action="product_attribute.action_product_attribute_value" sequence="20"/>
+    </data>
+</nexa>

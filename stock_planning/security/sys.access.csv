@@ -1,0 +1,6 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_replenishment_rule_user,access_stock_replenishment_rule_user,stock.replenishment.rule,,1,1,1,1
+access_stock_replenishment_proposal_user,access_stock_replenishment_proposal_user,stock.replenishment.proposal,,1,1,1,0
+access_stock_stockout_alert_user,access_stock_stockout_alert_user,stock.stockout.alert,,1,1,1,0
+access_stock_report_metrics_user,access_stock_report_metrics_user,stock.report.metrics,,1,0,0,0
+access_stock_product_class_user,access_stock_product_class_user,stock.product.class,,1,0,0,0

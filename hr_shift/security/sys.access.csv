@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_work_shift_user,access_hr_work_shift_user,hr.work.shift,hr.group_hr_user,1,0,0,0
+access_hr_work_shift_manager,access_hr_work_shift_manager,hr.work.shift,hr.group_hr_manager,1,1,1,1
+access_hr_work_shift_assignment_user,access_hr_work_shift_assignment_user,hr.work.shift.assignment,hr.group_hr_user,1,1,1,0
+access_hr_work_shift_assignment_manager,access_hr_work_shift_assignment_manager,hr.work.shift.assignment,hr.group_hr_manager,1,1,1,1
+access_hr_attendance_correction_user,access_hr_attendance_correction_user,hr.attendance.correction,hr.group_hr_user,1,1,1,0
+access_hr_attendance_correction_manager,access_hr_attendance_correction_manager,hr.attendance.correction,hr.group_hr_manager,1,1,1,1
+access_hr_overtime_request_user,access_hr_overtime_request_user,hr.overtime.request,hr.group_hr_user,1,1,1,0
+access_hr_overtime_request_manager,access_hr_overtime_request_manager,hr.overtime.request,hr.group_hr_manager,1,1,1,1

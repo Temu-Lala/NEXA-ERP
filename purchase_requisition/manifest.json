@@ -1,0 +1,20 @@
+{
+    "name": "purchase_requisition",
+    "display_name": "Purchase Requisitions",
+    "version": "1.0.0",
+    "summary": "Purchase requisitions, budget checks and status history",
+    "description": "Internal requisition intake for the Procure-to-Pay flow: requisitions with line items, budget-availability checks and full status history. Reuses the shared approval engine; does not own stock or accounting records.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "purchase"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "data/purchase_requisition_sequence_data.xml",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Purchase"
+}

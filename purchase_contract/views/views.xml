@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Contract / framework agreement master -->
+        <view id="view_purchase_contract_list" model="purchase.contract" type="list">
+            <field name="name" string="Reference"/>
+            <field name="title" string="Title"/>
+            <field name="partner_id" string="Supplier"/>
+            <field name="contract_type" string="Type"/>
+            <field name="date_start" string="Effective"/>
+            <field name="date_end" string="Expiry"/>
+            <field name="value_ceiling" string="Ceiling"/>
+            <field name="value_used" string="Used"/>
+            <field name="version" string="Version"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_contract_form" model="purchase.contract" type="form">
+            <header>
+                <button name="action_submit_approval" string="Submit for Approval" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'pending_approval'"/>
+                <button name="action_reject" string="Reject" type="object" invisible="state != 'pending_approval'"/>
+                <button name="action_suspend" string="Suspend" type="object" invisible="state not in ('active', 'expiring', 'renewed')"/>
+                <button name="action_resume" string="Resume" type="object" invisible="state != 'suspended'"/>
+                <button name="action_renew" string="Renew" type="object" invisible="state not in ('active', 'expiring', 'expired', 'renewed')"/>
+                <button name="action_amend" string="Record Amendment" type="object" invisible="state not in ('active', 'expiring', 'renewed', 'suspended', 'expired')"/>
+                <button name="action_validate_price" string="Validate Price" type="object" invisible="state == 'draft'"/>
+                <button name="action_record_consumption" string="Record Consumption" type="object" invisible="state not in ('active', 'expiring', 'renewed', 'suspended')"/>
+                <button name="action_close" string="Close" type="object" invisible="state in ('draft', 'closed', 'cancelled')"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state in ('closed', 'cancelled')"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. CON/00001"/></h1></div>
+                <group>
+                    <group string="Agreement">
+                        <field name="title" string="Title"/>
+                        <field name="contract_type" string="Contract Type"/>
+                        <field name="partner_id" string="Supplier"/>
+                        <field name="owner_id" string="Contract Owner"/>
+                        <field name="company_id" string="Contracting Entity"/>
+                        <field name="category" string="Category"/>
+                        <field name="currency" string="Currency"/>
+                        <field name="parent_contract_id" string="Renewed From"/>
+                        <field name="version" string="Version"/>
+                    </group>
+                    <group string="Term &amp; Renewal">
+                        <field name="date_start" string="Effective Date"/>
+                        <field name="date_end" string="Expiry Date"/>
+                        <field name="renewal_notice" string="Renewal Notice (days)"/>
+                        <field name="auto_renew" string="Auto Renew"/>
+                        <field name="approval_ref" string="Approval"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Value Ceiling">
+                        <field name="value_ceiling" string="Value Ceiling"/>
+                        <field name="value_committed" string="Committed"/>
+                        <field name="value_invoiced" string="Invoiced"/>
+                        <field name="value_credit" string="Credited"/>
+                        <field name="value_used" string="Used (net)"/>
+                    </group>
+                    <group string="Commitments">
+                        <field name="min_commitment" string="Minimum Commitment"/>
+                        <field name="max_quantity" string="Max Quantity"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Price Schedules">
+                        <field name="price_lines" string="Price Schedules">
+                            <view type="list">
+                                <field name="product_id" string="Product"/>
+                                <field name="category" string="Category"/>
+                                <field name="uom" string="Unit"/>
+                                <field name="quantity_from" string="Qty From"/>
+                                <field name="quantity_to" string="Qty To"/>
+                                <field name="unit_price" string="Unit Price"/>
+                                <field name="currency" string="Currency"/>
+                                <field name="indexation_pct" string="Indexation %"/>
+                                <field name="valid_from" string="Valid From"/>
+                                <field name="valid_to" string="Valid To"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Obligations">
+                        <field name="obligations" string="Obligations">
+                            <view type="list">
+                                <field name="name" string="Obligation"/>
+                                <field name="obligation_type" string="Type"/>
+                                <field name="target" string="Target"/>
+                                <field name="frequency" string="Frequency"/>
+                                <field name="due_date" string="Next Due"/>
+                                <field name="monitoring_state" string="Status"/>
+                                <field name="last_reviewed" string="Last Reviewed"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Consumption">
+                        <field name="consumptions" string="Consumption Ledger">
+                            <view type="list">
+                                <field name="date" string="Date"/>
+                                <field name="kind" string="Movement"/>
+                                <field name="order_ref" string="Purchase Order"/>
+                                <field name="product_id" string="Product"/>
+                                <field name="reference" string="Source Ref"/>
+                                <field name="quantity" string="Quantity"/>
+                                <field name="unit_price" string="Unit Price"/>
+                                <field name="amount" string="Amount"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Amendments">
+                        <field name="versions" string="Amendment History">
+                            <view type="list">
+                                <field name="version" string="Version"/>
+                                <field name="change_summary" string="Change Summary"/>
+                                <field name="changed_by" string="Changed By"/>
+                                <field name="changed_on" string="Changed On"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Terms">
+                        <field name="payment_terms" string="Payment Terms"/>
+                        <field name="warranty" string="Warranty"/>
+                        <field name="penalties" string="Penalties"/>
+                        <field name="sla_text" string="Service Levels"/>
+                    </page>
+                    <page string="Notes &amp; History">
+                        <field name="notes" string="Notes"/>
+                        <field name="history" string="History"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_contract" type="window" model="purchase.contract" name="Contracts" view_mode="list,form"/>
+
+        <!-- Price schedules (standalone view) -->
+        <view id="view_purchase_contract_price_list" model="purchase.contract.price.schedule" type="list">
+            <field name="contract_id" string="Contract"/>
+            <field name="product_id" string="Product"/>
+            <field name="category" string="Category"/>
+            <field name="quantity_from" string="Qty From"/>
+            <field name="quantity_to" string="Qty To"/>
+            <field name="unit_price" string="Unit Price"/>
+            <field name="currency" string="Currency"/>
+            <field name="indexation_pct" string="Indexation %"/>
+        </view>
+        <view id="view_purchase_contract_price_form" model="purchase.contract.price.schedule" type="form">
+            <sheet>
+                <group>
+                    <group string="Scope">
+                        <field name="contract_id" string="Contract"/>
+                        <field name="product_id" string="Product"/>
+                        <field name="category" string="Category"/>
+                        <field name="uom" string="Unit"/>
+                    </group>
+                    <group string="Rate">
+                        <field name="quantity_from" string="Qty From"/>
+                        <field name="quantity_to" string="Qty To"/>
+                        <field name="unit_price" string="Unit Price"/>
+                        <field name="currency" string="Currency"/>
+                        <field name="indexation_pct" string="Indexation %"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="valid_from" string="Valid From"/>
+                    <field name="valid_to" string="Valid To"/>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_contract_price_schedule" type="window" model="purchase.contract.price.schedule" name="Price Schedules" view_mode="list,form"/>
+
+        <!-- Obligations -->
+        <view id="view_purchase_contract_obligation_list" model="purchase.contract.obligation" type="list">
+            <field name="contract_id" string="Contract"/>
+            <field name="name" string="Obligation"/>
+            <field name="obligation_type" string="Type"/>
+            <field name="target" string="Target"/>
+            <field name="frequency" string="Frequency"/>
+            <field name="due_date" string="Next Due"/>
+            <field name="monitoring_state" string="Status"/>
+        </view>
+        <view id="view_purchase_contract_obligation_form" model="purchase.contract.obligation" type="form">
+            <sheet>
+                <group>
+                    <group string="Obligation">
+                        <field name="contract_id" string="Contract"/>
+                        <field name="name" string="Obligation"/>
+                        <field name="obligation_type" string="Type"/>
+                        <field name="target" string="Target"/>
+                        <field name="frequency" string="Frequency"/>
+                    </group>
+                    <group string="Monitoring">
+                        <field name="due_date" string="Next Due"/>
+                        <field name="monitoring_state" string="Status"/>
+                        <field name="last_reviewed" string="Last Reviewed"/>
+                    </group>
+                </group>
+                <field name="description" string="Description"/>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_contract_obligation" type="window" model="purchase.contract.obligation" name="Contract Obligations" view_mode="list,form"/>
+
+        <!-- Consumption ledger (append-only) -->
+        <view id="view_purchase_contract_consumption_list" model="purchase.contract.consumption" type="list">
+            <field name="contract_id" string="Contract"/>
+            <field name="date" string="Date"/>
+            <field name="kind" string="Movement"/>
+            <field name="order_ref" string="Purchase Order"/>
+            <field name="reference" string="Source Ref"/>
+            <field name="quantity" string="Quantity"/>
+            <field name="unit_price" string="Unit Price"/>
+            <field name="amount" string="Amount"/>
+        </view>
+        <view id="view_purchase_contract_consumption_form" model="purchase.contract.consumption" type="form">
+            <sheet>
+                <group>
+                    <group string="Movement">
+                        <field name="contract_id" string="Contract"/>
+                        <field name="kind" string="Movement"/>
+                        <field name="date" string="Date"/>
+                        <field name="reference" string="Source Ref"/>
+                    </group>
+                    <group string="Amounts">
+                        <field name="order_ref" string="Purchase Order"/>
+                        <field name="product_id" string="Product"/>
+                        <field name="quantity" string="Quantity"/>
+                        <field name="unit_price" string="Unit Price"/>
+                        <field name="amount" string="Amount"/>
+                    </group>
+                </group>
+                <field name="note" string="Note"/>
+                <field name="active" string="Active"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_contract_consumption" type="window" model="purchase.contract.consumption" name="Consumption Ledger" view_mode="list,form"/>
+
+        <!-- Amendment versions (append-only) -->
+        <view id="view_purchase_contract_version_list" model="purchase.contract.version" type="list">
+            <field name="contract_id" string="Contract"/>
+            <field name="version" string="Version"/>
+            <field name="title" string="Title"/>
+            <field name="change_summary" string="Change Summary"/>
+            <field name="changed_by" string="Changed By"/>
+            <field name="changed_on" string="Changed On"/>
+        </view>
+        <view id="view_purchase_contract_version_form" model="purchase.contract.version" type="form">
+            <sheet>
+                <group>
+                    <group string="Version">
+                        <field name="contract_id" string="Contract"/>
+                        <field name="version" string="Version"/>
+                        <field name="title" string="Title"/>
+                    </group>
+                    <group string="Change">
+                        <field name="changed_by" string="Changed By"/>
+                        <field name="changed_on" string="Changed On"/>
+                    </group>
+                </group>
+                <field name="change_summary" string="Change Summary"/>
+                <field name="snapshot" string="Snapshot"/>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_contract_version" type="window" model="purchase.contract.version" name="Amendments" view_mode="list,form"/>
+    </data>
+</nexa>

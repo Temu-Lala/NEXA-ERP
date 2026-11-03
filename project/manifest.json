@@ -1,0 +1,21 @@
+{
+    "name": "project",
+    "display_name": "Project",
+    "version": "1.0.0",
+    "summary": "Projects, tasks, milestones and lifecycle governance",
+    "description": "Core project engine for the Project Management platform. Manages the project lifecycle (draft to archived with approval gating and separation of duties), WBS phases, milestones, team membership, task workflows with dependency-aware completion, and derived portfolio signals. Progress, budget consumption and health are computed from real execution data by a daily recompute engine, while an authorized manager may override health with a recorded rationale. Every state change writes an audit status-history row. Issues and projects carry a watcher thread, so assignees, commenters and anyone following a record are told what happened. Costs, commitments and financials remain owned by Finance; this module consumes them as references and never invents them.",
+    "author": "Nexa",
+    "depends": ["base", "mail"],
+    "data": [
+        "security/sys.access.csv",
+        "data/project_category.xml",
+        "data/project_sequence_data.xml",
+        "data/project_agile_data.xml",
+        "data/project_health_cron.xml",
+        "data/project_sprint_cron.xml",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Project"
+}

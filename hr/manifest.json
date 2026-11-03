@@ -1,0 +1,36 @@
+{
+    "name": "hr",
+    "display_name": "Human Resources",
+    "version": "1.0.0",
+    "summary": "Employee records, lifecycle workflow, documents, departments and job positions",
+    "description": "Employees with profile, contacts, employment history, document register with expiry tracking and a guarded lifecycle workflow (draft to terminated), plus departments and job positions with live headcounts.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "contacts"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/hr_employee_list_views.xml",
+        "views/hr_employee_form_views.xml",
+        "views/hr_employee_kanban_views.xml",
+        "views/hr_employee_search_views.xml",
+        "views/hr_department_list_views.xml",
+        "views/hr_department_form_views.xml",
+        "views/hr_job_list_views.xml",
+        "views/hr_job_form_views.xml",
+        "views/hr_reporting_views.xml",
+        "views/hr_employee_document_views.xml",
+        "views/hr_leave_views.xml",
+        "views/hr_attendance_views.xml",
+        "views/hr_applicant_views.xml",
+        "views/hr_contract_views.xml",
+        "views/hr_employee_actions.xml",
+        "views/hr_department_actions.xml",
+        "views/hr_job_actions.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Human Resources"
+}

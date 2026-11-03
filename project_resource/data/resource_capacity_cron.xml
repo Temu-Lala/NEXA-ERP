@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_project_resource_capacity" model="sys.cron">
+            <field name="name">Project: Recompute resource over-allocation</field>
+            <field name="code">project.resource.capacity</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

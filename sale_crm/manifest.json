@@ -1,0 +1,22 @@
+{
+    "name": "sale_crm",
+    "display_name": "Sale CRM",
+    "version": "1.0.0",
+    "description": "Quotation bridge between CRM and Sales",
+    "summary": "Quotation bridge between CRM and Sales",
+    "author": "Nexa",
+    "depends": [
+        "crm",
+        "sale"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/crm_opportunity_to_quotation_form_views.xml",
+        "views/crm_lead_form_inherit_views.xml",
+        "views/sale_order_form_inherit_views.xml",
+        "views/crm_team_form_inherit_views.xml"
+    ],
+    "application": false,
+    "auto_install": true,
+    "category": "CRM"
+}

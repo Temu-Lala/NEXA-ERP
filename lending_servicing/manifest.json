@@ -1,0 +1,17 @@
+{
+  "name": "lending_servicing",
+  "display_name": "Lending - Servicing",
+  "version": "1.0.0",
+  "category": "Lending",
+  "summary": "Loan repayment schedules, installments, accruals and controlled adjustments",
+  "description": "Companion for the lending module: versioned repayment schedules with per-installment contractual rows (principal, interest, fees, penalties and paid/balance components), interest accrual records kept separate from contractual interest, and controlled adjustment/rescheduling records. The deterministic schedule data model persists the approved schedule; recalculations happen only through a controlled restructure version, preserving prior versions.",
+  "author": "Nexa",
+  "application": false,
+  "installable": true,
+  "depends": ["base", "lending"],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ]
+}

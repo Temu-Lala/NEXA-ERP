@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hr_employee_graph_department" model="hr.employee" type="graph" chart="bar" string="Headcount by Department">
+            <field name="department_id" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <view id="view_hr_employee_graph_state" model="hr.employee" type="graph" chart="pie" string="Employees by Status">
+            <field name="state" type="row"/>
+            <field name="id" type="measure"/>
+        </view>
+        <view id="view_hr_employee_pivot" model="hr.employee" type="pivot" string="Workforce Matrix">
+            <field name="department_id" type="row"/>
+            <field name="state" type="col"/>
+            <field name="id" type="measure"/>
+        </view>
+        <action id="action_hr_employee_reporting" type="window" model="hr.employee" name="Workforce Analytics" view_mode="graph,pivot"/>
+    </data>
+</nexa>

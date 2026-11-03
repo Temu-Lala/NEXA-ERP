@@ -1,0 +1,17 @@
+{
+  "name": "lending_transactions",
+  "display_name": "Lending - Transactions",
+  "version": "1.0.0",
+  "category": "Lending",
+  "summary": "Loan disbursements, repayments, payment allocation and reversals",
+  "description": "Companion for the lending module: disbursement requests with gross/net breakdown, provider references and idempotency keys; repayment capture with received/confirmed/unallocated separation; installment-level payment allocation across fees, penalties, interest and principal; and reversals that correct posted history immutably. Money movements carry accounting posting references but the loan subledger remains authoritative.",
+  "author": "Nexa",
+  "application": false,
+  "installable": true,
+  "depends": ["base", "lending", "lending_servicing"],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ]
+}

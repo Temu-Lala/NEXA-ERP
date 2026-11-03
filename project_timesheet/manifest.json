@@ -1,0 +1,19 @@
+{
+    "name": "project_timesheet",
+    "display_name": "Project Timesheets",
+    "version": "1.0.0",
+    "summary": "Weekly timesheets, effort entries, independent approval and locking",
+    "description": "Record employee effort against project tasks on a weekly timesheet, classify entries billable or non-billable, and route each sheet through an independent review (draft to submitted to approved/rejected) with separation of duties so a submitter never approves their own time. Approval derives a task's spent hours and locks the sheet; a controlled reopen re-derives them so effort figures never drift. Payroll and invoicing remain owned by HR and Accounting; this module only records and rolls up effort.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "project"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Project"
+}

@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_appraisal_cycle_user,access_hr_appraisal_cycle_user,hr.appraisal.cycle,,1,1,1,1
+access_hr_appraisal_user,access_hr_appraisal_user,hr.appraisal,,1,1,1,1
+access_hr_appraisal_goal_user,access_hr_appraisal_goal_user,hr.appraisal.goal,,1,1,1,1
+access_hr_appraisal_line_user,access_hr_appraisal_line_user,hr.appraisal.line,,1,1,1,1

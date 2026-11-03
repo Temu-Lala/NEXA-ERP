@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_project_template_root" name="Templates" sequence="70"/>
+        <menuitem id="menu_project_templates" name="Project Templates" parent="menu_project_template_root" action="project_template.action_project_template" sequence="10"/>
+    </data>
+</nexa>

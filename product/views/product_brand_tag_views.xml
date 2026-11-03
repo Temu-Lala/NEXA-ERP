@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_product_brand_list" model="product.brand" type="list">
+            <field name="name" string="Brand"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_product_brand_form" model="product.brand" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Brand"/>
+                    <field name="logo" string="Logo"/>
+                    <field name="active" string="Active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_product_brand" type="window" model="product.brand" name="Brands" view_mode="list,form"/>
+
+        <view id="view_product_tag_list" model="product.tag" type="list">
+            <field name="name" string="Tag"/>
+            <field name="color" string="Color"/>
+        </view>
+        <view id="view_product_tag_form" model="product.tag" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Tag"/>
+                    <field name="color" string="Color"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_product_tag" type="window" model="product.tag" name="Tags" view_mode="list,form"/>
+    </data>
+</nexa>

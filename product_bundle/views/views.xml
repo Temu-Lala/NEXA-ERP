@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_product_bundle_list" model="product.bundle" type="list">
+            <field name="name" string="Bundle"/>
+            <field name="product_id" string="Bundle Product"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_product_bundle_form" model="product.bundle" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Bundle Name"/>
+                    <field name="product_id" string="Bundle Product"/>
+                    <field name="active" string="Active"/>
+                </group>
+                <field name="note" string="Note" placeholder="Fulfillment and pricing notes..."/>
+                <separator string="Components"/>
+                <field name="lines" nolabel="1"/>
+            </sheet>
+        </view>
+        <action id="action_product_bundle" type="window" model="product.bundle" name="Bundles" view_mode="list,form"/>
+
+        <view id="view_product_bundle_line_list" model="product.bundle.line" type="list">
+            <field name="bundle_id" string="Bundle"/>
+            <field name="product_id" string="Component"/>
+            <field name="qty" string="Quantity"/>
+            <field name="sequence" string="Sequence"/>
+        </view>
+        <view id="view_product_bundle_line_form" model="product.bundle.line" type="form">
+            <sheet>
+                <group>
+                    <field name="bundle_id" string="Bundle"/>
+                    <field name="product_id" string="Component"/>
+                    <field name="qty" string="Quantity"/>
+                    <field name="sequence" string="Sequence"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_product_bundle_line" type="window" model="product.bundle.line" name="Bundle Components" view_mode="list,form"/>
+    </data>
+</nexa>

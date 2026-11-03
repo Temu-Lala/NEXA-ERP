@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_loan_delinquency_snapshot_user,loan.delinquency.snapshot.user,loan.delinquency.snapshot,lending.group_lending_user,1,1,1,0
+access_loan_delinquency_snapshot_manager,loan.delinquency.snapshot.manager,loan.delinquency.snapshot,lending.group_lending_manager,1,1,1,1
+access_loan_collection_case_user,loan.collection.case.user,loan.collection.case,lending.group_lending_user,1,1,1,0
+access_loan_collection_case_manager,loan.collection.case.manager,loan.collection.case,lending.group_lending_manager,1,1,1,1
+access_loan_collection_action_user,loan.collection.action.user,loan.collection.action,lending.group_lending_user,1,1,1,0
+access_loan_collection_action_manager,loan.collection.action.manager,loan.collection.action,lending.group_lending_manager,1,1,1,1
+access_loan_promise_to_pay_user,loan.promise.to.pay.user,loan.promise.to.pay,lending.group_lending_user,1,1,1,0
+access_loan_promise_to_pay_manager,loan.promise.to.pay.manager,loan.promise.to.pay,lending.group_lending_manager,1,1,1,1

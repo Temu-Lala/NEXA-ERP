@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Work order history (append-only audit trail) -->
+        <view id="view_maint_wo_history_list" model="maintenance.wo.history" type="list">
+            <field name="work_order_id" string="Work Order"/>
+            <field name="event" string="Event"/>
+            <field name="from_state" string="From State"/>
+            <field name="to_state" string="To State"/>
+            <field name="changed_by" string="Changed By"/>
+            <field name="changed_at" string="Changed At"/>
+        </view>
+        <view id="view_maint_wo_history_form" model="maintenance.wo.history" type="form">
+            <sheet>
+                <group>
+                    <group string="Event">
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="event" string="Event"/>
+                        <field name="changed_by" string="Changed By"/>
+                        <field name="changed_at" string="Changed At"/>
+                    </group>
+                    <group string="Transition">
+                        <field name="from_state" string="From State"/>
+                        <field name="to_state" string="To State"/>
+                    </group>
+                </group>
+                <group string="Note">
+                    <field name="note" string="Note"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_maint_wo_history" type="window" model="maintenance.wo.history" name="Work Order History" view_mode="list,form"/>
+
+        <!-- Reliability metrics (MTBF / MTTR / availability snapshots) -->
+        <view id="view_maint_reliability_metric_list" model="maintenance.reliability.metric" type="list">
+            <field name="asset_id" string="Asset"/>
+            <field name="metric_period" string="Period"/>
+            <field name="period_start" string="Period Start"/>
+            <field name="period_end" string="Period End"/>
+            <field name="mtbf" string="MTBF (hrs)"/>
+            <field name="mttr" string="MTTR (hrs)"/>
+            <field name="availability" string="Availability"/>
+            <field name="failure_count" string="Failures"/>
+            <field name="pm_compliance_pct" string="PM Compliance (%)"/>
+        </view>
+        <view id="view_maint_reliability_metric_form" model="maintenance.reliability.metric" type="form">
+            <sheet>
+                <group>
+                    <group string="Scope">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="metric_period" string="Period"/>
+                        <field name="period_start" string="Period Start"/>
+                        <field name="period_end" string="Period End"/>
+                        <field name="computed_at" string="Computed At"/>
+                    </group>
+                    <group string="Reliability">
+                        <field name="total_operating_hours" string="Total Operating Hours"/>
+                        <field name="failure_count" string="Failure Count"/>
+                        <field name="mtbf" string="MTBF (hrs)"/>
+                        <field name="total_repair_hours" string="Total Repair Hours"/>
+                        <field name="mttr" string="MTTR (hrs)"/>
+                        <field name="availability" string="Availability"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Downtime">
+                        <field name="planned_downtime_hours" string="Planned Downtime (hrs)"/>
+                        <field name="unplanned_downtime_hours" string="Unplanned Downtime (hrs)"/>
+                        <field name="pm_compliance_pct" string="PM Compliance (%)"/>
+                    </group>
+                    <group string="Load">
+                        <field name="backlog_hours" string="Backlog Hours"/>
+                        <field name="emergency_wo_count" string="Emergency WO Count"/>
+                        <field name="repeat_failure_count" string="Repeat Failure Count"/>
+                        <field name="total_maintenance_cost" string="Total Maintenance Cost"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" string="Notes"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_maint_reliability_metric" type="window" model="maintenance.reliability.metric" name="Reliability Metrics" view_mode="list,form"/>
+
+        <!-- Root cause analysis -->
+        <view id="view_maint_rca_list" model="maintenance.rca" type="list">
+            <field name="name" string="Reference"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="method" string="Method"/>
+            <field name="state" string="Status"/>
+            <field name="investigated_by" string="Investigated By"/>
+            <field name="findings_date" string="Findings Date"/>
+        </view>
+        <view id="view_maint_rca_form" model="maintenance.rca" type="form">
+            <header>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="RCA-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Investigation">
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="asset_id" string="Asset"/>
+                        <field name="method" string="Method"/>
+                        <field name="investigated_by" string="Investigated By"/>
+                        <field name="start_date" string="Start Date"/>
+                        <field name="findings_date" string="Findings Date"/>
+                    </group>
+                    <group string="Summary">
+                        <field name="failure_summary" string="Failure Summary"/>
+                        <field name="root_cause_summary" string="Root Cause Summary"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Five Why">
+                        <group>
+                            <field name="why_level1" string="Why 1"/>
+                            <field name="why_level2" string="Why 2"/>
+                            <field name="why_level3" string="Why 3"/>
+                            <field name="why_level4" string="Why 4"/>
+                            <field name="why_level5" string="Why 5"/>
+                        </group>
+                        <group string="Contributing Factors">
+                            <field name="contributing_factors" string="Contributing Factors"/>
+                        </group>
+                        <group string="Immediate Correction">
+                            <field name="immediate_correction" string="Immediate Correction"/>
+                        </group>
+                    </page>
+                    <page string="Corrective Actions">
+                        <field name="corrective_actions" string="Corrective Actions">
+                            <field name="description"/>
+                            <field name="state"/>
+                            <field name="assigned_to"/>
+                            <field name="due_date"/>
+                        </field>
+                    </page>
+                    <page string="Linked Work Orders">
+                        <field name="linked_work_orders" string="Linked Work Orders">
+                            <field name="work_order_id"/>
+                            <field name="relationship"/>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_rca" type="window" model="maintenance.rca" name="Root Cause Analysis" view_mode="list,form"/>
+
+        <!-- Corrective actions -->
+        <view id="view_maint_corrective_action_list" model="maintenance.corrective.action" type="list">
+            <field name="rca_id" string="RCA"/>
+            <field name="description" string="Description"/>
+            <field name="state" string="Status"/>
+            <field name="assigned_to" string="Assigned To"/>
+            <field name="due_date" string="Due Date"/>
+            <field name="completed_date" string="Completed Date"/>
+        </view>
+        <view id="view_maint_corrective_action_form" model="maintenance.corrective.action" type="form">
+            <header>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Action">
+                        <field name="rca_id" string="RCA"/>
+                        <field name="sequence" string="Sequence"/>
+                        <field name="description" string="Description"/>
+                        <field name="assigned_to" string="Assigned To"/>
+                    </group>
+                    <group string="Progress">
+                        <field name="state" string="Status"/>
+                        <field name="due_date" string="Due Date"/>
+                        <field name="completed_date" string="Completed Date"/>
+                        <field name="verified_by" string="Verified By"/>
+                        <field name="verified_date" string="Verified Date"/>
+                    </group>
+                </group>
+                <group string="Evidence">
+                    <field name="evidence" string="Evidence"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes" string="Notes"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_maint_corrective_action" type="window" model="maintenance.corrective.action" name="Corrective Actions" view_mode="list,form"/>
+
+        <!-- RCA / work order links -->
+        <view id="view_maint_rca_wo_link_list" model="maintenance.rca.wo.link" type="list">
+            <field name="rca_id" string="RCA"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="relationship" string="Relationship"/>
+        </view>
+        <view id="view_maint_rca_wo_link_form" model="maintenance.rca.wo.link" type="form">
+            <sheet>
+                <group>
+                    <field name="rca_id" string="RCA"/>
+                    <field name="work_order_id" string="Work Order"/>
+                    <field name="relationship" string="Relationship"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes" string="Notes"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_maint_rca_wo_link" type="window" model="maintenance.rca.wo.link" name="RCA Work Order Links" view_mode="list,form"/>
+
+        <!-- Cost summaries -->
+        <view id="view_maint_cost_summary_list" model="maintenance.cost.summary" type="list">
+            <field name="asset_id" string="Asset"/>
+            <field name="metric_period" string="Period Type"/>
+            <field name="period_start" string="Period Start"/>
+            <field name="period_end" string="Period End"/>
+            <field name="total_cost" string="Total Cost"/>
+            <field name="work_order_count" string="WO Count"/>
+        </view>
+        <view id="view_maint_cost_summary_form" model="maintenance.cost.summary" type="form">
+            <sheet>
+                <group>
+                    <group string="Scope">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="metric_period" string="Period Type"/>
+                        <field name="period_start" string="Period Start"/>
+                        <field name="period_end" string="Period End"/>
+                        <field name="computed_at" string="Computed At"/>
+                        <field name="work_order_count" string="Work Order Count"/>
+                    </group>
+                    <group string="By Resource">
+                        <field name="labor_cost" string="Labor Cost"/>
+                        <field name="parts_cost" string="Parts Cost"/>
+                        <field name="contractor_cost" string="Contractor Cost"/>
+                        <field name="other_cost" string="Other Cost"/>
+                        <field name="total_cost" string="Total Cost"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="By Type">
+                        <field name="corrective_cost" string="Corrective Cost"/>
+                        <field name="preventive_cost" string="Preventive Cost"/>
+                        <field name="emergency_cost" string="Emergency Cost"/>
+                        <field name="warranty_recovery" string="Warranty Recovery"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" string="Notes"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_maint_cost_summary" type="window" model="maintenance.cost.summary" name="Maintenance Cost Summaries" view_mode="list,form"/>
+    </data>
+</nexa>

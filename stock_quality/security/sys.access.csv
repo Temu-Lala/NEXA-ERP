@@ -1,0 +1,4 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_quality_plan_user,access_stock_quality_plan_user,stock.quality.plan,,1,1,1,1
+access_stock_quality_check_user,access_stock_quality_check_user,stock.quality.check,,1,1,1,1
+access_stock_quality_hold_user,access_stock_quality_hold_user,stock.quality.hold,,1,1,1,1

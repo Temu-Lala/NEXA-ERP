@@ -1,0 +1,17 @@
+{
+    "name": "maintenance_equipment",
+    "display_name": "Maintenance Plans & Meters",
+    "version": "1.1.0",
+    "summary": "Preventive maintenance plans, usage meters and readings",
+    "description": "Define preventive maintenance plans triggered by calendar interval, operating hours, distance, usage count, condition threshold or a one-time schedule; track usage meters with timestamped readings and record last completion and next due dates.",
+    "author": "Nexa",
+    "depends": ["base", "maintenance"],
+    "data": [
+        "security/sys.access.csv",
+        "data/maint_cron_data.xml",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

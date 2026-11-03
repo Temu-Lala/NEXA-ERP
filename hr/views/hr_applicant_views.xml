@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hr_applicant_kanban" model="hr.applicant" type="kanban" default_group_by="stage" records_draggable="1">
+        </view>
+        <view id="view_hr_applicant_list" model="hr.applicant" type="list">
+            <field name="name" string="Applicant"/>
+            <field name="job_id" string="Job Position"/>
+            <field name="department_id"/>
+            <field name="email" widget="email"/>
+            <field name="phone" widget="phone"/>
+            <field name="stage" string="Stage" widget="badge"/>
+        </view>
+        <view id="view_hr_applicant_form" model="hr.applicant" type="form">
+            <header>
+                <field name="stage" widget="statusbar" options="{'clickable': '1'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title">
+                    <div>
+                        <h1><field name="name" placeholder="Applicant Name..."/></h1>
+                        <div class="sum_title_sub"><field name="job_id" placeholder="Job Position"/></div>
+                    </div>
+                </div>
+                <group col="2">
+                    <group string="Application">
+                        <field name="job_id" string="Job Position"/>
+                        <field name="department_id"/>
+                        <field name="source"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Contact">
+                        <field name="email" widget="email"/>
+                        <field name="phone" widget="phone"/>
+                        <field name="employee_id" string="Hired Employee"/>
+                    </group>
+                </group>
+                <group string="Screening">
+                    <field name="consent_given"/>
+                    <field name="consent_date"/>
+                    <field name="duplicate_detected"/>
+                    <field name="duplicate_of_id"/>
+                    <field name="screening_note" nolabel="1"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1" placeholder="Interview notes, feedback..."/>
+                </group>
+            </sheet>
+            <chatter/>
+        </view>
+        <view id="view_hr_applicant_search" model="hr.applicant" type="search">
+            <field name="name" string="Applicant"/>
+            <field name="job_id" string="Job Position"/>
+            <field name="email"/>
+            <filter name="new" string="New" domain='[["stage","=","new"]]'/>
+            <filter name="interview" string="Interview" domain='[["stage","=","interview"]]'/>
+            <filter name="hired" string="Hired" domain='[["stage","=","hired"]]'/>
+            <filter name="rejected" string="Rejected" domain='[["stage","=","rejected"]]'/>
+            <filter name="archived" string="Archived" domain='[["active","=",false]]'/>
+            <filter name="duplicates" string="Possible Duplicates" domain='[["duplicate_detected","=",true]]'/>
+            <filter name="no_consent" string="Missing Consent" domain='[["consent_given","=",false]]'/>
+            <filter name="group_job" string="Job Position" group_by="job_id"/>
+            <filter name="group_stage" string="Stage" group_by="stage"/>
+        </view>
+        <action id="action_hr_applicant" type="window" model="hr.applicant" name="Applications" view_mode="kanban,list,form"/>
+    </data>
+</nexa>

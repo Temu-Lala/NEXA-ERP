@@ -1,0 +1,20 @@
+{
+    "name": "school_payments",
+    "display_name": "School Payments & Penalties",
+    "version": "1.0.0",
+    "summary": "Fee bills, payment receipts, penalties, and privileged penalty waivers",
+    "description": "Transactional payment layer for the school system: issues periodic fee bills with discount and penalty applied, records payments and receipts by cashiers, tracks accumulated late-payment penalties, and supports partial or full penalty waivers as a Manager/Director-only privilege with recorded approver and reason. Balance and paid status are maintained per bill.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_fees"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

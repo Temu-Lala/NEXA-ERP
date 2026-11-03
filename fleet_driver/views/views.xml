@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ============================================================ -->
+        <!-- Driver Views & Actions                                       -->
+        <!-- ============================================================ -->
+        <view id="view_fleet_driver_list" model="fleet.driver" type="list">
+            <field name="driver_code" string="Code"/>
+            <field name="name" string="Name"/>
+            <field name="phone" string="Phone"/>
+            <field name="license_number" string="License Number"/>
+            <field name="license_class" string="Class"/>
+            <field name="license_expiry_date" string="License Expiry"/>
+            <field name="medical_status" string="Medical Status"/>
+            <field name="status" string="Status"/>
+            <field name="depot_id" string="Depot"/>
+            <field name="active" string="Active"/>
+        </view>
+
+        <view id="view_fleet_driver_form" model="fleet.driver" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="driver_code"/>
+                    <field name="user_id"/>
+                    <field name="status"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="depot_id"/>
+                    <field name="shift_type"/>
+                </group>
+                <group string="License &amp; Credentials">
+                    <field name="license_number"/>
+                    <field name="license_class"/>
+                    <field name="license_issue_date"/>
+                    <field name="license_expiry_date"/>
+                    <field name="license_verified"/>
+                    <field name="medical_status"/>
+                    <field name="medical_expiry_date"/>
+                    <field name="safety_induction_date"/>
+                </group>
+                <group string="Statistics">
+                    <field name="total_trips"/>
+                    <field name="incident_count"/>
+                    <field name="active"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_driver_search" model="fleet.driver" type="search">
+            <field name="name" string="Name"/>
+            <field name="driver_code" string="Driver Code"/>
+            <field name="license_number" string="License Number"/>
+            <field name="phone" string="Phone"/>
+            <filter name="active_drivers" string="Active" domain='[["status","=","active"]]'/>
+            <filter name="on_leave" string="On Leave" domain='[["status","=","on_leave"]]'/>
+            <filter name="suspended" string="Suspended" domain='[["status","=","suspended"]]'/>
+            <filter name="medical_fit" string="Fit" domain='[["medical_status","=","fit"]]'/>
+            <filter name="group_status" string="Status" group_by="status"/>
+            <filter name="group_depot" string="Depot" group_by="depot_id"/>
+        </view>
+
+        <action id="action_fleet_driver" type="window" model="fleet.driver" name="Drivers" view_mode="list,form"/>
+
+        <!-- ============================================================ -->
+        <!-- Driver Qualifications                                        -->
+        <!-- ============================================================ -->
+        <view id="view_fleet_driver_qualification_list" model="fleet.driver.qualification" type="list">
+            <field name="driver_id" string="Driver"/>
+            <field name="qual_type" string="Qualification Type"/>
+            <field name="certificate_number" string="Certificate Number"/>
+            <field name="issuing_authority" string="Issuing Authority"/>
+            <field name="issue_date" string="Issue Date"/>
+            <field name="expiry_date" string="Expiry Date"/>
+            <field name="is_valid" string="Valid"/>
+        </view>
+
+        <view id="view_fleet_driver_qualification_form" model="fleet.driver.qualification" type="form">
+            <sheet>
+                <group>
+                    <field name="driver_id"/>
+                    <field name="qual_type"/>
+                    <field name="certificate_number"/>
+                    <field name="issuing_authority"/>
+                    <field name="issue_date"/>
+                    <field name="expiry_date"/>
+                    <field name="is_valid"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_driver_qualification" type="window" model="fleet.driver.qualification" name="Driver Qualifications" view_mode="list,form"/>
+
+        <!-- ============================================================ -->
+        <!-- Vehicle Assignments                                          -->
+        <!-- ============================================================ -->
+        <view id="view_fleet_vehicle_assignment_list" model="fleet.vehicle.assignment" type="list">
+            <field name="name" string="Reference"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <field name="assignment_type" string="Type"/>
+            <field name="state" string="Status"/>
+            <field name="start_date" string="Start Date"/>
+            <field name="end_date" string="End Date"/>
+            <field name="total_distance" string="Distance"/>
+        </view>
+
+        <view id="view_fleet_vehicle_assignment_form" model="fleet.vehicle.assignment" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="vehicle_id"/>
+                    <field name="driver_id"/>
+                    <field name="assignment_type"/>
+                    <field name="state"/>
+                    <field name="approved_by"/>
+                </group>
+                <group string="Schedule">
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="actual_start_date"/>
+                    <field name="actual_end_date"/>
+                </group>
+                <group string="Odometer &amp; Distance">
+                    <field name="planned_odometer_start"/>
+                    <field name="actual_odometer_start"/>
+                    <field name="actual_odometer_end"/>
+                    <field name="total_distance"/>
+                </group>
+                <group string="Operational Context">
+                    <field name="purpose"/>
+                    <field name="department"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_vehicle_assignment_search" model="fleet.vehicle.assignment" type="search">
+            <field name="name" string="Assignment Reference"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <filter name="active_assignments" string="Active" domain='[["state","=","active"]]'/>
+            <filter name="requested" string="Requested" domain='[["state","=","requested"]]'/>
+            <filter name="approved" string="Approved" domain='[["state","=","approved"]]'/>
+            <filter name="completed" string="Completed" domain='[["state","=","completed"]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_type" string="Assignment Type" group_by="assignment_type"/>
+            <filter name="group_driver" string="Driver" group_by="driver_id"/>
+            <filter name="group_vehicle" string="Vehicle" group_by="vehicle_id"/>
+        </view>
+
+        <action id="action_fleet_vehicle_assignment" type="window" model="fleet.vehicle.assignment" name="Vehicle Assignments" view_mode="list,form"/>
+
+        <!-- ============================================================ -->
+        <!-- Vehicle Handovers                                            -->
+        <!-- ============================================================ -->
+        <view id="view_fleet_vehicle_handover_list" model="fleet.vehicle.handover" type="list">
+            <field name="assignment_id" string="Assignment"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <field name="handover_type" string="Type"/>
+            <field name="timestamp" string="Timestamp"/>
+            <field name="odometer" string="Odometer"/>
+            <field name="fuel_level_pct" string="Fuel %"/>
+            <field name="cleanliness" string="Cleanliness"/>
+            <field name="driver_confirmed" string="Confirmed"/>
+        </view>
+
+        <view id="view_fleet_vehicle_handover_form" model="fleet.vehicle.handover" type="form">
+            <sheet>
+                <group>
+                    <field name="assignment_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="driver_id"/>
+                    <field name="handover_type"/>
+                    <field name="timestamp"/>
+                    <field name="inspector_id"/>
+                    <field name="driver_confirmed"/>
+                </group>
+                <group string="Readings &amp; Condition">
+                    <field name="odometer"/>
+                    <field name="fuel_level_pct"/>
+                    <field name="cleanliness"/>
+                    <field name="keys_returned"/>
+                </group>
+                <group string="Safety Equipment Checklist">
+                    <field name="spare_tire_present"/>
+                    <field name="jack_tools_present"/>
+                    <field name="first_aid_kit_present"/>
+                    <field name="fire_extinguisher_present"/>
+                </group>
+                <group string="Condition &amp; Damage Notes">
+                    <field name="damage_notes"/>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_vehicle_handover_search" model="fleet.vehicle.handover" type="search">
+            <field name="assignment_id" string="Assignment"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <filter name="checkouts" string="Checkouts" domain='[["handover_type","=","checkout"]]'/>
+            <filter name="checkins" string="Checkins" domain='[["handover_type","=","checkin"]]'/>
+            <filter name="group_type" string="Handover Type" group_by="handover_type"/>
+            <filter name="group_cleanliness" string="Cleanliness" group_by="cleanliness"/>
+        </view>
+
+        <action id="action_fleet_vehicle_handover" type="window" model="fleet.vehicle.handover" name="Vehicle Handovers" view_mode="list,form"/>
+    </data>
+</nexa>

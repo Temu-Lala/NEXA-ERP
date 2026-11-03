@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Funnel Report -->
+        <view id="view_crm_funnel_report_list" model="crm.funnel.report" type="list">
+            <field name="name" string="Reference"/>
+            <field name="source_id" string="Source"/>
+            <field name="stage_id" string="Stage"/>
+            <field name="period_start" string="From"/>
+            <field name="period_end" string="To"/>
+            <field name="lead_count" string="Leads"/>
+            <field name="converted_count" string="Converted"/>
+            <field name="conversion_rate" string="Conversion %"/>
+        </view>
+        <view id="view_crm_funnel_report_form" model="crm.funnel.report" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. FUNNEL-2026-Q1"/></h1></div>
+                <group>
+                    <group>
+                        <field name="source_id" string="Source"/>
+                        <field name="stage_id" string="Stage"/>
+                        <field name="period_start" string="Period Start"/>
+                        <field name="period_end" string="Period End"/>
+                    </group>
+                    <group>
+                        <field name="lead_count" string="Leads"/>
+                        <field name="converted_count" string="Converted"/>
+                        <field name="conversion_rate" string="Conversion Rate (%)"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_funnel_report" type="window" model="crm.funnel.report" name="Lead Funnel" view_mode="list,form"/>
+
+        <!-- Pipeline Report -->
+        <view id="view_crm_pipeline_report_list" model="crm.pipeline.report" type="list">
+            <field name="name" string="Reference"/>
+            <field name="pipeline_id" string="Pipeline"/>
+            <field name="stage_id" string="Stage"/>
+            <field name="owner_id" string="Owner"/>
+            <field name="period_date" string="As Of"/>
+            <field name="open_count" string="Open Deals"/>
+            <field name="open_value" string="Pipeline Value"/>
+            <field name="weighted_value" string="Weighted Value"/>
+            <field name="avg_days_in_stage" string="Avg Days In Stage"/>
+        </view>
+        <view id="view_crm_pipeline_report_form" model="crm.pipeline.report" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. PIPE-2026-10"/></h1></div>
+                <group>
+                    <group>
+                        <field name="pipeline_id" string="Pipeline"/>
+                        <field name="stage_id" string="Stage"/>
+                        <field name="owner_id" string="Owner"/>
+                        <field name="period_date" string="As Of"/>
+                    </group>
+                    <group>
+                        <field name="open_count" string="Open Deals"/>
+                        <field name="open_value" string="Pipeline Value"/>
+                        <field name="weighted_value" string="Weighted Value"/>
+                        <field name="avg_days_in_stage" string="Avg Days In Stage"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_pipeline_report" type="window" model="crm.pipeline.report" name="Pipeline Analysis" view_mode="list,form"/>
+
+        <!-- Win/Loss Report -->
+        <view id="view_crm_winloss_report_list" model="crm.winloss.report" type="list">
+            <field name="name" string="Reference"/>
+            <field name="period_start" string="From"/>
+            <field name="period_end" string="To"/>
+            <field name="won_count" string="Won"/>
+            <field name="lost_count" string="Lost"/>
+            <field name="won_value" string="Won Value"/>
+            <field name="lost_value" string="Lost Value"/>
+            <field name="win_rate" string="Win Rate %"/>
+            <field name="top_lost_reason" string="Top Lost Reason"/>
+        </view>
+        <view id="view_crm_winloss_report_form" model="crm.winloss.report" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. WINLOSS-2026-Q1"/></h1></div>
+                <group>
+                    <group>
+                        <field name="period_start" string="Period Start"/>
+                        <field name="period_end" string="Period End"/>
+                        <field name="won_count" string="Won Count"/>
+                        <field name="lost_count" string="Lost Count"/>
+                    </group>
+                    <group>
+                        <field name="won_value" string="Won Value"/>
+                        <field name="lost_value" string="Lost Value"/>
+                        <field name="win_rate" string="Win Rate (%)"/>
+                        <field name="lost_reason_id" string="Lost Reason"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+                <field name="top_lost_reason" string="Top Lost Reason"/>
+            </sheet>
+        </view>
+        <action id="action_crm_winloss_report" type="window" model="crm.winloss.report" name="Win / Loss" view_mode="list,form"/>
+
+        <!-- Attribution Report -->
+        <view id="view_crm_attribution_report_list" model="crm.attribution.report" type="list">
+            <field name="name" string="Reference"/>
+            <field name="campaign_id" string="Campaign"/>
+            <field name="source_id" string="Source"/>
+            <field name="lead_count" string="Leads"/>
+            <field name="opportunity_count" string="Opportunities"/>
+            <field name="won_count" string="Won"/>
+            <field name="pipeline_value" string="Pipeline Value"/>
+            <field name="won_value" string="Won Value"/>
+        </view>
+        <view id="view_crm_attribution_report_form" model="crm.attribution.report" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. ATTR-2026-Q1"/></h1></div>
+                <group>
+                    <group>
+                        <field name="campaign_id" string="Campaign"/>
+                        <field name="source_id" string="Source"/>
+                        <field name="lead_count" string="Leads"/>
+                        <field name="opportunity_count" string="Opportunities"/>
+                    </group>
+                    <group>
+                        <field name="won_count" string="Won"/>
+                        <field name="pipeline_value" string="Pipeline Value"/>
+                        <field name="won_value" string="Won Value"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_attribution_report" type="window" model="crm.attribution.report" name="Lead Attribution" view_mode="list,form"/>
+    </data>
+</nexa>

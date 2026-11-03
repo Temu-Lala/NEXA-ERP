@@ -1,0 +1,16 @@
+{
+  "name": "maintenance_analytics",
+  "display_name": "Maintenance Analytics & KPIs",
+  "version": "1.0.0",
+  "summary": "Reliability metrics, KPI snapshots, work order history and maintenance cost summaries",
+  "description": "Store computed MTBF, MTTR, availability and other KPI snapshots for assets and asset groups; maintain a complete, append-only work order state-change history for audit and performance analysis; record root-cause analysis investigations with structured findings and corrective actions; and aggregate maintenance cost summaries by asset, period and cost category.",
+  "author": "Nexa",
+  "depends": ["base", "maintenance", "maintenance_reliability"],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Operations"
+}

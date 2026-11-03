@@ -1,0 +1,19 @@
+{
+    "name": "crm_team",
+    "display_name": "CRM Territories & Targets",
+    "version": "1.0.0",
+    "summary": "Sales territories, coverage assignments, and period targets",
+    "description": "Structured sales organization on top of the base CRM teams: hierarchical territories (geo, branch, industry, segment, product, named accounts), territory coverage links for sales teams, per-record territory assignments for leads and opportunities, and period sales targets by user or team across nine metrics. Targets are plans and are kept strictly separate from achieved results.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "crm"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "CRM"
+}

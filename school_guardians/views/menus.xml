@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_guardians_root" name="Guardians" parent="school.school_menu_root" sequence="9" web_icon="users" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_guardian" name="Guardians" parent="school_menu_guardians_root" action="school_guardians.action_school_guardian" sequence="1" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_student_guardian" name="Student-Guardian Links" parent="school_menu_guardians_root" action="school_guardians.action_school_student_guardian" sequence="2" groups="school.group_school_clerk"/>
+    </data>
+</nexa>

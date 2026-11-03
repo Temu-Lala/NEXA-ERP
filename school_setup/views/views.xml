@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Campus -->
+        <view id="view_school_campus_list" model="school.campus" type="list">
+            <field name="name" string="Campus"/>
+            <field name="code" string="Code"/>
+            <field name="city" string="City"/>
+            <field name="manager_id" string="Manager"/>
+            <field name="company_id" string="Company"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_campus_form" model="school.campus" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Main Campus"/></h1></div>
+                <group>
+                    <group string="Identification">
+                        <field name="code" string="Code"/>
+                        <field name="city" string="City"/>
+                        <field name="phone" string="Phone"/>
+                        <field name="email" string="Email"/>
+                    </group>
+                    <group string="Ownership">
+                        <field name="manager_id" string="Campus Manager"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group string="Address">
+                    <field name="address" nolabel="1"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_campus" type="window" model="school.campus" name="Campuses" view_mode="list,form"/>
+
+        <!-- Term -->
+        <view id="view_school_term_list" model="school.term" type="list">
+            <field name="name" string="Term"/>
+            <field name="code" string="Code"/>
+            <field name="academic_year_id" string="Academic Year"/>
+            <field name="campus_id" string="Campus"/>
+            <field name="date_start" string="Start"/>
+            <field name="date_end" string="End"/>
+            <field name="is_current" string="Current"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_term_form" model="school.term" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Semester 1"/></h1></div>
+                <group>
+                    <group string="Period">
+                        <field name="academic_year_id" string="Academic Year"/>
+                        <field name="campus_id" string="Campus"/>
+                        <field name="code" string="Code"/>
+                        <field name="sequence" string="Sequence"/>
+                    </group>
+                    <group string="Dates &amp; State">
+                        <field name="date_start" string="Start Date"/>
+                        <field name="date_end" string="End Date"/>
+                        <field name="is_current" string="Current Term"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_term" type="window" model="school.term" name="Terms / Semesters" view_mode="list,form"/>
+
+        <!-- Classroom -->
+        <view id="view_school_classroom_list" model="school.classroom" type="list">
+            <field name="name" string="Room"/>
+            <field name="code" string="Code"/>
+            <field name="campus_id" string="Campus"/>
+            <field name="room_type" string="Type"/>
+            <field name="capacity" string="Capacity"/>
+            <field name="building" string="Building"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_classroom_form" model="school.classroom" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Room 101"/></h1></div>
+                <group>
+                    <group string="Room">
+                        <field name="code" string="Code"/>
+                        <field name="room_type" string="Type"/>
+                        <field name="capacity" string="Capacity"/>
+                        <field name="campus_id" string="Campus"/>
+                    </group>
+                    <group string="Location">
+                        <field name="building" string="Building"/>
+                        <field name="floor" string="Floor"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_classroom" type="window" model="school.classroom" name="Classrooms" view_mode="list,form"/>
+
+        <!-- Calendar Event -->
+        <view id="view_school_calendar_event_list" model="school.calendar.event" type="list">
+            <field name="name" string="Event"/>
+            <field name="event_type" string="Type"/>
+            <field name="academic_year_id" string="Academic Year"/>
+            <field name="term_id" string="Term"/>
+            <field name="campus_id" string="Campus"/>
+            <field name="date_start" string="Start"/>
+            <field name="date_end" string="End"/>
+            <field name="school_closed" string="Closed"/>
+        </view>
+        <view id="view_school_calendar_event_form" model="school.calendar.event" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Mid-term Examinations"/></h1></div>
+                <group>
+                    <group string="Classification">
+                        <field name="event_type" string="Type"/>
+                        <field name="academic_year_id" string="Academic Year"/>
+                        <field name="term_id" string="Term"/>
+                        <field name="campus_id" string="Campus"/>
+                    </group>
+                    <group string="Dates &amp; Flags">
+                        <field name="date_start" string="Start Date"/>
+                        <field name="date_end" string="End Date"/>
+                        <field name="all_day" string="All Day"/>
+                        <field name="school_closed" string="School Closed (holiday)"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_calendar_event" type="window" model="school.calendar.event" name="School Calendar" view_mode="list,form"/>
+    </data>
+</nexa>

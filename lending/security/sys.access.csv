@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_lending_product_user,lending.product.user,lending.product,group_lending_user,1,0,0,0
+access_lending_product_manager,lending.product.manager,lending.product,group_lending_manager,1,1,1,1
+access_lending_product_version_user,lending.product.version.user,lending.product.version,group_lending_user,1,0,0,0
+access_lending_product_version_manager,lending.product.version.manager,lending.product.version,group_lending_manager,1,1,1,1
+access_loan_application_user,loan.application.user,loan.application,group_lending_user,1,1,1,0
+access_loan_application_manager,loan.application.manager,loan.application,group_lending_manager,1,1,1,1
+access_loan_account_user,loan.account.user,loan.account,group_lending_user,1,1,1,0
+access_loan_account_manager,loan.account.manager,loan.account,group_lending_manager,1,1,1,1

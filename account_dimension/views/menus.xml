@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_dimensions" name="Analytic Dimensions" parent="account.account_menu_config" action="account_dimension.action_dimensions" sequence="40" groups="account.group_account_manager"/>
+        <menuitem id="menu_dimension_values" name="Dimension Values" parent="account.account_menu_config" action="account_dimension.action_dimension_values" sequence="41" groups="account.group_account_manager"/>
+        <menuitem id="menu_allocations" name="Analytic Allocations" parent="account.account_menu_reporting" action="account_dimension.action_allocations" sequence="100" groups="account.group_account_invoice"/>
+        <menuitem id="menu_mline_dimensions" name="Journal Item Dimensions" parent="account.account_menu_reporting" action="account_dimension.action_mline_dimensions" sequence="101" groups="account.group_account_invoice"/>
+    </data>
+</nexa>

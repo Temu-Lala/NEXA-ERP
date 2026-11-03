@@ -1,0 +1,16 @@
+{
+    "name": "product_pricing",
+    "display_name": "Product Price Lists",
+    "version": "1.0.0",
+    "summary": "Price lists and effective-dated pricing rules",
+    "description": "Define price lists and deterministic pricing rules (fixed or percentage) scoped by product or category, with minimum quantities, priority and effective dates.",
+    "author": "Nexa",
+    "depends": ["base", "product"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Inventory"
+}

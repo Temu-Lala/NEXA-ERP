@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="seq_purchase_requisition" model="sys.sequence">
+            <field name="name">Purchase Requisition</field>
+            <field name="code">purchase.requisition</field>
+            <field name="prefix">REQ/</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</nexa>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_ecom_categories" name="Categories" parent="website_shop.menu_ecom_catalog" action="website_shop_catalog.action_category" sequence="10" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_collections" name="Collections" parent="website_shop.menu_ecom_catalog" action="website_shop_catalog.action_collection" sequence="11" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_wishlists" name="Wishlists" parent="website_shop.menu_ecom_catalog" action="website_shop_catalog.action_wishlist" sequence="12" groups="website_shop.group_website_shop_user"/>
+    </data>
+</nexa>

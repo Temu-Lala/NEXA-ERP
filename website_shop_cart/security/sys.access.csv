@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_ecom_cart_user,access_ecom_cart_user,ecom.cart,group_website_shop_user,1,1,1,0
+access_ecom_cart_manager,access_ecom_cart_manager,ecom.cart,group_website_shop_manager,1,1,1,1
+access_ecom_cart_line_user,access_ecom_cart_line_user,ecom.cart.line,group_website_shop_user,1,1,1,1
+access_ecom_cart_line_manager,access_ecom_cart_line_manager,ecom.cart.line,group_website_shop_manager,1,1,1,1
+access_ecom_cart_address_user,access_ecom_cart_address_user,ecom.cart.address,group_website_shop_user,1,1,1,1
+access_ecom_cart_address_manager,access_ecom_cart_address_manager,ecom.cart.address,group_website_shop_manager,1,1,1,1
+access_ecom_cart_event_user,access_ecom_cart_event_user,ecom.cart.event,group_website_shop_user,1,1,1,0
+access_ecom_cart_event_manager,access_ecom_cart_event_manager,ecom.cart.event,group_website_shop_manager,1,1,1,1

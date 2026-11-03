@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== HR Settings ===================== -->
+        <view id="view_setting_list" model="hr.setting" type="list">
+            <field name="name" string="Name"/>
+            <field name="company_id" string="Company"/>
+            <field name="active" string="Active"/>
+            <field name="overtime_approval_required" string="OT Approval"/>
+            <field name="leave_requires_manager" string="Leave Approval"/>
+            <field name="data_retention_months" string="Retention (mo)"/>
+        </view>
+        <view id="view_setting_form" model="hr.setting" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="General">
+                        <field name="name"/>
+                        <field name="company_id"/>
+                        <field name="active"/>
+                        <field name="payroll_cutoff_day"/>
+                        <field name="data_retention_months"/>
+                    </group>
+                    <group string="Attendance &amp; Leave">
+                        <field name="attendance_grace_minutes"/>
+                        <field name="leave_half_day_enabled"/>
+                        <field name="leave_requires_manager"/>
+                        <field name="self_service_edit_bank"/>
+                    </group>
+                </group>
+                <group col="2" string="Approval">
+                    <group>
+                        <field name="overtime_approval_required"/>
+                        <field name="overtime_auto_approve_below"/>
+                    </group>
+                    <group>
+                        <field name="require_approval_above"/>
+                    </group>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Parameters ===================== -->
+        <view id="view_parameter_list" model="hr.parameter" type="list">
+            <field name="key" string="Key"/>
+            <field name="value" string="Value"/>
+            <field name="type" string="Type"/>
+            <field name="scope" string="Scope"/>
+            <field name="company_id" string="Company"/>
+            <field name="department_id" string="Department"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_parameter_form" model="hr.parameter" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Parameter">
+                        <field name="key"/>
+                        <field name="value"/>
+                        <field name="type"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Scope">
+                        <field name="scope"/>
+                        <field name="company_id"/>
+                        <field name="department_id"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Approval Policies ===================== -->
+        <view id="view_approval_policy_list" model="hr.approval.policy" type="list">
+            <field name="name" string="Policy"/>
+            <field name="applies_to" string="Applies To"/>
+            <field name="amount_threshold" string="Threshold"/>
+            <field name="level_count" string="Levels"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_approval_policy_form" model="hr.approval.policy" type="form">
+            <header>
+                <button name="action_policy_toggle" string="Activate / Deactivate" type="object" class="sum_highlight"/>
+                <button name="action_policy_preview" string="Preview Chain" type="object"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Definition">
+                        <field name="name"/>
+                        <field name="applies_to"/>
+                        <field name="amount_threshold"/>
+                        <field name="company_id"/>
+                    </group>
+                    <group string="State">
+                        <field name="level_count" readonly="true"/>
+                        <field name="active" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Approval Levels">
+                    <field name="lines" nolabel="1">
+                        <list editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="approver_group_id"/>
+                            <field name="approver_user_id"/>
+                            <field name="threshold_amount"/>
+                            <field name="mandatory"/>
+                        </list>
+                    </field>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Integrations ===================== -->
+        <view id="view_integration_list" model="hr.integration.setting" type="list">
+            <field name="name" string="Name"/>
+            <field name="system" string="System"/>
+            <field name="base_url" string="Base URL"/>
+            <field name="enabled" string="Enabled"/>
+            <field name="sync_every_min" string="Sync (min)"/>
+            <field name="last_sync" string="Last Sync"/>
+        </view>
+        <view id="view_integration_form" model="hr.integration.setting" type="form">
+            <header>
+                <button name="action_integration_toggle" string="Enable / Disable" type="object" class="sum_highlight"/>
+                <button name="action_integration_synced" string="Record Successful Sync" type="object"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Connection">
+                        <field name="name"/>
+                        <field name="system"/>
+                        <field name="base_url"/>
+                        <field name="username"/>
+                        <field name="api_key"/>
+                        <field name="password"/>
+                    </group>
+                    <group string="Scheduling">
+                        <field name="enabled"/>
+                        <field name="sync_every_min"/>
+                        <field name="last_sync" readonly="true"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                <group string="Note">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+        <action id="action_setting" type="window" model="hr.setting" name="HR Settings" view_mode="list,form"/>
+        <action id="action_parameter" type="window" model="hr.parameter" name="HR Parameters" view_mode="list,form"/>
+        <action id="action_approval_policy" type="window" model="hr.approval.policy" name="Approval Policies" view_mode="list,form"/>
+        <action id="action_integration" type="window" model="hr.integration.setting" name="Integrations" view_mode="list,form"/>
+    </data>
+</nexa>

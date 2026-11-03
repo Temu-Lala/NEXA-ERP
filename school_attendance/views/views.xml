@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Attendance sessions -->
+        <view id="view_school_attendance_session_list" model="school.attendance.session" type="list">
+            <field name="session_code" string="Session Code"/>
+            <field name="session_date" string="Date"/>
+            <field name="class_id" string="Class"/>
+            <field name="section_id" string="Section"/>
+            <field name="subject_id" string="Subject"/>
+            <field name="teacher_id" string="Taken By"/>
+            <field name="state" string="Status"/>
+            <field name="total_count" string="Marked"/>
+            <field name="absent_count" string="Absent"/>
+            <field name="attendance_rate" string="Rate %"/>
+        </view>
+        <view id="view_school_attendance_session_form" model="school.attendance.session" type="form">
+            <header>
+                <button name="attendance_open" string="Open" type="object"/>
+                <button name="attendance_populate" string="Load Learners" type="object"/>
+                <button name="attendance_finalize" string="Finalize" type="object" class="sum_highlight"/>
+                <button name="attendance_cancel" string="Cancel" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="session_code" placeholder="e.g. ATT-2026-0001"/></h1></div>
+                <group>
+                    <group string="Session">
+                        <field name="session_date"/>
+                        <field name="academic_year_id"/>
+                        <field name="class_id"/>
+                        <field name="section_id"/>
+                        <field name="subject_id"/>
+                        <field name="timetable_entry_id"/>
+                        <field name="period_number"/>
+                        <field name="teacher_id"/>
+                    </group>
+                    <group string="Summary">
+                        <field name="total_count" readonly="true"/>
+                        <field name="present_count" readonly="true"/>
+                        <field name="absent_count" readonly="true"/>
+                        <field name="late_count" readonly="true"/>
+                        <field name="excused_count" readonly="true"/>
+                        <field name="attendance_rate" readonly="true"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Records">
+                        <field name="records" nolabel="1">
+                            <list editable="bottom">
+                                <field name="student_id"/>
+                                <field name="status"/>
+                                <field name="in_time"/>
+                                <field name="out_time"/>
+                                <field name="corrected"/>
+                                <field name="remarks"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_attendance_session" type="window" model="school.attendance.session" name="Attendance Sessions" view_mode="list,form"/>
+
+        <!-- Append-only correction audit -->
+        <view id="view_school_attendance_correction_list" model="school.attendance.correction" type="list">
+            <field name="timestamp" string="When"/>
+            <field name="student_id" string="Student"/>
+            <field name="session_id" string="Session"/>
+            <field name="from_status" string="From"/>
+            <field name="to_status" string="To"/>
+            <field name="reason" string="Reason"/>
+            <field name="operator_id" string="Operator"/>
+        </view>
+        <action id="action_school_attendance_correction" type="window" model="school.attendance.correction" name="Attendance Corrections" view_mode="list"/>
+
+        <!-- Absence alerts -->
+        <view id="view_school_absence_alert_list" model="school.absence.alert" type="list">
+            <field name="student_id" string="Student"/>
+            <field name="section_id" string="Section"/>
+            <field name="absent_count" string="Unexcused"/>
+            <field name="threshold" string="Threshold"/>
+            <field name="window_days" string="Window"/>
+            <field name="last_absent" string="Last Absence"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_absence_alert_form" model="school.absence.alert" type="form">
+            <header>
+                <button name="absence_alert_acknowledge" string="Acknowledge" type="object"/>
+                <button name="absence_alert_resolve" string="Resolve" type="object" class="sum_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Learner">
+                        <field name="student_id"/>
+                        <field name="academic_year_id"/>
+                        <field name="section_id"/>
+                    </group>
+                    <group string="Detection">
+                        <field name="absent_count"/>
+                        <field name="threshold"/>
+                        <field name="window_days"/>
+                        <field name="first_absent"/>
+                        <field name="last_absent"/>
+                        <field name="raised_at"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="ack_by_id"/>
+                    <field name="notes"/>
+                </group>
+                <group>
+                    <field name="company_id"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_absence_alert" type="window" model="school.absence.alert" name="Absence Alerts" view_mode="list,form"/>
+    </data>
+</nexa>

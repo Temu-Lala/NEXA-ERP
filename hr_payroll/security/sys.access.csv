@@ -1,0 +1,7 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_payroll_category_user,access_hr_payroll_category_user,hr.payroll.category,,1,1,1,1
+access_hr_payroll_structure_user,access_hr_payroll_structure_user,hr.payroll.structure,,1,1,1,1
+access_hr_salary_rule_user,access_hr_salary_rule_user,hr.salary.rule,,1,1,1,1
+access_hr_payslip_run_user,access_hr_payslip_run_user,hr.payslip.run,,1,1,1,1
+access_hr_payslip_user,access_hr_payslip_user,hr.payslip,,1,1,1,1
+access_hr_payslip_line_user,access_hr_payslip_line_user,hr.payslip.line,,1,1,1,1

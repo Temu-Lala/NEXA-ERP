@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_project_resource_root" name="Resources" sequence="68"/>
+        <menuitem id="menu_project_resource_allocations" name="All Allocations" parent="menu_project_resource_root" action="project_resource.action_project_resource_allocation" sequence="10"/>
+        <menuitem id="menu_project_resource_allocations_over" name="Over-allocated" parent="menu_project_resource_root" action="project_resource.action_project_resource_allocation_over" sequence="20"/>
+        <menuitem id="menu_project_resource_allocations_my" name="My Allocations" parent="menu_project_resource_root" action="project_resource.action_project_resource_allocation_my" sequence="30"/>
+        <menuitem id="menu_project_resource_requests" name="Resource Requests" parent="menu_project_resource_root" action="project_resource.action_project_resource_request" sequence="40"/>
+    </data>
+</nexa>

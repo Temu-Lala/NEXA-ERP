@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Supplier master -->
+        <view id="view_purchase_supplier_list" model="purchase.supplier" type="list">
+            <field name="name" string="Reference"/>
+            <field name="partner_id" string="Partner"/>
+            <field name="legal_name" string="Legal Name"/>
+            <field name="category" string="Category"/>
+            <field name="state" string="Status"/>
+            <field name="risk" string="Risk"/>
+            <field name="duplicate_flag" string="Dup?"/>
+        </view>
+        <view id="view_purchase_supplier_form" model="purchase.supplier" type="form">
+            <header>
+                <button name="action_submit" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_start_review" string="Start Review" type="object" invisible="state != 'submitted'"/>
+                <button name="action_due_diligence" string="Due Diligence" type="object" invisible="state != 'under_review'"/>
+                <button name="action_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'due_diligence'"/>
+                <button name="action_activate" string="Activate" type="object" class="sum_highlight" invisible="state != 'approved'"/>
+                <button name="action_reject" string="Reject" type="object" invisible="state not in ('submitted', 'under_review', 'due_diligence', 'approved')"/>
+                <button name="action_suspend" string="Suspend" type="object" invisible="state != 'active'"/>
+                <button name="action_reactivate" string="Reactivate" type="object" invisible="state not in ('suspended', 'expired')"/>
+                <button name="action_block" string="Block" type="object" invisible="state not in ('active', 'suspended', 'expired')"/>
+                <button name="action_check_duplicates" string="Check Duplicates" type="object" invisible="state == 'archived'"/>
+                <button name="action_archive" string="Archive" type="object" invisible="state == 'archived'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. SUPP/00001"/></h1></div>
+                <group>
+                    <group string="Identity">
+                        <field name="partner_id" string="Partner"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="supplier_code" string="Supplier Code"/>
+                        <field name="legal_name" string="Legal Business Name"/>
+                        <field name="trading_name" string="Trading Name"/>
+                        <field name="business_type" string="Business Type"/>
+                        <field name="category" string="Category"/>
+                        <field name="industry" string="Industry"/>
+                    </group>
+                    <group string="Registration &amp; Tax">
+                        <field name="reg_no" string="Registration Number"/>
+                        <field name="tax_id" string="Tax Identification"/>
+                        <field name="tax_status" string="Tax Registration Status"/>
+                        <field name="country" string="Country"/>
+                        <field name="region" string="Region"/>
+                        <field name="city" string="City"/>
+                        <field name="email" string="Email"/>
+                        <field name="phone" string="Telephone"/>
+                        <field name="website" string="Website"/>
+                        <field name="emergency_contact" string="Emergency Contact"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Governance">
+                        <field name="risk" string="Risk Level"/>
+                        <field name="risk_score" string="Risk Score"/>
+                        <field name="due_diligence" string="Due Diligence Complete"/>
+                        <field name="sensitive" string="High Value / Critical"/>
+                        <field name="onboard_date" string="Onboard Date"/>
+                        <field name="next_review_date" string="Next Revalidation"/>
+                        <field name="last_expiry_scan" string="Last Expiry Scan"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Duplicate Control">
+                        <field name="duplicate_flag" string="Possible Duplicate"/>
+                        <field name="duplicate_note" string="Duplicate Note"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Sites">
+                        <field name="sites" string="Sites">
+                            <view type="list">
+                                <field name="name" string="Site Name"/>
+                                <field name="kind" string="Type"/>
+                                <field name="address" string="Address"/>
+                                <field name="city" string="City"/>
+                                <field name="country" string="Country"/>
+                                <field name="contact" string="Site Contact"/>
+                                <field name="phone" string="Phone"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Contacts">
+                        <field name="contacts" string="Contacts">
+                            <view type="list">
+                                <field name="name" string="Name"/>
+                                <field name="role" string="Authorized Role"/>
+                                <field name="email" string="Email"/>
+                                <field name="phone" string="Phone"/>
+                                <field name="primary" string="Primary"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Items">
+                        <field name="items" string="Supplier Items">
+                            <view type="list">
+                                <field name="product_id" string="Product"/>
+                                <field name="supplier_prod" string="Supplier Code"/>
+                                <field name="description" string="Description"/>
+                                <field name="price" string="Price"/>
+                                <field name="currency" string="Currency"/>
+                                <field name="lead_time_days" string="Lead Time"/>
+                                <field name="min_order_qty" string="Min Order Qty"/>
+                                <field name="order_mult" string="Order Multiple"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Documents">
+                        <field name="documents" string="Documents">
+                            <view type="list">
+                                <field name="name" string="Document"/>
+                                <field name="doc_type" string="Type"/>
+                                <field name="reference_no" string="Reference No."/>
+                                <field name="issue_date" string="Issued"/>
+                                <field name="expiry_date" string="Expires"/>
+                                <field name="mandatory" string="Mandatory"/>
+                                <field name="review_state" string="Review State"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Bank Accounts">
+                        <field name="bank_accounts" string="Bank Accounts">
+                            <view type="list">
+                                <field name="label" string="Label"/>
+                                <field name="bank_name" string="Bank Name"/>
+                                <field name="account_ref" string="Account Reference"/>
+                                <field name="sort_code" string="Branch"/>
+                                <field name="currency" string="Currency"/>
+                                <field name="primary" string="Primary"/>
+                                <field name="verified" string="Verified"/>
+                                <field name="state" string="Status"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Qualifications">
+                        <field name="qualifications" string="Qualifications">
+                            <view type="list">
+                                <field name="category" string="Approved Category"/>
+                                <field name="site_id" string="Site"/>
+                                <field name="approved_date" string="Approved"/>
+                                <field name="expiry_date" string="Valid Until"/>
+                                <field name="state" string="Status"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_supplier" type="window" model="purchase.supplier" name="Suppliers" view_mode="list,form"/>
+
+        <!-- Documents (compliance) -->
+        <view id="view_purchase_supplier_document_list" model="purchase.supplier.document" type="list">
+            <field name="supplier_id" string="Supplier"/>
+            <field name="name" string="Document"/>
+            <field name="doc_type" string="Type"/>
+            <field name="expiry_date" string="Expires"/>
+            <field name="mandatory" string="Mandatory"/>
+            <field name="review_state" string="Review State"/>
+        </view>
+        <view id="view_purchase_supplier_document_form" model="purchase.supplier.document" type="form">
+            <header>
+                <button name="action_accept" string="Accept" type="object" class="sum_highlight" invisible="review_state == 'accepted'"/>
+                <button name="action_reject" string="Reject" type="object" invisible="review_state == 'rejected'"/>
+                <field name="review_state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. ISO 9001 Certificate"/></h1></div>
+                <group>
+                    <group string="Document">
+                        <field name="supplier_id" string="Supplier"/>
+                        <field name="doc_type" string="Document Type"/>
+                        <field name="cat_scope" string="Category Scope"/>
+                        <field name="reference_no" string="Reference No."/>
+                        <field name="filename" string="File"/>
+                        <field name="mandatory" string="Mandatory"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Review">
+                        <field name="issue_date" string="Issue Date"/>
+                        <field name="expiry_date" string="Expiry Date"/>
+                        <field name="reviewed_by" string="Reviewed By"/>
+                        <field name="reject_why" string="Rejection Reason"/>
+                    </group>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_supplier_document" type="window" model="purchase.supplier.document" name="Supplier Documents" view_mode="list,form"/>
+
+        <!-- Qualifications -->
+        <view id="view_purchase_supplier_qualification_list" model="purchase.supplier.qualification" type="list">
+            <field name="supplier_id" string="Supplier"/>
+            <field name="category" string="Approved Category"/>
+            <field name="site_id" string="Site"/>
+            <field name="approved_date" string="Approved"/>
+            <field name="expiry_date" string="Valid Until"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_supplier_qualification_form" model="purchase.supplier.qualification" type="form">
+            <header>
+                <button name="action_grant" string="Grant" type="object" class="sum_highlight" invisible="state == 'active'"/>
+                <button name="action_revoke" string="Revoke" type="object" invisible="state != 'active'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group>
+                    <group>
+                        <field name="supplier_id" string="Supplier"/>
+                        <field name="category" string="Approved Category"/>
+                        <field name="site_id" string="Site"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group>
+                        <field name="approved_date" string="Approved Date"/>
+                        <field name="expiry_date" string="Valid Until"/>
+                        <field name="approved_by" string="Approved By"/>
+                    </group>
+                </group>
+                <field name="evidence" string="Evidence"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_supplier_qualification" type="window" model="purchase.supplier.qualification" name="Qualifications" view_mode="list,form"/>
+
+        <!-- Controlled change requests -->
+        <view id="view_purchase_supplier_change_request_list" model="purchase.supplier.change.request" type="list">
+            <field name="name" string="Reference"/>
+            <field name="supplier_id" string="Supplier"/>
+            <field name="field_kind" string="Change Type"/>
+            <field name="requested_by" string="Requested By"/>
+            <field name="verified_by" string="Verified By"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_supplier_change_request_form" model="purchase.supplier.change.request" type="form">
+            <header>
+                <button name="action_submit" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_verify" string="Verify" type="object" invisible="state != 'submitted'"/>
+                <button name="action_apply" string="Apply" type="object" class="sum_highlight" invisible="state != 'verified'"/>
+                <button name="action_reject" string="Reject" type="object" invisible="state not in ('submitted', 'verified')"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. SCH/00001"/></h1></div>
+                <group>
+                    <group string="Change">
+                        <field name="supplier_id" string="Supplier"/>
+                        <field name="field_kind" string="Change Type"/>
+                        <field name="target_summary" string="What Changes"/>
+                        <field name="reason" string="Reason"/>
+                    </group>
+                    <group string="Control">
+                        <field name="requested_by" string="Requested By"/>
+                        <field name="verified_by" string="Verified By"/>
+                        <field name="applied_on" string="Applied On"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="proposed_value" string="Proposed Value"/>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_supplier_change_request" type="window" model="purchase.supplier.change.request" name="Change Requests" view_mode="list,form"/>
+
+        <!-- Risk assessments -->
+        <view id="view_purchase_supplier_risk_assessment_list" model="purchase.supplier.risk.assessment" type="list">
+            <field name="name" string="Reference"/>
+            <field name="supplier_id" string="Supplier"/>
+            <field name="score_date" string="Date"/>
+            <field name="overall_score" string="Score"/>
+            <field name="level" string="Risk Level"/>
+        </view>
+        <view id="view_purchase_supplier_risk_assessment_form" model="purchase.supplier.risk.assessment" type="form">
+            <header>
+                <button name="action_compute" string="Compute &amp; Roll Up" type="object" class="sum_highlight"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. RISK/00001"/></h1></div>
+                <group>
+                    <group>
+                        <field name="supplier_id" string="Supplier"/>
+                        <field name="score_date" string="Assessment Date"/>
+                        <field name="next_review_date" string="Next Reassessment"/>
+                        <field name="assessed_by" string="Assessed By"/>
+                    </group>
+                    <group string="Result">
+                        <field name="overall_score" string="Overall Score"/>
+                        <field name="level" string="Risk Level"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group string="Dimension Scores (0-100, higher = riskier)">
+                    <group>
+                        <field name="document_risk" string="Document Validity"/>
+                        <field name="financial_risk" string="Financial Stability"/>
+                        <field name="delivery_risk" string="Delivery Reliability"/>
+                        <field name="quality_risk" string="Quality"/>
+                        <field name="geographic_risk" string="Geographic / Logistics"/>
+                    </group>
+                    <group>
+                        <field name="concentr_risk" string="Concentration / Dependency"/>
+                        <field name="security_risk" string="Cyber / Data Protection"/>
+                        <field name="continuity_risk" string="Business Continuity"/>
+                        <field name="ethics_risk" string="Ethical Sourcing"/>
+                        <field name="regulatory_risk" string="Regulatory / Sanctions"/>
+                    </group>
+                </group>
+                <field name="factors" string="Explainable Factors"/>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_supplier_risk_assessment" type="window" model="purchase.supplier.risk.assessment" name="Risk Assessments" view_mode="list,form"/>
+
+        <!-- Bank accounts (restricted) -->
+        <view id="view_purchase_supplier_bank_account_list" model="purchase.supplier.bank.account" type="list">
+            <field name="supplier_id" string="Supplier"/>
+            <field name="label" string="Label"/>
+            <field name="bank_name" string="Bank Name"/>
+            <field name="account_ref" string="Account Reference"/>
+            <field name="currency" string="Currency"/>
+            <field name="primary" string="Primary"/>
+            <field name="verified" string="Verified"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_supplier_bank_account_form" model="purchase.supplier.bank.account" type="form">
+            <header>
+                <button name="action_verify" string="Verify" type="object" class="sum_highlight" invisible="verified == True"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Account">
+                        <field name="supplier_id" string="Supplier"/>
+                        <field name="label" string="Label"/>
+                        <field name="bank_name" string="Bank Name"/>
+                        <field name="account_ref" string="Account Reference"/>
+                        <field name="sort_code" string="Branch / Sort Code"/>
+                        <field name="currency" string="Currency"/>
+                    </group>
+                    <group string="Status">
+                        <field name="primary" string="Primary"/>
+                        <field name="state" string="Status"/>
+                        <field name="verified" string="Independently Verified"/>
+                        <field name="verified_by" string="Verified By"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_supplier_bank_account" type="window" model="purchase.supplier.bank.account" name="Bank Accounts" view_mode="list,form"/>
+    </data>
+</nexa>

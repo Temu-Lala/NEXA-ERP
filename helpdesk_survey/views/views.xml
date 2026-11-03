@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== Survey Templates ===================== -->
+
+        <view id="view_survey_list" model="helpdesk.survey" type="list">
+            <field name="name" string="Survey"/>
+            <field name="question" string="Question"/>
+            <field name="scale" string="Scale"/>
+            <field name="low_rating_at" string="Low Rating At"/>
+            <field name="response_count" string="Responses"/>
+            <field name="avg_rating" string="Avg Rating"/>
+            <field name="satisfaction" string="CSAT %"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_survey_form" model="helpdesk.survey" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Definition">
+                        <field name="name"/>
+                        <field name="question"/>
+                        <field name="scale"/>
+                        <field name="low_rating_at"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Performance">
+                        <field name="response_count"/>
+                        <field name="avg_rating"/>
+                        <field name="satisfaction"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Responses">
+                        <field name="responses"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <!-- ===================== Responses ===================== -->
+
+        <view id="view_survey_response_list" model="helpdesk.survey.response" type="list">
+            <field name="ticket_id" string="Ticket"/>
+            <field name="survey_id" string="Survey"/>
+            <field name="rating" string="Rating"/>
+            <field name="state" widget="badge" string="Status"/>
+            <field name="low_rating" string="Low"/>
+            <field name="agent_id" string="Agent"/>
+            <field name="team_id" string="Team"/>
+            <field name="category_id" string="Category"/>
+            <field name="partner_id" string="Respondent"/>
+            <field name="answered_at" string="Answered At"/>
+        </view>
+        <view id="view_survey_response_form" model="helpdesk.survey.response" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Response">
+                        <field name="ticket_id"/>
+                        <field name="survey_id"/>
+                        <field name="rating"/>
+                        <field name="state"/>
+                        <field name="partner_id"/>
+                    </group>
+                    <group string="Attribution">
+                        <field name="agent_id"/>
+                        <field name="team_id"/>
+                        <field name="category_id"/>
+                        <field name="low_rating"/>
+                        <field name="alerted"/>
+                    </group>
+                </group>
+                <group col="2" string="Timing">
+                    <field name="sent_at"/>
+                    <field name="answered_at"/>
+                </group>
+                <group string="Feedback">
+                    <field name="comment" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_survey_response_search" model="helpdesk.survey.response" type="search">
+            <field name="ticket_id" string="Ticket"/>
+            <field name="survey_id" string="Survey"/>
+            <field name="agent_id" string="Agent"/>
+            <field name="team_id" string="Team"/>
+            <filter name="answered" string="Answered" domain='[["state","=","answered"]]'/>
+            <filter name="awaiting" string="Awaiting Response" domain='[["state","=","sent"]]'/>
+            <filter name="rated_low" string="Low Ratings" domain='[["rating","&gt;",0]]'/>
+            <filter name="group_agent" string="Agent" group_by="agent_id"/>
+            <filter name="group_team" string="Team" group_by="team_id"/>
+            <filter name="group_category" string="Category" group_by="category_id"/>
+            <filter name="group_rating" string="Rating" group_by="rating"/>
+            <filter name="group_state" string="Status" group_by="state"/>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+
+        <action id="action_survey" type="window" model="helpdesk.survey" name="CSAT Surveys" view_mode="list,form"/>
+        <action id="action_survey_response" type="window" model="helpdesk.survey.response" name="CSAT Responses" view_mode="list,search,form"/>
+    </data>
+</nexa>

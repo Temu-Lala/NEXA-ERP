@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hr_employee_form" model="hr.employee" type="form">
+            <header>
+                <button name="action_submit" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'pending'"/>
+                <button name="action_set_on_leave" string="On Leave" type="object" invisible="state != 'active'"/>
+                <button name="action_return_to_work" string="Return to Work" type="object" invisible="state != 'on_leave'"/>
+                <button name="action_suspend" string="Suspend" type="object" invisible="state != 'active' &amp;&amp; state != 'on_leave'"/>
+                <button name="action_reinstate" string="Reinstate" type="object" invisible="state != 'suspended'"/>
+                <button name="action_to_notice" string="Notice Period" type="object" invisible="state != 'active' &amp;&amp; state != 'on_leave' &amp;&amp; state != 'suspended'"/>
+                <button name="action_terminate" string="Terminate" type="object" confirm="Terminate this employee?" invisible="state != 'notice'"/>
+                <button name="action_retire" string="Retire" type="object" confirm="Retire this employee?" invisible="state != 'notice'"/>
+                <button name="action_rehire" string="Rehire" type="object" class="sum_highlight" invisible="state != 'terminated' &amp;&amp; state != 'retired'"/>
+                <button name="action_start_probation" string="Start Probation" type="object" invisible="confirmation_state != 'none' &amp;&amp; confirmation_state != 'not_required'"/>
+                <button name="action_confirm_probation" string="Confirm" type="object" class="sum_highlight" invisible="confirmation_state != 'in_progress' &amp;&amp; confirmation_state != 'extended'"/>
+                <button name="action_extend_probation" string="Extend Probation" type="object" invisible="confirmation_state != 'in_progress' &amp;&amp; confirmation_state != 'extended'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title">
+                    <field name="image" widget="image"/>
+                    <div>
+                        <h1>
+                            <field name="name" placeholder="Employee Name..."/>
+                        </h1>
+                        <div class="sum_title_sub">
+                            <field name="job_id" placeholder="Job Position"/>
+                        </div>
+                    </div>
+                </div>
+                <group col="2">
+                    <group string="General">
+                        <field name="employee_id" string="Employee ID"/>
+                        <field name="identification_name" string="Legal Name"/>
+                        <field name="work_email" widget="email"/>
+                        <field name="work_phone" widget="phone"/>
+                        <field name="company_id"/>
+                    </group>
+                    <group string="Position">
+                        <field name="department_id"/>
+                        <field name="parent_id" string="Manager"/>
+                        <field name="coach_id" string="Coach"/>
+                        <field name="employment_type"/>
+                        <field name="work_location"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Personal Information" name="personal">
+                        <group col="2">
+                            <group string="Background">
+                                <field name="gender"/>
+                                <field name="birthday" widget="date"/>
+                                <field name="birthplace"/>
+                                <field name="nationality"/>
+                            </group>
+                            <group string="Contacts &amp; Access">
+                                <field name="marital_status"/>
+                                <field name="emergency_contact_name"/>
+                                <field name="emergency_contact_phone" widget="phone"/>
+                                <field name="user_id"/>
+                                <field name="partner_id"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Employment" name="employment">
+                        <group col="2">
+                            <group string="Start">
+                                <field name="hire_date" widget="date"/>
+                                <field name="probation_end_date" widget="date"/>
+                            </group>
+                            <group string="End">
+                                <field name="termination_date" widget="date"/>
+                                <field name="termination_reason"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Skills" name="skills">
+                        <group col="2">
+                            <group string="Skills">
+                                <field name="skills" nolabel="1" placeholder="Key skills, one per line..."/>
+                            </group>
+                            <group string="Languages &amp; Certifications">
+                                <field name="languages" placeholder="Languages spoken..."/>
+                                <field name="certifications" placeholder="Professional certifications..."/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Confidential" name="confidential">
+                        <group string="Government &amp; Bank">
+                            <field name="certificate_number" groups="hr.group_hr_manager"/>
+                            <field name="bank_account_number" groups="hr.group_hr_manager"/>
+                        </group>
+                    </page>
+                    <page string="Probation" name="probation">
+                        <group col="2">
+                            <group string="Probation Period">
+                                <field name="probation_start" widget="date"/>
+                                <field name="probation_end" widget="date"/>
+                                <field name="confirmation_state"/>
+                            </group>
+                            <group string="Confirmation">
+                                <field name="confirmed_date" widget="date"/>
+                                <field name="confirmation_note" nolabel="1"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Notes" name="notes">
+                        <field name="notes" nolabel="1" placeholder="Internal notes..."/>
+                    </page>
+                    <page string="Documents" name="documents">
+                        <field name="document_ids">
+                            <list>
+                                <field name="name" string="Title"/>
+                                <field name="category"/>
+                                <field name="document_number" string="Reference No."/>
+                                <field name="issue_date" widget="date"/>
+                                <field name="expiry_date" widget="date"/>
+                                <field name="status" widget="badge"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+            <chatter/>
+        </view>
+    </data>
+</nexa>

@@ -1,0 +1,20 @@
+{
+    "name": "purchase_supplier",
+    "display_name": "Purchase Supplier Master & Governance",
+    "version": "1.0.0",
+    "summary": "Supplier identity, onboarding, documents, banks, qualifications, controlled changes and risk",
+    "description": "Authoritative supplier governance for the Procurement module. Layers procurement identity, onboarding workflow (draft to active with suspended/blocked/expired states), site/contact/item master data, document expiry monitoring with revalidation reminders, restricted bank-account management with independent verification of sensitive changes, category-based qualification that gates sourcing eligibility, controlled profile-change requests, and explainable risk assessments. Supplier identity remains on the shared partner record and is never duplicated; this module owns only the procurement-specific attributes and their audit trail. Physical goods stay owned by Inventory and payables by Accounting.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "purchase"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "data/supplier_cron.xml",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Purchase"
+}

@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_driver_user,access_fleet_driver_user,fleet.driver,,1,1,1,1
+access_fleet_driver_qualification_user,access_fleet_driver_qualification_user,fleet.driver.qualification,,1,1,1,1
+access_fleet_vehicle_assignment_user,access_fleet_vehicle_assignment_user,fleet.vehicle.assignment,,1,1,1,1
+access_fleet_vehicle_handover_user,access_fleet_vehicle_handover_user,fleet.vehicle.handover,,1,1,1,1

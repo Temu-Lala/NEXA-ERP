@@ -1,0 +1,16 @@
+{
+    "name": "project_finance",
+    "display_name": "Project Finance",
+    "version": "1.0.0",
+    "summary": "Project budgets, budget lines and source-linked costs",
+    "description": "Plan approved project budgets by cost category and record source-linked cost snapshots for budget-versus-actual and profitability tracking. Accounting remains authoritative for posted entries.",
+    "author": "Nexa",
+    "depends": ["base", "project"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Project"
+}

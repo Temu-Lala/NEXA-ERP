@@ -1,0 +1,21 @@
+{
+    "name": "hr_payroll_hardening",
+    "display_name": "HR: Payroll Hardening",
+    "version": "1.0.0",
+    "summary": "Effective-dated rules, statutory config, maker-checker approval, freeze, idempotent payment, adjustments, reconciliation",
+    "description": "Production guardrails on top of hr_payroll without migrating its tables: versioned / effective-dated salary rules, jurisdiction-and-date-scoped statutory (tax/pension) configuration, a maker-checker approval that freezes an approved payslip run so payslips cannot be silently edited, idempotent payment (no double disbursement), traceable adjustment/reversal entries instead of in-place edits, a bank payment-file batch, payslip delivery to the employee and run reconciliation with an expected-vs-paid audit. Extends the hr anchor and hr_payroll; navigated under the single HR app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "hr",
+        "account",
+        "hr_payroll"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

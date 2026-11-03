@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Delivery Schedule -->
+        <view id="view_purchase_delivery_schedule_list" model="purchase.delivery.schedule" type="list">
+            <field name="name" string="Reference"/>
+            <field name="order_id" string="Purchase Order"/>
+            <field name="product_id" string="Product"/>
+            <field name="scheduled_date" string="Scheduled Date"/>
+            <field name="quantity" string="Planned Qty"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_delivery_schedule_form" model="purchase.delivery.schedule" type="form">
+            <header>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. DEL/0001"/></h1></div>
+                <group>
+                    <group string="Commitment">
+                        <field name="order_id" string="Purchase Order"/>
+                        <field name="line_id" string="PO Line"/>
+                        <field name="product_id" string="Product"/>
+                        <field name="quantity" string="Planned Qty"/>
+                        <field name="uom" string="Unit"/>
+                    </group>
+                    <group string="Delivery">
+                        <field name="scheduled_date" string="Scheduled Date"/>
+                        <field name="received_date" string="Received Date"/>
+                        <field name="location" string="Delivery Location"/>
+                        <field name="warehouse_id" string="Warehouse"/>
+                    </group>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_delivery_schedule" type="window" model="purchase.delivery.schedule" name="Delivery Schedules" view_mode="list,form"/>
+
+        <!-- Receipt -->
+        <view id="view_purchase_receipt_list" model="purchase.receipt" type="list">
+            <field name="name" string="Reference"/>
+            <field name="order_id" string="Purchase Order"/>
+            <field name="receipt_date" string="Date"/>
+            <field name="receiver_id" string="Received By"/>
+            <field name="picking_ref" string="Inventory Receipt"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_receipt_form" model="purchase.receipt" type="form">
+            <header>
+                <button name="action_inspect" string="Inspect" type="object" invisible="state != 'draft'"/>
+                <button name="action_validate_receipt" string="Validate &amp; Post to Inventory" type="object" class="btn-primary" invisible="state not in 'draft,inspection'"/>
+                <button name="action_accept_service" string="Accept Service" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                <button name="action_create_discrepancy" string="Log Discrepancy" type="object" invisible="state not in 'draft,inspection'"/>
+                <button name="action_cancel" string="Cancel" type="object" warn="Cancel this receipt?" invisible="state != 'draft'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. RCV/0001"/></h1></div>
+                <group>
+                    <group string="Receipt">
+                        <field name="order_id" string="Purchase Order"/>
+                        <field name="receipt_type" string="Kind"/>
+                        <field name="receipt_date" string="Date"/>
+                        <field name="receiver_id" string="Received By"/>
+                        <field name="location" string="Receiving Location"/>
+                        <field name="warehouse_id" string="Warehouse"/>
+                    </group>
+                    <group string="Evidence">
+                        <field name="picking_ref" string="Inventory Receipt"/>
+                        <field name="supplier_note" string="Delivery Note Ref"/>
+                        <field name="packing_list" string="Packing List Ref"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Received Lines">
+                        <field name="lines" string="Received Lines">
+                            <view type="list">
+                                <field name="order_line_id" string="PO Line"/>
+                                <field name="product_id" string="Product"/>
+                                <field name="description" string="Description"/>
+                                <field name="ordered_qty" string="Ordered"/>
+                                <field name="delivered_qty" string="Delivered"/>
+                                <field name="accepted_qty" string="Accepted"/>
+                                <field name="rejected_qty" string="Rejected"/>
+                                <field name="damaged_qty" string="Damaged"/>
+                                <field name="lot" string="Lot"/>
+                                <field name="serial_number" string="Serial"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Inspection">
+                        <field name="inspection_result" string="Inspection Result"/>
+                        <field name="discrepancy_note" string="Discrepancies"/>
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_receipt" type="window" model="purchase.receipt" name="Receipts" view_mode="list,form"/>
+
+        <!-- Supplier Return -->
+        <view id="view_purchase_supplier_return_list" model="purchase.supplier.return" type="list">
+            <field name="name" string="Reference"/>
+            <field name="order_id" string="Purchase Order"/>
+            <field name="partner_id" string="Supplier"/>
+            <field name="return_date" string="Date"/>
+            <field name="claim_status" string="Claim Status"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_supplier_return_form" model="purchase.supplier.return" type="form">
+            <header>
+                <button name="action_authorize" string="Authorize" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                <button name="action_ship_return" string="Ship (Inventory)" type="object" invisible="state != 'authorized'"/>
+                <button name="action_record_credit" string="Record Credit Note" type="object" invisible="state != 'shipped'"/>
+                <button name="action_close" string="Close" type="object" invisible="state != 'credited'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. RTS/0001"/></h1></div>
+                <group>
+                    <group string="Return">
+                        <field name="order_id" string="Purchase Order"/>
+                        <field name="receipt_id" string="Original Receipt"/>
+                        <field name="partner_id" string="Supplier"/>
+                        <field name="return_date" string="Date"/>
+                        <field name="return_auth_ref" string="Return Authorization"/>
+                    </group>
+                    <group string="Resolution">
+                        <field name="picking_ref" string="Stock Return"/>
+                        <field name="credit_note_ref" string="Credit Note"/>
+                        <field name="claim_status" string="Claim Status"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Returned Lines">
+                        <field name="lines" string="Returned Lines">
+                            <view type="list">
+                                <field name="receipt_line_id" string="Receipt Line"/>
+                                <field name="product_id" string="Product"/>
+                                <field name="description" string="Description"/>
+                                <field name="quantity" string="Returned Qty"/>
+                                <field name="uom" string="Unit"/>
+                                <field name="reason" string="Reason"/>
+                                <field name="disposition" string="Disposition"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Reason &amp; Notes">
+                        <field name="reason" string="Reason"/>
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_supplier_return" type="window" model="purchase.supplier.return" name="Supplier Returns" view_mode="list,form"/>
+
+        <!-- Discrepancy Case -->
+        <view id="view_purchase_discrepancy_case_list" model="purchase.discrepancy.case" type="list">
+            <field name="name" string="Reference"/>
+            <field name="receipt_id" string="Receipt"/>
+            <field name="order_id" string="Purchase Order"/>
+            <field name="product_id" string="Product"/>
+            <field name="issue_type" string="Issue"/>
+            <field name="quantity" string="Affected Qty"/>
+            <field name="disposition" string="Disposition"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_discrepancy_case_form" model="purchase.discrepancy.case" type="form">
+            <header>
+                <button name="action_resolve" string="Resolve" type="object" class="btn-primary" invisible="state not in 'open,on_hold'"/>
+                <button name="action_close" string="Close" type="object" invisible="state != 'resolved'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. DISC/0001"/></h1></div>
+                <group>
+                    <group string="Case">
+                        <field name="receipt_id" string="Receipt"/>
+                        <field name="receipt_line_id" string="Receipt Line"/>
+                        <field name="order_id" string="Purchase Order"/>
+                        <field name="product_id" string="Product"/>
+                        <field name="issue_type" string="Issue"/>
+                        <field name="quantity" string="Affected Qty"/>
+                    </group>
+                    <group string="Handling">
+                        <field name="lot" string="Lot"/>
+                        <field name="serial_number" string="Serial"/>
+                        <field name="on_hold" string="Hold In Inventory"/>
+                        <field name="disposition" string="Disposition"/>
+                        <field name="claim_id" string="Related Claim"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="evidence" string="Evidence"/>
+                <field name="resolution" string="Resolution"/>
+                <field name="history" string="History"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_discrepancy_case" type="window" model="purchase.discrepancy.case" name="Discrepancy Cases" view_mode="list,form"/>
+
+        <!-- Supplier Claim -->
+        <view id="view_purchase_supplier_claim_list" model="purchase.supplier.claim" type="list">
+            <field name="name" string="Reference"/>
+            <field name="partner_id" string="Supplier"/>
+            <field name="order_id" string="Purchase Order"/>
+            <field name="claim_type" string="Type"/>
+            <field name="amount_claimed" string="Amount"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_supplier_claim_form" model="purchase.supplier.claim" type="form">
+            <header>
+                <button name="action_submit" string="Submit" type="object" class="btn-primary" invisible="state != 'open'"/>
+                <button name="action_settle" string="Settle" type="object" invisible="state not in 'submitted,accepted'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. CLM/0001"/></h1></div>
+                <group>
+                    <group string="Claim">
+                        <field name="partner_id" string="Supplier"/>
+                        <field name="order_id" string="Purchase Order"/>
+                        <field name="receipt_id" string="Receipt"/>
+                        <field name="claim_type" string="Claim Type"/>
+                    </group>
+                    <group string="Status">
+                        <field name="amount_claimed" string="Amount Claimed"/>
+                        <field name="opened_on" string="Opened"/>
+                        <field name="resolved_on" string="Resolved"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="resolution_note" string="Resolution"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_supplier_claim" type="window" model="purchase.supplier.claim" name="Supplier Claims" view_mode="list,form"/>
+    </data>
+</nexa>

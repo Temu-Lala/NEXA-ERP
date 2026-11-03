@@ -1,0 +1,20 @@
+{
+    "name": "project_collab",
+    "display_name": "Project Collaboration",
+    "version": "1.0.0",
+    "summary": "Meetings, action items and controlled project documents",
+    "description": "Run the human side of delivery. Schedule project meetings with agenda, attendees and recorded minutes (draft to scheduled to held), raise action items with an owner and due date whose overdue status is refreshed daily, and register project documents that flow through review and independent approval (an owner cannot approve their own document) before they can be archived. Decisions stay owned by Project Governance; this module covers meetings, follow-ups and document control so nothing raised in a room is lost.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "project"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "data/collab_overdue_cron.xml",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Project"
+}

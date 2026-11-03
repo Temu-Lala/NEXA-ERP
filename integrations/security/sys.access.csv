@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_integration_connection_user,access_integration_connection_user,integration.connection,base.group_user,1,0,0,0
+access_integration_connection_system,access_integration_connection_system,integration.connection,base.group_system,1,1,1,1
+access_integration_delivery_user,access_integration_delivery_user,integration.delivery,base.group_user,1,0,0,0
+access_integration_delivery_system,access_integration_delivery_system,integration.delivery,base.group_system,1,1,1,0
+access_integration_webhook_user,access_integration_webhook_user,integration.webhook,base.group_user,1,0,0,0
+access_integration_webhook_system,access_integration_webhook_system,integration.webhook,base.group_system,1,1,1,1
+access_integration_inbound_event_user,access_integration_inbound_event_user,integration.inbound.event,base.group_user,1,0,0,0
+access_integration_inbound_event_system,access_integration_inbound_event_system,integration.inbound.event,base.group_system,1,1,1,1

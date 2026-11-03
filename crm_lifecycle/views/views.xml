@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Lead Status History -->
+        <view id="view_crm_lead_status_history_list" model="crm.lead.status.history" type="list">
+            <field name="lead_id" string="Lead"/>
+            <field name="from_status" string="From"/>
+            <field name="to_status" string="To"/>
+            <field name="reason" string="Reason"/>
+            <field name="user_id" string="Changed By"/>
+            <field name="changed_at" string="Changed At"/>
+        </view>
+        <view id="view_crm_lead_status_history_form" model="crm.lead.status.history" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="lead_id" string="Lead"/>
+                        <field name="from_status" string="From"/>
+                        <field name="to_status" string="To"/>
+                        <field name="reason" string="Reason"/>
+                    </group>
+                    <group>
+                        <field name="user_id" string="Changed By"/>
+                        <field name="changed_at" string="Changed At"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_lead_status_history" type="window" model="crm.lead.status.history" name="Status History" view_mode="list,form"/>
+
+        <!-- Lead Assignment -->
+        <view id="view_crm_lead_assignment_list" model="crm.lead.assignment" type="list">
+            <field name="lead_id" string="Lead"/>
+            <field name="previous_owner_id" string="Previous Owner"/>
+            <field name="new_owner_id" string="New Owner"/>
+            <field name="assigned_by_id" string="Assigned By"/>
+            <field name="method" string="Method"/>
+            <field name="assigned_at" string="Assigned At"/>
+        </view>
+        <view id="view_crm_lead_assignment_form" model="crm.lead.assignment" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="lead_id" string="Lead"/>
+                        <field name="previous_owner_id" string="Previous Owner"/>
+                        <field name="new_owner_id" string="New Owner"/>
+                    </group>
+                    <group>
+                        <field name="assigned_by_id" string="Assigned By"/>
+                        <field name="method" string="Method"/>
+                        <field name="assigned_at" string="Assigned At"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_lead_assignment" type="window" model="crm.lead.assignment" name="Assignment History" view_mode="list,form"/>
+
+        <!-- Lead Duplicate -->
+        <view id="view_crm_lead_duplicate_list" model="crm.lead.duplicate" type="list">
+            <field name="lead_id" string="Lead"/>
+            <field name="candidate_lead_id" string="Possible Duplicate"/>
+            <field name="match_signal" string="Match Signal"/>
+            <field name="confidence" string="Confidence %"/>
+            <field name="status" string="Status"/>
+            <field name="reviewed_by" string="Reviewed By"/>
+        </view>
+        <view id="view_crm_lead_duplicate_form" model="crm.lead.duplicate" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="lead_id" string="Lead"/>
+                        <field name="candidate_lead_id" string="Possible Duplicate"/>
+                        <field name="match_signal" string="Match Signal"/>
+                    </group>
+                    <group>
+                        <field name="confidence" string="Confidence (%)"/>
+                        <field name="status" string="Status"/>
+                        <field name="reviewed_by" string="Reviewed By"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_lead_duplicate" type="window" model="crm.lead.duplicate" name="Duplicate Candidates" view_mode="list,form"/>
+
+        <!-- Assignment Rule -->
+        <view id="view_crm_assignment_rule_list" model="crm.assignment.rule" type="list">
+            <field name="sequence" string="Seq"/>
+            <field name="name" string="Name"/>
+            <field name="apply_on" string="Apply On"/>
+            <field name="rule_type" string="Rule Type"/>
+            <field name="team_id" string="Sales Team"/>
+            <field name="enabled" string="Enabled"/>
+        </view>
+        <view id="view_crm_assignment_rule_form" model="crm.assignment.rule" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Round-robin web leads"/></h1></div>
+                <group>
+                    <group>
+                        <field name="apply_on" string="Apply On"/>
+                        <field name="rule_type" string="Rule Type"/>
+                        <field name="team_id" string="Sales Team"/>
+                    </group>
+                    <group>
+                        <field name="sequence" string="Sequence"/>
+                        <field name="enabled" string="Enabled"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_assignment_rule" type="window" model="crm.assignment.rule" name="Assignment Rules" view_mode="list,form"/>
+
+        <!-- Workflow Rule -->
+        <view id="view_crm_workflow_rule_list" model="crm.workflow.rule" type="list">
+            <field name="name" string="Name"/>
+            <field name="trigger" string="Trigger"/>
+            <field name="action" string="Action"/>
+            <field name="interval_days" string="Interval Days"/>
+            <field name="recipient" string="Notify"/>
+            <field name="enabled" string="Enabled"/>
+            <field name="exec_count" string="Executions"/>
+        </view>
+        <view id="view_crm_workflow_rule_form" model="crm.workflow.rule" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Follow-up on qualified lead"/></h1></div>
+                <group>
+                    <group string="When">
+                        <field name="trigger" string="Trigger"/>
+                        <field name="conditions" string="Conditions"/>
+                    </group>
+                    <group string="Then">
+                        <field name="action" string="Action"/>
+                        <field name="interval_days" string="Interval Days"/>
+                        <field name="recipient" string="Notify"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="enabled" string="Enabled"/>
+                    <field name="exec_count" string="Executions"/>
+                    <field name="company_id" string="Company"/>
+                    <field name="active" string="Active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_workflow_rule" type="window" model="crm.workflow.rule" name="Workflow Rules" view_mode="list,form"/>
+    </data>
+</nexa>

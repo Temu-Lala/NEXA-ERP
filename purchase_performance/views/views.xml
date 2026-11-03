@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Measurement period -->
+        <view id="view_purchase_performance_period_list" model="purchase.performance.period" type="list">
+            <field name="name" string="Reference"/>
+            <field name="title" string="Title"/>
+            <field name="period_type" string="Type"/>
+            <field name="date_start" string="Start"/>
+            <field name="date_end" string="End"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_performance_period_form" model="purchase.performance.period" type="form">
+            <header>
+                <button name="action_compute" string="Compute Scorecards" type="object" class="sum_highlight" invisible="state not in ('draft', 'computing', 'computed')"/>
+                <button name="action_lock" string="Lock" type="object" invisible="state != 'computed'"/>
+                <button name="action_reset" string="Reset to Draft" type="object" invisible="state in ('draft', 'cancelled')"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. PER/00001"/></h1></div>
+                <group>
+                    <group string="Period">
+                        <field name="title" string="Title"/>
+                        <field name="period_type" string="Period Type"/>
+                        <field name="date_start" string="Start Date"/>
+                        <field name="date_end" string="End Date"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Consistency Rules">
+                        <field name="on_time_treat" string="On-Time Treatment"/>
+                        <field name="fill_basis" string="Fill Rate Basis"/>
+                        <field name="include_partial" string="Count Partial Deliveries"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="exclusions" string="Exclusions"/>
+                    <field name="methodology" string="KPI Definitions"/>
+                </group>
+                <notebook>
+                    <page string="Scorecards">
+                        <field name="scorecards" string="Scorecards">
+                            <view type="list">
+                                <field name="supplier_id" string="Supplier"/>
+                                <field name="composite_score" string="Composite"/>
+                                <field name="grade" string="Grade"/>
+                                <field name="escalation" string="Escalation"/>
+                                <field name="state" string="Status"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Notes &amp; History">
+                        <field name="notes" string="Notes"/>
+                        <field name="history" string="History"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_performance_period" type="window" model="purchase.performance.period" name="Measurement Periods" view_mode="list,form"/>
+
+        <!-- Supplier scorecard -->
+        <view id="view_purchase_supplier_scorecard_list" model="purchase.supplier.scorecard" type="list">
+            <field name="name" string="Reference"/>
+            <field name="period_id" string="Period"/>
+            <field name="supplier_id" string="Supplier"/>
+            <field name="composite_score" string="Composite"/>
+            <field name="grade" string="Grade"/>
+            <field name="escalation" string="Escalation"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_supplier_scorecard_form" model="purchase.supplier.scorecard" type="form">
+            <header>
+                <button name="action_recompute" string="Recompute" type="object" class="sum_highlight" invisible="state == 'locked'"/>
+                <button name="action_review" string="Mark Reviewed" type="object" invisible="state != 'calculated'"/>
+                <button name="action_lock" string="Lock" type="object" invisible="state != 'reviewed'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. SC/00001"/></h1></div>
+                <group>
+                    <group string="Scope">
+                        <field name="period_id" string="Period"/>
+                        <field name="supplier_id" string="Supplier"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="category" string="Category"/>
+                        <field name="risk_ref" string="Risk Assessment"/>
+                    </group>
+                    <group string="Result">
+                        <field name="composite_score" string="Composite"/>
+                        <field name="grade" string="Grade"/>
+                        <field name="escalation" string="Escalation"/>
+                        <field name="evaluated_by" string="Evaluated By"/>
+                        <field name="evaluated_on" string="Evaluated On"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group string="Dimension Scores">
+                    <group>
+                        <field name="quality_score" string="Quality"/>
+                        <field name="delivery_score" string="Delivery"/>
+                        <field name="cost_score" string="Cost"/>
+                    </group>
+                    <group>
+                        <field name="service_score" string="Service"/>
+                        <field name="compliance_score" string="Compliance"/>
+                    </group>
+                </group>
+                <group string="Weights">
+                    <group>
+                        <field name="weight_quality" string="Weight Quality"/>
+                        <field name="weight_delivery" string="Weight Delivery"/>
+                        <field name="weight_cost" string="Weight Cost"/>
+                    </group>
+                    <group>
+                        <field name="weight_service" string="Weight Service"/>
+                        <field name="weight_compliance" string="Weight Compliance"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="KPI Metrics">
+                        <field name="metrics" string="Metrics">
+                            <view type="list">
+                                <field name="kpi" string="KPI"/>
+                                <field name="dimension" string="Dimension"/>
+                                <field name="numerator" string="Numerator"/>
+                                <field name="denominator" string="Denominator"/>
+                                <field name="value" string="Raw"/>
+                                <field name="score" string="Score"/>
+                                <field name="has_data" string="Has Data"/>
+                            </view>
+                        </field>
+                    </page>
+                    <page string="Notes &amp; History">
+                        <field name="notes" string="Notes"/>
+                        <field name="history" string="History"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_supplier_scorecard" type="window" model="purchase.supplier.scorecard" name="Supplier Scorecards" view_mode="list,form"/>
+
+        <!-- KPI metric -->
+        <view id="view_purchase_performance_metric_list" model="purchase.performance.metric" type="list">
+            <field name="scorecard_id" string="Scorecard"/>
+            <field name="supplier_id" string="Supplier"/>
+            <field name="kpi" string="KPI"/>
+            <field name="dimension" string="Dimension"/>
+            <field name="numerator" string="Numerator"/>
+            <field name="denominator" string="Denominator"/>
+            <field name="value" string="Raw Value"/>
+            <field name="score" string="Score"/>
+            <field name="has_data" string="Has Data"/>
+        </view>
+        <view id="view_purchase_performance_metric_form" model="purchase.performance.metric" type="form">
+            <sheet>
+                <group>
+                    <group string="Measurement">
+                        <field name="scorecard_id" string="Scorecard"/>
+                        <field name="period_id" string="Period"/>
+                        <field name="supplier_id" string="Supplier"/>
+                        <field name="kpi" string="KPI"/>
+                        <field name="dimension" string="Dimension"/>
+                        <field name="direction" string="Direction"/>
+                    </group>
+                    <group string="Evidence">
+                        <field name="numerator" string="Numerator"/>
+                        <field name="denominator" string="Denominator"/>
+                        <field name="value" string="Raw Value"/>
+                        <field name="score" string="Score"/>
+                        <field name="has_data" string="Has Data"/>
+                        <field name="date" string="Date"/>
+                    </group>
+                </group>
+                <field name="detail" string="Evidence"/>
+            </sheet>
+        </view>
+        <action id="action_purchase_performance_metric" type="window" model="purchase.performance.metric" name="KPI Metrics" view_mode="list,form"/>
+
+        <!-- Corrective action -->
+        <view id="view_purchase_corrective_action_list" model="purchase.corrective.action" type="list">
+            <field name="name" string="Reference"/>
+            <field name="title" string="Title"/>
+            <field name="supplier_id" string="Supplier"/>
+            <field name="kind" string="Category"/>
+            <field name="severity" string="Severity"/>
+            <field name="due_date" string="Due"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_purchase_corrective_action_form" model="purchase.corrective.action" type="form">
+            <header>
+                <button name="action_open" string="Open" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_start" string="Start Work" type="object" invisible="state not in ('open', 'rejected')"/>
+                <button name="action_complete" string="Submit Closure" type="object" invisible="state != 'in_progress'"/>
+                <button name="action_verify" string="Verify &amp; Close" type="object" class="sum_highlight" invisible="state != 'pending_verification'"/>
+                <button name="action_reject" string="Reject Closure" type="object" invisible="state != 'pending_verification'"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state in ('closed', 'cancelled')"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. CAPA/00001"/></h1></div>
+                <group>
+                    <group string="Issue">
+                        <field name="title" string="Title"/>
+                        <field name="supplier_id" string="Supplier"/>
+                        <field name="scorecard_id" string="Source Scorecard"/>
+                        <field name="kind" string="Category"/>
+                        <field name="severity" string="Severity"/>
+                    </group>
+                    <group string="Ownership &amp; Dates">
+                        <field name="responsible_id" string="Responsible"/>
+                        <field name="date_raised" string="Raised"/>
+                        <field name="due_date" string="Due Date"/>
+                        <field name="closure_date" string="Closure Date"/>
+                        <field name="verified_by" string="Verified By"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="root_cause" string="Root Cause"/>
+                    <field name="containment" string="Containment"/>
+                    <field name="corrective_plan" string="Corrective Plan"/>
+                    <field name="closure_evidence" string="Closure Evidence"/>
+                </group>
+                <notebook>
+                    <page string="Notes &amp; History">
+                        <field name="notes" string="Notes"/>
+                        <field name="history" string="History"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_purchase_corrective_action" type="window" model="purchase.corrective.action" name="Corrective Actions" view_mode="list,form"/>
+    </data>
+</nexa>

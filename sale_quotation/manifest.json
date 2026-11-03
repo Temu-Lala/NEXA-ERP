@@ -1,0 +1,19 @@
+{
+    "name": "sale_quotation",
+    "display_name": "Quotation Lifecycle",
+    "version": "1.0.0",
+    "summary": "Quotation approvals, revisions, status history and credit checks",
+    "description": "Commercial control layer for the Quote-to-Cash flow: approval gates for exceptional discounts and margins (reusing the shared approval engine), immutable issued-quotation revisions with acceptance records, full status history, and credit-policy decision snapshots. Accounting and CRM own the underlying financial and lead data.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "sale"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Sales"
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_enrollment_root" name="Enrollment" parent="school.school_menu_root" sequence="10" web_icon="graduation-cap" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_enrollment" name="Enrollments" parent="school_menu_enrollment_root" action="school_enrollment.action_school_enrollment" sequence="1" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_enrollment_history" name="Enrollment History" parent="school_menu_enrollment_root" action="school_enrollment.action_school_enrollment_history" sequence="2" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_alumni" name="Alumni" parent="school_menu_enrollment_root" action="school_enrollment.action_school_alumni" sequence="3" groups="school.group_school_clerk"/>
+    </data>
+</nexa>

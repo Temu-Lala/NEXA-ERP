@@ -1,0 +1,19 @@
+{
+    "name": "crm_account",
+    "display_name": "CRM Accounts & Retention",
+    "version": "1.0.0",
+    "summary": "Customer 360 account profiles, segments, tags, health and renewals",
+    "description": "Deep account layer for the CRM: Customer 360 account profiles built on the shared contacts master (segment, industry, region, account manager, lifecycle), an explainable health score with documented rationale, reusable tags, saved dynamic segments, and renewal/retention tracking. Canonical identity stays in core.partner and financial records stay in Accounting - this module only owns the relationship view.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "crm"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "CRM"
+}

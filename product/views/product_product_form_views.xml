@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_product_product_form" model="product.product" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <field name="image" widget="image"/>
+                    <h1>
+                        <field name="name" placeholder="Product Name..."/>
+                    </h1>
+                </div>
+                <group>
+                    <group string="General">
+                        <field name="default_code" string="Internal Reference"/>
+                        <field name="barcode" string="Barcode"/>
+                        <field name="type" string="Product Type"/>
+                        <field name="state" string="Lifecycle"/>
+                        <field name="categ_id" string="Category"/>
+                        <field name="brand_id" string="Brand"/>
+                        <field name="tag_ids" string="Tags" widget="many2many_tags"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Pricing">
+                        <field name="list_price" string="Sales Price"/>
+                        <field name="standard_price" string="Cost"/>
+                        <field name="cost_method" string="Cost Method"/>
+                        <field name="sale_ok" string="Can be Sold"/>
+                        <field name="purchase_ok" string="Can be Purchased"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Description">
+                        <field name="description" string="Description"/>
+                        <field name="description_sale" string="Sales Description"/>
+                        <field name="internal_notes" string="Internal Notes"/>
+                    </page>
+                    <page string="Inventory">
+                        <group>
+                            <group string="Units and Tracking">
+                                <field name="sales_uom_id" string="Unit of Measure"/>
+                                <field name="purchase_uom_id" string="Purchase UoM"/>
+                                <field name="tracking" string="Tracking"/>
+                            </group>
+                            <group string="Replenishment and Logistics">
+                                <field name="reorder_min" string="Min Quantity"/>
+                                <field name="reorder_max" string="Max Quantity"/>
+                                <field name="weight" string="Weight"/>
+                                <field name="volume" string="Volume"/>
+                                <field name="warranty_months" string="Warranty (months)"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Accounting">
+                        <group>
+                            <field name="property_account_income_id" string="Income Account"/>
+                            <field name="property_account_expense_id" string="Expense Account"/>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+    </data>
+</nexa>

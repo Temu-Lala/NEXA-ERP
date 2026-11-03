@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <action id="action_hr_employee" type="window" model="hr.employee" name="Employees" view_mode="kanban,list,form">
+            <help>Create your first employee.</help>
+        </action>
+        <action id="action_hr_employee_onboarding" type="window" model="hr.employee" name="Onboarding" view_mode="kanban,list,form" domain='[["state","in",["draft","pending"]]]'/>
+        <action id="action_hr_employee_active" type="window" model="hr.employee" name="At Work" view_mode="kanban,list,form" domain='[["state","in",["active","on_leave"]]]'/>
+        <action id="action_hr_employee_exits" type="window" model="hr.employee" name="Exits" view_mode="kanban,list,form" domain='[["state","in",["notice","terminated","retired","suspended"]]]'/>
+    </data>
+</nexa>

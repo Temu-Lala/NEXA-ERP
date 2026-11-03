@@ -1,0 +1,20 @@
+{
+    "name": "project_resource",
+    "display_name": "Project Resources",
+    "version": "1.0.0",
+    "summary": "Resource allocations, capacity checking and approved resource requests",
+    "description": "Plan and control people power across the portfolio. Assign employees to projects as allocations (draft to confirmed to released) with a planned percentage for a period, and evaluate each person's committed capacity across every project they touch so over-allocation is flagged immediately on confirmation and by a daily recompute. A resource request captures demand for capacity and only becomes a confirmed allocation through an independent approval (separation of duties so a raiser cannot approve their own request). HR owns contracts and calendars; this module plans and guards assignment, never payroll.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "project"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "data/resource_capacity_cron.xml",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Project"
+}

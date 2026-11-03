@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_purchase_sourcing_root" name="Sourcing" parent="purchase.purchase_menu_root" sequence="15" web_icon="layers" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_rfq_new" name="Requests for Quotation" parent="menu_purchase_sourcing_root" action="purchase_sourcing.action_purchase_rfq" sequence="1" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_quotation" name="Supplier Quotations" parent="menu_purchase_sourcing_root" action="purchase_sourcing.action_purchase_quotation" sequence="2" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_evaluation" name="Evaluations" parent="menu_purchase_sourcing_root" action="purchase_sourcing.action_purchase_evaluation" sequence="3" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_award" name="Supplier Awards" parent="menu_purchase_sourcing_root" action="purchase_sourcing.action_purchase_award" sequence="4" groups="purchase.group_purchase_manager"/>
+        <menuitem id="menu_purchase_supplier_profile" name="Supplier Profiles" parent="menu_purchase_sourcing_root" action="purchase_sourcing.action_purchase_supplier_profile" sequence="5" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_negotiation" name="Negotiation Rounds" parent="menu_purchase_sourcing_root" action="purchase_sourcing.action_purchase_quotation_round" sequence="6" groups="purchase.group_purchase_officer"/>
+    </data>
+</nexa>

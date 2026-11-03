@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Pipeline -->
+        <view id="view_crm_pipeline_list" model="crm.pipeline" type="list">
+            <field name="name" string="Name"/>
+            <field name="code" string="Code"/>
+            <field name="team_id" string="Sales Team"/>
+            <field name="sequence" string="Sequence"/>
+            <field name="is_default" string="Default"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_crm_pipeline_form" model="crm.pipeline" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Enterprise Sales"/></h1></div>
+                <group>
+                    <group>
+                        <field name="code" string="Code"/>
+                        <field name="team_id" string="Sales Team"/>
+                        <field name="sequence" string="Sequence"/>
+                    </group>
+                    <group>
+                        <field name="is_default" string="Default Pipeline"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group string="Stages">
+                    <field name="stage_rels" nolimit="true">
+                        <list editable="bottom">
+                            <field name="stage_id" string="Stage"/>
+                            <field name="sequence" string="Order"/>
+                        </list>
+                    </field>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_pipeline" type="window" model="crm.pipeline" name="Pipelines" view_mode="list,form"/>
+
+        <!-- Stage History -->
+        <view id="view_crm_stage_history_list" model="crm.stage.history" type="list">
+            <field name="lead_id" string="Opportunity"/>
+            <field name="from_stage_id" string="From"/>
+            <field name="to_stage_id" string="To"/>
+            <field name="user_id" string="Moved By"/>
+            <field name="transition_date" string="Date"/>
+            <field name="days_in_stage" string="Days In Stage"/>
+        </view>
+        <view id="view_crm_stage_history_form" model="crm.stage.history" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="lead_id" string="Opportunity"/>
+                        <field name="from_stage_id" string="From Stage"/>
+                        <field name="to_stage_id" string="To Stage"/>
+                    </group>
+                    <group>
+                        <field name="user_id" string="Moved By"/>
+                        <field name="transition_date" string="Transition Date"/>
+                        <field name="days_in_stage" string="Days In Previous Stage"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_stage_history" type="window" model="crm.stage.history" name="Stage History" view_mode="list,form"/>
+
+        <!-- Forecast Category -->
+        <view id="view_crm_forecast_category_list" model="crm.forecast.category" type="list">
+            <field name="name" string="Name"/>
+            <field name="code" string="Code"/>
+            <field name="confidence" string="Confidence %"/>
+            <field name="is_commit" string="Committed"/>
+            <field name="sequence" string="Sequence"/>
+        </view>
+        <view id="view_crm_forecast_category_form" model="crm.forecast.category" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Best Case"/></h1></div>
+                <group>
+                    <group>
+                        <field name="code" string="Code"/>
+                        <field name="confidence" string="Confidence (%)"/>
+                        <field name="is_commit" string="Committed"/>
+                    </group>
+                    <group>
+                        <field name="sequence" string="Sequence"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_forecast_category" type="window" model="crm.forecast.category" name="Forecast Categories" view_mode="list,form"/>
+
+        <!-- Lead Forecast snapshot -->
+        <view id="view_crm_lead_forecast_list" model="crm.lead.forecast" type="list">
+            <field name="lead_id" string="Opportunity"/>
+            <field name="forecast_category_id" string="Forecast Category"/>
+            <field name="expected_close" string="Expected Close"/>
+            <field name="pipeline_value" string="Pipeline Value"/>
+            <field name="weighted_value" string="Weighted Value"/>
+        </view>
+        <view id="view_crm_lead_forecast_form" model="crm.lead.forecast" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="lead_id" string="Opportunity"/>
+                        <field name="forecast_category_id" string="Forecast Category"/>
+                        <field name="expected_close" string="Expected Close"/>
+                    </group>
+                    <group>
+                        <field name="pipeline_value" string="Pipeline Value"/>
+                        <field name="weighted_value" string="Weighted Value"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_lead_forecast" type="window" model="crm.lead.forecast" name="Forecast Snapshots" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,7 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_leave_transaction_user,access_hr_leave_transaction_user,hr.leave.transaction,hr.group_hr_user,1,0,0,0
+access_hr_leave_transaction_manager,access_hr_leave_transaction_manager,hr.leave.transaction,hr.group_hr_manager,1,1,1,1
+access_hr_leave_balance_user,access_hr_leave_balance_user,hr.leave.balance,hr.group_hr_user,1,0,0,0
+access_hr_leave_balance_manager,access_hr_leave_balance_manager,hr.leave.balance,hr.group_hr_manager,1,1,1,0
+access_hr_leave_accrual_rule_user,access_hr_leave_accrual_rule_user,hr.leave.accrual.rule,hr.group_hr_user,1,0,0,0
+access_hr_leave_accrual_rule_manager,access_hr_leave_accrual_rule_manager,hr.leave.accrual.rule,hr.group_hr_manager,1,1,1,1

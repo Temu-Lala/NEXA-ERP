@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_loan_type_list" model="hr.loan.type" type="list">
+            <field name="name" string="Loan Type"/>
+            <field name="max_amount" string="Max Amount"/>
+            <field name="max_installments" string="Max Installments"/>
+            <field name="interest_rate" string="Interest Rate"/>
+        </view>
+        <view id="view_loan_type_form" model="hr.loan.type" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="min_amount"/>
+                    <field name="max_amount"/>
+                    <field name="max_installments"/>
+                    <field name="interest_rate"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_list" model="hr.loan" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="loan_type_id" string="Loan Type"/>
+            <field name="amount" string="Amount"/>
+            <field name="monthly_deduction" string="Monthly Deduction"/>
+            <field name="remaining_balance" string="Balance"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_loan_form" model="hr.loan" type="form">
+            <sheet>
+                <group>
+                    <field name="employee_id"/>
+                    <field name="loan_type_id"/>
+                    <field name="amount"/>
+                    <field name="installment_count"/>
+                    <field name="monthly_deduction"/>
+                    <field name="remaining_balance"/>
+                </group>
+                <group>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="journal_id"/>
+                    <field name="account_id"/>
+                    <field name="company_id"/>
+                    <field name="state"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_loan_line_list" model="hr.loan.line" type="list">
+            <field name="loan_id" string="Loan"/>
+            <field name="number" string="#"/>
+            <field name="due_date" string="Due Date"/>
+            <field name="amount" string="Amount"/>
+            <field name="state" string="Status"/>
+            <field name="paid_date" string="Paid Date"/>
+        </view>
+        <view id="view_loan_line_form" model="hr.loan.line" type="form">
+            <sheet>
+                <group>
+                    <field name="loan_id"/>
+                    <field name="number"/>
+                    <field name="due_date"/>
+                    <field name="amount"/>
+                    <field name="state"/>
+                    <field name="paid_date"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_loan_type" type="window" model="hr.loan.type" name="Loan Types" view_mode="list,form"/>
+        <action id="action_loan" type="window" model="hr.loan" name="Employee Loans" view_mode="list,form"/>
+        <action id="action_loan_line" type="window" model="hr.loan.line" name="Repayment Schedule" view_mode="list,form"/>
+    </data>
+</nexa>

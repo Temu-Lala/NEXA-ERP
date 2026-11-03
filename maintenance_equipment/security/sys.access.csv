@@ -1,0 +1,7 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_meter_user,access_maint_meter_user,maintenance.meter,,1,1,1,1
+access_maint_meter_reading_user,access_maint_meter_reading_user,maintenance.meter.reading,,1,1,1,1
+access_maint_plan_user,access_maint_plan_user,maintenance.plan,,1,1,1,1
+access_maint_plan_occurrence_user,access_maint_plan_occurrence_user,maintenance.plan.occurrence,,1,1,1,1
+access_maint_plan_version_user,access_maint_plan_version_user,maintenance.plan.version,,1,1,1,1
+access_maint_asset_meter_summary_user,access_maint_asset_meter_summary_user,maintenance.asset.meter.summary,,1,1,1,1

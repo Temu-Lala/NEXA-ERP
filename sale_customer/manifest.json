@@ -1,0 +1,19 @@
+{
+    "name": "sale_customer",
+    "display_name": "Customer Sales Profiles & Teams",
+    "version": "1.0.0",
+    "summary": "Sales-specific customer settings, teams, members and territories",
+    "description": "Customer and account management for Sales: commercial profiles (price list, terms, segment, assigned rep, territory) layered on the shared contacts master without duplicating it, plus sales team hierarchy and membership with period quotas.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "sale"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Sales"
+}

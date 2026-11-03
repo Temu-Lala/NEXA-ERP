@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_ecom_promotion_user,access_ecom_promotion_user,ecom.promotion,group_website_shop_user,1,1,1,0
+access_ecom_promotion_manager,access_ecom_promotion_manager,ecom.promotion,group_website_shop_manager,1,1,1,1
+access_ecom_promotion_rule_user,access_ecom_promotion_rule_user,ecom.promotion.rule,group_website_shop_user,1,1,1,1
+access_ecom_promotion_rule_manager,access_ecom_promotion_rule_manager,ecom.promotion.rule,group_website_shop_manager,1,1,1,1
+access_ecom_coupon_user,access_ecom_coupon_user,ecom.coupon,group_website_shop_user,1,1,1,0
+access_ecom_coupon_manager,access_ecom_coupon_manager,ecom.coupon,group_website_shop_manager,1,1,1,1
+access_ecom_coupon_redemption_user,access_ecom_coupon_redemption_user,ecom.coupon.redemption,group_website_shop_user,1,0,0,0
+access_ecom_coupon_redemption_manager,access_ecom_coupon_redemption_manager,ecom.coupon.redemption,group_website_shop_manager,1,1,1,1

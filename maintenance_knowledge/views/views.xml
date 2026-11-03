@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_maint_doc_category_list" model="maintenance.document.category" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Name"/>
+            <field name="parent_id" string="Parent Category"/>
+            <field name="sensitive" string="Access Restricted" widget="boolean_toggle"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_doc_category_form" model="maintenance.document.category" type="form">
+            <sheet>
+                <group>
+                    <group string="Category">
+                        <field name="code" string="Code"/>
+                        <field name="name" string="Name"/>
+                        <field name="parent_id" string="Parent Category"/>
+                    </group>
+                    <group string="Access">
+                        <field name="sensitive" string="Access Restricted"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <separator string="Description"/>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_maint_doc_category" type="window" model="maintenance.document.category" name="Document Categories" view_mode="list,form"/>
+
+        <view id="view_maint_document_list" model="maintenance.document" type="list">
+            <field name="reference" string="Reference"/>
+            <field name="name" string="Title"/>
+            <field name="doc_type" string="Type"/>
+            <field name="category_id" string="Category"/>
+            <field name="asset_model" string="Applies To"/>
+            <field name="current_version" string="Version"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_maint_document_form" model="maintenance.document" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Document title..."/></h1>
+                </div>
+                <group>
+                    <group string="Document">
+                        <field name="reference" string="Reference"/>
+                        <field name="doc_type" string="Type"/>
+                        <field name="category_id" string="Category"/>
+                        <field name="state" string="Status"/>
+                        <field name="current_version" string="Current Version"/>
+                        <field name="owner_id" string="Owner"/>
+                    </group>
+                    <group string="Scope &amp; Control">
+                        <field name="asset_model" string="Applies To (Model)"/>
+                        <field name="manufacturer" string="Manufacturer"/>
+                        <field name="asset_id" string="Specific Asset"/>
+                        <field name="effective_date" string="Effective Date"/>
+                        <field name="expiry_date" string="Review / Expiry Date"/>
+                        <field name="restricted" string="Access Restricted"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Content">
+                        <separator string="Summary"/>
+                        <field name="summary" string="Summary"/>
+                        <separator string="Content"/>
+                        <field name="content" string="Content"/>
+                    </page>
+                    <page string="File">
+                        <group>
+                            <field name="file_name" string="File Name"/>
+                            <field name="file_ref" string="File Reference"/>
+                            <field name="file_mime" string="File Type"/>
+                        </group>
+                    </page>
+                    <page string="Classification">
+                        <group>
+                            <field name="tags" string="Tags"/>
+                            <field name="keywords" string="Keywords"/>
+                            <field name="view_count" string="Views"/>
+                        </group>
+                    </page>
+                    <page string="Versions">
+                        <field name="versions" nolabel="1"/>
+                    </page>
+                    <page string="Links">
+                        <field name="links" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_document" type="window" model="maintenance.document" name="Knowledge Documents" view_mode="list,form"/>
+
+        <view id="view_maint_document_version_list" model="maintenance.document.version" type="list">
+            <field name="document_id" string="Document"/>
+            <field name="version" string="Version"/>
+            <field name="effective_date" string="Effective Date"/>
+            <field name="released_by_id" string="Released By"/>
+            <field name="is_current" string="Current" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_document_version_form" model="maintenance.document.version" type="form">
+            <sheet>
+                <group>
+                    <group string="Revision">
+                        <field name="document_id" string="Document"/>
+                        <field name="version" string="Version"/>
+                        <field name="effective_date" string="Effective Date"/>
+                        <field name="released_by_id" string="Released By"/>
+                        <field name="is_current" string="Current Revision"/>
+                    </group>
+                    <group string="File">
+                        <field name="file_name" string="File Name"/>
+                        <field name="file_ref" string="File Reference"/>
+                        <field name="file_mime" string="File Type"/>
+                    </group>
+                </group>
+                <separator string="Change Note"/>
+                <field name="change_note" string="Change Note"/>
+            </sheet>
+        </view>
+        <action id="action_maint_document_version" type="window" model="maintenance.document.version" name="Document Versions" view_mode="list,form"/>
+
+        <view id="view_maint_document_link_list" model="maintenance.document.link" type="list">
+            <field name="document_id" string="Document"/>
+            <field name="link_type" string="Type"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="plan_id" string="Maintenance Plan"/>
+        </view>
+        <view id="view_maint_document_link_form" model="maintenance.document.link" type="form">
+            <sheet>
+                <group>
+                    <group string="Document">
+                        <field name="document_id" string="Document"/>
+                        <field name="version_id" string="Version Used"/>
+                        <field name="link_type" string="Link Type"/>
+                    </group>
+                    <group string="Target">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="plan_id" string="Maintenance Plan"/>
+                    </group>
+                </group>
+                <separator string="Note"/>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_maint_document_link" type="window" model="maintenance.document.link" name="Document Links" view_mode="list,form"/>
+    </data>
+</nexa>

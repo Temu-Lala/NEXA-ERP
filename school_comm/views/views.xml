@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Channels -->
+        <view id="view_school_communication_channel_list" model="school.communication.channel" type="list">
+            <field name="name" string="Channel"/>
+            <field name="code" string="Code"/>
+            <field name="channel_type" string="Type"/>
+            <field name="priority" string="Priority"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_school_communication_channel_form" model="school.communication.channel" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Channel name"/></h1></div>
+                <group>
+                    <group string="Channel">
+                        <field name="code"/>
+                        <field name="channel_type"/>
+                        <field name="priority"/>
+                    </group>
+                </group>
+                <group><field name="description"/></group>
+                <group><field name="notes"/></group>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_communication_channel" type="window" model="school.communication.channel" name="Channels" view_mode="list,form"/>
+
+        <!-- Announcements -->
+        <view id="view_school_announcement_list" model="school.announcement" type="list">
+            <field name="title" string="Title"/>
+            <field name="audience" string="Audience"/>
+            <field name="priority" string="Priority"/>
+            <field name="publish_date" string="Published"/>
+            <field name="expiry_date" string="Expiry"/>
+            <field name="state" string="Status"/>
+            <field name="delivery_status" string="Delivery"/>
+        </view>
+        <view id="view_school_announcement_form" model="school.announcement" type="form">
+            <header>
+                <button name="announcement_publish" string="Publish" type="object" class="sum_highlight"/>
+                <button name="announcement_archive" string="Archive" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="title" placeholder="Announcement title"/></h1></div>
+                <group>
+                    <group string="Targeting">
+                        <field name="audience"/>
+                        <field name="campus_id"/>
+                        <field name="class_id"/>
+                        <field name="section_id"/>
+                        <field name="priority"/>
+                        <field name="author_id"/>
+                    </group>
+                    <group string="Window &amp; Delivery">
+                        <field name="publish_date"/>
+                        <field name="expiry_date"/>
+                        <field name="recipient_count" readonly="true"/>
+                        <field name="delivered_count" readonly="true"/>
+                        <field name="delivery_status" readonly="true"/>
+                    </group>
+                </group>
+                <group><field name="summary"/></group>
+                <notebook>
+                    <page string="Body">
+                        <field name="body" nolabel="1"/>
+                    </page>
+                    <page string="Notifications">
+                        <field name="notifications" nolabel="1">
+                            <list>
+                                <field name="channel_id"/>
+                                <field name="recipient_type"/>
+                                <field name="state"/>
+                                <field name="attempts"/>
+                                <field name="sent_at"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_announcement" type="window" model="school.announcement" name="Announcements" view_mode="list,form"/>
+
+        <!-- Notifications -->
+        <view id="view_school_notification_list" model="school.notification" type="list">
+            <field name="announcement_id" string="Announcement"/>
+            <field name="channel_id" string="Channel"/>
+            <field name="recipient_type" string="Recipient"/>
+            <field name="subject" string="Subject"/>
+            <field name="state" string="Status"/>
+            <field name="attempts" string="Attempts"/>
+            <field name="next_retry_at" string="Next Retry"/>
+        </view>
+        <view id="view_school_notification_form" model="school.notification" type="form">
+            <header>
+                <button name="notification_retry" string="Retry" type="object" class="sum_highlight"/>
+                <button name="notification_cancel" string="Cancel" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Delivery">
+                        <field name="announcement_id"/>
+                        <field name="channel_id"/>
+                        <field name="recipient_type"/>
+                        <field name="student_id"/>
+                        <field name="subject"/>
+                    </group>
+                    <group string="Attempts">
+                        <field name="state"/>
+                        <field name="attempts"/>
+                        <field name="max_attempts"/>
+                        <field name="scheduled_at"/>
+                        <field name="next_retry_at"/>
+                        <field name="sent_at"/>
+                    </group>
+                </group>
+                <group><field name="body"/></group>
+                <group><field name="last_error"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_notification" type="window" model="school.notification" name="Notifications" view_mode="list,form"/>
+
+        <!-- Messages -->
+        <view id="view_school_message_list" model="school.message" type="list">
+            <field name="subject" string="Subject"/>
+            <field name="direction" string="Direction"/>
+            <field name="category" string="Category"/>
+            <field name="student_id" string="Student"/>
+            <field name="guardian_id" string="Guardian"/>
+            <field name="state" string="Status"/>
+            <field name="sent_date" string="Sent"/>
+        </view>
+        <view id="view_school_message_form" model="school.message" type="form">
+            <header>
+                <button name="message_send" string="Send" type="object" class="sum_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="subject" placeholder="Subject"/></h1></div>
+                <group>
+                    <group string="Correspondence">
+                        <field name="direction"/>
+                        <field name="category"/>
+                        <field name="sender_type"/>
+                        <field name="sender_staff_id"/>
+                        <field name="sender_user_id"/>
+                    </group>
+                    <group string="Parties">
+                        <field name="student_id"/>
+                        <field name="guardian_id"/>
+                        <field name="sent_date"/>
+                    </group>
+                </group>
+                <group><field name="body"/></group>
+                <group><field name="notes"/></group>
+                <group><field name="company_id"/></group>
+            </sheet>
+        </view>
+        <action id="action_school_message" type="window" model="school.message" name="Messages" view_mode="list,form"/>
+    </data>
+</nexa>

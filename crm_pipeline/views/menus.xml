@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="crm_menu_pipelines" name="Pipelines" parent="crm.crm_menu_config" action="crm_pipeline.action_crm_pipeline" sequence="30" groups="crm.group_crm_manager"/>
+        <menuitem id="crm_menu_forecast_categories" name="Forecast Categories" parent="crm.crm_menu_config" action="crm_pipeline.action_crm_forecast_category" sequence="31" groups="crm.group_crm_manager"/>
+        <menuitem id="crm_menu_stage_history" name="Stage History" parent="crm.crm_menu_leads" action="crm_pipeline.action_crm_stage_history" sequence="18" groups="crm.group_crm_user"/>
+        <menuitem id="crm_menu_forecast_snapshots" name="Forecast Snapshots" parent="crm.crm_menu_report" action="crm_pipeline.action_crm_lead_forecast" sequence="21" groups="crm.group_crm_user"/>
+    </data>
+</nexa>

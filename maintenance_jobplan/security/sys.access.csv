@@ -1,0 +1,6 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_job_plan,maintenance.job.plan all,maintenance.job.plan,,1,1,1,1
+access_maint_job_plan_task,maintenance.job.plan.task all,maintenance.job.plan.task,,1,1,1,1
+access_maint_job_plan_checklist,maintenance.job.plan.checklist all,maintenance.job.plan.checklist,,1,1,1,1
+access_maint_work_order_task,maintenance.work.order.task all,maintenance.work.order.task,,1,1,1,1
+access_maint_work_order_checklist,maintenance.work.order.checklist all,maintenance.work.order.checklist,,1,1,1,1

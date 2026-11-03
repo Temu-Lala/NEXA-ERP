@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_product_bundle_root" name="Bundles" sequence="29"/>
+
+        <menuitem id="menu_product_bundles" name="Product Bundles" parent="menu_product_bundle_root" action="product_bundle.action_product_bundle" sequence="10"/>
+        <menuitem id="menu_product_bundle_components" name="Components" parent="menu_product_bundle_root" action="product_bundle.action_product_bundle_line" sequence="20"/>
+    </data>
+</nexa>

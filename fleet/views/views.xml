@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Vehicle Brands                                                   -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_vehicle_brand_list" model="fleet.vehicle.brand" type="list">
+            <field name="name" string="Brand Name"/>
+            <field name="code" string="Code"/>
+            <field name="logo_url" string="Logo URL"/>
+            <field name="active" string="Active"/>
+        </view>
+
+        <view id="view_fleet_vehicle_brand_form" model="fleet.vehicle.brand" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="logo_url"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_vehicle_brand" type="window" model="fleet.vehicle.brand" name="Vehicle Brands" view_mode="list,form"/>
+        <action id="action_fleet_brand" type="window" model="fleet.vehicle.brand" name="Vehicle Brands" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Vehicle Models                                                   -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_vehicle_model_list" model="fleet.vehicle.model" type="list">
+            <field name="name" string="Model"/>
+            <field name="brand_id" string="Brand"/>
+            <field name="vehicle_class_id" string="Vehicle Class"/>
+            <field name="model_year" string="Model Year"/>
+            <field name="active" string="Active"/>
+        </view>
+
+        <view id="view_fleet_vehicle_model_form" model="fleet.vehicle.model" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="brand_id"/>
+                    <field name="vehicle_class_id"/>
+                    <field name="model_year"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_vehicle_model" type="window" model="fleet.vehicle.model" name="Vehicle Models" view_mode="list,form"/>
+        <action id="action_fleet_model" type="window" model="fleet.vehicle.model" name="Vehicle Models" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Vehicle Classes                                                  -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_vehicle_class_list" model="fleet.vehicle.class" type="list">
+            <field name="name" string="Class Name"/>
+            <field name="code" string="Code"/>
+            <field name="requires_cdl" string="Requires CDL"/>
+            <field name="default_inspection_interval_km" string="Interval (km)"/>
+            <field name="default_inspection_interval_months" string="Interval (Months)"/>
+            <field name="active" string="Active"/>
+        </view>
+
+        <view id="view_fleet_vehicle_class_form" model="fleet.vehicle.class" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="requires_cdl"/>
+                    <field name="default_inspection_interval_km"/>
+                    <field name="default_inspection_interval_months"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_vehicle_class" type="window" model="fleet.vehicle.class" name="Vehicle Classes" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Depots & Sites                                                   -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_depot_list" model="fleet.depot" type="list">
+            <field name="name" string="Depot Name"/>
+            <field name="code" string="Code"/>
+            <field name="city" string="City"/>
+            <field name="capacity" string="Capacity"/>
+            <field name="manager_id" string="Manager"/>
+            <field name="active" string="Active"/>
+        </view>
+
+        <view id="view_fleet_depot_form" model="fleet.depot" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="address"/>
+                    <field name="city"/>
+                    <field name="capacity"/>
+                    <field name="manager_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_depot" type="window" model="fleet.depot" name="Depots &amp; Sites" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Vehicles                                                         -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_vehicle_list" model="fleet.vehicle" type="list">
+            <field name="name" string="Fleet No"/>
+            <field name="plate_number" string="License Plate"/>
+            <field name="brand_id" string="Brand"/>
+            <field name="model_id" string="Model"/>
+            <field name="vehicle_class_id" string="Class"/>
+            <field name="odometer" string="Odometer"/>
+            <field name="lifecycle_state" string="Lifecycle"/>
+            <field name="condition_state" string="Condition"/>
+            <field name="availability_state" string="Availability"/>
+            <field name="compliance_state" string="Compliance"/>
+            <field name="depot_id" string="Depot"/>
+        </view>
+
+        <view id="view_fleet_vehicle_form" model="fleet.vehicle" type="form">
+            <header>
+                <field name="name"/>
+                <field name="plate_number"/>
+                <field name="lifecycle_state"/>
+                <field name="condition_state"/>
+                <field name="availability_state"/>
+                <field name="compliance_state"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Identification">
+                        <field name="brand_id"/>
+                        <field name="model_id"/>
+                        <field name="vehicle_class_id"/>
+                        <field name="model_year"/>
+                        <field name="vin"/>
+                        <field name="engine_number"/>
+                        <field name="qr_barcode"/>
+                    </group>
+                    <group string="Operations &amp; Assignment">
+                        <field name="ownership_type"/>
+                        <field name="depot_id"/>
+                        <field name="location_text"/>
+                        <field name="department_name"/>
+                        <field name="manager_id"/>
+                        <field name="driver_id"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Specifications">
+                        <group>
+                            <group>
+                                <field name="engine_capacity_cc"/>
+                                <field name="power_kw"/>
+                                <field name="transmission"/>
+                                <field name="seating_capacity"/>
+                            </group>
+                            <group>
+                                <field name="payload_capacity_kg"/>
+                                <field name="towing_capacity_kg"/>
+                                <field name="gross_vehicle_weight_kg"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Energy &amp; Fuel">
+                        <group>
+                            <group>
+                                <field name="fuel_type"/>
+                                <field name="fuel_tank_capacity_litres"/>
+                                <field name="emission_standard"/>
+                            </group>
+                            <group>
+                                <field name="battery_capacity_kwh"/>
+                                <field name="charging_connector"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Odometer &amp; Service">
+                        <group>
+                            <group>
+                                <field name="odometer"/>
+                                <field name="odometer_unit"/>
+                                <field name="purchase_date"/>
+                                <field name="in_service_date"/>
+                                <field name="expected_retire_date"/>
+                            </group>
+                            <group>
+                                <field name="purchase_cost"/>
+                                <field name="currency"/>
+                                <field name="fixed_asset_ref"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_vehicle_search" model="fleet.vehicle" type="search">
+            <field name="name" string="Fleet Number"/>
+            <field name="plate_number" string="License Plate"/>
+            <field name="vin" string="VIN"/>
+            <field name="brand_id" string="Brand"/>
+            <field name="model_id" string="Model"/>
+            <filter name="active" string="Active" domain='[["active","=",true]]'/>
+            <filter name="available" string="Available" domain='[["availability_state","=","available"]]'/>
+            <filter name="in_service" string="In Service" domain='[["lifecycle_state","=","active"]]'/>
+            <filter name="operational" string="Operational" domain='[["condition_state","=","operational"]]'/>
+            <filter name="compliance_expiring" string="Compliance Expiring" domain='[["compliance_state","=","expiring"]]'/>
+            <filter name="group_brand" string="Brand" group_by="brand_id"/>
+            <filter name="group_class" string="Class" group_by="vehicle_class_id"/>
+            <filter name="group_lifecycle" string="Lifecycle State" group_by="lifecycle_state"/>
+            <filter name="group_condition" string="Condition State" group_by="condition_state"/>
+            <filter name="group_depot" string="Depot" group_by="depot_id"/>
+        </view>
+
+        <action id="action_fleet_vehicle" type="window" model="fleet.vehicle" name="Vehicles" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Odometer Readings                                                -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_odometer_reading_list" model="fleet.odometer.reading" type="list">
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="reading_date" string="Date"/>
+            <field name="value" string="Value"/>
+            <field name="unit" string="Unit"/>
+            <field name="difference" string="Difference"/>
+            <field name="source" string="Source"/>
+            <field name="recorded_by" string="Recorded By"/>
+            <field name="is_correction" string="Correction"/>
+        </view>
+
+        <view id="view_fleet_odometer_reading_form" model="fleet.odometer.reading" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="vehicle_id"/>
+                        <field name="reading_date"/>
+                        <field name="value"/>
+                        <field name="unit"/>
+                        <field name="difference"/>
+                    </group>
+                    <group>
+                        <field name="source"/>
+                        <field name="recorded_by"/>
+                        <field name="is_correction"/>
+                        <field name="rollover_detected"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_odometer_reading_search" model="fleet.odometer.reading" type="search">
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="source" string="Source"/>
+            <field name="recorded_by" string="Recorded By"/>
+            <filter name="manual" string="Manual" domain='[["source","=","manual"]]'/>
+            <filter name="telematics" string="Telematics" domain='[["source","=","telematics"]]'/>
+            <filter name="inspection" string="Inspection" domain='[["source","=","inspection"]]'/>
+            <filter name="fuel_log" string="Fuel Log" domain='[["source","=","fuel_log"]]'/>
+            <filter name="service" string="Service" domain='[["source","=","service"]]'/>
+            <filter name="corrections" string="Corrections" domain='[["is_correction","=",true]]'/>
+            <filter name="group_vehicle" string="Vehicle" group_by="vehicle_id"/>
+            <filter name="group_source" string="Source" group_by="source"/>
+            <filter name="group_recorded_by" string="Recorded By" group_by="recorded_by"/>
+        </view>
+
+        <action id="action_fleet_odometer_reading" type="window" model="fleet.odometer.reading" name="Odometer Readings" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Vehicle Status History                                           -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_status_history_list" model="fleet.vehicle.status.history" type="list">
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="changed_at" string="Changed At"/>
+            <field name="changed_by" string="Changed By"/>
+            <field name="from_lifecycle" string="From Lifecycle"/>
+            <field name="to_lifecycle" string="To Lifecycle"/>
+            <field name="from_condition" string="From Condition"/>
+            <field name="to_condition" string="To Condition"/>
+            <field name="reason" string="Reason"/>
+        </view>
+
+        <view id="view_fleet_status_history_form" model="fleet.vehicle.status.history" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="vehicle_id"/>
+                        <field name="changed_at"/>
+                        <field name="changed_by"/>
+                    </group>
+                    <group>
+                        <field name="from_lifecycle"/>
+                        <field name="to_lifecycle"/>
+                        <field name="from_condition"/>
+                        <field name="to_condition"/>
+                    </group>
+                </group>
+                <group string="Reason &amp; Notes">
+                    <field name="reason"/>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_status_history" type="window" model="fleet.vehicle.status.history" name="Status History" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Service Log (Backward Compatibility)                             -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_service_list" model="fleet.service" type="list">
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="name" string="Description"/>
+            <field name="service_date" string="Date"/>
+            <field name="odometer_at" string="Odometer"/>
+            <field name="cost" string="Cost"/>
+        </view>
+
+        <view id="view_fleet_service_form" model="fleet.service" type="form">
+            <sheet>
+                <group>
+                    <field name="vehicle_id"/>
+                    <field name="name"/>
+                    <field name="service_date"/>
+                    <field name="odometer_at"/>
+                    <field name="cost"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_service" type="window" model="fleet.service" name="Service Log" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,16 @@
+{
+    "name": "fleet_driver",
+    "display_name": "Fleet Drivers & Assignments",
+    "version": "1.0.0",
+    "summary": "Fleet Drivers & Assignments",
+    "description": "Manage fleet driver profiles, qualifications, vehicle assignments, and handover inspections.",
+    "author": "Nexa",
+    "depends": ["base", "fleet"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

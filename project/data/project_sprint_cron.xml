@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_project_sprint_snapshot" model="sys.cron">
+            <field name="name">Project: Capture daily sprint burndown</field>
+            <field name="code">project.sprint.snapshot</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

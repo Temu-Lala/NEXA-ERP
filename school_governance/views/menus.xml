@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_governance_root" name="Governance" parent="school.school_menu_root" sequence="20" web_icon="users" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_governance_policy" name="Policies" parent="school_menu_governance_root" action="school_governance.action_school_governance_policy" sequence="1" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_governance_approval" name="Approvals" parent="school_menu_governance_root" action="school_governance.action_school_governance_approval" sequence="2" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_governance_decision" name="Decision Trail" parent="school_menu_governance_root" action="school_governance.action_school_governance_approval_decision" sequence="3" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_governance_access_role" name="Access Roles" parent="school_menu_governance_root" action="school_governance.action_school_governance_access_role" sequence="4" groups="school.group_school_manager"/>
+        <menuitem id="school_menu_governance_integration" name="Integrations" parent="school_menu_governance_root" action="school_governance.action_school_governance_integration" sequence="5" groups="school.group_school_manager"/>
+    </data>
+</nexa>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_library_category_list" model="library.category" type="list">
+            <field name="name" string="Name"/>
+            <field name="code" string="Code"/>
+            <field name="active" string="Active"/>
+        </view>
+    </data>
+</nexa>

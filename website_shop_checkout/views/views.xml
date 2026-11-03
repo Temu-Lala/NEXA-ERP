@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Checkout -->
+        <view id="view_ecom_checkout_list" model="ecom.checkout" type="list">
+            <field name="name" string="Reference"/>
+            <field name="store_id" string="Store"/>
+            <field name="partner_id" string="Customer"/>
+            <field name="grand_total" string="Total"/>
+            <field name="payment_method" string="Payment"/>
+            <field name="state" string="State"/>
+        </view>
+        <view id="view_ecom_checkout_form" model="ecom.checkout" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Checkout reference"/></h1></div>
+                <group>
+                    <group string="Session">
+                        <field name="store_id" string="Store"/>
+                        <field name="cart_id" string="Cart"/>
+                        <field name="partner_id" string="Customer"/>
+                        <field name="email" string="Email"/>
+                        <field name="state" string="State"/>
+                        <field name="idempotency_key" string="Idempotency Key"/>
+                    </group>
+                    <group string="Delivery &amp; Payment">
+                        <field name="shipping_method_id" string="Shipping Method"/>
+                        <field name="payment_method" string="Payment Method"/>
+                        <field name="terms_accepted" string="Terms Accepted"/>
+                        <field name="placed_at" string="Placed At"/>
+                        <field name="order_id" string="Order"/>
+                    </group>
+                </group>
+                <group string="Totals">
+                    <group>
+                        <field name="subtotal" string="Subtotal"/>
+                        <field name="discount_total" string="Discount"/>
+                        <field name="tax_total" string="Tax"/>
+                    </group>
+                    <group>
+                        <field name="shipping_cost" string="Shipping"/>
+                        <field name="grand_total" string="Total"/>
+                    </group>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_checkout" type="window" model="ecom.checkout" name="Checkouts" view_mode="list,form"/>
+
+        <!-- Shipping Method -->
+        <view id="view_ecom_shipping_method_list" model="ecom.shipping.method" type="list">
+            <field name="name" string="Method"/>
+            <field name="store_id" string="Store"/>
+            <field name="method" string="Pricing"/>
+            <field name="price" string="Price"/>
+            <field name="free_threshold" string="Free Over"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_ecom_shipping_method_form" model="ecom.shipping.method" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Standard Delivery"/></h1></div>
+                <group>
+                    <group>
+                        <field name="store_id" string="Store"/>
+                        <field name="method" string="Pricing Type"/>
+                        <field name="price" string="Price"/>
+                        <field name="free_threshold" string="Free Over"/>
+                    </group>
+                    <group>
+                        <field name="min_days" string="Min Days"/>
+                        <field name="max_days" string="Max Days"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_shipping_method" type="window" model="ecom.shipping.method" name="Shipping Methods" view_mode="list,form"/>
+
+        <!-- Payment Session -->
+        <view id="view_ecom_payment_session_list" model="ecom.payment.session" type="list">
+            <field name="checkout_id" string="Checkout"/>
+            <field name="provider" string="Provider"/>
+            <field name="provider_ref" string="Provider Ref"/>
+            <field name="amount" string="Amount"/>
+            <field name="status" string="Status"/>
+            <field name="attempt_count" string="Attempts"/>
+        </view>
+        <view id="view_ecom_payment_session_form" model="ecom.payment.session" type="form">
+            <sheet>
+                <group>
+                    <group string="Session">
+                        <field name="checkout_id" string="Checkout"/>
+                        <field name="store_id" string="Store"/>
+                        <field name="provider" string="Provider"/>
+                        <field name="provider_ref" string="Provider Ref"/>
+                    </group>
+                    <group string="Status">
+                        <field name="amount" string="Amount"/>
+                        <field name="currency_id" string="Currency"/>
+                        <field name="status" string="Status"/>
+                        <field name="attempt_count" string="Attempts"/>
+                        <field name="webhook_verified" string="Webhook Verified"/>
+                    </group>
+                </group>
+                <group string="Timing">
+                    <group>
+                        <field name="started_at" string="Started At"/>
+                    </group>
+                    <group>
+                        <field name="verified_at" string="Verified At"/>
+                    </group>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_payment_session" type="window" model="ecom.payment.session" name="Payment Sessions" view_mode="list,form"/>
+
+        <!-- Online Order -->
+        <view id="view_ecom_order_list" model="ecom.order" type="list">
+            <field name="name" string="Reference"/>
+            <field name="number" string="Number"/>
+            <field name="store_id" string="Store"/>
+            <field name="partner_id" string="Customer"/>
+            <field name="amount_total" string="Total"/>
+            <field name="state" string="Order Status"/>
+            <field name="payment_status" string="Payment"/>
+            <field name="fulfillment_status" string="Fulfillment"/>
+        </view>
+        <view id="view_ecom_order_form" model="ecom.order" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Order reference"/></h1></div>
+                <group>
+                    <group string="Order">
+                        <field name="number" string="Order Number"/>
+                        <field name="store_id" string="Store"/>
+                        <field name="partner_id" string="Customer"/>
+                        <field name="sale_order_id" string="Sales Order"/>
+                        <field name="checkout_id" string="Checkout"/>
+                    </group>
+                    <group string="Status">
+                        <field name="state" string="Order Status"/>
+                        <field name="payment_status" string="Payment Status"/>
+                        <field name="fulfillment_status" string="Fulfillment"/>
+                        <field name="return_status" string="Return Status"/>
+                    </group>
+                </group>
+                <group string="Amounts">
+                    <group>
+                        <field name="amount_untaxed" string="Subtotal"/>
+                        <field name="amount_tax" string="Tax"/>
+                    </group>
+                    <group>
+                        <field name="amount_total" string="Total"/>
+                        <field name="currency_id" string="Currency"/>
+                    </group>
+                </group>
+                <group string="Attribution">
+                    <group>
+                        <field name="attribution_source" string="Source"/>
+                    </group>
+                    <group>
+                        <field name="campaign_name" string="Campaign"/>
+                    </group>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_order" type="window" model="ecom.order" name="Online Orders" view_mode="list,form"/>
+    </data>
+</nexa>

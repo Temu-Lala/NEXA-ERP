@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_project_risk_root" name="Risks &amp; Changes" sequence="65"/>
+
+        <menuitem id="menu_project_risks" name="Risks" parent="menu_project_risk_root" action="project_risk.action_project_risk" sequence="10"/>
+        <menuitem id="menu_project_issues" name="Issues" parent="menu_project_risk_root" action="project_risk.action_project_issue" sequence="20"/>
+        <menuitem id="menu_project_change_requests" name="Change Requests" parent="menu_project_risk_root" action="project_risk.action_project_change_request" sequence="30"/>
+    </data>
+</nexa>

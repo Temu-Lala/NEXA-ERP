@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_timesheet_list" model="hr.timesheet" type="list">
+            <field name="date" string="Date"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="project_id" string="Project"/>
+            <field name="task_id" string="Task"/>
+            <field name="name" string="Summary"/>
+            <field name="hours" string="Hours"/>
+            <field name="is_billable" string="Billable"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_timesheet_form" model="hr.timesheet" type="form">
+            <sheet>
+                <group>
+                    <field name="date"/>
+                    <field name="employee_id"/>
+                    <field name="project_id"/>
+                    <field name="task_id"/>
+                    <field name="name"/>
+                    <field name="hours"/>
+                    <field name="is_billable"/>
+                    <field name="state"/>
+                    <field name="company_id"/>
+                </group>
+                <group>
+                    <field name="description"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_timesheet" type="window" model="hr.timesheet" name="Timesheets" view_mode="list,form"/>
+    </data>
+</nexa>

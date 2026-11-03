@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_doc_category_user,access_maint_doc_category_user,maintenance.document.category,,1,1,1,1
+access_maint_document_user,access_maint_document_user,maintenance.document,,1,1,1,1
+access_maint_document_version_user,access_maint_document_version_user,maintenance.document.version,,1,1,1,1
+access_maint_document_link_user,access_maint_document_link_user,maintenance.document.link,,1,1,1,1

@@ -1,0 +1,16 @@
+{
+    "name": "survey",
+    "display_name": "Survey",
+    "version": "1.0.0",
+    "summary": "Surveys and questions",
+    "description": "Create surveys with typed questions and manage their lifecycle.",
+    "author": "Nexa",
+    "depends": ["base"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Marketing"
+}

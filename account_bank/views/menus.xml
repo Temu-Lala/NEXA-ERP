@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_cash_sessions" name="Cash Sessions" parent="account.menu_account_bank_root" action="account_bank.action_cash_sessions" sequence="10" groups="account.group_account_invoice"/>
+        <menuitem id="menu_cash_moves" name="Cash Movements" parent="account.menu_account_bank_root" action="account_bank.action_cash_moves" sequence="11" groups="account.group_account_invoice"/>
+        <menuitem id="menu_stmt_imports" name="Statement Imports" parent="account.menu_account_bank_root" action="account_bank.action_stmt_imports" sequence="12" groups="account.group_account_invoice"/>
+        <menuitem id="menu_settlements" name="Provider Settlements" parent="account.menu_account_bank_root" action="account_bank.action_settlements" sequence="13" groups="account.group_account_invoice"/>
+    </data>
+</nexa>

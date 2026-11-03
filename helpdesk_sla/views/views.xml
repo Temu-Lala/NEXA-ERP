@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== SLA Policies ===================== -->
+
+        <view id="view_sla_policy_list" model="helpdesk.sla.policy" type="list">
+            <field name="sequence" widget="handle"/>
+            <field name="name" string="Policy"/>
+            <field name="priority" string="Priority Scope"/>
+            <field name="category_id" string="Category Scope"/>
+            <field name="first_response_mins" string="First Response (min)"/>
+            <field name="resolution_mins" string="Resolution (min)"/>
+            <field name="warning_pct" string="Warning (%)"/>
+            <field name="business_hours_only" string="Business Hours"/>
+            <field name="calendar_id" string="Working Calendar"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_sla_policy_form" model="helpdesk.sla.policy" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Scope">
+                        <field name="name"/>
+                        <field name="priority"/>
+                        <field name="category_id"/>
+                        <field name="sequence"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Targets">
+                        <field name="first_response_mins"/>
+                        <field name="resolution_mins"/>
+                        <field name="warning_pct"/>
+                        <field name="business_hours_only"/>
+                        <field name="calendar_id"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== SLA Timers ===================== -->
+
+        <view id="view_sla_timer_list" model="helpdesk.sla.timer" type="list">
+            <field name="ticket_id" string="Ticket"/>
+            <field name="policy_id" string="Policy"/>
+            <field name="sla_type" string="Type"/>
+            <field name="start" string="Start"/>
+            <field name="due" string="Due"/>
+            <field name="end" string="End (Actual)"/>
+            <field name="target_mins" string="Target (min)"/>
+            <field name="elapsed_mins" string="Elapsed (min)"/>
+            <field name="breach_state" widget="badge" string="Status"/>
+            <field name="breach_mins" string="Breach (min)"/>
+            <field name="paused" string="Paused"/>
+            <field name="escalated" string="Escalated"/>
+        </view>
+        <view id="view_sla_timer_form" model="helpdesk.sla.timer" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Clock">
+                        <field name="ticket_id"/>
+                        <field name="policy_id"/>
+                        <field name="sla_type"/>
+                        <field name="breach_state"/>
+                    </group>
+                    <group string="Timing">
+                        <field name="start"/>
+                        <field name="due"/>
+                        <field name="end"/>
+                        <field name="target_mins"/>
+                        <field name="elapsed_mins"/>
+                        <field name="breach_mins"/>
+                    </group>
+                </group>
+                <group col="4" string="Pause / Escalation">
+                    <field name="paused"/>
+                    <field name="pause_started"/>
+                    <field name="paused_mins"/>
+                    <field name="escalated"/>
+                </group>
+                <notebook>
+                    <page string="SLA Events">
+                        <field name="events"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <view id="view_sla_timer_search" model="helpdesk.sla.timer" type="search">
+            <field name="ticket_id" string="Ticket"/>
+            <field name="policy_id" string="Policy"/>
+            <filter name="running" string="Running" domain='[["end","=",""]]'/>
+            <filter name="breached" string="Breached" domain='[["breach_state","=","breached"]]'/>
+            <filter name="at_risk" string="At Risk" domain='[["breach_state","=","warning"]]'/>
+            <filter name="paused" string="Paused" domain='[["paused","=","true"]]'/>
+            <filter name="group_state" string="Status" group_by="breach_state"/>
+            <filter name="group_type" string="Type" group_by="sla_type"/>
+        </view>
+
+        <!-- ===================== SLA Events (audit) ===================== -->
+
+        <view id="view_sla_event_list" model="helpdesk.sla.event" type="list">
+            <field name="date" string="Date"/>
+            <field name="ticket_id" string="Ticket"/>
+            <field name="timer_id" string="Timer"/>
+            <field name="event" string="Event"/>
+            <field name="message" string="Message"/>
+        </view>
+        <view id="view_sla_event_form" model="helpdesk.sla.event" type="form">
+            <sheet>
+                <group>
+                    <field name="ticket_id"/>
+                    <field name="timer_id"/>
+                    <field name="event"/>
+                    <field name="date"/>
+                </group>
+                <group>
+                    <field name="message"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Escalation Rules ===================== -->
+
+        <view id="view_escalation_rule_list" model="helpdesk.escalation.rule" type="list">
+            <field name="sequence" widget="handle"/>
+            <field name="policy_id" string="SLA Policy"/>
+            <field name="trigger_pct" string="Trigger (%)"/>
+            <field name="action" string="Action"/>
+            <field name="notify_team_id" string="Notify Team"/>
+            <field name="notify_user_id" string="Notify / Reassign To"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_escalation_rule_form" model="helpdesk.escalation.rule" type="form">
+            <sheet>
+                <group>
+                    <field name="policy_id"/>
+                    <field name="trigger_pct"/>
+                    <field name="action"/>
+                    <field name="notify_team_id"/>
+                    <field name="notify_user_id"/>
+                    <field name="sequence"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Business Calendars ===================== -->
+
+        <view id="view_business_calendar_list" model="helpdesk.business.calendar" type="list">
+            <field name="name" string="Calendar"/>
+            <field name="timezone" string="Timezone"/>
+            <field name="company_id" string="Company"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_business_calendar_form" model="helpdesk.business.calendar" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="name"/>
+                    <field name="timezone"/>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+                <group string="Working Hours">
+                    <field name="lines" nolabel="1"/>
+                </group>
+                <group string="Holidays / Closed Days">
+                    <field name="holidays" nolabel="1"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_business_calendar_line_list" model="helpdesk.business.calendar.line" type="list">
+            <field name="day_of_week" string="Day"/>
+            <field name="hour_from" string="From Hour"/>
+            <field name="hour_to" string="To Hour"/>
+        </view>
+        <view id="view_business_calendar_line_form" model="helpdesk.business.calendar.line" type="form">
+            <sheet>
+                <group>
+                    <field name="calendar_id"/>
+                    <field name="day_of_week"/>
+                    <field name="hour_from"/>
+                    <field name="hour_to"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_business_calendar_holiday_list" model="helpdesk.business.calendar.holiday" type="list">
+            <field name="name" string="Holiday"/>
+            <field name="date" string="Date"/>
+            <field name="date_to" string="End Date"/>
+        </view>
+        <view id="view_business_calendar_holiday_form" model="helpdesk.business.calendar.holiday" type="form">
+            <sheet>
+                <group>
+                    <field name="calendar_id"/>
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="date_to"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+
+        <action id="action_sla_policy" type="window" model="helpdesk.sla.policy" name="SLA Policies" view_mode="list,form"/>
+        <action id="action_sla_timer" type="window" model="helpdesk.sla.timer" name="SLA Timers" view_mode="list,search,form"/>
+        <action id="action_sla_event" type="window" model="helpdesk.sla.event" name="SLA Events" view_mode="list,form"/>
+        <action id="action_escalation_rule" type="window" model="helpdesk.escalation.rule" name="Escalation Rules" view_mode="list,form"/>
+        <action id="action_business_calendar" type="window" model="helpdesk.business.calendar" name="Business Calendars" view_mode="list,form"/>
+        <action id="action_business_calendar_line" type="window" model="helpdesk.business.calendar.line" name="Working Hours" view_mode="list,form"/>
+        <action id="action_business_calendar_holiday" type="window" model="helpdesk.business.calendar.holiday" name="Holidays" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,19 @@
+{
+    "name": "crm_pipeline",
+    "display_name": "CRM Pipelines & Forecasting",
+    "version": "1.0.0",
+    "summary": "Named pipelines, stage-transition history, and forecast snapshots",
+    "description": "Pipeline machinery for the CRM: named pipelines that order the existing stage records and can be scoped to a sales team, an append-only stage-transition history that is never overwritten, forecast categories with confidence weights (pipeline, best case, committed), and per-opportunity forecast snapshots. Forecast values are planning estimates and are kept distinct from recognized revenue owned by Accounting.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "crm"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "CRM"
+}

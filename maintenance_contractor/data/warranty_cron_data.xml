@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_maint_warranty_expiry_scan" model="sys.cron">
+            <field name="name">Maintenance: Scan Expiring Warranties &amp; Service Contracts</field>
+            <field name="code">maintenance.warranty.scan.expiry</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

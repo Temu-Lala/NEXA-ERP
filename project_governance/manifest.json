@@ -1,0 +1,16 @@
+{
+    "name": "project_governance",
+    "display_name": "Project Governance",
+    "version": "1.0.0",
+    "summary": "Baselines, decision log and financial snapshots",
+    "description": "Preserve approved baselines of schedule and budget so plans can be compared against forecasts without erasing history, maintain a decision log with decision maker and rationale, and capture dated financial snapshots (actual, committed, forecast, revenue, margin) for trend reporting.",
+    "author": "Nexa",
+    "depends": ["base", "project"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Project"
+}

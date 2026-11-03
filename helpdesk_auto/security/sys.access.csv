@@ -1,0 +1,6 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_hd_automation_rule,helpdesk.automation.rule all,helpdesk.automation.rule,,1,1,1,1
+access_hd_automation_condition,helpdesk.automation.condition all,helpdesk.automation.condition,,1,1,1,1
+access_hd_automation_action,helpdesk.automation.action all,helpdesk.automation.action,,1,1,1,1
+access_hd_automation_version,helpdesk.automation.version all,helpdesk.automation.version,,1,1,0,0
+access_hd_automation_run,helpdesk.automation.run all,helpdesk.automation.run,,1,1,1,0

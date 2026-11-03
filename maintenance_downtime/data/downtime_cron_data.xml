@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_maint_condition_threshold_eval" model="sys.cron">
+            <field name="name">Maintenance: Evaluate Condition Monitoring Thresholds &amp; Raise Alerts</field>
+            <field name="code">maintenance.condition.evaluate.thresholds</field>
+            <field name="interval_number">60</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_fuel_card_all,fleet.fuel.card,fleet.fuel.card,,1,1,1,1
+access_fleet_fuel_transaction_all,fleet.fuel.transaction,fleet.fuel.transaction,,1,1,1,1
+access_fleet_charging_session_all,fleet.charging.session,fleet.charging.session,,1,1,1,1
+access_fleet_fuel_anomaly_all,fleet.fuel.anomaly,fleet.fuel.anomaly,,1,1,1,1

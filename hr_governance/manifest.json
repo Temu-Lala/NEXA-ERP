@@ -1,0 +1,19 @@
+{
+    "name": "hr_governance",
+    "display_name": "HR: Configuration & Governance",
+    "version": "1.0.0",
+    "summary": "Central HR settings, a scoped typed-parameter registry, declarative approval-policy definitions (thresholds + multi-level approver chains referencing core groups), and integration settings with credential fields gated to the HR Manager",
+    "description": "Adds the configuration and governance control surface the anchor HR modules assume but do not provide, without re-implementing anything already in the framework. State approval itself stays enforced by the core engine (sys.workflow.transition / sys.approval.rule) and access stays granted through core.group + sys.access; this module lets an HR Administrator author the HR-specific rules those mechanisms consume. It ships: hr.setting, a company-scoped bundle of behavioural switches (attendance grace, overtime approval and auto-approve ceiling, leave options, payroll cutoff, self-service bank-edit rights, record retention, default approval threshold); hr.parameter, a typed key/value registry resolved by scope with department over company over global precedence; hr.approval.policy with its hr.approval.level children, a declarative definition of which HR transaction type requires approval above what amount and the ordered approver groups / users for each step (approver references point at core.group, never a parallel permission system); and hr.integration.setting, connection metadata for external systems where the API key and password columns are field-level gated to hr.group_hr_manager. Everything here is configuration: no employee, payslip or ledger record is ever mutated, enabling an integration is a bookkeeping flag rather than an outbound call, and the only writes are an explicit HR-Manager authoring action. Navigated under the single HR app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "hr"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

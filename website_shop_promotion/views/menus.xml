@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_ecom_promotions" name="Promotions" parent="website_shop.menu_ecom_marketing" action="website_shop_promotion.action_promotion" sequence="1" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_coupons" name="Coupons" parent="website_shop.menu_ecom_marketing" action="website_shop_promotion.action_coupon" sequence="2" groups="website_shop.group_website_shop_user"/>
+        <menuitem id="menu_ecom_redemptions" name="Coupon Redemptions" parent="website_shop.menu_ecom_marketing" action="website_shop_promotion.action_coupon_redemption" sequence="3" groups="website_shop.group_website_shop_user"/>
+    </data>
+</nexa>

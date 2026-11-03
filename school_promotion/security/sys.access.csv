@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_school_promotion_batch_cashier,access_school_promotion_batch_cashier,school.promotion.batch,group_school_cashier,1,0,0,0
+access_school_promotion_batch_manager,access_school_promotion_batch_manager,school.promotion.batch,group_school_manager,1,1,1,1
+access_school_promotion_line_cashier,access_school_promotion_line_cashier,school.promotion.line,group_school_cashier,1,0,0,0
+access_school_promotion_line_manager,access_school_promotion_line_manager,school.promotion.line,group_school_manager,1,1,1,1
+access_school_import_batch_clerk,access_school_import_batch_clerk,school.import.batch,group_school_clerk,1,1,1,0
+access_school_import_batch_manager,access_school_import_batch_manager,school.import.batch,group_school_manager,1,1,1,1
+access_school_import_line_clerk,access_school_import_line_clerk,school.import.line,group_school_clerk,1,1,1,0
+access_school_import_line_manager,access_school_import_line_manager,school.import.line,group_school_manager,1,1,1,1

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Channel connections -->
+        <view id="view_channel_connection_list" model="helpdesk.channel.connection" type="list">
+            <field name="name" string="Connection"/>
+            <field name="code" string="Code"/>
+            <field name="kind" string="Channel"/>
+            <field name="team_id" string="Default Team"/>
+            <field name="creation_policy" string="Policy"/>
+            <field name="channel_count" string="# Messages"/>
+            <field name="ticket_count" string="# Tickets"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_channel_connection_form" model="helpdesk.channel.connection" type="form">
+            <header>
+                <button name="action_enable" string="Activate" type="object" invisible="active == 1"/>
+                <button name="action_disable" string="Deactivate" type="object" invisible="active != 1"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Source">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="kind"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Defaults">
+                        <field name="team_id"/>
+                        <field name="priority"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                <group col="3" string="Intake">
+                    <field name="creation_policy"/>
+                    <field name="duplicate_window"/>
+                    <field name="max_retries"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- Unified inbox -->
+        <view id="view_channel_message_list" model="helpdesk.channel.message" type="list">
+            <field name="subject" string="Subject"/>
+            <field name="connection_id" string="Connection"/>
+            <field name="kind" string="Channel"/>
+            <field name="direction" string="Direction"/>
+            <field name="ticket_id" string="Ticket"/>
+            <field name="from_addr" string="From"/>
+            <field name="delivery_status" string="Delivery"/>
+            <field name="retry_count" string="Retries"/>
+            <field name="is_duplicate" string="Duplicate"/>
+            <field name="received_at" string="Received"/>
+        </view>
+        <view id="view_channel_message_form" model="helpdesk.channel.message" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Origin">
+                        <field name="connection_id"/>
+                        <field name="kind"/>
+                        <field name="direction"/>
+                        <field name="ticket_id"/>
+                        <field name="external_id"/>
+                        <field name="correlation_key"/>
+                    </group>
+                    <group string="Addresses">
+                        <field name="from_addr"/>
+                        <field name="to_addr"/>
+                        <field name="subject"/>
+                        <field name="delivery_status"/>
+                        <field name="retry_count"/>
+                        <field name="is_duplicate"/>
+                    </group>
+                </group>
+                <group col="2" string="Timestamps">
+                    <field name="received_at"/>
+                    <field name="sent_at"/>
+                </group>
+                <group string="Body">
+                    <field name="body" nolabel="1"/>
+                </group>
+                <group string="Last Error">
+                    <field name="last_error" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- Saved views -->
+        <view id="view_saved_view_list" model="helpdesk.saved.view" type="list">
+            <field name="name" string="View"/>
+            <field name="target_model" string="Model"/>
+            <field name="user_id" string="Owner"/>
+            <field name="team_id" string="Team"/>
+            <field name="shared" string="Shared"/>
+            <field name="is_default" string="Default"/>
+            <field name="usage_count" string="# Uses"/>
+            <field name="sequence" string="Sequence"/>
+        </view>
+        <view id="view_saved_view_form" model="helpdesk.saved.view" type="form">
+            <header>
+                <button name="action_set_default" string="Set as Default" type="object"/>
+                <button name="action_apply" string="Apply" type="object"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="View">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="target_model"/>
+                        <field name="group_by"/>
+                    </group>
+                    <group string="Scope">
+                        <field name="user_id"/>
+                        <field name="team_id"/>
+                        <field name="shared"/>
+                        <field name="is_default"/>
+                    </group>
+                </group>
+                <group col="3" string="Meta">
+                    <field name="sequence"/>
+                    <field name="active"/>
+                    <field name="usage_count"/>
+                </group>
+                <group string="Filter Domain">
+                    <field name="filter_json" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- Routing rules -->
+        <view id="view_routing_rule_list" model="helpdesk.routing.rule" type="list">
+            <field name="sequence" string="Order"/>
+            <field name="name" string="Rule"/>
+            <field name="match_priority" string="Priority"/>
+            <field name="match_channel" string="Channel"/>
+            <field name="match_ticket_type" string="Type"/>
+            <field name="category_id" string="Category"/>
+            <field name="method" string="Method"/>
+            <field name="team_id" string="Team"/>
+            <field name="user_id" string="Agent"/>
+            <field name="hits_count" string="# Matches"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_routing_rule_form" model="helpdesk.routing.rule" type="form">
+            <header>
+                <button name="action_test_run" string="Dry Run" type="object"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="When">
+                        <field name="name"/>
+                        <field name="sequence"/>
+                        <field name="match_priority"/>
+                        <field name="match_channel"/>
+                        <field name="match_ticket_type"/>
+                        <field name="category_id"/>
+                        <field name="keyword"/>
+                    </group>
+                    <group string="Then">
+                        <field name="method"/>
+                        <field name="team_id"/>
+                        <field name="user_id"/>
+                        <field name="raise_priority"/>
+                        <field name="new_priority" invisible="raise_priority != 1"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- Agent capacity -->
+        <view id="view_agent_load_list" model="helpdesk.agent.load" type="list">
+            <field name="user_id" string="Agent"/>
+            <field name="team_id" string="Team"/>
+            <field name="current_open" string="Current Open"/>
+            <field name="max_open" string="Capacity"/>
+            <field name="available" string="Available"/>
+        </view>
+        <view id="view_agent_load_form" model="helpdesk.agent.load" type="form">
+            <header>
+                <button name="action_toggle_available" string="Toggle Availability" type="object"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Agent">
+                        <field name="user_id"/>
+                        <field name="team_id"/>
+                        <field name="company_id"/>
+                    </group>
+                    <group string="Capacity">
+                        <field name="current_open"/>
+                        <field name="max_open"/>
+                        <field name="available"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_channel_connection" type="window" model="helpdesk.channel.connection" name="Channel Connections" view_mode="list,form"/>
+        <action id="action_channel_message" type="window" model="helpdesk.channel.message" name="Unified Inbox" view_mode="list,form"/>
+        <action id="action_saved_view" type="window" model="helpdesk.saved.view" name="Saved Views" view_mode="list,form"/>
+        <action id="action_routing_rule" type="window" model="helpdesk.routing.rule" name="Routing Rules" view_mode="list,form"/>
+        <action id="action_agent_load" type="window" model="helpdesk.agent.load" name="Agent Capacity" view_mode="list,form"/>
+    </data>
+</nexa>

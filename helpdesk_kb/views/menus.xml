@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_helpdesk_kb_root" name="Knowledge Base" sequence="66"/>
+
+        <menuitem id="menu_helpdesk_kb_articles" name="Articles" parent="menu_helpdesk_kb_root" action="helpdesk_kb.action_kb_article" sequence="10"/>
+
+        <menuitem id="menu_helpdesk_kb_config" name="Configuration" parent="menu_helpdesk_kb_root" sequence="20"/>
+        <menuitem id="menu_helpdesk_kb_categories" name="Categories" parent="menu_helpdesk_kb_config" action="helpdesk_kb.action_kb_category" sequence="10"/>
+    </data>
+</nexa>

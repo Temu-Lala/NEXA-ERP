@@ -1,0 +1,16 @@
+{
+    "name": "hr_skill",
+    "display_name": "HR Skills",
+    "version": "1.0.0",
+    "summary": "Competency and skill framework",
+    "description": "Skill types, individual skills, employee proficiency records, and job-position skill requirements for competency gap analysis.",
+    "author": "Nexa",
+    "depends": ["base", "hr"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

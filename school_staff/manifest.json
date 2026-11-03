@@ -1,0 +1,22 @@
+{
+    "name": "school_staff",
+    "display_name": "School Staff",
+    "version": "1.0.0",
+    "summary": "School staff profiles layered on the reused HR employee, with teaching qualifications, substitution coverage, performance reviews and live workload/leave signals sourced from academics and HR",
+    "description": "Implements the staff module from the blueprint while honouring the rule that the school reuses HR rather than duplicating it. school.staff.member is the school-side profile of a reused hr.employee record (which already links the login user and org department); a manager verifies each school.staff.qualification credential. When a teacher is away, school.staff.substitution assigns another member to cover the class referenced through the academics school.teaching.assignment, moving requested, assigned, completed or cancelled with a guard against substituting for oneself. school.staff.performance.review captures periodic classroom appraisal with a draft, submitted and approved workflow and an overall rating derived from the observation score. Workload and leave are surfaced as live computes rather than new engines: weekly teaching periods are summed from the member's active school.teaching.assignment rows and on-leave status plus open leave requests are read straight from the reused hr.leave records. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "hr",
+        "school_setup",
+        "school_academics"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

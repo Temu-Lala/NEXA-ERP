@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Fleet Tire Views -->
+        <view id="view_fleet_tire_list" model="fleet.tire" type="list">
+            <field name="name" string="Serial / Code"/>
+            <field name="brand" string="Brand"/>
+            <field name="model" string="Model"/>
+            <field name="size" string="Size"/>
+            <field name="tire_type" string="Type"/>
+            <field name="status" string="Status"/>
+            <field name="tread_depth_current_mm" string="Current Tread (mm)"/>
+            <field name="purchase_date" string="Purchase Date"/>
+            <field name="purchase_cost" string="Cost"/>
+        </view>
+
+        <view id="view_fleet_tire_form" model="fleet.tire" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="brand"/>
+                    <field name="model"/>
+                    <field name="size"/>
+                    <field name="tire_type"/>
+                    <field name="status"/>
+                </group>
+                <group>
+                    <field name="purchase_date"/>
+                    <field name="purchase_cost"/>
+                    <field name="tread_depth_original_mm"/>
+                    <field name="tread_depth_current_mm"/>
+                    <field name="warranty_km"/>
+                    <field name="supplier"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_tire_search" model="fleet.tire" type="search">
+            <field name="name" string="Serial / Code"/>
+            <field name="brand" string="Brand"/>
+            <field name="size" string="Size"/>
+            <filter name="in_stock" string="In Stock" domain='[["status","=","in_stock"]]'/>
+            <filter name="mounted" string="Mounted" domain='[["status","=","mounted"]]'/>
+            <filter name="retreaded" string="Retreaded" domain='[["status","=","retreaded"]]'/>
+            <filter name="group_status" string="Status" group_by="status"/>
+            <filter name="group_type" string="Tire Type" group_by="tire_type"/>
+            <filter name="group_brand" string="Brand" group_by="brand"/>
+        </view>
+
+        <action id="action_fleet_tire" type="window" model="fleet.tire" name="Tires" view_mode="list,form"/>
+
+        <!-- Fleet Tire Installation Views -->
+        <view id="view_fleet_tire_installation_list" model="fleet.tire.installation" type="list">
+            <field name="tire_id" string="Tire"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="wheel_position" string="Position"/>
+            <field name="axle_number" string="Axle"/>
+            <field name="mounted_date" string="Mounted Date"/>
+            <field name="mounted_odometer" string="Mounted Odo"/>
+            <field name="removed_date" string="Removed Date"/>
+            <field name="removed_odometer" string="Removed Odo"/>
+            <field name="total_km_ran" string="Total Km"/>
+            <field name="removal_reason" string="Removal Reason"/>
+        </view>
+
+        <view id="view_fleet_tire_installation_form" model="fleet.tire.installation" type="form">
+            <sheet>
+                <group>
+                    <field name="tire_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="wheel_position"/>
+                    <field name="axle_number"/>
+                </group>
+                <group>
+                    <field name="mounted_date"/>
+                    <field name="mounted_odometer"/>
+                    <field name="removed_date"/>
+                    <field name="removed_odometer"/>
+                    <field name="total_km_ran"/>
+                    <field name="removal_reason"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_tire_installation_search" model="fleet.tire.installation" type="search">
+            <field name="tire_id" string="Tire"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <filter name="active_mounting" string="Currently Mounted" domain='[["removed_date","=",false]]'/>
+            <filter name="group_vehicle" string="Vehicle" group_by="vehicle_id"/>
+            <filter name="group_wheel_position" string="Wheel Position" group_by="wheel_position"/>
+        </view>
+
+        <action id="action_fleet_tire_installation" type="window" model="fleet.tire.installation" name="Tire Installations" view_mode="list,form"/>
+
+        <!-- Fleet Tire Inspection Views -->
+        <view id="view_fleet_tire_inspection_list" model="fleet.tire.inspection" type="list">
+            <field name="inspection_date" string="Date"/>
+            <field name="tire_id" string="Tire"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="inspector_id" string="Inspector"/>
+            <field name="measured_tread_depth_mm" string="Tread Depth (mm)"/>
+            <field name="pressure_psi" string="Pressure (PSI)"/>
+            <field name="irregular_wear" string="Irregular Wear"/>
+            <field name="action_rec" string="Recommendation"/>
+        </view>
+
+        <view id="view_fleet_tire_inspection_form" model="fleet.tire.inspection" type="form">
+            <sheet>
+                <group>
+                    <field name="tire_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="inspection_date"/>
+                    <field name="inspector_id"/>
+                </group>
+                <group>
+                    <field name="measured_tread_depth_mm"/>
+                    <field name="pressure_psi"/>
+                    <field name="irregular_wear"/>
+                    <field name="action_rec"/>
+                </group>
+                <group>
+                    <field name="damage_observed"/>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_tire_inspection_search" model="fleet.tire.inspection" type="search">
+            <field name="tire_id" string="Tire"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="inspector_id" string="Inspector"/>
+            <filter name="group_action" string="Recommendation" group_by="action_rec"/>
+            <filter name="group_tire" string="Tire" group_by="tire_id"/>
+        </view>
+
+        <action id="action_fleet_tire_inspection" type="window" model="fleet.tire.inspection" name="Tire Inspections" view_mode="list,form"/>
+    </data>
+</nexa>

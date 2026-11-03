@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_school_governance_expiry" model="sys.cron">
+            <field name="name">School: Archive governance policies past their effective window</field>
+            <field name="code">school.governance.expiry</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

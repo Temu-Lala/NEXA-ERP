@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+  <data>
+    <menuitem id="menu_approval_root" name="Approvals" sequence="90"/>
+
+    <menuitem id="menu_approval_operations" name="Operations" parent="menu_approval_root" sequence="10"/>
+    <menuitem id="menu_approval_request" name="Approval Requests" parent="menu_approval_operations" action="approval.action_approval_request" sequence="10"/>
+    <menuitem id="menu_approval_action" name="Approval History" parent="menu_approval_operations" action="approval.action_approval_action" sequence="20"/>
+
+    <menuitem id="menu_approval_config" name="Configuration" parent="menu_approval_root" sequence="20"/>
+    <menuitem id="menu_approval_category" name="Approval Categories" parent="menu_approval_config" action="approval.action_approval_category" sequence="10"/>
+    <menuitem id="menu_approval_level" name="Approval Levels" parent="menu_approval_config" action="approval.action_approval_level" sequence="20"/>
+  </data>
+</nexa>

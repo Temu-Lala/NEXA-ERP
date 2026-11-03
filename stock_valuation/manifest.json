@@ -1,0 +1,17 @@
+{
+  "name": "stock_valuation",
+  "display_name": "Stock Valuation",
+  "version": "1.0.0",
+  "summary": "Valuation layers with FIFO and moving-average costing, landed costs and a GL outbox",
+  "description": "Immutable valuation layers posted from the move ledger in integer cents: FIFO consumption allocates oldest remaining layers first, moving average blends on receipt; landed costs distribute freight/duty by quantity, weight, volume or value with deterministic remainder handling; late costs adjust remaining layers or raise a COGS correction. Accounting integration is publish-only through a valuation event outbox - Accounting owns journals (blueprint section 10).",
+  "author": "Nexa",
+  "depends": ["base", "product", "stock"],
+  "data": [
+    "security/sys.access.csv",
+    "data/valuation_cron.xml",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Inventory"
+}

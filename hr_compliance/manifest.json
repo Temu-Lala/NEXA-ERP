@@ -1,0 +1,21 @@
+{
+    "name": "hr_compliance",
+    "display_name": "HR: Compliance & Offboarding",
+    "version": "1.0.0",
+    "summary": "Policy publication with acknowledgement tracking, confidential grievances, disciplinary records, workplace incidents, a compliance gap matrix, and resignation/termination workflows with offboarding checklists and isolated medical records",
+    "description": "Adds the governance and exit-side capabilities the anchor HR modules lack, without migrating or duplicating their tables (documents/expiry live in hr and hr_people, self-service cases in hr_selfservice). It covers: policy publication with per-employee acknowledgement and a pending count, confidential grievance case management, restricted disciplinary records, workplace incidents and investigations, a compliance matrix that provisions per-employee verdicts from policy/training/certification obligations (mandatory, recurring or one-time) and detects gaps via a scheduled scan, and resignation / termination workflows carrying a notice period, last working day, maker-checker approval, an auto-provisioned offboarding checklist (IT-access revocation, equipment return, finance / final settlement, knowledge transfer), final-leave capture and record retention. Publishing and completing a separation are the only actions that write, and both are gated and audited: an approved termination applied on completion is explicit, never silent, and no financial / pay figure is ever posted here. Grievance and disciplinary changes are mirrored into their own append-only audit; medical records are isolated to the HR Manager group, separate from the ordinary employee profile. Extends the hr anchor; navigated under the single HR app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "hr"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/scan_cron.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

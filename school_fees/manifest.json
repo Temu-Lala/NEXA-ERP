@@ -1,0 +1,19 @@
+{
+    "name": "school_fees",
+    "display_name": "School Fee Configuration",
+    "version": "1.0.0",
+    "summary": "Fee structures, penalty rules, and configurable discount matrices",
+    "description": "Admin-configurable fee setup for the school payment system: per-class/section fee structures with frequency and due day, dynamic daily/fixed/percent penalty rules, multi-sibling family annual discount thresholds, and the teacher's-child experience-to-discount matrix. All rates and thresholds are editable records, never hardcoded. Modification is restricted to the Manager/Director role.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_dimension_list" model="account.analytic.dimension" type="list">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="category"/>
+            <field name="company_id"/>
+            <field name="required"/>
+            <field name="active"/>
+        </view>
+        <view id="view_dimension_form" model="account.analytic.dimension" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="category"/>
+                        <field name="company_id"/>
+                    </group>
+                    <group>
+                        <field name="required"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <group string="Values">
+                    <field name="values" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_dimension_value_list" model="account.analytic.dimension.value" type="list">
+            <field name="dimension_id"/>
+            <field name="name"/>
+            <field name="code"/>
+            <field name="parent_id"/>
+            <field name="active"/>
+        </view>
+        <view id="view_dimension_value_form" model="account.analytic.dimension.value" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="dimension_id"/>
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+                    <group>
+                        <field name="parent_id"/>
+                        <field name="analytic_account_id"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_mline_dimension_list" model="account.move.line.dimension" type="list">
+            <field name="move_line_id"/>
+            <field name="dimension_id"/>
+            <field name="value_id"/>
+            <field name="amount"/>
+            <field name="percentage"/>
+            <field name="allocation_id"/>
+        </view>
+        <view id="view_mline_dimension_form" model="account.move.line.dimension" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="move_line_id"/>
+                        <field name="dimension_id"/>
+                        <field name="value_id"/>
+                    </group>
+                    <group>
+                        <field name="amount"/>
+                        <field name="percentage"/>
+                        <field name="allocation_id"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_allocation_list" model="account.analytic.allocation" type="list">
+            <field name="name"/>
+            <field name="source_move_line_id"/>
+            <field name="basis"/>
+            <field name="total_amount"/>
+        </view>
+        <view id="view_allocation_form" model="account.analytic.allocation" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="source_move_line_id"/>
+                        <field name="basis"/>
+                    </group>
+                    <group>
+                        <field name="total_amount"/>
+                    </group>
+                </group>
+                <group string="Allocations">
+                    <field name="lines" nolabel="1"/>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_dimensions" type="window" model="account.analytic.dimension" name="Analytic Dimensions" view_mode="list,form"/>
+        <action id="action_dimension_values" type="window" model="account.analytic.dimension.value" name="Dimension Values" view_mode="list,form"/>
+        <action id="action_mline_dimensions" type="window" model="account.move.line.dimension" name="Journal Item Dimensions" view_mode="list,form"/>
+        <action id="action_allocations" type="window" model="account.analytic.allocation" name="Analytic Allocations" view_mode="list,form"/>
+    </data>
+</nexa>

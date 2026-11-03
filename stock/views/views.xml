@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ==================== Warehouse ==================== -->
+        <view id="view_stock_warehouse_list" model="stock.warehouse" type="list">
+            <field name="name" string="Warehouse"/>
+            <field name="code" string="Short Code"/>
+            <field name="input_location_id" string="Input"/>
+            <field name="output_location_id" string="Output"/>
+        </view>
+        <view id="view_stock_warehouse_form" model="stock.warehouse" type="form">
+            <header>
+                <button name="action_ensure_locations" string="Initialize Locations" type="object" class="sum_highlight"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="active"/>
+                </group>
+                <group string="Stock Locations">
+                    <field name="input_location_id"/>
+                    <field name="output_location_id"/>
+                    <field name="return_location_id"/>
+                    <field name="scrap_location_id"/>
+                    <field name="transit_location_id"/>
+                </group>
+                <group string="Policies">
+                    <field name="allow_negative"/>
+                </group>
+                <group string="Address">
+                    <field name="address" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Location ==================== -->
+        <view id="view_stock_location_list" model="stock.location" type="list">
+            <field name="name" string="Location"/>
+            <field name="usage" string="Location Type"/>
+            <field name="parent_id" string="Parent"/>
+            <field name="warehouse_id" string="Warehouse"/>
+            <field name="pos_priority" string="Priority"/>
+            <field name="blocked" string="Blocked"/>
+        </view>
+        <view id="view_stock_location_form" model="stock.location" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="usage"/>
+                    <field name="parent_id"/>
+                    <field name="warehouse_id"/>
+                    <field name="pos_priority"/>
+                    <field name="blocked"/>
+                    <field name="active"/>
+                </group>
+                <group string="Capacity">
+                    <field name="capacity_kg"/>
+                    <field name="capacity_m3"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Picking Type ==================== -->
+        <view id="view_stock_picking_type_list" model="stock.picking.type" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="name" string="Operation"/>
+            <field name="code" string="Code"/>
+            <field name="operation_type" string="Type"/>
+            <field name="warehouse_id" string="Warehouse"/>
+            <field name="backorder_ok" string="Backorders"/>
+        </view>
+        <view id="view_stock_picking_type_form" model="stock.picking.type" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="operation_type"/>
+                    <field name="warehouse_id"/>
+                    <field name="sequence"/>
+                    <field name="active"/>
+                </group>
+                <group string="Policies">
+                    <field name="backorder_ok"/>
+                    <field name="return_ok"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Procurement Group ==================== -->
+        <view id="view_stock_procurement_group_list" model="stock.procurement.group" type="list">
+            <field name="name" string="Group"/>
+            <field name="note" string="Note"/>
+        </view>
+        <view id="view_stock_procurement_group_form" model="stock.procurement.group" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Lot ==================== -->
+        <view id="view_stock_lot_list" model="stock.lot" type="list">
+            <field name="name" string="Lot"/>
+            <field name="product_id" string="Product"/>
+            <field name="qty_remaining" string="On Hand"/>
+            <field name="expiration_on" string="Expiration"/>
+            <field name="state" string="Status"/>
+            <field name="supplier_ref" string="Supplier Lot"/>
+        </view>
+        <view id="view_stock_lot_form" model="stock.lot" type="form">
+            <header>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="supplier_ref"/>
+                    <field name="qty_remaining"/>
+                    <field name="active"/>
+                </group>
+                <group string="Dates">
+                    <field name="production_on"/>
+                    <field name="expiration_on"/>
+                    <field name="removal_on"/>
+                </group>
+                <group>
+                    <field name="description" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Serial ==================== -->
+        <view id="view_stock_serial_list" model="stock.serial" type="list">
+            <field name="name" string="Serial"/>
+            <field name="product_id" string="Product"/>
+            <field name="lot_id" string="Lot"/>
+            <field name="state" string="Status"/>
+            <field name="location_id" string="Location"/>
+        </view>
+        <view id="view_stock_serial_form" model="stock.serial" type="form">
+            <header>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="location_id"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Picking ==================== -->
+        <view id="view_stock_picking_list" model="stock.picking" type="list">
+            <field name="name" string="Reference"/>
+            <field name="picking_type_id" string="Operation"/>
+            <field name="operation" string="Type"/>
+            <field name="origin" string="Source Document"/>
+            <field name="source_location_id" string="Source"/>
+            <field name="destination_id" string="Destination"/>
+            <field name="state" string="Status"/>
+            <field name="scheduled_date" string="Scheduled"/>
+            <field name="assigned_user_id" string="Assigned To"/>
+        </view>
+        <view id="view_stock_picking_form" model="stock.picking" type="form">
+            <header>
+                <button name="action_confirm" string="Confirm" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_transfer" string="Validate" type="object" class="sum_highlight" invisible="state == 'draft' or state == 'done' or state == 'cancelled'"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state == 'done' or state == 'cancelled'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="picking_type_id"/>
+                    <field name="operation"/>
+                    <field name="origin"/>
+                    <field name="procurement_group_id"/>
+                    <field name="assigned_user_id"/>
+                </group>
+                <group>
+                    <field name="source_location_id"/>
+                    <field name="destination_id"/>
+                    <field name="scheduled_date"/>
+                    <field name="date_done"/>
+                </group>
+                <notebook>
+                    <page string="Products">
+                        <field name="move_ids" nolabel="1"/>
+                    </page>
+                    <page string="Operations">
+                        <field name="operation_ids" nolabel="1"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="note" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <!-- ==================== Move ==================== -->
+        <view id="view_stock_move_list" model="stock.move" type="list">
+            <field name="name" string="Description"/>
+            <field name="product_id" string="Product"/>
+            <field name="picking_id" string="Transfer"/>
+            <field name="source_location_id" string="Source"/>
+            <field name="destination_id" string="Destination"/>
+            <field name="quantity" string="Demand"/>
+            <field name="reserved_quantity" string="Reserved"/>
+            <field name="lot_id" string="Lot"/>
+            <field name="state" string="Status"/>
+            <field name="date_due" string="Deadline"/>
+            <field name="origin" string="Source Document"/>
+        </view>
+        <view id="view_stock_move_form" model="stock.move" type="form">
+            <header>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="picking_id"/>
+                    <field name="procurement_group_id"/>
+                    <field name="origin"/>
+                </group>
+                <group>
+                    <field name="source_location_id"/>
+                    <field name="destination_id"/>
+                    <field name="lot_id"/>
+                    <field name="quantity"/>
+                    <field name="reserved_quantity"/>
+                    <field name="date_due"/>
+                    <field name="date_done"/>
+                </group>
+                <group string="Operations">
+                    <field name="move_lines" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Move Line ==================== -->
+        <view id="view_stock_move_line_list" model="stock.move.line" type="list">
+            <field name="picking_id" string="Transfer"/>
+            <field name="move_id" string="Move"/>
+            <field name="product_id" string="Product"/>
+            <field name="lot_id" string="Lot"/>
+            <field name="serial_id" string="Serial"/>
+            <field name="quantity" string="Done Quantity"/>
+            <field name="source_location_id" string="Source"/>
+            <field name="result_location_id" string="Result"/>
+        </view>
+        <view id="view_stock_move_line_form" model="stock.move.line" type="form">
+            <sheet>
+                <group>
+                    <field name="move_id"/>
+                    <field name="picking_id"/>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="serial_id"/>
+                    <field name="quantity"/>
+                    <field name="source_location_id"/>
+                    <field name="result_location_id"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Quant ==================== -->
+        <view id="view_stock_quant_list" model="stock.quant" type="list">
+            <field name="product_id" string="Product"/>
+            <field name="location_id" string="Location"/>
+            <field name="lot_id" string="Lot"/>
+            <field name="quantity" string="On Hand"/>
+            <field name="reserved_quantity" string="Reserved"/>
+            <field name="available_quantity" string="Available"/>
+            <field name="in_date" string="In Date"/>
+        </view>
+        <view id="view_stock_quant_form" model="stock.quant" type="form">
+            <sheet>
+                <group>
+                    <field name="product_id"/>
+                    <field name="location_id"/>
+                    <field name="lot_id"/>
+                    <field name="quantity"/>
+                    <field name="reserved_quantity"/>
+                    <field name="available_quantity"/>
+                    <field name="in_date"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Inventory / Cycle Count ==================== -->
+        <view id="view_stock_inventory_list" model="stock.inventory" type="list">
+            <field name="name" string="Reference"/>
+            <field name="inventory_date" string="Count Date"/>
+            <field name="location_id" string="Count Location"/>
+            <field name="blind_count" string="Blind"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_stock_inventory_form" model="stock.inventory" type="form">
+            <header>
+                <button name="action_confirm" string="Open Count" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_validate" string="Apply Variance" type="object" class="sum_highlight" invisible="state != 'in_progress'"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state == 'done' or state == 'cancelled'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="inventory_date"/>
+                    <field name="location_id"/>
+                    <field name="blind_count"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+                <group string="Count Lines">
+                    <field name="lines" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_stock_inventory_line_list" model="stock.inventory.line" type="list">
+            <field name="inventory_id" string="Inventory"/>
+            <field name="product_id" string="Product"/>
+            <field name="location_id" string="Location"/>
+            <field name="lot_id" string="Lot"/>
+            <field name="theoretical_qty" string="Theoretical"/>
+            <field name="counted_qty" string="Counted"/>
+            <field name="difference_qty" string="Difference"/>
+            <field name="reason" string="Reason"/>
+        </view>
+        <view id="view_stock_inventory_line_form" model="stock.inventory.line" type="form">
+            <sheet>
+                <group>
+                    <field name="inventory_id"/>
+                    <field name="product_id"/>
+                    <field name="location_id"/>
+                    <field name="lot_id"/>
+                    <field name="theoretical_qty"/>
+                    <field name="counted_qty"/>
+                    <field name="difference_qty"/>
+                    <field name="reason"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Scrap ==================== -->
+        <view id="view_stock_scrap_list" model="stock.scrap" type="list">
+            <field name="name" string="Reference"/>
+            <field name="product_id" string="Product"/>
+            <field name="lot_id" string="Lot"/>
+            <field name="quantity" string="Quantity"/>
+            <field name="location_id" string="Source"/>
+            <field name="scrap_location_id" string="Scrap Location"/>
+            <field name="reason" string="Reason"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_stock_scrap_form" model="stock.scrap" type="form">
+            <header>
+                <button name="action_validate" string="Scrap" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state != 'draft'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="quantity"/>
+                    <field name="location_id"/>
+                    <field name="scrap_location_id"/>
+                    <field name="picking_id"/>
+                    <field name="reason"/>
+                </group>
+                <group>
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ==================== Actions ==================== -->
+        <action id="action_stock_warehouse" type="window" model="stock.warehouse" name="Warehouses" view_mode="list,form"/>
+        <action id="action_stock_location" type="window" model="stock.location" name="Locations" view_mode="list,form"/>
+        <action id="action_stock_picking_type" type="window" model="stock.picking.type" name="Operation Types" view_mode="list,form"/>
+        <action id="action_stock_procurement_group" type="window" model="stock.procurement.group" name="Procurement Groups" view_mode="list,form"/>
+        <action id="action_stock_lot" type="window" model="stock.lot" name="Lots / Batches" view_mode="list,form"/>
+        <action id="action_stock_serial" type="window" model="stock.serial" name="Serial Numbers" view_mode="list,form"/>
+        <action id="action_stock_picking" type="window" model="stock.picking" name="Transfers" view_mode="list,form"/>
+        <action id="action_stock_move" type="window" model="stock.move" name="Stock Moves" view_mode="list,form"/>
+        <action id="action_stock_move_line" type="window" model="stock.move.line" name="Operations" view_mode="list,form"/>
+        <action id="action_stock_quant" type="window" model="stock.quant" name="On Hand Quantity" view_mode="list,form"/>
+        <action id="action_stock_inventory" type="window" model="stock.inventory" name="Cycle Counts" view_mode="list,form"/>
+        <action id="action_stock_inventory_line" type="window" model="stock.inventory.line" name="Count Lines" view_mode="list,form"/>
+        <action id="action_stock_scrap" type="window" model="stock.scrap" name="Scrap" view_mode="list,form"/>
+        <action id="action_stock_dash_recent" type="window" model="stock.picking" name="Inventory Overview" view_mode="list,form"/>
+    </data>
+</nexa>

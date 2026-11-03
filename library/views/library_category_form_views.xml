@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_library_category_form" model="library.category" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="description"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+    </data>
+</nexa>

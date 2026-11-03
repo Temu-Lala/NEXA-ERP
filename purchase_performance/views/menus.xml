@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_purchase_performance_root" name="Performance" parent="purchase.purchase_menu_root" sequence="45" web_icon="activity" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_perf_scorecard" name="Supplier Scorecards" parent="menu_purchase_performance_root" action="purchase_performance.action_purchase_supplier_scorecard" sequence="1" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_perf_period" name="Measurement Periods" parent="menu_purchase_performance_root" action="purchase_performance.action_purchase_performance_period" sequence="2" groups="purchase.group_purchase_officer"/>
+        <menuitem id="menu_purchase_perf_metric" name="KPI Metrics" parent="menu_purchase_performance_root" action="purchase_performance.action_purchase_performance_metric" sequence="3" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_perf_corrective" name="Corrective Actions" parent="menu_purchase_performance_root" action="purchase_performance.action_purchase_corrective_action" sequence="4" groups="purchase.group_purchase_quality"/>
+    </data>
+</nexa>

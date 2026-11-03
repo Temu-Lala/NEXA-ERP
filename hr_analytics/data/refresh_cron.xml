@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_hr_workforce_snapshot_refresh" model="sys.cron">
+            <field name="name">HR: Refresh workforce snapshots (headcount &amp; trends)</field>
+            <field name="code">hr.workforce.snapshot.refresh</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

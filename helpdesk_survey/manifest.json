@@ -1,0 +1,16 @@
+{
+    "name": "helpdesk_survey",
+    "display_name": "Helpdesk Customer Satisfaction",
+    "version": "1.0.0",
+    "summary": "CSAT surveys, responses and low-rating alerts",
+    "description": "Enqueues a satisfaction survey when a ticket is resolved, records 1..N ratings with feedback attributed to agent/team/category, computes live CSAT metrics, and posts a low-rating alert onto the ticket thread.",
+    "author": "Nexa",
+    "depends": ["base", "helpdesk"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Services"
+}

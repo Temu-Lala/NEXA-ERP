@@ -1,0 +1,21 @@
+{
+    "name": "school_portal",
+    "display_name": "School Portal",
+    "version": "1.0.0",
+    "summary": "Parent and student self-service surfaces with ownership isolation: portal profiles that scope learners, role-targeted dashboard tiles, a self-service request workflow with an append-only history, and an immutable portal access audit log",
+    "description": "Implements the self-service portal module from the blueprint. A school.portal.profile binds one authenticated portal user to the person records they own — a parent/guardian profile points at a school.guardian, a student profile at their own school.student and a staff profile at a school.staff.member — and the set of learners in scope is derived, never typed: a learner is reachable only when it is the profile's own student record or is linked to the profile's guardian through an active school.student.guardian relationship, with financial visibility an explicit opt-in mirroring the guardian link's can_view_financial flag. A catalog of school.portal.widget dashboard tiles is targeted per role and can be gated on financial access. A school.portal.request is a self-service request (absence, late arrival, early dismissal, document, fee plan, academic advisory or general enquiry) governed by an enforced draft to submitted to under-review to approved/rejected to fulfilled state machine, each move recorded in an append-only school.portal.request.history that is never edited and mirrored into an immutable school.portal.access.log for isolation compliance. The ownership-isolation predicate, the request state machine and the age and visibility arithmetic are server-validated and unit-tested; a school officer can deactivate a portal profile. The module reuses the school, guardians and staff data model. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_guardians",
+        "school_staff"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_hr_service_sla_scan" model="sys.cron">
+            <field name="name">HR: Scan overdue service-desk cases (SLA)</field>
+            <field name="code">hr.service.sla.scan</field>
+            <field name="interval_number">60</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

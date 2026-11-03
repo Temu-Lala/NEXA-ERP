@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_asset_category_user,access_maint_asset_category_user,maintenance.asset.category,,1,1,1,1
+access_maint_asset_location_user,access_maint_asset_location_user,maintenance.asset.location,,1,1,1,1
+access_maint_asset_user,access_maint_asset_user,maintenance.asset,,1,1,1,1
+access_maint_request_user,access_maint_request_user,maintenance.request,,1,1,1,1
+access_maint_work_order_user,access_maint_work_order_user,maintenance.work.order,,1,1,1,1
+access_maint_work_order_line_user,access_maint_work_order_line_user,maintenance.work.order.line,,1,1,1,1
+access_maint_work_order_assignment_user,access_maint_work_order_assignment_user,maintenance.work.order.assignment,,1,1,1,1
+access_maint_cost_user,access_maint_cost_user,maintenance.cost,,1,1,1,1

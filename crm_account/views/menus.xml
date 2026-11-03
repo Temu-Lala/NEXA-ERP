@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="crm_menu_accounts" name="Accounts" parent="crm.crm_menu_leads" action="crm_account.action_crm_account_profile" sequence="15" groups="crm.group_crm_user"/>
+        <menuitem id="crm_menu_renewals" name="Renewals" parent="crm.crm_menu_leads" action="crm_account.action_crm_account_renewal" sequence="16" groups="crm.group_crm_user"/>
+        <menuitem id="crm_menu_config_segments" name="Customer Segments" parent="crm.crm_menu_config" action="crm_account.action_crm_account_segment" sequence="15" groups="crm.group_crm_manager"/>
+        <menuitem id="crm_menu_config_account_tags" name="Account Tags" parent="crm.crm_menu_config" action="crm_account.action_crm_account_tag" sequence="16" groups="crm.group_crm_manager"/>
+    </data>
+</nexa>

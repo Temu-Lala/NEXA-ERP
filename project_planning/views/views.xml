@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_project_task_dependency_list" model="project.task.dependency" type="list">
+            <field name="project_id" string="Project"/>
+            <field name="task_id" string="Task"/>
+            <field name="predecessor_id" string="Predecessor"/>
+            <field name="dependency_type" string="Type"/>
+            <field name="lag_days" string="Lag (days)"/>
+        </view>
+        <view id="view_project_task_dependency_form" model="project.task.dependency" type="form">
+            <header>
+                <button name="action_validate" string="Validate" type="object"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="project_id" string="Project"/>
+                    <field name="task_id" string="Task"/>
+                    <field name="predecessor_id" string="Predecessor"/>
+                    <field name="dependency_type" string="Type"/>
+                    <field name="lag_days" string="Lag (days)"/>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_project_task_dependency" type="window" model="project.task.dependency" name="Task Dependencies" view_mode="list,form"/>
+
+        <view id="view_project_deliverable_list" model="project.deliverable" type="list">
+            <field name="project_id" string="Project"/>
+            <field name="name" string="Deliverable"/>
+            <field name="milestone_id" string="Milestone"/>
+            <field name="owner_id" string="Owner"/>
+            <field name="due_date" string="Due Date"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_project_deliverable_form" model="project.deliverable" type="form">
+            <header>
+                <button name="action_submit" string="Submit for Review" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_accept" string="Accept" type="object" class="sum_highlight" invisible="state != 'submitted'"/>
+                <button name="action_reject" string="Reject" type="object" invisible="state != 'submitted'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="project_id" string="Project"/>
+                    <field name="name" string="Deliverable"/>
+                    <field name="milestone_id" string="Milestone"/>
+                    <field name="task_id" string="Source Task"/>
+                    <field name="state" string="Status"/>
+                    <field name="owner_id" string="Owner"/>
+                    <field name="due_date" string="Due Date"/>
+                    <field name="accepted_date" string="Accepted Date"/>
+                    <field name="is_billable" string="Billable"/>
+                </group>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_project_deliverable" type="window" model="project.deliverable" name="Deliverables" view_mode="list,form"/>
+
+        <view id="view_project_deliverable_sublist" model="project.deliverable" type="list">
+            <field name="name" string="Deliverable"/>
+            <field name="milestone_id" string="Milestone"/>
+            <field name="owner_id" string="Owner"/>
+            <field name="due_date" string="Due Date"/>
+            <field name="state" string="Status"/>
+        </view>
+
+        <view id="view_project_status_history_list" model="project.status.history" type="list">
+            <field name="entity_type" string="Entity"/>
+            <field name="project_id" string="Project"/>
+            <field name="task_id" string="Task"/>
+            <field name="from_state" string="From"/>
+            <field name="to_state" string="To"/>
+            <field name="user_id" string="Changed By"/>
+            <field name="create_date" string="Date"/>
+        </view>
+        <action id="action_project_status_history" type="window" model="project.status.history" name="Status History" view_mode="list,form"/>
+    </data>
+</nexa>

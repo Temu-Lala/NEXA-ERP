@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="crm_menu_territories" name="Territories" parent="crm.crm_menu_config" action="crm_team.action_crm_territory" sequence="20" groups="crm.group_crm_manager"/>
+        <menuitem id="crm_menu_team_coverage" name="Team Coverage" parent="crm.crm_menu_config" action="crm_team.action_crm_team_territory" sequence="21" groups="crm.group_crm_manager"/>
+        <menuitem id="crm_menu_territory_assignments" name="Territory Assignments" parent="crm.crm_menu_leads" action="crm_team.action_crm_territory_assignment" sequence="17" groups="crm.group_crm_user"/>
+        <menuitem id="crm_menu_sales_targets" name="Sales Targets" parent="crm.crm_menu_report" action="crm_team.action_crm_sales_target" sequence="20" groups="crm.group_crm_manager"/>
+    </data>
+</nexa>

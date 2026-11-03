@@ -1,0 +1,16 @@
+{
+  "name": "stock_returns",
+  "display_name": "Stock Returns",
+  "version": "1.0.0",
+  "summary": "RMA and vendor-direct returns with policy eligibility, dispositions and inspection-gated restock",
+  "description": "Customer return authorizations and vendor direct-to-return orders captured against the originating delivery with per-line condition and lot/serial evidence. Policy windows decide eligibility; dispositions (restock, quarantine, repair, return-to-vendor, scrap, reject) execute through the validated move ledger, and restock stays gated on inspection until a quality sign-off exists (blueprint section 12).",
+  "author": "Nexa",
+  "depends": ["base", "product", "stock"],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Inventory"
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+
+        <!-- Servicing -->
+        <menuitem id="menu_loan_schedule_version" name="Repayment Schedules" parent="lending.menu_lending_servicing" action="action_loan_schedule_version" sequence="10" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_installment" name="Installments" parent="lending.menu_lending_servicing" action="action_loan_installment" sequence="20" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_accrual" name="Accruals" parent="lending.menu_lending_servicing" action="action_loan_accrual" sequence="30" groups="lending.group_lending_user"/>
+        <menuitem id="menu_loan_adjustment" name="Loan Adjustments" parent="lending.menu_lending_servicing" action="action_loan_adjustment" sequence="40" groups="lending.group_lending_manager"/>
+
+    </data>
+</nexa>

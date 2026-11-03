@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="sale_menu_fulfillment_root" name="Fulfillment &amp; Returns" parent="sale.sale_menu_root" sequence="25" web_icon="package" groups="sale.group_sale_user"/>
+        <menuitem id="sale_menu_reservation_link" name="Reservations" parent="sale_menu_fulfillment_root" action="sale_fulfillment.action_sale_reservation_link" sequence="1" groups="sale.group_sale_user"/>
+        <menuitem id="sale_menu_shipment_link" name="Shipments" parent="sale_menu_fulfillment_root" action="sale_fulfillment.action_sale_shipment_link" sequence="2" groups="sale.group_sale_user"/>
+        <menuitem id="sale_menu_return" name="Returns" parent="sale_menu_fulfillment_root" action="sale_fulfillment.action_sale_return" sequence="3" groups="sale.group_sale_user"/>
+        <menuitem id="sale_menu_return_line" name="Return Lines" parent="sale_menu_fulfillment_root" action="sale_fulfillment.action_sale_return_line" sequence="4" groups="sale.group_sale_manager"/>
+    </data>
+</nexa>

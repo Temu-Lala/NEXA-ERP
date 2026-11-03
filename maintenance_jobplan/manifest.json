@@ -1,0 +1,16 @@
+{
+  "name": "maintenance_jobplan",
+  "display_name": "Maintenance Job Plans",
+  "version": "1.0.0",
+  "summary": "Reusable job plans, task templates, checklists and safety procedures for work orders",
+  "description": "Define reusable, versioned maintenance procedures with numbered task steps, required skills, tool lists, spare parts, safety hazards and acceptance criteria. Attach job plans to work orders and preventive maintenance plans for consistent execution.",
+  "author": "Nexa",
+  "depends": ["base", "maintenance", "maintenance_equipment"],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Operations"
+}

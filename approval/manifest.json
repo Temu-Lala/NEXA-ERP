@@ -1,0 +1,16 @@
+{
+    "name": "approval",
+    "display_name": "Approvals",
+    "version": "1.0.0",
+    "summary": "Shared approval and workflow engine",
+    "description": "A reusable, platform-level approval capability. Define approval categories bound to any business model, multi-level approval rules with amount-based routing, submit approval requests, and record an immutable approval action history. Other modules integrate against this rather than reimplementing their own approval engine.",
+    "author": "Nexa",
+    "depends": ["base"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Administration"
+}

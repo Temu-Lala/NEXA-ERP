@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Applicant / application pipeline -->
+        <view id="view_school_applicant_list" model="school.applicant" type="list">
+            <field name="application_no" string="App No"/>
+            <field name="last_name" string="Last Name"/>
+            <field name="first_name" string="First Name"/>
+            <field name="class_id" string="Class"/>
+            <field name="section_id" string="Section"/>
+            <field name="campus_id" string="Campus"/>
+            <field name="state" string="Status"/>
+            <field name="docs_complete" string="Docs"/>
+            <field name="duplicate_suspect" string="Dup?"/>
+        </view>
+        <view id="view_school_applicant_form" model="school.applicant" type="form">
+            <header>
+                <button name="applicant_submit" string="Submit" type="object"/>
+                <button name="applicant_review" string="Start Review" type="object"/>
+                <button name="applicant_assess" string="To Assessment" type="object"/>
+                <button name="applicant_offer" string="Offer" type="object" class="sum_highlight"/>
+                <button name="applicant_waitlist" string="Waitlist" type="object"/>
+                <button name="applicant_reject" string="Reject" type="object"/>
+                <button name="applicant_accept" string="Mark Accepted" type="object"/>
+                <button name="applicant_enroll" string="Enroll Student" type="object" class="sum_highlight"/>
+                <button name="applicant_withdraw" string="Withdraw" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="application_no" placeholder="e.g. ADMI-2026-0001"/></h1></div>
+                <group>
+                    <group string="Applicant">
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+                        <field name="gender"/>
+                        <field name="date_birth"/>
+                        <field name="source"/>
+                        <field name="previous_school"/>
+                    </group>
+                    <group string="Target Placement">
+                        <field name="campus_id"/>
+                        <field name="academic_year_id"/>
+                        <field name="class_id"/>
+                        <field name="section_id"/>
+                        <field name="seat_available" readonly="true"/>
+                        <field name="duplicate_suspect" readonly="true"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Guardian">
+                        <field name="guardian_name"/>
+                        <field name="guardian_phone"/>
+                        <field name="guardian_email"/>
+                    </group>
+                    <group string="Assessment &amp; Decision">
+                        <field name="exam_score"/>
+                        <field name="interview_score"/>
+                        <field name="application_fee"/>
+                        <field name="fee_paid"/>
+                        <field name="waitlist_rank"/>
+                        <field name="decision_by_id"/>
+                        <field name="decision_date"/>
+                        <field name="offer_expiry"/>
+                        <field name="student_id" readonly="true"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Documents">
+                        <field name="documents" nolabel="1">
+                            <list editable="bottom">
+                                <field name="name"/>
+                                <field name="required"/>
+                                <field name="received"/>
+                                <field name="notes"/>
+                            </list>
+                        </field>
+                        <field name="docs_complete" readonly="true"/>
+                    </page>
+                    <page string="Decision Trail">
+                        <field name="decisions" nolabel="1">
+                            <list>
+                                <field name="timestamp"/>
+                                <field name="from_state"/>
+                                <field name="to_state"/>
+                                <field name="action"/>
+                                <field name="reason"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="applied_date"/>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_applicant" type="window" model="school.applicant" name="Admission Applications" view_mode="list,form"/>
+
+        <!-- Read-only decision audit -->
+        <view id="view_school_admission_decision_list" model="school.admission.decision" type="list">
+            <field name="applicant_id" string="Application"/>
+            <field name="timestamp" string="When"/>
+            <field name="from_state" string="From"/>
+            <field name="to_state" string="To"/>
+            <field name="action" string="Action"/>
+            <field name="reason" string="Reason"/>
+        </view>
+        <action id="action_school_admission_decision" type="window" model="school.admission.decision" name="Admission Decision Log" view_mode="list"/>
+    </data>
+</nexa>

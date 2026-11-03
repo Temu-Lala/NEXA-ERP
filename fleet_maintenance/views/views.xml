@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Vehicle Defects                                                  -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_vehicle_defect_list" model="fleet.vehicle.defect" type="list">
+            <field name="name" string="Defect ID"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="date_reported" string="Date Reported"/>
+            <field name="category" string="Category"/>
+            <field name="severity" string="Severity"/>
+            <field name="ground_vehicle" string="Grounded"/>
+            <field name="state" string="Status"/>
+            <field name="reported_by" string="Reported By"/>
+            <field name="maint_work_order_id" string="Work Order"/>
+        </view>
+
+        <view id="view_fleet_vehicle_defect_form" model="fleet.vehicle.defect" type="form">
+            <sheet>
+                <group>
+                    <group string="Defect Info">
+                        <field name="name"/>
+                        <field name="vehicle_id"/>
+                        <field name="category"/>
+                        <field name="source"/>
+                        <field name="severity"/>
+                        <field name="ground_vehicle"/>
+                        <field name="state"/>
+                    </group>
+                    <group string="Reporting &amp; Resolution">
+                        <field name="date_reported"/>
+                        <field name="reported_by"/>
+                        <field name="maint_work_order_id"/>
+                        <field name="verified_by"/>
+                        <field name="verified_date"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Description">
+                        <field name="description"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_vehicle_defect" type="window" model="fleet.vehicle.defect" name="Vehicle Defects" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Inspection Templates                                             -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_inspection_template_list" model="fleet.inspection.template" type="list">
+            <field name="name" string="Template Name"/>
+            <field name="code" string="Code"/>
+            <field name="insp_type" string="Inspection Type"/>
+            <field name="vehicle_class_id" string="Vehicle Class"/>
+            <field name="active" string="Active"/>
+        </view>
+
+        <view id="view_fleet_inspection_template_form" model="fleet.inspection.template" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="insp_type"/>
+                    <field name="vehicle_class_id"/>
+                    <field name="active"/>
+                </group>
+                <notebook>
+                    <page string="Instructions &amp; Checklist">
+                        <field name="instructions"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_inspection_template" type="window" model="fleet.inspection.template" name="Inspection Templates" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Vehicle Inspections                                              -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_vehicle_inspection_list" model="fleet.vehicle.inspection" type="list">
+            <field name="name" string="Inspection ID"/>
+            <field name="template_id" string="Template"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="inspector_id" string="Inspector"/>
+            <field name="inspection_date" string="Date"/>
+            <field name="insp_type" string="Type"/>
+            <field name="odometer" string="Odometer"/>
+            <field name="overall_outcome" string="Outcome"/>
+            <field name="critical_defect_found" string="Critical Defect"/>
+            <field name="state" string="Status"/>
+        </view>
+
+        <view id="view_fleet_vehicle_inspection_form" model="fleet.vehicle.inspection" type="form">
+            <sheet>
+                <group>
+                    <group string="Inspection Details">
+                        <field name="name"/>
+                        <field name="template_id"/>
+                        <field name="vehicle_id"/>
+                        <field name="inspector_id"/>
+                        <field name="inspection_date"/>
+                        <field name="insp_type"/>
+                    </group>
+                    <group string="Outcome">
+                        <field name="odometer"/>
+                        <field name="overall_outcome"/>
+                        <field name="critical_defect_found"/>
+                        <field name="state"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Notes &amp; Findings">
+                        <field name="notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_vehicle_inspection" type="window" model="fleet.vehicle.inspection" name="Vehicle Inspections" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Service Schedules                                                -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_service_schedule_list" model="fleet.service.schedule" type="list">
+            <field name="name" string="Schedule Name"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="vehicle_class_id" string="Vehicle Class"/>
+            <field name="trigger_type" string="Trigger"/>
+            <field name="interval_km" string="Interval (Km)"/>
+            <field name="interval_months" string="Interval (Months)"/>
+            <field name="next_due_odometer" string="Next Due (Km)"/>
+            <field name="next_due_date" string="Next Due Date"/>
+            <field name="is_due" string="Is Due"/>
+            <field name="is_overdue" string="Is Overdue"/>
+        </view>
+
+        <view id="view_fleet_service_schedule_form" model="fleet.service.schedule" type="form">
+            <sheet>
+                <group>
+                    <group string="Schedule Definition">
+                        <field name="name"/>
+                        <field name="vehicle_id"/>
+                        <field name="vehicle_class_id"/>
+                        <field name="trigger_type"/>
+                        <field name="interval_km"/>
+                        <field name="interval_months"/>
+                        <field name="interval_hours"/>
+                        <field name="due_threshold_pct"/>
+                    </group>
+                    <group string="Service Status">
+                        <field name="last_service_odometer"/>
+                        <field name="last_service_date"/>
+                        <field name="next_due_odometer"/>
+                        <field name="next_due_date"/>
+                        <field name="is_due"/>
+                        <field name="is_overdue"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Notes">
+                        <field name="notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_service_schedule" type="window" model="fleet.service.schedule" name="Service Schedules" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Payment Report -->
+        <view id="view_school_payment_report_list" model="school.payment.report" type="list">
+            <field name="name" string="Reference"/>
+            <field name="student_id" string="Student"/>
+            <field name="class_id" string="Class"/>
+            <field name="section_id" string="Section"/>
+            <field name="academic_year_id" string="Academic Year"/>
+            <field name="total_fee_required" string="Required"/>
+            <field name="total_paid" string="Paid"/>
+            <field name="remaining_balance" string="Balance"/>
+            <field name="last_payment_date" string="Last Payment"/>
+            <field name="status" string="Status"/>
+        </view>
+        <view id="view_school_payment_report_form" model="school.payment.report" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. PAYREP-2026-10"/></h1></div>
+                <group>
+                    <group string="Student">
+                        <field name="student_id" string="Student"/>
+                        <field name="class_id" string="Class"/>
+                        <field name="section_id" string="Section"/>
+                        <field name="academic_year_id" string="Academic Year"/>
+                    </group>
+                    <group string="Period">
+                        <field name="period_start" string="Period Start"/>
+                        <field name="period_end" string="Period End"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+                <group string="Amounts">
+                    <group>
+                        <field name="total_fee_required" string="Total Fee Required"/>
+                        <field name="total_paid" string="Total Paid"/>
+                        <field name="remaining_balance" string="Remaining Balance"/>
+                    </group>
+                    <group>
+                        <field name="last_payment_date" string="Last Payment Date"/>
+                        <field name="status" string="Status"/>
+                    </group>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_payment_report" type="window" model="school.payment.report" name="Payment Reports" view_mode="list,form"/>
+
+        <!-- Income Report -->
+        <view id="view_school_income_report_list" model="school.income.report" type="list">
+            <field name="name" string="Reference"/>
+            <field name="fee_category_id" string="Category"/>
+            <field name="period_type" string="Period"/>
+            <field name="date_start" string="From"/>
+            <field name="date_end" string="To"/>
+            <field name="transaction_count" string="Transactions"/>
+            <field name="total_collected" string="Collected"/>
+        </view>
+        <view id="view_school_income_report_form" model="school.income.report" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. INCOME-2026-10"/></h1></div>
+                <group>
+                    <group>
+                        <field name="fee_category_id" string="Fee Category"/>
+                        <field name="period_type" string="Period Type"/>
+                        <field name="date_start" string="Date Start"/>
+                        <field name="date_end" string="Date End"/>
+                    </group>
+                    <group>
+                        <field name="transaction_count" string="Transactions"/>
+                        <field name="total_collected" string="Total Collected"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_income_report" type="window" model="school.income.report" name="Income by Category" view_mode="list,form"/>
+
+        <!-- Defaulter Report -->
+        <view id="view_school_defaulter_report_list" model="school.defaulter.report" type="list">
+            <field name="name" string="Reference"/>
+            <field name="student_id" string="Student"/>
+            <field name="class_id" string="Class"/>
+            <field name="section_id" string="Section"/>
+            <field name="required_fee" string="Required"/>
+            <field name="amount_paid" string="Paid"/>
+            <field name="outstanding" string="Outstanding"/>
+            <field name="unpaid_month_count" string="Unpaid Months"/>
+            <field name="penalty_accumulated" string="Penalty"/>
+            <field name="due_date" string="Due"/>
+        </view>
+        <view id="view_school_defaulter_report_form" model="school.defaulter.report" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. DEFAULT-2026-10"/></h1></div>
+                <group>
+                    <group string="Student">
+                        <field name="student_id" string="Student"/>
+                        <field name="class_id" string="Class"/>
+                        <field name="section_id" string="Section"/>
+                        <field name="academic_year_id" string="Academic Year"/>
+                    </group>
+                    <group string="Balances">
+                        <field name="required_fee" string="Required Fee"/>
+                        <field name="amount_paid" string="Amount Paid"/>
+                        <field name="outstanding" string="Outstanding"/>
+                        <field name="penalty_accumulated" string="Penalty Accumulated"/>
+                        <field name="due_date" string="Due Date"/>
+                    </group>
+                </group>
+                <group string="Overdue">
+                    <field name="unpaid_month_count" string="Unpaid Months Count"/>
+                    <field name="unpaid_months" string="Overdue Months"/>
+                    <field name="company_id" string="Company"/>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_school_defaulter_report" type="window" model="school.defaulter.report" name="Defaulters List" view_mode="list,form"/>
+    </data>
+</nexa>

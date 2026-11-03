@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="integrations_menu_root" name="Integrations" sequence="72" web_icon="settings" groups="base.group_system"/>
+        <menuitem id="integrations_menu_connections" name="Connections" parent="integrations_menu_root" action="integrations.action_integration_connection" sequence="1" groups="base.group_system"/>
+        <menuitem id="integrations_menu_deliveries" name="Delivery Log" parent="integrations_menu_root" action="integrations.action_integration_delivery" sequence="2" groups="base.group_system"/>
+        <menuitem id="integrations_menu_webhooks" name="Inbound Webhooks" parent="integrations_menu_root" action="integrations.action_integration_webhook" sequence="3" groups="base.group_system"/>
+        <menuitem id="integrations_menu_inbound_events" name="Inbound Events" parent="integrations_menu_root" action="integrations.action_integration_inbound_event" sequence="4" groups="base.group_system"/>
+    </data>
+</nexa>

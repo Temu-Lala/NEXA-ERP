@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_school_guardian_clerk,access_school_guardian_clerk,school.guardian,group_school_clerk,1,1,1,0
+access_school_guardian_manager,access_school_guardian_manager,school.guardian,group_school_manager,1,1,1,1
+access_school_student_guardian_clerk,access_school_student_guardian_clerk,school.student.guardian,group_school_clerk,1,1,1,0
+access_school_student_guardian_manager,access_school_student_guardian_manager,school.student.guardian,group_school_manager,1,1,1,1

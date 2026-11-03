@@ -1,0 +1,17 @@
+{
+  "name": "stock_planning",
+  "display_name": "Stock Planning",
+  "version": "1.0.0",
+  "summary": "Replenishment rules and proposals, stockout alerts, turnover metrics and ABC/XYZ classification",
+  "description": "Min/max and reorder-point replenishment with lead-time demand, safety stock and purchase-constraint handling; deduplicated proposals explained trigger and assumptions then converted to draft requisitions; stale reservations released, in-transit arrivals tracked overdue; valuation-layer driven turnover/DIO metrics and annual consumption ABC/XYZ classification (blueprint sections 9, 15, 17, 23).",
+  "author": "Nexa",
+  "depends": ["base", "product", "stock", "stock_valuation", "purchase_requisition"],
+  "data": [
+    "security/sys.access.csv",
+    "data/planning_crons.xml",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Inventory"
+}

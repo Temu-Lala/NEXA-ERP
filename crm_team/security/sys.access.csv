@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_territory_user,access_crm_territory_user,crm.territory,group_crm_user,1,0,0,0
+access_crm_territory_manager,access_crm_territory_manager,crm.territory,group_crm_manager,1,1,1,1
+access_crm_territory_assignment_user,access_crm_territory_assignment_user,crm.territory.assignment,group_crm_user,1,1,1,0
+access_crm_territory_assignment_manager,access_crm_territory_assignment_manager,crm.territory.assignment,group_crm_manager,1,1,1,1
+access_crm_team_territory_user,access_crm_team_territory_user,crm.team.territory,group_crm_user,1,0,0,0
+access_crm_team_territory_manager,access_crm_team_territory_manager,crm.team.territory,group_crm_manager,1,1,1,1
+access_crm_sales_target_user,access_crm_sales_target_user,crm.sales.target,group_crm_user,1,0,0,0
+access_crm_sales_target_manager,access_crm_sales_target_manager,crm.sales.target,group_crm_manager,1,1,1,1

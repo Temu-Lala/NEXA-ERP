@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_hr_people_expiry_scan" model="sys.cron">
+            <field name="name">HR: Scan expiring contracts, probation &amp; documents</field>
+            <field name="code">hr.people.expiry.scan</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

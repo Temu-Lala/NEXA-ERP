@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_helpdesk_catalog_root" name="Service Catalog" sequence="68"/>
+
+        <menuitem id="menu_helpdesk_catalog_requests" name="Service Requests" parent="menu_helpdesk_catalog_root" action="helpdesk_catalog.action_service_request" sequence="10"/>
+        <menuitem id="menu_helpdesk_catalog_items" name="Services" parent="menu_helpdesk_catalog_root" action="helpdesk_catalog.action_catalog_item" sequence="20"/>
+        <menuitem id="menu_helpdesk_catalog_tasks" name="Fulfilment Tasks" parent="menu_helpdesk_catalog_root" action="helpdesk_catalog.action_fulfillment_task" sequence="30"/>
+
+        <menuitem id="menu_helpdesk_catalog_config" name="Configuration" parent="menu_helpdesk_catalog_root" sequence="40"/>
+        <menuitem id="menu_helpdesk_catalog_categories" name="Categories" parent="menu_helpdesk_catalog_config" action="helpdesk_catalog.action_catalog_category" sequence="10"/>
+        <menuitem id="menu_helpdesk_catalog_approvals" name="Approvals" parent="menu_helpdesk_catalog_config" action="helpdesk_catalog.action_request_approval" sequence="20"/>
+        <menuitem id="menu_helpdesk_catalog_values" name="Request Values" parent="menu_helpdesk_catalog_config" action="helpdesk_catalog.action_request_value" sequence="30"/>
+    </data>
+</nexa>

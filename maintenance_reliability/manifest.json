@@ -1,0 +1,16 @@
+{
+    "name": "maintenance_reliability",
+    "display_name": "Maintenance Reliability & Warranties",
+    "version": "1.0.0",
+    "summary": "Failure codes, downtime events, warranties and service contracts",
+    "description": "Record standardized failure modes, causes and repair actions, log planned and unplanned downtime with root-cause and corrective actions for reliability analysis, and track warranty coverage and claims alongside service contracts with response and resolution targets.",
+    "author": "Nexa",
+    "depends": ["base", "maintenance"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

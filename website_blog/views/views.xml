@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_blog_tag_list" model="blog.tag" type="list">
+            <field name="name" string="Tag"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_blog_tag_form" model="blog.tag" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_blog_post_list" model="blog.post" type="list">
+            <field name="name" string="Title"/>
+            <field name="author_id" string="Author"/>
+            <field name="tag_id" string="Tag"/>
+            <field name="blog_date" string="Publish Date"/>
+            <field name="views" string="Views"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_blog_post_form" model="blog.post" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="slug"/>
+                    <field name="author_id"/>
+                    <field name="tag_id"/>
+                    <field name="blog_date"/>
+                </group>
+                <group>
+                    <field name="views"/>
+                    <field name="state"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="summary"/>
+                    <field name="content"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_blog_tag" type="window" model="blog.tag" name="Tags" view_mode="list,form"/>
+        <action id="action_blog_post" type="window" model="blog.post" name="Posts" view_mode="list,form"/>
+    </data>
+</nexa>

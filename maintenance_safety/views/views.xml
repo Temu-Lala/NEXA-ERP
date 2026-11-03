@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Risk Hazard (inline list)                                         -->
+        <!-- ================================================================ -->
+        <view id="view_maint_risk_hazard_list" model="maintenance.risk.hazard" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="hazard_description" string="Hazard"/>
+            <field name="severity" string="Severity"/>
+            <field name="likelihood" string="Likelihood"/>
+            <field name="risk_score" string="Score"/>
+            <field name="control_measure" string="Control Measure"/>
+            <field name="residual_severity" string="Residual Sev."/>
+            <field name="residual_likelihood" string="Residual Like."/>
+            <field name="residual_risk_score" string="Residual Score"/>
+        </view>
+        <view id="view_maint_risk_hazard_form" model="maintenance.risk.hazard" type="form">
+            <sheet>
+                <group>
+                    <group string="Hazard Identification">
+                        <field name="sequence" string="Sequence"/>
+                        <field name="hazard_description" string="Hazard Description"/>
+                        <field name="severity" string="Initial Severity"/>
+                        <field name="likelihood" string="Initial Likelihood"/>
+                        <field name="risk_score" string="Initial Risk Score"/>
+                    </group>
+                    <group string="Control &amp; Residual Risk">
+                        <field name="control_measure" string="Control Measure"/>
+                        <field name="residual_severity" string="Residual Severity"/>
+                        <field name="residual_likelihood" string="Residual Likelihood"/>
+                        <field name="residual_risk_score" string="Residual Risk Score"/>
+                    </group>
+                </group>
+                <separator string="Control Description"/>
+                <field name="control_description" string="Control Description"/>
+            </sheet>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Risk Assessment List, Form, Action                                -->
+        <!-- ================================================================ -->
+        <view id="view_maint_risk_assessment_list" model="maintenance.risk.assessment" type="list">
+            <field name="name" string="Reference"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="assessed_by" string="Assessed By"/>
+            <field name="assessed_date" string="Assessed Date"/>
+            <field name="overall_risk" string="Overall Risk"/>
+            <field name="requires_ptw" string="Requires PTW" widget="boolean_toggle"/>
+            <field name="requires_loto" string="Requires LOTO" widget="boolean_toggle"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_risk_assessment_form" model="maintenance.risk.assessment" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="RA-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Context">
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="asset_id" string="Asset"/>
+                        <field name="overall_risk" string="Overall Risk Level"/>
+                        <field name="requires_ptw" string="Requires Permit-to-Work"/>
+                        <field name="requires_loto" string="Requires LOTO"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Personnel &amp; Approvals">
+                        <field name="assessed_by" string="Assessed By"/>
+                        <field name="assessed_date" string="Assessed Date"/>
+                        <field name="reviewed_by" string="Reviewed By"/>
+                        <field name="reviewed_date" string="Reviewed Date"/>
+                        <field name="approved_by" string="Approved By"/>
+                        <field name="approved_date" string="Approved Date"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Hazards &amp; Controls">
+                        <field name="hazards" nolabel="1"/>
+                    </page>
+                    <page string="Controls &amp; PPE">
+                        <separator string="PPE Required"/>
+                        <field name="ppe_required" string="PPE Required"/>
+                        <separator string="Emergency Procedure"/>
+                        <field name="emergency_procedure" string="Emergency Procedure"/>
+                        <separator string="Notes"/>
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_risk_assessment" type="window" model="maintenance.risk.assessment" name="Risk Assessments" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- LOTO Record (standalone & inline list)                            -->
+        <!-- ================================================================ -->
+        <view id="view_maint_loto_record_list" model="maintenance.loto.record" type="list">
+            <field name="name" string="Reference"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="isolation_point" string="Isolation Point"/>
+            <field name="isolation_type" string="Type"/>
+            <field name="lock_tag_ref" string="Lock/Tag #"/>
+            <field name="state" string="Status"/>
+            <field name="locked_by" string="Locked By"/>
+            <field name="locked_at" string="Locked At"/>
+            <field name="verified_by" string="Verified By"/>
+            <field name="released_by" string="Released By"/>
+        </view>
+        <view id="view_maint_loto_record_form" model="maintenance.loto.record" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="LOTO-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Isolation Details">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="permit_id" string="Permit"/>
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="isolation_point" string="Isolation Point"/>
+                        <field name="isolation_type" string="Isolation Type"/>
+                        <field name="lock_tag_ref" string="Lock / Tag Reference"/>
+                        <field name="state" string="Status"/>
+                    </group>
+                    <group string="Signatures &amp; Timeline">
+                        <field name="locked_by" string="Locked By"/>
+                        <field name="locked_at" string="Locked At"/>
+                        <field name="verified_by" string="Verified By"/>
+                        <field name="verified_at" string="Verified At"/>
+                        <field name="released_by" string="Released By"/>
+                        <field name="released_at" string="Released At"/>
+                    </group>
+                </group>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_loto_record" type="window" model="maintenance.loto.record" name="LOTO Records" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Permit-to-Work List, Form, Search, Action                         -->
+        <!-- ================================================================ -->
+        <view id="view_maint_permit_search" model="maintenance.permit" type="search">
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="active" string="Active" domain='[["state","=","active"]]'/>
+            <filter name="approved" string="Approved" domain='[["state","=","approved"]]'/>
+            <filter name="closed" string="Closed" domain='[["state","=","closed"]]'/>
+            <filter name="group_type" string="By Type" group_by="permit_type"/>
+            <filter name="group_state" string="By Status" group_by="state"/>
+            <filter name="group_asset" string="By Asset" group_by="asset_id"/>
+        </view>
+        <view id="view_maint_permit_list" model="maintenance.permit" type="list">
+            <field name="name" string="Permit Number"/>
+            <field name="permit_type" string="Type"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="state" string="Status"/>
+            <field name="requested_by" string="Requested By"/>
+            <field name="valid_from" string="Valid From"/>
+            <field name="valid_to" string="Valid To"/>
+            <field name="isolations_required" string="LOTO Req." widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_permit_form" model="maintenance.permit" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="PTW-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Permit Info">
+                        <field name="permit_type" string="Permit Type"/>
+                        <field name="state" string="Status"/>
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="asset_id" string="Asset"/>
+                        <field name="isolations_required" string="Isolations Required (LOTO)"/>
+                        <field name="emergency_contact" string="Emergency Contact"/>
+                    </group>
+                    <group string="Timing &amp; Validity">
+                        <field name="requested_by" string="Requested By"/>
+                        <field name="requested_date" string="Requested Date"/>
+                        <field name="valid_from" string="Valid From"/>
+                        <field name="valid_to" string="Valid To"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Work Details &amp; Hazards">
+                        <separator string="Work Location"/>
+                        <field name="work_location" string="Work Location"/>
+                        <separator string="Work Description"/>
+                        <field name="work_description" string="Work Description"/>
+                        <separator string="Hazards Identified"/>
+                        <field name="hazards_identified" string="Hazards Identified"/>
+                        <separator string="Precautions Taken"/>
+                        <field name="precautions_taken" string="Precautions Taken"/>
+                        <separator string="PPE Required"/>
+                        <field name="ppe_required" string="PPE Required"/>
+                    </page>
+                    <page string="Isolations (LOTO)">
+                        <field name="isolation_records" nolabel="1"/>
+                    </page>
+                    <page string="Approval &amp; Closure">
+                        <group>
+                            <group string="Issuing">
+                                <field name="issued_by" string="Issued By"/>
+                                <field name="issued_at" string="Issued At"/>
+                                <field name="approved_by" string="Approved By"/>
+                                <field name="approved_at" string="Approved At"/>
+                            </group>
+                            <group string="Closure &amp; Clearance">
+                                <field name="area_cleared_by" string="Area Cleared By"/>
+                                <field name="area_cleared_at" string="Area Cleared At"/>
+                                <field name="closed_by" string="Closed By"/>
+                                <field name="closed_at" string="Closed At"/>
+                            </group>
+                        </group>
+                        <separator string="Cancellation Reason"/>
+                        <field name="cancellation_reason" string="Cancellation Reason"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_permit" type="window" model="maintenance.permit" name="Permits to Work" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Safety Incident List, Form, Search, Action                        -->
+        <!-- ================================================================ -->
+        <view id="view_maint_safety_incident_search" model="maintenance.safety.incident" type="search">
+            <filter name="near_miss" string="Near Miss" domain='[["severity","=","near_miss"]]'/>
+            <filter name="injury" string="Injury / Lost Time" domain='[["severity","in",["first_aid","medical_treatment","lost_time"]]]'/>
+            <filter name="open" string="Open" domain='[["state","in",["reported","under_investigation","action_required"]]]'/>
+            <filter name="closed" string="Closed" domain='[["state","=","closed"]]'/>
+            <filter name="group_severity" string="By Severity" group_by="severity"/>
+            <filter name="group_state" string="By Status" group_by="state"/>
+        </view>
+        <view id="view_maint_safety_incident_list" model="maintenance.safety.incident" type="list">
+            <field name="name" string="Reference"/>
+            <field name="incident_date" string="Date"/>
+            <field name="severity" string="Severity"/>
+            <field name="state" string="Status"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="reported_by" string="Reported By"/>
+        </view>
+        <view id="view_maint_safety_incident_form" model="maintenance.safety.incident" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="INC-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Incident Classification">
+                        <field name="incident_date" string="Incident Date &amp; Time"/>
+                        <field name="severity" string="Severity"/>
+                        <field name="state" string="Status"/>
+                        <field name="reported_by" string="Reported By"/>
+                    </group>
+                    <group string="Context">
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="asset_id" string="Asset"/>
+                        <field name="location" string="Location"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Incident Details">
+                        <separator string="Description"/>
+                        <field name="description" string="Description"/>
+                        <separator string="Persons Involved"/>
+                        <field name="persons_involved" string="Persons Involved"/>
+                        <separator string="Immediate Action Taken"/>
+                        <field name="immediate_action" string="Immediate Action"/>
+                    </page>
+                    <page string="Investigation">
+                        <group>
+                            <field name="investigated_by" string="Investigated By"/>
+                            <field name="investigation_date" string="Investigation Date"/>
+                        </group>
+                        <separator string="Root Cause Summary"/>
+                        <field name="root_cause_summary" string="Root Cause Summary"/>
+                        <separator string="Corrective Actions"/>
+                        <field name="corrective_actions" string="Corrective Actions"/>
+                    </page>
+                    <page string="Closure">
+                        <group>
+                            <field name="closed_by" string="Closed By"/>
+                            <field name="closed_date" string="Closed Date"/>
+                        </group>
+                        <separator string="Notes"/>
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_safety_incident" type="window" model="maintenance.safety.incident" name="Safety Incidents" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_project_risk_list" model="project.risk" type="list">
+            <field name="project_id" string="Project"/>
+            <field name="name" string="Risk"/>
+            <field name="probability" string="Probability"/>
+            <field name="impact" string="Impact"/>
+            <field name="severity" string="Severity"/>
+            <field name="status" string="Status"/>
+            <field name="owner_id" string="Owner"/>
+            <field name="review_date" string="Next Review"/>
+        </view>
+        <view id="view_project_risk_form" model="project.risk" type="form">
+            <header>
+                <button name="action_assess" string="Assess" type="object" class="sum_highlight" invisible="status == 'closed'"/>
+                <button name="action_mitigate" string="Mitigate" type="object" invisible="status != 'open'"/>
+                <button name="action_close" string="Close" type="object" invisible="status == 'closed'"/>
+                <field name="status" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group>
+                    <group>
+                        <field name="project_id" string="Project"/>
+                        <field name="name" string="Risk"/>
+                        <field name="owner_id" string="Owner"/>
+                        <field name="status" string="Status"/>
+                    </group>
+                    <group>
+                        <field name="probability" string="Probability"/>
+                        <field name="impact" string="Impact"/>
+                        <field name="severity" string="Severity"/>
+                        <field name="review_date" string="Next Review"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <group string="Mitigation">
+                    <field name="mitigation" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_project_risk" type="window" model="project.risk" name="Risks" view_mode="list,form"/>
+
+        <view id="view_project_issue_list" model="project.issue" type="list">
+            <field name="project_id" string="Project"/>
+            <field name="name" string="Issue"/>
+            <field name="priority" string="Priority"/>
+            <field name="status" string="Status"/>
+            <field name="owner_id" string="Owner"/>
+            <field name="resolution_date" string="Resolved"/>
+        </view>
+        <view id="view_project_issue_form" model="project.issue" type="form">
+            <header>
+                <button name="action_start" string="Start" type="object" invisible="status != 'new'"/>
+                <button name="action_resolve" string="Resolve" type="object" class="sum_highlight" invisible="status not in ('new', 'in_progress')"/>
+                <button name="action_close" string="Close" type="object" invisible="status != 'resolved'"/>
+                <field name="status" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="project_id" string="Project"/>
+                    <field name="name" string="Issue"/>
+                    <field name="priority" string="Priority"/>
+                    <field name="status" string="Status"/>
+                    <field name="owner_id" string="Owner"/>
+                    <field name="resolution_date" string="Resolution Date"/>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <group string="Resolution">
+                    <field name="resolution" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_project_issue" type="window" model="project.issue" name="Issues" view_mode="list,form"/>
+
+        <view id="view_project_change_request_list" model="project.change.request" type="list">
+            <field name="project_id" string="Project"/>
+            <field name="name" string="Change"/>
+            <field name="change_type" string="Type"/>
+            <field name="state" string="Status"/>
+            <field name="budget_impact" string="Budget Impact"/>
+            <field name="schedule_impact_days" string="Days"/>
+        </view>
+        <view id="view_project_change_request_form" model="project.change.request" type="form">
+            <header>
+                <button name="action_submit" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'submitted'"/>
+                <button name="action_reject" string="Reject" type="object" invisible="state != 'submitted'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group>
+                    <group>
+                        <field name="project_id" string="Project"/>
+                        <field name="name" string="Change Title"/>
+                        <field name="change_type" string="Change Type"/>
+                        <field name="state" string="Status"/>
+                        <field name="requested_by" string="Requested By"/>
+                    </group>
+                    <group>
+                        <field name="approved_by" string="Approved By"/>
+                        <field name="decision_date" string="Decision Date"/>
+                        <field name="budget_impact" string="Budget Impact"/>
+                        <field name="schedule_impact_days" string="Schedule Impact (days)"/>
+                    </group>
+                </group>
+                <group string="Proposed Change">
+                    <field name="proposed_change" nolabel="1"/>
+                </group>
+                <group string="Impact Analysis">
+                    <field name="impact_notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_project_change_request" type="window" model="project.change.request" name="Change Requests" view_mode="list,form"/>
+    </data>
+</nexa>

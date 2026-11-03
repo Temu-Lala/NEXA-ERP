@@ -1,0 +1,5 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_training_course_user,access_hr_training_course_user,hr.training.course,,1,1,1,1
+access_hr_training_session_user,access_hr_training_session_user,hr.training.session,,1,1,1,1
+access_hr_training_enrollment_user,access_hr_training_enrollment_user,hr.training.enrollment,,1,1,1,1
+access_hr_training_certificate_user,access_hr_training_certificate_user,hr.training.certificate,,1,1,1,1

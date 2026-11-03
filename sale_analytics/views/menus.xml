@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="sale_menu_analytics_root" name="Analytics" parent="sale.sale_menu_root" sequence="30" web_icon="trending-up" groups="sale.group_sale_manager"/>
+        <menuitem id="sale_menu_target_period" name="Sales Targets" parent="sale_menu_analytics_root" action="sale_analytics.action_sale_target_period" sequence="1" groups="sale.group_sale_manager"/>
+    </data>
+</nexa>

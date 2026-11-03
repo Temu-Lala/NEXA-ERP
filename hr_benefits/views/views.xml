@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== Benefit Plans ===================== -->
+        <view id="view_benefit_plan_list" model="hr.benefit.plan" type="list">
+            <field name="name" string="Plan"/>
+            <field name="kind" string="Kind"/>
+            <field name="contribution_type" string="Employer Contribution"/>
+            <field name="min_tenure_days" string="Min Tenure (d)"/>
+            <field name="max_dependents" string="Max Dependents"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_benefit_plan_form" model="hr.benefit.plan" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Plan">
+                        <field name="name"/>
+                        <field name="kind"/>
+                        <field name="eligible_dept_id"/>
+                        <field name="min_tenure_days"/>
+                        <field name="max_dependents"/>
+                    </group>
+                    <group string="Employer Contribution">
+                        <field name="contribution_type"/>
+                        <field name="contribution_rate"/>
+                        <field name="contribution_cap"/>
+                        <field name="employee_rate"/>
+                    </group>
+                </group>
+                <group col="2" string="Validity">
+                    <field name="valid_from" widget="date"/>
+                    <field name="valid_to" widget="date"/>
+                    <field name="active"/>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Enrolments ===================== -->
+        <view id="view_enrollment_list" model="hr.benefit.enrollment" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="plan_id" string="Plan"/>
+            <field name="state" string="Status"/>
+            <field name="employer_contribution" string="Employer"/>
+            <field name="employee_contribution" string="Employee"/>
+        </view>
+        <view id="view_enrollment_form" model="hr.benefit.enrollment" type="form">
+            <header>
+                <button name="action_enroll_submit" string="Submit" type="object" invisible="state != 'draft'"/>
+                <button name="action_enroll_confirm" string="Confirm" type="object" class="sum_highlight" invisible="state != 'pending'"/>
+                <button name="action_enroll_cancel" string="Cancel" type="object" invisible="state == 'cancelled'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Enrolment">
+                        <field name="employee_id"/>
+                        <field name="plan_id"/>
+                        <field name="enrollment_date" widget="date"/>
+                        <field name="start_date" widget="date"/>
+                        <field name="end_date" widget="date"/>
+                        <field name="reference_salary"/>
+                    </group>
+                    <group string="Contributions">
+                        <field name="employer_contribution" readonly="true"/>
+                        <field name="employee_contribution" readonly="true"/>
+                        <field name="approver_id" readonly="true"/>
+                        <field name="approved_date" widget="date" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Dependents">
+                    <field name="dependents" nolabel="1">
+                        <list editable="bottom">
+                            <field name="name"/>
+                            <field name="relation"/>
+                            <field name="birth_date" widget="date"/>
+                            <field name="covered"/>
+                        </list>
+                    </field>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Dependents ===================== -->
+        <view id="view_dependent_list" model="hr.benefit.dependent" type="list">
+            <field name="enrollment_id" string="Enrolment"/>
+            <field name="name" string="Name"/>
+            <field name="relation" string="Relationship"/>
+            <field name="covered" string="Covered"/>
+        </view>
+        <view id="view_dependent_form" model="hr.benefit.dependent" type="form">
+            <sheet>
+                <group col="2">
+                    <group>
+                        <field name="enrollment_id"/>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <field name="relation"/>
+                        <field name="birth_date" widget="date"/>
+                        <field name="covered"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Allowances / Reimbursements ===================== -->
+        <view id="view_allowance_list" model="hr.allowance" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="kind" string="Kind"/>
+            <field name="category" string="Category"/>
+            <field name="amount" string="Amount"/>
+            <field name="frequency" string="Frequency"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_allowance_form" model="hr.allowance" type="form">
+            <header>
+                <button name="action_allowance_submit" string="Submit" type="object" invisible="state != 'draft'"/>
+                <button name="action_allowance_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'submitted'"/>
+                <button name="action_allowance_refuse" string="Refuse" type="object" invisible="state == 'refused'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Request">
+                        <field name="employee_id"/>
+                        <field name="kind"/>
+                        <field name="category"/>
+                        <field name="amount"/>
+                        <field name="frequency"/>
+                    </group>
+                    <group string="Validity &amp; Approval">
+                        <field name="valid_from" widget="date"/>
+                        <field name="valid_to" widget="date"/>
+                        <field name="requested_by" readonly="true"/>
+                        <field name="approver_id" readonly="true"/>
+                        <field name="approve_date" widget="date" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Compensation Changes ===================== -->
+        <view id="view_comp_change_list" model="hr.compensation.change" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="change_type" string="Type"/>
+            <field name="new_grade_id" string="New Grade"/>
+            <field name="old_salary" string="Current"/>
+            <field name="new_salary" string="Proposed"/>
+            <field name="within_band" string="Within Band"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_comp_change_form" model="hr.compensation.change" type="form">
+            <header>
+                <button name="action_change_submit" string="Submit" type="object" invisible="state != 'draft'"/>
+                <button name="action_change_approve" string="Approve &amp; Apply" type="object" class="sum_highlight" invisible="state != 'submitted'"/>
+                <button name="action_change_refuse" string="Refuse" type="object" invisible="state == 'refused'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Change">
+                        <field name="employee_id"/>
+                        <field name="change_type"/>
+                        <field name="reason"/>
+                        <field name="effective_date" widget="date"/>
+                    </group>
+                    <group string="Grade &amp; Salary">
+                        <field name="old_grade_id"/>
+                        <field name="new_grade_id"/>
+                        <field name="old_salary"/>
+                        <field name="new_salary"/>
+                        <field name="within_band" readonly="true"/>
+                    </group>
+                </group>
+                <group col="2" string="Approval">
+                    <field name="requested_by" readonly="true"/>
+                    <field name="approver_id" readonly="true"/>
+                    <field name="approve_date" widget="date" readonly="true"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Review Cycles ===================== -->
+        <view id="view_review_cycle_list" model="hr.comp.review.cycle" type="list">
+            <field name="name" string="Cycle"/>
+            <field name="cycle_year" string="Year"/>
+            <field name="department_id" string="Department"/>
+            <field name="budget_increase_pct" string="Budget Cap %"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_review_cycle_form" model="hr.comp.review.cycle" type="form">
+            <header>
+                <button name="action_cycle_open" string="Open" type="object" invisible="state != 'planning'"/>
+                <button name="action_cycle_lock" string="Lock" type="object" invisible="state == 'closed'"/>
+                <button name="action_cycle_close" string="Close" type="object" invisible="state != 'locked'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Cycle">
+                        <field name="name"/>
+                        <field name="cycle_year"/>
+                        <field name="department_id"/>
+                        <field name="budget_increase_pct"/>
+                    </group>
+                    <group string="Period">
+                        <field name="period_start" widget="date"/>
+                        <field name="period_end" widget="date"/>
+                    </group>
+                </group>
+                <group string="Review Lines">
+                    <field name="lines" nolabel="1">
+                        <list>
+                            <field name="employee_id"/>
+                            <field name="current_salary"/>
+                            <field name="proposed_salary"/>
+                            <field name="rating"/>
+                            <field name="proposed_increase_pct"/>
+                            <field name="within_budget"/>
+                            <field name="state"/>
+                        </list>
+                    </field>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Review Lines ===================== -->
+        <view id="view_review_line_list" model="hr.comp.review.line" type="list">
+            <field name="cycle_id" string="Cycle"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="current_salary" string="Current"/>
+            <field name="proposed_salary" string="Proposed"/>
+            <field name="proposed_increase_pct" string="Increase %"/>
+            <field name="within_budget" string="Within Budget"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_review_line_form" model="hr.comp.review.line" type="form">
+            <header>
+                <button name="action_line_recommend" string="Recommend" type="object" invisible="state != 'draft'"/>
+                <button name="action_line_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'recommended'"/>
+                <button name="action_line_reject" string="Reject" type="object" invisible="state == 'rejected'"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Line">
+                        <field name="cycle_id"/>
+                        <field name="employee_id"/>
+                        <field name="reviewer_id"/>
+                        <field name="rating"/>
+                    </group>
+                    <group string="Proposal">
+                        <field name="current_salary"/>
+                        <field name="proposed_salary"/>
+                        <field name="proposed_increase_pct" readonly="true"/>
+                        <field name="within_budget" readonly="true"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+        <action id="action_benefit_plan" type="window" model="hr.benefit.plan" name="Benefit Plans" view_mode="list,form"/>
+        <action id="action_benefit_enrollment" type="window" model="hr.benefit.enrollment" name="Benefit Enrolments" view_mode="list,form"/>
+        <action id="action_benefit_dependent" type="window" model="hr.benefit.dependent" name="Covered Dependents" view_mode="list,form"/>
+        <action id="action_allowance" type="window" model="hr.allowance" name="Allowances &amp; Reimbursements" view_mode="list,form"/>
+        <action id="action_comp_change" type="window" model="hr.compensation.change" name="Salary Changes" view_mode="list,form"/>
+        <action id="action_review_cycle" type="window" model="hr.comp.review.cycle" name="Review Cycles" view_mode="list,form"/>
+        <action id="action_review_line" type="window" model="hr.comp.review.line" name="Review Lines" view_mode="list,form"/>
+    </data>
+</nexa>

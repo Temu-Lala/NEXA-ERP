@@ -1,0 +1,4 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_project_task_dependency_user,access_project_task_dependency_user,project.task.dependency,,1,1,1,1
+access_project_deliverable_user,access_project_deliverable_user,project.deliverable,,1,1,1,1
+access_project_status_history_user,access_project_status_history_user,project.status.history,,1,1,1,1

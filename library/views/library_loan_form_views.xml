@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_library_loan_form" model="library.loan" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="member_id"/>
+                    <field name="book_id"/>
+                    <field name="state"/>
+                </group>
+                <group>
+                    <field name="loan_date"/>
+                    <field name="due_date"/>
+                    <field name="return_date"/>
+                    <field name="fine"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+    </data>
+</nexa>

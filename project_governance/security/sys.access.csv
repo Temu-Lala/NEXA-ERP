@@ -1,0 +1,4 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_project_baseline_user,access_project_baseline_user,project.baseline,,1,1,1,1
+access_project_decision_user,access_project_decision_user,project.decision,,1,1,1,1
+access_project_financial_snapshot_user,access_project_financial_snapshot_user,project.financial.snapshot,,1,1,1,1

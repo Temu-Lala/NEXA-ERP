@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Enrollment / placement lifecycle -->
+        <view id="view_school_enrollment_list" model="school.enrollment" type="list">
+            <field name="enrollment_no" string="Enroll No"/>
+            <field name="student_id" string="Student"/>
+            <field name="academic_year_id" string="Academic Year"/>
+            <field name="class_id" string="Class"/>
+            <field name="section_id" string="Section"/>
+            <field name="campus_id" string="Campus"/>
+            <field name="state" string="Status"/>
+            <field name="is_current" string="Current"/>
+        </view>
+        <view id="view_school_enrollment_form" model="school.enrollment" type="form">
+            <header>
+                <button name="enrollment_confirm" string="Confirm" type="object" class="sum_highlight"/>
+                <button name="enrollment_transfer" string="Transfer" type="object"/>
+                <button name="enrollment_graduate" string="Graduate" type="object" class="sum_highlight"/>
+                <button name="enrollment_withdraw" string="Withdraw" type="object"/>
+                <button name="enrollment_reenroll" string="Re-enroll" type="object"/>
+                <button name="enrollment_cancel" string="Cancel" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="enrollment_no" placeholder="e.g. ENR-2026-0001"/></h1></div>
+                <group>
+                    <group string="Placement">
+                        <field name="student_id"/>
+                        <field name="academic_year_id"/>
+                        <field name="campus_id"/>
+                        <field name="class_id"/>
+                        <field name="section_id"/>
+                        <field name="roll_number"/>
+                    </group>
+                    <group string="Dates">
+                        <field name="enroll_date"/>
+                        <field name="exit_date"/>
+                        <field name="is_current" readonly="true"/>
+                        <field name="source"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="History">
+                        <field name="history" nolabel="1">
+                            <list>
+                                <field name="timestamp"/>
+                                <field name="from_state"/>
+                                <field name="to_state"/>
+                                <field name="action"/>
+                                <field name="from_section_id"/>
+                                <field name="to_section_id"/>
+                                <field name="reason"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_enrollment" type="window" model="school.enrollment" name="Enrollments" view_mode="list,form"/>
+
+        <!-- Append-only enrollment history / audit -->
+        <view id="view_school_enrollment_history_list" model="school.enrollment.history" type="list">
+            <field name="student_id" string="Student"/>
+            <field name="enrollment_id" string="Enrollment"/>
+            <field name="timestamp" string="When"/>
+            <field name="from_state" string="From"/>
+            <field name="to_state" string="To"/>
+            <field name="action" string="Action"/>
+            <field name="from_section_id" string="From Section"/>
+            <field name="to_section_id" string="To Section"/>
+            <field name="reason" string="Reason"/>
+        </view>
+        <action id="action_school_enrollment_history" type="window" model="school.enrollment.history" name="Enrollment History" view_mode="list"/>
+
+        <!-- Alumni ledger -->
+        <view id="view_school_alumni_list" model="school.alumni" type="list">
+            <field name="student_id" string="Student"/>
+            <field name="academic_year_id" string="Graduation Year"/>
+            <field name="graduation_date" string="Graduated"/>
+            <field name="classification" string="Classification"/>
+            <field name="certificate_no" string="Certificate No"/>
+            <field name="contact_email" string="Email"/>
+        </view>
+        <view id="view_school_alumni_form" model="school.alumni" type="form">
+            <sheet>
+                <group>
+                    <group string="Graduate">
+                        <field name="student_id"/>
+                        <field name="enrollment_id"/>
+                        <field name="academic_year_id"/>
+                        <field name="graduation_date"/>
+                    </group>
+                    <group string="Award">
+                        <field name="classification"/>
+                        <field name="certificate_no"/>
+                        <field name="contact_email"/>
+                        <field name="contact_phone"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_alumni" type="window" model="school.alumni" name="Alumni" view_mode="list,form"/>
+    </data>
+</nexa>

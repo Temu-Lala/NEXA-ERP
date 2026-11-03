@@ -1,0 +1,14 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_warehouse_user,access_stock_warehouse_user,stock.warehouse,,1,1,1,1
+access_stock_location_user,access_stock_location_user,stock.location,,1,1,1,1
+access_stock_picking_user,access_stock_picking_user,stock.picking,,1,1,1,1
+access_stock_move_user,access_stock_move_user,stock.move,,1,1,1,1
+access_stock_quant_user,access_stock_quant_user,stock.quant,,1,1,1,1
+access_stock_inventory_user,access_stock_inventory_user,stock.inventory,,1,1,1,1
+access_stock_inventory_line_user,access_stock_inventory_line_user,stock.inventory.line,,1,1,1,1
+access_stock_picking_type_user,access_stock_picking_type_user,stock.picking.type,,1,1,1,1
+access_stock_procurement_group_user,access_stock_procurement_group_user,stock.procurement.group,,1,1,1,1
+access_stock_lot_user,access_stock_lot_user,stock.lot,,1,1,1,1
+access_stock_serial_user,access_stock_serial_user,stock.serial,,1,1,1,1
+access_stock_move_line_user,access_stock_move_line_user,stock.move.line,,1,1,1,1
+access_stock_scrap_user,access_stock_scrap_user,stock.scrap,,1,1,1,1

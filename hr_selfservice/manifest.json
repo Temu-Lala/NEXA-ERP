@@ -1,0 +1,21 @@
+{
+    "name": "hr_selfservice",
+    "display_name": "HR: Self-Service & Service Desk",
+    "version": "1.0.0",
+    "summary": "Employee self-service requests with a manager approval inbox and an HR service desk (queues, categories, cases with SLA timers, message thread and append-only history)",
+    "description": "Gives ordinary employees one place to raise and track HR requests and cases, and managers a consolidated approval inbox, without recreating any existing HR data. An HR service desk follows the proven helpdesk pattern as a self-contained module: configurable queues and categories carrying response / resolution hour windows, categorized cases (letters, certificates, personal-info changes, general) with assignment, an SLA clock snapshotted at first assignment, a message thread, an append-only audit of every change, and a scheduled scan that durably flags breaches. A unified self-service request (leave / attendance correction / overtime / personal info / letter) routes to the employee's own reporting manager for a maker-checker approve or reject - deciding only records a decision and never posts a cost, creates leave or mutates pay. Ownership is isolated at the data layer with read-only record rules on a dedicated self-service group so an employee sees only their own records while an HR Officer / Manager sees everything. Extends the hr anchor; navigated under the single HR app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "hr"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/sla_cron.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

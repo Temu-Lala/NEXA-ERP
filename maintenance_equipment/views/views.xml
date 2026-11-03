@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_maint_meter_list" model="maintenance.meter" type="list">
+            <field name="name" string="Meter"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="meter_type" string="Type"/>
+            <field name="unit" string="Unit"/>
+            <field name="current_value" string="Current Value"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_meter_form" model="maintenance.meter" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Meter"/>
+                    <field name="asset_id" string="Asset"/>
+                    <field name="meter_type" string="Type"/>
+                    <field name="unit" string="Unit"/>
+                    <field name="current_value" string="Current Value"/>
+                    <field name="rollover" string="Rollover Allowed"/>
+                    <field name="active" string="Active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_maint_meter" type="window" model="maintenance.meter" name="Usage Meters" view_mode="list,form"/>
+
+        <view id="view_maint_meter_reading_list" model="maintenance.meter.reading" type="list">
+            <field name="date" string="Date"/>
+            <field name="meter_id" string="Meter"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="value" string="Reading"/>
+            <field name="recorded_by" string="Recorded By"/>
+        </view>
+        <view id="view_maint_meter_reading_form" model="maintenance.meter.reading" type="form">
+            <sheet>
+                <group>
+                    <field name="meter_id" string="Meter"/>
+                    <field name="asset_id" string="Asset"/>
+                    <field name="date" string="Date"/>
+                    <field name="value" string="Reading"/>
+                    <field name="recorded_by" string="Recorded By"/>
+                </group>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_maint_meter_reading" type="window" model="maintenance.meter.reading" name="Meter Readings" view_mode="list,form"/>
+
+        <view id="view_maint_plan_list" model="maintenance.plan" type="list">
+            <field name="name" string="Plan"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="trigger" string="Trigger"/>
+            <field name="interval_value" string="Interval"/>
+            <field name="interval_unit" string="Unit"/>
+            <field name="next_due_date" string="Next Due"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_maint_plan_form" model="maintenance.plan" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Plan Name..."/></h1>
+                </div>
+                <group>
+                    <group string="Coverage">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="strategy" string="Maintenance Strategy"/>
+                        <field name="trigger" string="Trigger Method"/>
+                        <field name="meter_id" string="Usage Meter"/>
+                        <field name="interval_value" string="Interval Value"/>
+                        <field name="interval_unit" string="Interval Unit"/>
+                        <field name="condition_threshold" string="Condition Threshold"/>
+                    </group>
+                    <group string="Scheduling">
+                        <field name="state" string="Status"/>
+                        <field name="responsible_id" string="Responsible Team Lead"/>
+                        <field name="estimated_hours" string="Estimated Hours"/>
+                        <field name="required_skills" string="Required Skills"/>
+                        <field name="last_done_date" string="Last Completion"/>
+                        <field name="next_due_date" string="Next Due Date"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Instructions">
+                        <field name="instructions" string="Task Template / Instructions"/>
+                    </page>
+                    <page string="Safety">
+                        <field name="safety_req" string="Safety Requirements"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_plan" type="window" model="maintenance.plan" name="Maintenance Plans" view_mode="list,form"/>
+
+        <!-- MaintPlanOccurrence views -->
+        <view id="view_maint_plan_occurrence_list" model="maintenance.plan.occurrence" type="list">
+            <field name="plan_id" string="Plan"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="occurrence_key" string="Occurrence Key"/>
+            <field name="state" string="State"/>
+            <field name="planned_date" string="Planned Date"/>
+            <field name="meter_threshold" string="Meter Threshold"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="generated_at" string="Generated At"/>
+        </view>
+        <view id="view_maint_plan_occurrence_form" model="maintenance.plan.occurrence" type="form">
+            <sheet>
+                <group>
+                    <group string="Schedule">
+                        <field name="plan_id" string="Plan"/>
+                        <field name="asset_id" string="Asset"/>
+                        <field name="occurrence_key" string="Occurrence Key"/>
+                        <field name="state" string="State"/>
+                        <field name="planned_date" string="Planned Date"/>
+                        <field name="meter_threshold" string="Meter Threshold"/>
+                    </group>
+                    <group string="Work Order">
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="generated_at" string="Generated At"/>
+                        <field name="generated_by" string="Generated By"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                    <page string="Skip">
+                        <field name="skip_reason" string="Skip Reason"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_plan_occurrence" type="window" model="maintenance.plan.occurrence" name="Plan Occurrences" view_mode="list,form"/>
+
+        <!-- MaintPlanVersion views -->
+        <view id="view_maint_plan_version_list" model="maintenance.plan.version" type="list">
+            <field name="plan_id" string="Plan"/>
+            <field name="version_number" string="Version Number"/>
+            <field name="change_date" string="Change Date"/>
+            <field name="changed_by" string="Changed By"/>
+            <field name="change_summary" string="Change Summary"/>
+        </view>
+        <view id="view_maint_plan_version_form" model="maintenance.plan.version" type="form">
+            <sheet>
+                <group>
+                    <group string="Version">
+                        <field name="plan_id" string="Plan"/>
+                        <field name="version_number" string="Version Number"/>
+                        <field name="change_date" string="Change Date"/>
+                        <field name="changed_by" string="Changed By"/>
+                    </group>
+                    <group string="Snapshot">
+                        <field name="snapshot_strategy" string="Snapshot Strategy"/>
+                        <field name="snapshot_trigger" string="Snapshot Trigger"/>
+                        <field name="snapshot_interval_value" string="Snapshot Interval Value"/>
+                        <field name="snapshot_interval_unit" string="Snapshot Interval Unit"/>
+                        <field name="snapshot_estimated_hours" string="Snapshot Estimated Hours"/>
+                    </group>
+                </group>
+                <field name="change_summary" string="Change Summary"/>
+            </sheet>
+        </view>
+        <action id="action_maint_plan_version" type="window" model="maintenance.plan.version" name="Plan Version History" view_mode="list,form"/>
+
+        <!-- MaintAssetMeterSummary views -->
+        <view id="view_maint_asset_meter_summary_list" model="maintenance.asset.meter.summary" type="list">
+            <field name="asset_id" string="Asset"/>
+            <field name="meter_id" string="Meter"/>
+            <field name="latest_reading_date" string="Latest Reading Date"/>
+            <field name="latest_value" string="Latest Value"/>
+            <field name="reading_count" string="Reading Count"/>
+            <field name="next_due_threshold" string="Next Due Threshold"/>
+            <field name="is_overdue" string="Is Overdue" widget="boolean_toggle"/>
+            <field name="updated_at" string="Updated At"/>
+        </view>
+        <view id="view_maint_asset_meter_summary_form" model="maintenance.asset.meter.summary" type="form">
+            <sheet>
+                <group>
+                    <group string="Asset &amp; Meter">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="meter_id" string="Meter"/>
+                        <field name="latest_reading_date" string="Latest Reading Date"/>
+                        <field name="latest_value" string="Latest Value"/>
+                        <field name="reading_count" string="Reading Count"/>
+                    </group>
+                    <group string="Statistics">
+                        <field name="min_value" string="Min Value"/>
+                        <field name="max_value" string="Max Value"/>
+                        <field name="avg_value" string="Avg Value"/>
+                        <field name="next_due_threshold" string="Next Due Threshold"/>
+                        <field name="is_overdue" string="Is Overdue"/>
+                        <field name="updated_at" string="Updated At"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_maint_asset_meter_summary" type="window" model="maintenance.asset.meter.summary" name="Meter Summaries" view_mode="list,form"/>
+    </data>
+</nexa>

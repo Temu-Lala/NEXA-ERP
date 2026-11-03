@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Shutdown WO Link (inline list)                                    -->
+        <!-- ================================================================ -->
+        <view id="view_maint_shutdown_wo_link_list" model="maintenance.shutdown.wo.link" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="critical" string="Critical Path" widget="boolean_toggle"/>
+            <field name="notes" string="Notes"/>
+        </view>
+        <view id="view_maint_shutdown_wo_link_form" model="maintenance.shutdown.wo.link" type="form">
+            <sheet>
+                <group>
+                    <field name="sequence" string="Sequence"/>
+                    <field name="work_order_id" string="Work Order"/>
+                    <field name="critical" string="Critical Path Item"/>
+                </group>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Shutdown Milestone (inline list)                                  -->
+        <!-- ================================================================ -->
+        <view id="view_maint_shutdown_milestone_list" model="maintenance.shutdown.milestone" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="name" string="Milestone"/>
+            <field name="target_date" string="Target Date"/>
+            <field name="achieved_date" string="Achieved Date"/>
+            <field name="completed" string="Completed" widget="boolean_toggle"/>
+            <field name="signoff_by" string="Signoff By"/>
+        </view>
+        <view id="view_maint_shutdown_milestone_form" model="maintenance.shutdown.milestone" type="form">
+            <sheet>
+                <group>
+                    <group string="Milestone">
+                        <field name="sequence" string="Sequence"/>
+                        <field name="name" string="Milestone Name"/>
+                        <field name="completed" string="Completed"/>
+                    </group>
+                    <group string="Timing &amp; Signoff">
+                        <field name="target_date" string="Target Date"/>
+                        <field name="achieved_date" string="Achieved Date"/>
+                        <field name="signoff_by" string="Sign-off By"/>
+                    </group>
+                </group>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Shutdown Package List & Form                                      -->
+        <!-- ================================================================ -->
+        <view id="view_maint_shutdown_package_list" model="maintenance.shutdown.package" type="list">
+            <field name="sequence" string="#" widget="handle"/>
+            <field name="code" string="Code"/>
+            <field name="name" string="Package Name"/>
+            <field name="trade" string="Trade"/>
+            <field name="state" string="Status"/>
+            <field name="critical_path" string="Critical" widget="boolean_toggle"/>
+            <field name="package_lead_id" string="Lead"/>
+            <field name="estimated_labor_hours" string="Est. (hrs)"/>
+            <field name="actual_labor_hours" string="Act. (hrs)"/>
+        </view>
+        <view id="view_maint_shutdown_package_form" model="maintenance.shutdown.package" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Package Name..."/></h1>
+                </div>
+                <group>
+                    <group string="Package Scope">
+                        <field name="code" string="Package Code"/>
+                        <field name="project_id" string="Shutdown Project"/>
+                        <field name="trade" string="Trade / Discipline"/>
+                        <field name="package_lead_id" string="Package Lead"/>
+                        <field name="critical_path" string="On Critical Path"/>
+                    </group>
+                    <group string="Status &amp; Labor">
+                        <field name="state" string="Status"/>
+                        <field name="sequence" string="Sequence"/>
+                        <field name="estimated_labor_hours" string="Est. Labor (hrs)"/>
+                        <field name="actual_labor_hours" string="Actual Labor (hrs)"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Work Orders">
+                        <field name="work_order_links" nolabel="1"/>
+                    </page>
+                    <page string="Description">
+                        <field name="description" string="Package Scope &amp; Instructions"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_shutdown_package" type="window" model="maintenance.shutdown.package" name="Shutdown Work Packages" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Shutdown Project List, Form, Search, Action                       -->
+        <!-- ================================================================ -->
+        <view id="view_maint_shutdown_project_search" model="maintenance.shutdown.project" type="search">
+            <filter name="planning" string="Planning" domain='[["state","in",["draft","planning"]]]'/>
+            <filter name="execution" string="In Execution" domain='[["state","=","in_execution"]]'/>
+            <filter name="closed" string="Closed" domain='[["state","=","closed"]]'/>
+            <filter name="group_location" string="By Location" group_by="location_id"/>
+            <filter name="group_state" string="By Status" group_by="state"/>
+        </view>
+        <view id="view_maint_shutdown_project_list" model="maintenance.shutdown.project" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Turnaround Project"/>
+            <field name="state" string="Status"/>
+            <field name="planned_start" string="Planned Start"/>
+            <field name="planned_finish" string="Planned Finish"/>
+            <field name="target_downtime_hours" string="Target DT (hrs)"/>
+            <field name="lead_coordinator_id" string="Coordinator"/>
+            <field name="budget_amount" string="Budget ($)"/>
+            <field name="actual_cost" string="Actual ($)"/>
+        </view>
+        <view id="view_maint_shutdown_project_form" model="maintenance.shutdown.project" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Annual Turnaround 2026..."/></h1>
+                </div>
+                <group>
+                    <group string="Project Definition">
+                        <field name="code" string="Project Code"/>
+                        <field name="state" string="Status"/>
+                        <field name="location_id" string="Plant / Location"/>
+                        <field name="production_line_ref" string="Affected Unit / Line"/>
+                        <field name="lead_coordinator_id" string="Turnaround Lead"/>
+                        <field name="operations_liaison_id" string="Operations Liaison"/>
+                        <field name="safety_lead_id" string="Safety Lead"/>
+                    </group>
+                    <group string="Schedule &amp; Financials">
+                        <field name="planned_start" string="Planned Start"/>
+                        <field name="planned_finish" string="Planned Finish"/>
+                        <field name="actual_start" string="Actual Start"/>
+                        <field name="actual_finish" string="Actual Finish"/>
+                        <field name="target_downtime_hours" string="Target Downtime (hrs)"/>
+                        <field name="actual_downtime_hours" string="Actual Downtime (hrs)"/>
+                        <field name="budget_amount" string="Approved Budget ($)"/>
+                        <field name="actual_cost" string="Actual Spend ($)"/>
+                        <field name="restart_checklist_done" string="Pre-Startup Safety Review (PSSR) Done"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Work Packages">
+                        <field name="packages" nolabel="1"/>
+                    </page>
+                    <page string="Milestones">
+                        <field name="milestones" nolabel="1"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_shutdown_project" type="window" model="maintenance.shutdown.project" name="Shutdown &amp; Turnaround Projects" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Maintenance Window List, Form, Search, Action                     -->
+        <!-- ================================================================ -->
+        <view id="view_maint_maintenance_window_search" model="maintenance.window" type="search">
+            <filter name="agreed" string="Agreed Windows" domain='[["state","=","agreed"]]'/>
+            <filter name="active" string="In Progress" domain='[["state","=","in_progress"]]'/>
+            <filter name="breached" string="Breached" domain='[["state","=","breached"]]'/>
+            <filter name="group_type" string="By Type" group_by="window_type"/>
+            <filter name="group_state" string="By Status" group_by="state"/>
+        </view>
+        <view id="view_maint_maintenance_window_list" model="maintenance.window" type="list">
+            <field name="name" string="Window Ref"/>
+            <field name="window_type" string="Type"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="production_line_ref" string="Line / Unit"/>
+            <field name="state" string="Status"/>
+            <field name="scheduled_start" string="Start"/>
+            <field name="scheduled_finish" string="Finish"/>
+            <field name="allowed_downtime_hours" string="Allowed DT (hrs)"/>
+            <field name="actual_downtime_hours" string="Actual DT (hrs)"/>
+        </view>
+        <view id="view_maint_maintenance_window_form" model="maintenance.window" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="WIN-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Window Scope">
+                        <field name="window_type" string="Window Type"/>
+                        <field name="state" string="Status"/>
+                        <field name="asset_id" string="Asset"/>
+                        <field name="location_id" string="Location"/>
+                        <field name="production_line_ref" string="Production Line"/>
+                        <field name="shutdown_project_id" string="Shutdown Project Ref"/>
+                    </group>
+                    <group string="Agreed Timetable">
+                        <field name="scheduled_start" string="Scheduled Start"/>
+                        <field name="scheduled_finish" string="Scheduled Finish"/>
+                        <field name="actual_start" string="Actual Start"/>
+                        <field name="actual_finish" string="Actual Finish"/>
+                        <field name="allowed_downtime_hours" string="Allowed Downtime (hrs)"/>
+                        <field name="actual_downtime_hours" string="Actual Downtime (hrs)"/>
+                    </group>
+                </group>
+                <group string="Operations Signoff">
+                    <field name="operations_approved_by" string="Operations Approved By"/>
+                    <field name="operations_approved_at" string="Operations Approved At"/>
+                </group>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_maintenance_window" type="window" model="maintenance.window" name="Maintenance Windows" view_mode="list,form"/>
+    </data>
+</nexa>

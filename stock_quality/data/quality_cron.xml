@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_stock_quality_check_propose" model="sys.cron">
+            <field name="name">Inventory: Propose quality checks for receipts</field>
+            <field name="code">stock.quality.check.propose</field>
+            <field name="interval_number">60</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

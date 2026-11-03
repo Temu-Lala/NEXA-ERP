@@ -1,0 +1,7 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_school_payment_report_cashier,access_school_payment_report_cashier,school.payment.report,group_school_cashier,1,0,0,0
+access_school_payment_report_manager,access_school_payment_report_manager,school.payment.report,group_school_manager,1,1,1,1
+access_school_income_report_cashier,access_school_income_report_cashier,school.income.report,group_school_cashier,1,0,0,0
+access_school_income_report_manager,access_school_income_report_manager,school.income.report,group_school_manager,1,1,1,1
+access_school_defaulter_report_cashier,access_school_defaulter_report_cashier,school.defaulter.report,group_school_cashier,1,0,0,0
+access_school_defaulter_report_manager,access_school_defaulter_report_manager,school.defaulter.report,group_school_manager,1,1,1,1

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Skill Category List & Form                                        -->
+        <!-- ================================================================ -->
+        <view id="view_maint_skill_category_list" model="maintenance.skill.category" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Category"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_skill_category_form" model="maintenance.skill.category" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Category Name"/>
+                    <field name="code" string="Code"/>
+                    <field name="active" string="Active"/>
+                </group>
+                <separator string="Description"/>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_maint_skill_category" type="window" model="maintenance.skill.category" name="Skill Categories" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Skill List & Form                                                 -->
+        <!-- ================================================================ -->
+        <view id="view_maint_skill_list" model="maintenance.skill" type="list">
+            <field name="name" string="Skill"/>
+            <field name="category_id" string="Category"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_skill_form" model="maintenance.skill" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Skill Name"/>
+                    <field name="category_id" string="Category"/>
+                    <field name="active" string="Active"/>
+                </group>
+                <separator string="Description"/>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_maint_skill" type="window" model="maintenance.skill" name="Skills" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Technician Skill (inline list)                                    -->
+        <!-- ================================================================ -->
+        <view id="view_maint_technician_skill_list" model="maintenance.technician.skill" type="list">
+            <field name="skill_id" string="Skill"/>
+            <field name="competency_level" string="Competency Level"/>
+            <field name="certified" string="Certified" widget="boolean_toggle"/>
+            <field name="cert_expiry" string="Expiry Date"/>
+        </view>
+        <view id="view_maint_technician_skill_form" model="maintenance.technician.skill" type="form">
+            <sheet>
+                <group>
+                    <field name="skill_id" string="Skill"/>
+                    <field name="competency_level" string="Competency Level"/>
+                    <field name="certified" string="Certified"/>
+                    <field name="cert_expiry" string="Certificate Expiry"/>
+                </group>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Technician Certificate (inline list)                              -->
+        <!-- ================================================================ -->
+        <view id="view_maint_technician_certificate_list" model="maintenance.technician.certificate" type="list">
+            <field name="certificate_name" string="Certificate"/>
+            <field name="issuing_authority" string="Authority"/>
+            <field name="certificate_number" string="Certificate #"/>
+            <field name="issued_date" string="Issued"/>
+            <field name="expiry_date" string="Expiry"/>
+            <field name="status" string="Status"/>
+        </view>
+        <view id="view_maint_technician_certificate_form" model="maintenance.technician.certificate" type="form">
+            <sheet>
+                <group>
+                    <group string="Certificate">
+                        <field name="certificate_name" string="Certificate Name"/>
+                        <field name="issuing_authority" string="Issuing Authority"/>
+                        <field name="certificate_number" string="Certificate Number"/>
+                        <field name="status" string="Status"/>
+                    </group>
+                    <group string="Validity">
+                        <field name="issued_date" string="Issued Date"/>
+                        <field name="expiry_date" string="Expiry Date"/>
+                    </group>
+                </group>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+
+        <!-- ================================================================ -->
+        <!-- Technician List, Form, Search, Action                             -->
+        <!-- ================================================================ -->
+        <view id="view_maint_technician_search" model="maintenance.technician" type="search">
+            <filter name="active" string="Active" domain='[["status","=","active"]]'/>
+            <filter name="contractors" string="Contractors" domain='[["is_contractor","=",true]]'/>
+            <filter name="internal" string="Internal Staff" domain='[["is_contractor","=",false]]'/>
+            <filter name="group_trade" string="By Trade" group_by="trade"/>
+            <filter name="group_team" string="By Team" group_by="team_name"/>
+            <filter name="group_status" string="By Status" group_by="status"/>
+        </view>
+        <view id="view_maint_technician_list" model="maintenance.technician" type="list">
+            <field name="name" string="Name"/>
+            <field name="employee_code" string="Code"/>
+            <field name="user_id" string="User"/>
+            <field name="trade" string="Trade"/>
+            <field name="team_name" string="Team"/>
+            <field name="status" string="Status"/>
+            <field name="shift_type" string="Shift"/>
+            <field name="labor_rate_per_hour" string="Rate/Hr"/>
+            <field name="is_contractor" string="Contractor" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_technician_form" model="maintenance.technician" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Technician Name..."/></h1>
+                </div>
+                <group>
+                    <group string="Profile">
+                        <field name="user_id" string="User Account"/>
+                        <field name="employee_code" string="Employee Code"/>
+                        <field name="trade" string="Trade / Discipline"/>
+                        <field name="specialty" string="Specialty"/>
+                        <field name="team_name" string="Team / Cost Centre"/>
+                        <field name="status" string="Status"/>
+                    </group>
+                    <group string="Rates &amp; Classification">
+                        <field name="shift_type" string="Shift Type"/>
+                        <field name="labor_rate_per_hour" string="Labor Rate / Hour"/>
+                        <field name="overtime_multiplier" string="Overtime Multiplier"/>
+                        <field name="is_contractor" string="Is Contractor"/>
+                        <field name="contractor_company" string="Contractor Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group string="Contact &amp; Employment">
+                    <field name="hire_date" string="Hire Date"/>
+                    <field name="phone" string="Phone"/>
+                    <field name="emergency_contact" string="Emergency Contact"/>
+                </group>
+                <notebook>
+                    <page string="Skills">
+                        <field name="skills" nolabel="1"/>
+                    </page>
+                    <page string="Certificates">
+                        <field name="certificates" nolabel="1"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_technician" type="window" model="maintenance.technician" name="Technicians" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Shift Schedule List & Form                                        -->
+        <!-- ================================================================ -->
+        <view id="view_maint_shift_schedule_list" model="maintenance.shift.schedule" type="list">
+            <field name="name" string="Schedule"/>
+            <field name="technician_id" string="Technician"/>
+            <field name="shift_type" string="Shift"/>
+            <field name="start_date" string="Start"/>
+            <field name="end_date" string="End"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_shift_schedule_form" model="maintenance.shift.schedule" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Schedule Name..."/></h1>
+                </div>
+                <group>
+                    <group string="Schedule Details">
+                        <field name="technician_id" string="Technician"/>
+                        <field name="shift_type" string="Shift Type"/>
+                        <field name="start_date" string="Start Date"/>
+                        <field name="end_date" string="End Date"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Working Hours per Day">
+                        <field name="monday_hours" string="Monday"/>
+                        <field name="tuesday_hours" string="Tuesday"/>
+                        <field name="wednesday_hours" string="Wednesday"/>
+                        <field name="thursday_hours" string="Thursday"/>
+                        <field name="friday_hours" string="Friday"/>
+                        <field name="saturday_hours" string="Saturday"/>
+                        <field name="sunday_hours" string="Sunday"/>
+                    </group>
+                </group>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_shift_schedule" type="window" model="maintenance.shift.schedule" name="Shift Schedules" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Labor Entry List, Form, Search, Action                            -->
+        <!-- ================================================================ -->
+        <view id="view_maint_labor_entry_search" model="maintenance.labor.entry" type="search">
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="submitted" string="Submitted" domain='[["state","=","submitted"]]'/>
+            <filter name="approved" string="Approved" domain='[["state","=","approved"]]'/>
+            <filter name="overtime" string="Overtime" domain='[["is_overtime","=",true]]'/>
+            <filter name="group_wo" string="By Work Order" group_by="work_order_id"/>
+            <filter name="group_technician" string="By Technician" group_by="technician_id"/>
+            <filter name="group_state" string="By Status" group_by="state"/>
+        </view>
+        <view id="view_maint_labor_entry_list" model="maintenance.labor.entry" type="list">
+            <field name="date" string="Date"/>
+            <field name="work_order_id" string="Work Order"/>
+            <field name="technician_id" string="Technician"/>
+            <field name="hours" string="Hours"/>
+            <field name="is_overtime" string="OT" widget="boolean_toggle"/>
+            <field name="labor_rate" string="Rate"/>
+            <field name="total_cost" string="Total Cost"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_maint_labor_entry_form" model="maintenance.labor.entry" type="form">
+            <sheet>
+                <group>
+                    <group string="Work Details">
+                        <field name="date" string="Date"/>
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="technician_id" string="Technician"/>
+                        <field name="user_id" string="User Account"/>
+                        <field name="state" string="Status"/>
+                    </group>
+                    <group string="Time &amp; Cost">
+                        <field name="start_time" string="Start Time"/>
+                        <field name="end_time" string="End Time"/>
+                        <field name="hours" string="Hours Worked"/>
+                        <field name="is_overtime" string="Overtime"/>
+                        <field name="labor_rate" string="Labor Rate"/>
+                        <field name="total_cost" string="Total Cost"/>
+                    </group>
+                </group>
+                <group string="Approval">
+                    <field name="approved_by" string="Approved By"/>
+                    <field name="approved_at" string="Approved At"/>
+                </group>
+                <separator string="Work Description"/>
+                <field name="description" string="Work Description"/>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_labor_entry" type="window" model="maintenance.labor.entry" name="Labor Entries" view_mode="list,form"/>
+    </data>
+</nexa>

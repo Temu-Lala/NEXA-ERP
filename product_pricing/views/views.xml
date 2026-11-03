@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_product_pricelist_list" model="product.pricelist" type="list">
+            <field name="name" string="Price List"/>
+            <field name="currency_id" string="Currency"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_product_pricelist_form" model="product.pricelist" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Price List"/>
+                    <field name="currency_id" string="Currency"/>
+                    <field name="active" string="Active"/>
+                </group>
+                <field name="note" string="Note" placeholder="Internal notes about this price list..."/>
+                <separator string="Pricing Rules"/>
+                <field name="items" nolabel="1"/>
+            </sheet>
+        </view>
+        <action id="action_product_pricelist" type="window" model="product.pricelist" name="Price Lists" view_mode="list,form"/>
+
+        <view id="view_product_pricelist_item_list" model="product.pricelist.item" type="list">
+            <field name="sequence" string="Priority" widget="handle"/>
+            <field name="pricelist_id" string="Price List"/>
+            <field name="product_id" string="Product"/>
+            <field name="categ_id" string="Category"/>
+            <field name="computed_by" string="Compute"/>
+            <field name="fixed_price" string="Fixed Price"/>
+            <field name="percent" string="Discount %"/>
+            <field name="min_qty" string="Min Qty"/>
+        </view>
+        <view id="view_product_pricelist_item_form" model="product.pricelist.item" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="pricelist_id" string="Price List"/>
+                        <field name="product_id" string="Product"/>
+                        <field name="categ_id" string="Category"/>
+                        <field name="computed_by" string="Compute Method"/>
+                    </group>
+                    <group>
+                        <field name="fixed_price" string="Fixed Price"/>
+                        <field name="percent" string="Discount %"/>
+                        <field name="min_qty" string="Min Quantity"/>
+                        <field name="sequence" string="Priority"/>
+                        <field name="date_start" string="Start Date"/>
+                        <field name="date_end" string="End Date"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_product_pricelist_item" type="window" model="product.pricelist.item" name="Price Rules" view_mode="list,form"/>
+    </data>
+</nexa>

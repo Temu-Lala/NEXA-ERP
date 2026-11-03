@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_reservation_link_user,access_sale_reservation_link_user,sale.order.reservation.link,group_sale_user,1,1,1,0
+access_sale_reservation_link_manager,access_sale_reservation_link_manager,sale.order.reservation.link,group_sale_manager,1,1,1,1
+access_sale_shipment_link_user,access_sale_shipment_link_user,sale.shipment.link,group_sale_user,1,1,1,0
+access_sale_shipment_link_manager,access_sale_shipment_link_manager,sale.shipment.link,group_sale_manager,1,1,1,1
+access_sale_return_user,access_sale_return_user,sale.return,group_sale_user,1,1,1,0
+access_sale_return_manager,access_sale_return_manager,sale.return,group_sale_manager,1,1,1,1
+access_sale_return_line_user,access_sale_return_line_user,sale.return.line,group_sale_user,1,1,1,0
+access_sale_return_line_manager,access_sale_return_line_manager,sale.return.line,group_sale_manager,1,1,1,1

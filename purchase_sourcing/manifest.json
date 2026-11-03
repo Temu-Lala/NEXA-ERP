@@ -1,0 +1,21 @@
+{
+    "name": "purchase_sourcing",
+    "display_name": "Purchase Sourcing & Quotations",
+    "version": "1.0.0",
+    "summary": "Supplier profiles, RFQs, quotations, evaluation and awards",
+    "description": "Competitive sourcing for the Procure-to-Pay flow: procurement supplier profiles layered on shared contacts, requests for quotation, supplier quotation comparison, weighted evaluation and documented award decisions. Does not duplicate supplier identity or own purchase orders.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "purchase",
+        "purchase_requisition",
+        "purchase_supplier"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Purchase"
+}

@@ -1,0 +1,19 @@
+{
+    "name": "hr_shift",
+    "display_name": "HR: Time & Attendance",
+    "version": "1.0.0",
+    "summary": "Work shifts, rotating rosters, attendance exceptions, corrections and overtime",
+    "description": "Adds configurable work shifts (start/end, grace windows, rounding, overnight) and a rotating roster, then reconciles each hr.attendance punch against its scheduled shift to flag late / early / missing-punch exceptions (stored, payroll-consumable). Provides audited attendance corrections that preserve the original punches and maker-checker overtime and correction approvals gated to HR Managers. Extends the hr anchor without migrating its tables; navigated under the single HR app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "hr"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

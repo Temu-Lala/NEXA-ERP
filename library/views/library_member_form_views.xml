@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_library_member_form" model="library.member" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="partner_id"/>
+                    <field name="join_date"/>
+                    <field name="max_loans"/>
+                </group>
+                <group>
+                    <field name="email"/>
+                    <field name="phone"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+    </data>
+</nexa>

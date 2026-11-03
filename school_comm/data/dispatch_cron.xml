@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_school_comm_dispatch" model="sys.cron">
+            <field name="name">School: Dispatch pending and eligible failed communication notifications</field>
+            <field name="code">school.comm.dispatch</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

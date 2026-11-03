@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hr_department_list" model="hr.department" type="list" report_download="csv,pdf">
+            <field name="name" string="Department"/>
+            <field name="parent_id" string="Parent"/>
+            <field name="manager_id" string="Manager"/>
+            <field name="total_employees" string="Employees"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_hr_department_search" model="hr.department" type="search">
+            <field name="name" string="Department"/>
+            <field name="manager_id" string="Manager"/>
+            <filter name="active_records" string="Active" domain='[["active","=",true]]'/>
+            <filter name="group_parent" string="Parent Department" group_by="parent_id"/>
+        </view>
+    </data>
+</nexa>

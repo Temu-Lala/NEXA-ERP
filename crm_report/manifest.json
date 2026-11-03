@@ -1,0 +1,19 @@
+{
+    "name": "crm_report",
+    "display_name": "CRM Reporting & Analytics",
+    "version": "1.0.0",
+    "summary": "Funnel, pipeline, win/loss, and attribution reporting read-models",
+    "description": "Management analytics read-models for the CRM: lead funnel conversion by source and stage, open pipeline and weighted value by stage/owner, win/loss outcomes with the dominant lost reason, and campaign/source attribution. Each record is a persisted period snapshot; pipeline value is never presented as recognized revenue and attribution is a measurement model, not proof of causation.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "crm"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "CRM"
+}

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Territory -->
+        <view id="view_crm_territory_list" model="crm.territory" type="list">
+            <field name="name" string="Name"/>
+            <field name="code" string="Code"/>
+            <field name="territory_type" string="Type"/>
+            <field name="parent_id" string="Parent Territory"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_crm_territory_form" model="crm.territory" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. East Africa"/></h1></div>
+                <group>
+                    <group>
+                        <field name="code" string="Code"/>
+                        <field name="territory_type" string="Type"/>
+                        <field name="parent_id" string="Parent Territory"/>
+                    </group>
+                    <group>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_crm_territory" type="window" model="crm.territory" name="Territories" view_mode="list,form"/>
+
+        <!-- Territory Assignment -->
+        <view id="view_crm_territory_assignment_list" model="crm.territory.assignment" type="list">
+            <field name="territory_id" string="Territory"/>
+            <field name="object_type" string="Object Type"/>
+            <field name="object_ref_id" string="Record"/>
+            <field name="user_id" string="Assigned To"/>
+            <field name="date_from" string="From"/>
+            <field name="date_to" string="To"/>
+        </view>
+        <view id="view_crm_territory_assignment_form" model="crm.territory.assignment" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Assignment ref"/></h1></div>
+                <group>
+                    <group>
+                        <field name="territory_id" string="Territory"/>
+                        <field name="object_type" string="Object Type"/>
+                        <field name="object_ref_id" string="Record"/>
+                    </group>
+                    <group>
+                        <field name="user_id" string="Assigned To"/>
+                        <field name="date_from" string="From"/>
+                        <field name="date_to" string="To"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_territory_assignment" type="window" model="crm.territory.assignment" name="Territory Assignments" view_mode="list,form"/>
+
+        <!-- Team Territory link -->
+        <view id="view_crm_team_territory_list" model="crm.team.territory" type="list">
+            <field name="crm_team_id" string="Sales Team"/>
+            <field name="territory_id" string="Territory"/>
+            <field name="company_id" string="Company"/>
+        </view>
+        <view id="view_crm_team_territory_form" model="crm.team.territory" type="form">
+            <sheet>
+                <group>
+                    <field name="crm_team_id" string="Sales Team"/>
+                    <field name="territory_id" string="Territory"/>
+                    <field name="company_id" string="Company"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_team_territory" type="window" model="crm.team.territory" name="Team Coverage" view_mode="list,form"/>
+
+        <!-- Sales Target -->
+        <view id="view_crm_sales_target_list" model="crm.sales.target" type="list">
+            <field name="name" string="Name"/>
+            <field name="owner_type" string="Target For"/>
+            <field name="user_id" string="Salesperson"/>
+            <field name="team_id" string="Sales Team"/>
+            <field name="period_type" string="Period"/>
+            <field name="period_date" string="Period Start"/>
+            <field name="metric" string="Metric"/>
+            <field name="target_value" string="Target"/>
+            <field name="achieved_value" string="Achieved"/>
+            <field name="attainment" string="Attainment %"/>
+        </view>
+        <view id="view_crm_sales_target_form" model="crm.sales.target" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Q1 Revenue - Team A"/></h1></div>
+                <group>
+                    <group string="Ownership">
+                        <field name="owner_type" string="Target For"/>
+                        <field name="user_id" string="Salesperson"/>
+                        <field name="team_id" string="Sales Team"/>
+                        <field name="metric" string="Metric"/>
+                    </group>
+                    <group string="Period &amp; Values">
+                        <field name="period_type" string="Period Type"/>
+                        <field name="period_date" string="Period Start"/>
+                        <field name="target_value" string="Target"/>
+                        <field name="achieved_value" string="Achieved"/>
+                        <field name="attainment" string="Attainment (%)"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_sales_target" type="window" model="crm.sales.target" name="Sales Targets" view_mode="list,form"/>
+    </data>
+</nexa>

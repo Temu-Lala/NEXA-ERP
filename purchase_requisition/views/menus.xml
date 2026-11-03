@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_purchase_requisition_root" name="Requisitions" parent="purchase.purchase_menu_root" sequence="5" web_icon="clipboard" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_requisition" name="Purchase Requisitions" parent="menu_purchase_requisition_root" action="purchase_requisition.action_purchase_requisition" sequence="1" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_requisition_line" name="Requisition Lines" parent="menu_purchase_requisition_root" action="purchase_requisition.action_purchase_requisition_line" sequence="2" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_budget_check" name="Budget Checks" parent="menu_purchase_requisition_root" action="purchase_requisition.action_purchase_budget_check" sequence="3" groups="purchase.group_purchase_manager"/>
+        <menuitem id="menu_purchase_budget_commitment" name="Budget Commitments" parent="menu_purchase_requisition_root" action="purchase_requisition.action_purchase_budget_commitment" sequence="4" groups="purchase.group_purchase_manager"/>
+        <menuitem id="menu_purchase_budget_override" name="Budget Overrides" parent="menu_purchase_requisition_root" action="purchase_requisition.action_purchase_budget_override" sequence="5" groups="purchase.group_purchase_budget_owner"/>
+        <menuitem id="menu_purchase_approval_instance" name="My Approvals" parent="menu_purchase_requisition_root" action="purchase_requisition.action_purchase_approval_instance" sequence="6" groups="purchase.group_purchase_dept_manager"/>
+        <menuitem id="menu_purchase_approval_matrix" name="Approval Matrix" parent="menu_purchase_requisition_root" action="purchase_requisition.action_purchase_approval_matrix" sequence="7" groups="purchase.group_purchase_manager"/>
+    </data>
+</nexa>

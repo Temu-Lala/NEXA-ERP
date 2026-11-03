@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_project_timesheet_line_list" model="project.timesheet.line" type="list">
+            <field name="date" string="Date"/>
+            <field name="project_id" string="Project"/>
+            <field name="task_id" string="Task"/>
+            <field name="hours" string="Hours"/>
+            <field name="billable" string="Billable" widget="boolean_toggle"/>
+            <field name="description" string="Description"/>
+        </view>
+        <view id="view_project_timesheet_line_form" model="project.timesheet.line" type="form">
+            <sheet>
+                <group>
+                    <field name="timesheet_id" string="Timesheet"/>
+                    <field name="project_id" string="Project"/>
+                    <field name="task_id" string="Task"/>
+                    <field name="date" string="Date"/>
+                    <field name="hours" string="Hours"/>
+                    <field name="billable" string="Billable"/>
+                </group>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+
+        <view id="view_project_timesheet_list" model="project.timesheet" type="list">
+            <field name="user_id" string="Employee"/>
+            <field name="week_start" string="Week Start"/>
+            <field name="project_id" string="Project"/>
+            <field name="total_hours" string="Total"/>
+            <field name="billable_hours" string="Billable"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_project_timesheet_form" model="project.timesheet" type="form">
+            <header>
+                <button name="action_compute" string="Compute" type="object" invisible="state != 'draft'"/>
+                <button name="action_submit" string="Submit" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'submitted'"/>
+                <button name="action_reject" string="Reject" type="object" invisible="state != 'submitted'"/>
+                <button name="action_reopen" string="Reopen" type="object" invisible="state != 'approved'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Sheet">
+                        <field name="user_id" string="Employee"/>
+                        <field name="week_start" string="Week Start"/>
+                        <field name="project_id" string="Primary Project"/>
+                        <field name="manager_id" string="Reviewer"/>
+                    </group>
+                    <group string="Totals">
+                        <field name="total_hours" string="Total Hours"/>
+                        <field name="billable_hours" string="Billable Hours"/>
+                        <field name="approved_by" string="Approved By"/>
+                        <field name="approved_date" string="Approved Date"/>
+                    </group>
+                </group>
+                <separator string="Entries"/>
+                <field name="lines" nolabel="1"/>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_project_timesheet" type="window" model="project.timesheet" name="Timesheets" view_mode="list,form"/>
+        <action id="action_project_timesheet_my" type="window" model="project.timesheet" name="My Timesheets" view_mode="list,form" domain='[["user_id","=","$uid"]]'/>
+    </data>
+</nexa>

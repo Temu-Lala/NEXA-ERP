@@ -1,0 +1,21 @@
+{
+    "name": "school_ops",
+    "display_name": "School Operations",
+    "version": "1.0.0",
+    "summary": "Transport routes, stops and vehicles with learner assignments, a library catalogue and loan desk, boarding houses and dormitories, a two-sided inventory ledger and cafeteria menus with meal subscriptions",
+    "description": "Implements the campus operations module from the blueprint. TRANSPORT: a school.transport.route (campus, vehicle, origin, destination) with ordered school.transport.stop lines, a school.transport.vehicle (plate, seat capacity, driver reusing school.staff.member, availability status) and school.transport.assignment rows linking a learner to a route and stop; confirming an assignment is guarded by the route vehicle's remaining seats. LIBRARY: a school.library.book catalogue with total/available copy counts and school.library.loan records that are issued only when a copy is free (decrementing availability) and returned by restoring the copy and levying a computed overdue fine. BOARDING: school.boarding.house with a matron (school.staff.member) and school.boarding.dormitory units of bed capacity, and school.boarding.boarder assignments guarded by the dormitory's free beds. INVENTORY: school.inventory.item stock records with a reorder level and low-stock flag, and a school.inventory.movement receipt/issue ledger whose posted movements fold quantity into on-hand stock and refuse an issue that would go negative. CAFETERIA: school.cafeteria.menu offerings and school.cafeteria.subscription meal plans with a pending/active/paused/ended lifecycle. Capacity, bed and stock guards, overdue and fine arithmetic and movement application are server-validated and unit-tested. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_setup",
+        "school_staff"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

@@ -1,0 +1,19 @@
+{
+    "name": "school_guardians",
+    "display_name": "School Guardians",
+    "version": "1.0.0",
+    "summary": "Guardian registry, multi-guardian per learner, one-guardian-many-children links, a financial-view authorisation flag and time-bounded relationship/access history",
+    "description": "Implements the guardian / parent-access foundation from the blueprint. school.guardian is an authoritative guardian person record; school.student.guardian is the link table that connects guardians to learners and doubles as the relationship history. Each link carries the relationship role, a primary-contact flag and an access-authorisation matrix (can-view-academic, can-view-financial, can-make-payments, can-authorise-medical) plus an active/revoked status and a valid-from / valid-to window, so relationship changes and access revocation are expressed by closing an old row and opening a new one rather than overwriting. This lets one guardian manage several children, several guardians be authorised for one child, and the school configure precisely which guardian may view financial information. Pure, unit-tested predicates decide financial visibility and the current primary contact from the live links; a compute shows each guardian's live learner count. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

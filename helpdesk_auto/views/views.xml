@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Automation rules -->
+        <view id="view_hd_rule_list" model="helpdesk.automation.rule" type="list">
+            <field name="sequence" string="Seq"/>
+            <field name="name" string="Rule"/>
+            <field name="trigger_type" string="Trigger"/>
+            <field name="match_logic" string="Logic"/>
+            <field name="condition_count" string="# Cond"/>
+            <field name="action_count" string="# Act"/>
+            <field name="current_version" string="Version"/>
+            <field name="dry_run" string="Dry Run"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_hd_rule_form" model="helpdesk.automation.rule" type="form">
+            <header>
+                <button name="action_publish" string="Publish" type="object"/>
+                <button name="action_enable" string="Enable" type="object" invisible="active == 1"/>
+                <button name="action_disable" string="Disable" type="object" invisible="active == 0"/>
+            </header>
+            <sheet>
+                <group col="2">
+                    <group string="Rule">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="trigger_type"/>
+                        <field name="match_logic"/>
+                        <field name="sequence"/>
+                        <field name="company_id"/>
+                    </group>
+                    <group string="Execution">
+                        <field name="active"/>
+                        <field name="dry_run"/>
+                        <field name="apply_once"/>
+                        <field name="current_version"/>
+                        <field name="run_count"/>
+                        <field name="match_count"/>
+                        <field name="error_count"/>
+                        <field name="last_run_at"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+                <notebook>
+                    <page string="Conditions">
+                        <field name="conditions" nolabel="1">
+                            <field name="sequence"/>
+                            <field name="field"/>
+                            <field name="operator"/>
+                            <field name="value"/>
+                        </field>
+                    </page>
+                    <page string="Actions">
+                        <field name="actions" nolabel="1">
+                            <field name="sequence"/>
+                            <field name="action_type"/>
+                            <field name="value"/>
+                        </field>
+                    </page>
+                    <page string="Versions">
+                        <field name="versions" nolabel="1">
+                            <field name="version_number"/>
+                            <field name="change_note"/>
+                            <field name="published_by"/>
+                            <field name="published_at"/>
+                        </field>
+                    </page>
+                    <page string="Execution Log">
+                        <field name="runs" nolabel="1">
+                            <field name="ticket_id"/>
+                            <field name="trigger_type"/>
+                            <field name="status"/>
+                            <field name="matched"/>
+                            <field name="actions_applied"/>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <!-- Conditions -->
+        <view id="view_hd_condition_list" model="helpdesk.automation.condition" type="list">
+            <field name="rule_id" string="Rule"/>
+            <field name="sequence" string="Seq"/>
+            <field name="field" string="Field"/>
+            <field name="operator" string="Operator"/>
+            <field name="value" string="Value"/>
+        </view>
+        <view id="view_hd_condition_form" model="helpdesk.automation.condition" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="rule_id"/>
+                    <field name="sequence"/>
+                    <field name="field"/>
+                    <field name="operator"/>
+                    <field name="value"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- Actions -->
+        <view id="view_hd_action_list" model="helpdesk.automation.action" type="list">
+            <field name="rule_id" string="Rule"/>
+            <field name="sequence" string="Seq"/>
+            <field name="action_type" string="Action"/>
+            <field name="value" string="Value"/>
+        </view>
+        <view id="view_hd_action_form" model="helpdesk.automation.action" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="rule_id"/>
+                    <field name="sequence"/>
+                    <field name="action_type"/>
+                    <field name="value"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- Versions -->
+        <view id="view_hd_version_list" model="helpdesk.automation.version" type="list">
+            <field name="rule_id" string="Rule"/>
+            <field name="version_number" string="Version"/>
+            <field name="change_note" string="Change"/>
+            <field name="published_by" string="Published By"/>
+            <field name="published_at" string="Published At"/>
+        </view>
+        <view id="view_hd_version_form" model="helpdesk.automation.version" type="form">
+            <sheet>
+                <group col="2">
+                    <field name="rule_id"/>
+                    <field name="version_number"/>
+                    <field name="published_by"/>
+                    <field name="published_at"/>
+                </group>
+                <group string="Change Note">
+                    <field name="change_note" nolabel="1"/>
+                </group>
+                <group string="Snapshot">
+                    <field name="snapshot" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- Execution runs -->
+        <view id="view_hd_run_list" model="helpdesk.automation.run" type="list">
+            <field name="rule_id" string="Rule"/>
+            <field name="ticket_id" string="Ticket"/>
+            <field name="trigger_type" string="Trigger"/>
+            <field name="status" string="Status"/>
+            <field name="matched" string="Matched"/>
+            <field name="actions_planned" string="Planned"/>
+            <field name="actions_applied" string="Applied"/>
+            <field name="started_at" string="Started"/>
+        </view>
+        <view id="view_hd_run_form" model="helpdesk.automation.run" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Run">
+                        <field name="rule_id"/>
+                        <field name="ticket_id"/>
+                        <field name="trigger_type"/>
+                        <field name="status"/>
+                        <field name="matched"/>
+                        <field name="dry_run"/>
+                    </group>
+                    <group string="Result">
+                        <field name="actions_planned"/>
+                        <field name="actions_applied"/>
+                        <field name="started_at"/>
+                        <field name="finished_at"/>
+                    </group>
+                </group>
+                <group string="Detail">
+                    <field name="detail" nolabel="1"/>
+                </group>
+                <group string="Error">
+                    <field name="error_reason" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_hd_rule" type="window" model="helpdesk.automation.rule" name="Automation Rules" view_mode="list,form"/>
+        <action id="action_hd_condition" type="window" model="helpdesk.automation.condition" name="Conditions" view_mode="list,form"/>
+        <action id="action_hd_action" type="window" model="helpdesk.automation.action" name="Actions" view_mode="list,form"/>
+        <action id="action_hd_version" type="window" model="helpdesk.automation.version" name="Rule Versions" view_mode="list,form"/>
+        <action id="action_hd_run" type="window" model="helpdesk.automation.run" name="Execution Log" view_mode="list,form"/>
+    </data>
+</nexa>

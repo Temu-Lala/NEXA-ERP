@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_ecom_checkout_user,access_ecom_checkout_user,ecom.checkout,group_website_shop_user,1,1,1,0
+access_ecom_checkout_manager,access_ecom_checkout_manager,ecom.checkout,group_website_shop_manager,1,1,1,1
+access_ecom_shipping_method_user,access_ecom_shipping_method_user,ecom.shipping.method,group_website_shop_user,1,0,0,0
+access_ecom_shipping_method_manager,access_ecom_shipping_method_manager,ecom.shipping.method,group_website_shop_manager,1,1,1,1
+access_ecom_payment_session_user,access_ecom_payment_session_user,ecom.payment.session,group_website_shop_user,1,1,1,0
+access_ecom_payment_session_manager,access_ecom_payment_session_manager,ecom.payment.session,group_website_shop_manager,1,1,1,1
+access_ecom_order_user,access_ecom_order_user,ecom.order,group_website_shop_user,1,1,1,0
+access_ecom_order_manager,access_ecom_order_manager,ecom.order,group_website_shop_manager,1,1,1,1

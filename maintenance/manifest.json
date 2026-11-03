@@ -1,0 +1,16 @@
+{
+    "name": "maintenance",
+    "display_name": "Maintenance",
+    "version": "1.0.0",
+    "summary": "Equipment and facility maintenance management (CMMS core)",
+    "description": "Register maintainable assets with categories, locations, criticality, ownership and lifecycle; capture maintenance requests through triage; and run work orders with task/part/safety lines, technician assignments, verification and source-linked costs.",
+    "author": "Nexa",
+    "depends": ["base"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Operations"
+}

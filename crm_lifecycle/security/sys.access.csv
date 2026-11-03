@@ -1,0 +1,11 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_lead_status_history_user,access_crm_lead_status_history_user,crm.lead.status.history,group_crm_user,1,1,1,0
+access_crm_lead_status_history_manager,access_crm_lead_status_history_manager,crm.lead.status.history,group_crm_manager,1,1,1,1
+access_crm_lead_assignment_user,access_crm_lead_assignment_user,crm.lead.assignment,group_crm_user,1,1,1,0
+access_crm_lead_assignment_manager,access_crm_lead_assignment_manager,crm.lead.assignment,group_crm_manager,1,1,1,1
+access_crm_lead_duplicate_user,access_crm_lead_duplicate_user,crm.lead.duplicate,group_crm_user,1,1,1,0
+access_crm_lead_duplicate_manager,access_crm_lead_duplicate_manager,crm.lead.duplicate,group_crm_manager,1,1,1,1
+access_crm_assignment_rule_user,access_crm_assignment_rule_user,crm.assignment.rule,group_crm_user,1,0,0,0
+access_crm_assignment_rule_manager,access_crm_assignment_rule_manager,crm.assignment.rule,group_crm_manager,1,1,1,1
+access_crm_workflow_rule_user,access_crm_workflow_rule_user,crm.workflow.rule,group_crm_user,1,0,0,0
+access_crm_workflow_rule_manager,access_crm_workflow_rule_manager,crm.workflow.rule,group_crm_manager,1,1,1,1

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <action id="action_library_category" type="window" model="library.category" name="Categories" view_mode="list,form"/>
+        <action id="action_library_book" type="window" model="library.book" name="Books" view_mode="list,form"/>
+        <action id="action_library_member" type="window" model="library.member" name="Members" view_mode="list,form"/>
+        <action id="action_library_loan" type="window" model="library.loan" name="Loans" view_mode="list,form"/>
+    </data>
+</nexa>

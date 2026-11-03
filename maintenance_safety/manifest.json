@@ -1,0 +1,16 @@
+{
+  "name": "maintenance_safety",
+  "display_name": "Maintenance Safety & Permits",
+  "version": "1.0.0",
+  "summary": "Risk assessments, permit-to-work, lockout/tagout records and safety incidents",
+  "description": "Capture job risk assessments with hazard identification and control measures, manage permit-to-work workflows with approval and isolation records, maintain lockout/tagout (LOTO) procedure records for electrical and mechanical isolation, and record safety incidents and near-misses linked to maintenance work.",
+  "author": "Nexa",
+  "depends": ["base", "maintenance"],
+  "data": [
+    "security/sys.access.csv",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Operations"
+}

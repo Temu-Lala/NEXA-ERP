@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_purchase_contract_root" name="Contracts" parent="purchase.purchase_menu_root" sequence="10" web_icon="file-text" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_contract" name="Contracts" parent="menu_purchase_contract_root" action="purchase_contract.action_purchase_contract" sequence="1" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_contract_price" name="Price Schedules" parent="menu_purchase_contract_root" action="purchase_contract.action_purchase_contract_price_schedule" sequence="2" groups="purchase.group_purchase_officer"/>
+        <menuitem id="menu_purchase_contract_obligation" name="Obligations" parent="menu_purchase_contract_root" action="purchase_contract.action_purchase_contract_obligation" sequence="3" groups="purchase.group_purchase_manager"/>
+        <menuitem id="menu_purchase_contract_consumption" name="Consumption Ledger" parent="menu_purchase_contract_root" action="purchase_contract.action_purchase_contract_consumption" sequence="4" groups="purchase.group_purchase_manager"/>
+        <menuitem id="menu_purchase_contract_version" name="Amendments" parent="menu_purchase_contract_root" action="purchase_contract.action_purchase_contract_version" sequence="5" groups="purchase.group_purchase_auditor"/>
+    </data>
+</nexa>

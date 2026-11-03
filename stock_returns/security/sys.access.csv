@@ -1,0 +1,4 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_return_policy_user,access_stock_return_policy_user,stock.return.policy,,1,1,1,1
+access_stock_return_order_user,access_stock_return_order_user,stock.return.order,,1,1,1,0
+access_stock_return_line_user,access_stock_return_line_user,stock.return.line,,1,1,1,0

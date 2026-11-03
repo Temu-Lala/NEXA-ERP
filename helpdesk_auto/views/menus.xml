@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_helpdesk_auto_root" name="Automation" sequence="69"/>
+
+        <menuitem id="menu_helpdesk_auto_rules" name="Rules" parent="menu_helpdesk_auto_root" action="helpdesk_auto.action_hd_rule" sequence="10"/>
+        <menuitem id="menu_helpdesk_auto_runs" name="Execution Log" parent="menu_helpdesk_auto_root" action="helpdesk_auto.action_hd_run" sequence="20"/>
+
+        <menuitem id="menu_helpdesk_auto_config" name="Configuration" parent="menu_helpdesk_auto_root" sequence="30"/>
+        <menuitem id="menu_helpdesk_auto_conditions" name="Conditions" parent="menu_helpdesk_auto_config" action="helpdesk_auto.action_hd_condition" sequence="10"/>
+        <menuitem id="menu_helpdesk_auto_actions" name="Actions" parent="menu_helpdesk_auto_config" action="helpdesk_auto.action_hd_action" sequence="20"/>
+        <menuitem id="menu_helpdesk_auto_versions" name="Versions" parent="menu_helpdesk_auto_config" action="helpdesk_auto.action_hd_version" sequence="30"/>
+    </data>
+</nexa>

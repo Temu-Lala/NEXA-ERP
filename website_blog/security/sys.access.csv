@@ -1,0 +1,3 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_blog_tag_user,access_blog_tag_user,blog.tag,,1,1,1,1
+access_blog_post_user,access_blog_post_user,blog.post,,1,1,1,1

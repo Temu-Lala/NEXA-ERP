@@ -1,0 +1,21 @@
+{
+    "name": "school_lms",
+    "display_name": "School Learning Management",
+    "version": "1.0.0",
+    "summary": "Courses, learning materials, assignments with graded submissions, a reusable question bank feeding auto-graded quizzes and per-learner course progress",
+    "description": "Implements the learning management module from the blueprint. A school.lms.course is a learning container for a subject/teacher/class/section/term that gathers materials, assignments and quizzes and moves draft, published and archived. A school.lms.material is a course resource (document, video, link, slides or PDF). A school.lms.assignment is a task learners submit; each school.lms.submission is graded by an officer with a score validated against the assignment maximum and a late flag derived from the due date. A school.lms.question is a reusable bank item (multiple choice with school.lms.question.option choices, true/false or short answer) with a difficulty and point value. A school.lms.quiz composes bank questions through school.lms.quiz.line (with an optional point override), is published for learners and is sat as a school.lms.quiz.attempt whose recorded school.lms.quiz.answer lines are graded deterministically on submit into a stored score, percentage and pass flag. A school.lms.progress tracks each learner's completion of a course with a computed percentage and lifecycle status. The scoring arithmetic (percentage, MCQ and text correctness, weighted attempt aggregation, pass evaluation, progress completion) is server-validated and unit-tested. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_setup",
+        "school_academics"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

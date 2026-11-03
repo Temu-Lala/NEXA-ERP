@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Asset Condition Score List, Form, Search, Action                  -->
+        <!-- ================================================================ -->
+        <view id="view_maint_asset_condition_score_search" model="maintenance.asset.condition.score" type="search">
+            <filter name="critical" string="Critical Health" domain='[["health_index","&lt;",50]]'/>
+            <filter name="replacement_recommended" string="Replace Recommended" domain='[["recommended_action","=","replace"]]'/>
+            <filter name="group_asset" string="By Asset" group_by="asset_id"/>
+            <filter name="group_action" string="By Recommended Action" group_by="recommended_action"/>
+        </view>
+        <view id="view_maint_asset_condition_score_list" model="maintenance.asset.condition.score" type="list">
+            <field name="assessment_date" string="Date"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="health_index" string="Health Index (0-100)"/>
+            <field name="physical_condition" string="Physical"/>
+            <field name="operational_performance" string="Performance"/>
+            <field name="reliability_rating" string="Reliability"/>
+            <field name="estimated_rul_years" string="RUL (yrs)"/>
+            <field name="recommended_action" string="Recommendation"/>
+            <field name="assessed_by" string="Assessor"/>
+        </view>
+        <view id="view_maint_asset_condition_score_form" model="maintenance.asset.condition.score" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="asset_id" placeholder="Select Asset..."/></h1>
+                </div>
+                <group>
+                    <group string="Assessment Factors">
+                        <field name="assessment_date" string="Assessment Date"/>
+                        <field name="assessed_by" string="Assessed By"/>
+                        <field name="physical_condition" string="Physical Condition"/>
+                        <field name="operational_performance" string="Operational Performance"/>
+                        <field name="reliability_rating" string="Reliability Rating"/>
+                        <field name="maintainability_rating" string="Maintainability Rating"/>
+                    </group>
+                    <group string="Health &amp; Prognosis">
+                        <field name="health_index" string="Asset Health Index (0-100)"/>
+                        <field name="estimated_rul_years" string="Estimated Remaining Life (yrs)"/>
+                        <field name="recommended_action" string="Recommended Action"/>
+                        <field name="next_assessment_date" string="Next Assessment Date"/>
+                    </group>
+                </group>
+                <separator string="Assessment Notes"/>
+                <field name="notes" string="Assessment Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_asset_condition_score" type="window" model="maintenance.asset.condition.score" name="Condition &amp; Health Assessments" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Replacement Proposal List, Form, Search, Action                   -->
+        <!-- ================================================================ -->
+        <view id="view_maint_replacement_proposal_search" model="maintenance.replacement.proposal" type="search">
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="under_eval" string="Under Evaluation" domain='[["state","=","under_evaluation"]]'/>
+            <filter name="approved" string="Approved" domain='[["state","=","approved"]]'/>
+            <filter name="group_asset" string="By Asset" group_by="asset_id"/>
+            <filter name="group_state" string="By Status" group_by="state"/>
+            <filter name="group_type" string="By Proposal Type" group_by="proposal_type"/>
+        </view>
+        <view id="view_maint_replacement_proposal_list" model="maintenance.replacement.proposal" type="list">
+            <field name="name" string="Proposal #"/>
+            <field name="title" string="Title"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="proposal_type" string="Type"/>
+            <field name="state" string="Status"/>
+            <field name="replacement_cost_estimate" string="Capex Est. ($)"/>
+            <field name="payback_years" string="Payback (yrs)"/>
+            <field name="requested_by" string="Requested By"/>
+            <field name="requested_date" string="Date"/>
+        </view>
+        <view id="view_maint_replacement_proposal_form" model="maintenance.replacement.proposal" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="PROP-0001"/></h1>
+                    <h2><field name="title" placeholder="Proposal Summary..."/></h2>
+                </div>
+                <group>
+                    <group string="Proposal Context">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="proposal_type" string="Proposal Type"/>
+                        <field name="state" string="Status"/>
+                        <field name="priority" string="Priority"/>
+                        <field name="capex_project_ref" string="Capex Project Ref"/>
+                    </group>
+                    <group string="Lifecycle &amp; Age">
+                        <field name="current_age_years" string="Current Age (yrs)"/>
+                        <field name="estimated_rul_years" string="Remaining Life (yrs)"/>
+                        <field name="requested_by" string="Requested By"/>
+                        <field name="requested_date" string="Requested Date"/>
+                    </group>
+                </group>
+                <group string="Economic Analysis">
+                    <group string="Historical &amp; Operational Costs">
+                        <field name="cumulative_maintenance_cost" string="Cumulative Maintenance ($)"/>
+                        <field name="estimated_annual_maint_cost" string="Est. Annual Future Maint ($)"/>
+                    </group>
+                    <group string="Capital Investment &amp; Payback">
+                        <field name="replacement_cost_estimate" string="Replacement Capex Est. ($)"/>
+                        <field name="estimated_salvage_value" string="Est. Salvage Value ($)"/>
+                        <field name="payback_years" string="Payback Period (yrs)"/>
+                    </group>
+                </group>
+                <group string="Approval &amp; Governance">
+                    <field name="approved_by" string="Approved By"/>
+                    <field name="approved_date" string="Approval Date"/>
+                </group>
+                <notebook>
+                    <page string="Business Justification">
+                        <field name="business_justification" string="Business Case &amp; Justification"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_replacement_proposal" type="window" model="maintenance.replacement.proposal" name="Replacement Proposals" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Asset Disposal List, Form, Search, Action                         -->
+        <!-- ================================================================ -->
+        <view id="view_maint_asset_disposal_search" model="maintenance.asset.disposal" type="search">
+            <filter name="active" string="Pending" domain='[["state","in",["draft","approved","in_progress"]]]'/>
+            <filter name="completed" string="Disposed" domain='[["state","=","disposed"]]'/>
+            <filter name="group_method" string="By Method" group_by="disposal_method"/>
+            <filter name="group_state" string="By Status" group_by="state"/>
+        </view>
+        <view id="view_maint_asset_disposal_list" model="maintenance.asset.disposal" type="list">
+            <field name="name" string="Reference"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="disposal_method" string="Method"/>
+            <field name="state" string="Status"/>
+            <field name="decommission_date" string="Decommissioned"/>
+            <field name="disposed_date" string="Disposed"/>
+            <field name="environmental_signoff" string="Env. Signoff" widget="boolean_toggle"/>
+            <field name="actual_salvage_value" string="Proceeds ($)"/>
+        </view>
+        <view id="view_maint_asset_disposal_form" model="maintenance.asset.disposal" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="DISP-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Disposal Context">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="disposal_method" string="Disposal Method"/>
+                        <field name="state" string="Status"/>
+                        <field name="disposal_certificate_ref" string="Disposal Certificate Ref"/>
+                    </group>
+                    <group string="Timeline &amp; Custody">
+                        <field name="decommission_date" string="Decommission Date"/>
+                        <field name="disposed_date" string="Disposal Date"/>
+                        <field name="custody_handover_to" string="Handover To / Recipient"/>
+                        <field name="final_meter_reading" string="Final Meter Reading"/>
+                    </group>
+                </group>
+                <group string="Financials">
+                    <field name="estimated_salvage_value" string="Est. Salvage Value ($)"/>
+                    <field name="actual_salvage_value" string="Actual Proceeds ($)"/>
+                </group>
+                <group string="Compliance Sign-Offs">
+                    <group string="Safety &amp; Isolation">
+                        <field name="safety_isolation_verified" string="Safety Isolation Verified"/>
+                        <field name="authorized_by" string="Authorized By"/>
+                    </group>
+                    <group string="Environmental Clearance">
+                        <field name="environmental_signoff" string="Environmental Clearance"/>
+                        <field name="environmental_signoff_by" string="Signoff By"/>
+                    </group>
+                </group>
+                <separator string="Justification"/>
+                <field name="reason" string="Disposal Justification"/>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_asset_disposal" type="window" model="maintenance.asset.disposal" name="Asset Disposals" view_mode="list,form"/>
+    </data>
+</nexa>

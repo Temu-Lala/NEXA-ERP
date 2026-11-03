@@ -1,0 +1,16 @@
+{
+    "name": "subscription",
+    "display_name": "Subscriptions",
+    "version": "1.0.0",
+    "summary": "Recurring subscriptions and plans",
+    "description": "Manage subscription plans and customer subscriptions with recurring billing terms.",
+    "author": "Nexa",
+    "depends": ["base"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Sales"
+}

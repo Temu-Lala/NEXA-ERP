@@ -1,0 +1,3 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_documents_folder_user,access_documents_folder_user,documents.folder,,1,1,1,1
+access_documents_document_user,access_documents_document_user,documents.document,,1,1,1,1

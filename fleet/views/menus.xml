@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Single Fleet application anchor owning the consolidated navigation tree -->
+        <menuitem id="fleet_menu_root" name="Fleet" sequence="61" web_icon="truck"/>
+
+        <!-- ================================================================ -->
+        <!-- 1. Vehicles & Register                                            -->
+        <!-- ================================================================ -->
+        <menuitem id="fleet_menu_vehicles_section" name="Vehicles &amp; Register" parent="fleet_menu_root" sequence="10" web_icon="truck"/>
+        <menuitem id="fleet_menu_vehicles" name="Vehicles" parent="fleet_menu_vehicles_section" action="fleet.action_fleet_vehicle" sequence="1"/>
+        <menuitem id="fleet_menu_models" name="Vehicle Models" parent="fleet_menu_vehicles_section" action="fleet.action_fleet_model" sequence="2"/>
+        <menuitem id="fleet_menu_brands" name="Vehicle Brands" parent="fleet_menu_vehicles_section" action="fleet.action_fleet_brand" sequence="3"/>
+        <menuitem id="fleet_menu_odometer" name="Odometer Readings" parent="fleet_menu_vehicles_section" action="fleet.action_fleet_odometer_reading" sequence="4"/>
+        <menuitem id="fleet_menu_status_history" name="Status History" parent="fleet_menu_vehicles_section" action="fleet.action_fleet_status_history" sequence="5"/>
+
+        <!-- ================================================================ -->
+        <!-- 2. Trips & Dispatch                                              -->
+        <!-- ================================================================ -->
+        <menuitem id="fleet_menu_trips_section" name="Trips &amp; Dispatch" parent="fleet_menu_root" sequence="20" web_icon="navigation"/>
+        <menuitem id="fleet_menu_trips" name="Trip Requests" parent="fleet_menu_trips_section" action="fleet_trip.action_fleet_trip" sequence="1"/>
+        <menuitem id="fleet_menu_trip_stops" name="Route Stops" parent="fleet_menu_trips_section" action="fleet_trip.action_fleet_trip_stop" sequence="2"/>
+
+        <!-- ================================================================ -->
+        <!-- 3. Drivers & Allocation                                          -->
+        <!-- ================================================================ -->
+        <menuitem id="fleet_menu_drivers_section" name="Drivers &amp; Allocation" parent="fleet_menu_root" sequence="30" web_icon="users"/>
+        <menuitem id="fleet_menu_drivers" name="Drivers" parent="fleet_menu_drivers_section" action="fleet_driver.action_fleet_driver" sequence="1"/>
+        <menuitem id="fleet_menu_driver_qualifications" name="Qualifications &amp; Certs" parent="fleet_menu_drivers_section" action="fleet_driver.action_fleet_driver_qualification" sequence="2"/>
+        <menuitem id="fleet_menu_assignments" name="Vehicle Assignments" parent="fleet_menu_drivers_section" action="fleet_driver.action_fleet_vehicle_assignment" sequence="3"/>
+        <menuitem id="fleet_menu_handovers" name="Handovers &amp; Returns" parent="fleet_menu_drivers_section" action="fleet_driver.action_fleet_vehicle_handover" sequence="4"/>
+
+        <!-- ================================================================ -->
+        <!-- 4. Fuel & Energy                                                 -->
+        <!-- ================================================================ -->
+        <menuitem id="fleet_menu_fuel_section" name="Fuel &amp; Energy" parent="fleet_menu_root" sequence="40" web_icon="droplet"/>
+        <menuitem id="fleet_menu_fuel_transactions" name="Fuel Refueling Logs" parent="fleet_menu_fuel_section" action="fleet_fuel.action_fleet_fuel_transaction" sequence="1"/>
+        <menuitem id="fleet_menu_charging_sessions" name="EV Charging Sessions" parent="fleet_menu_fuel_section" action="fleet_fuel.action_fleet_charging_session" sequence="2"/>
+        <menuitem id="fleet_menu_fuel_cards" name="Fuel Cards" parent="fleet_menu_fuel_section" action="fleet_fuel.action_fleet_fuel_card" sequence="3"/>
+        <menuitem id="fleet_menu_fuel_anomalies" name="Anomaly Alerts" parent="fleet_menu_fuel_section" action="fleet_fuel.action_fleet_fuel_anomaly" sequence="4"/>
+
+        <!-- ================================================================ -->
+        <!-- 5. Inspections & Repairs                                         -->
+        <!-- ================================================================ -->
+        <menuitem id="fleet_menu_maintenance_section" name="Inspections &amp; Repairs" parent="fleet_menu_root" sequence="50" web_icon="tool"/>
+        <menuitem id="fleet_menu_defects" name="Defect Reports" parent="fleet_menu_maintenance_section" action="fleet_maintenance.action_fleet_vehicle_defect" sequence="1"/>
+        <menuitem id="fleet_menu_inspections" name="Vehicle Inspections" parent="fleet_menu_maintenance_section" action="fleet_maintenance.action_fleet_vehicle_inspection" sequence="2"/>
+        <menuitem id="fleet_menu_service_schedules" name="Service Schedules" parent="fleet_menu_maintenance_section" action="fleet_maintenance.action_fleet_service_schedule" sequence="3"/>
+        <menuitem id="fleet_menu_service_log" name="Service Log" parent="fleet_menu_maintenance_section" action="fleet.action_fleet_service" sequence="4"/>
+
+        <!-- ================================================================ -->
+        <!-- 6. Compliance & Safety                                           -->
+        <!-- ================================================================ -->
+        <menuitem id="fleet_menu_compliance_section" name="Compliance &amp; Safety" parent="fleet_menu_root" sequence="60" web_icon="shield"/>
+        <menuitem id="fleet_menu_documents" name="Vehicle Documents" parent="fleet_menu_compliance_section" action="fleet_compliance.action_fleet_vehicle_document" sequence="1"/>
+        <menuitem id="fleet_menu_insurance" name="Insurance Policies" parent="fleet_menu_compliance_section" action="fleet_compliance.action_fleet_insurance_policy" sequence="2"/>
+        <menuitem id="fleet_menu_incidents" name="Accidents &amp; Incidents" parent="fleet_menu_compliance_section" action="fleet_compliance.action_fleet_incident" sequence="3"/>
+
+        <!-- ================================================================ -->
+        <!-- 7. Tires & Components                                            -->
+        <!-- ================================================================ -->
+        <menuitem id="fleet_menu_tires_section" name="Tires &amp; Components" parent="fleet_menu_root" sequence="70" web_icon="disc"/>
+        <menuitem id="fleet_menu_tires" name="Tires Register" parent="fleet_menu_tires_section" action="fleet_tire.action_fleet_tire" sequence="1"/>
+        <menuitem id="fleet_menu_tire_installations" name="Tire Installations" parent="fleet_menu_tires_section" action="fleet_tire.action_fleet_tire_installation" sequence="2"/>
+        <menuitem id="fleet_menu_tire_inspections" name="Tread Depth Logs" parent="fleet_menu_tires_section" action="fleet_tire.action_fleet_tire_inspection" sequence="3"/>
+
+        <!-- ================================================================ -->
+        <!-- 8. Costs & TCO                                                   -->
+        <!-- ================================================================ -->
+        <menuitem id="fleet_menu_costs_section" name="Costs &amp; TCO" parent="fleet_menu_root" sequence="80" web_icon="dollar-sign"/>
+        <menuitem id="fleet_menu_expenses" name="Fleet Expenses" parent="fleet_menu_costs_section" action="fleet_cost.action_fleet_vehicle_expense" sequence="1"/>
+        <menuitem id="fleet_menu_tco" name="Total Cost of Ownership" parent="fleet_menu_costs_section" action="fleet_cost.action_fleet_tco_summary" sequence="2"/>
+
+        <!-- ================================================================ -->
+        <!-- 9. GPS & Telematics                                              -->
+        <!-- ================================================================ -->
+        <menuitem id="fleet_menu_telematics_section" name="GPS &amp; Telematics" parent="fleet_menu_root" sequence="90" web_icon="map-pin"/>
+        <menuitem id="fleet_menu_devices" name="Telematics Devices" parent="fleet_menu_telematics_section" action="fleet_telematics.action_fleet_telematics_device" sequence="1"/>
+        <menuitem id="fleet_menu_telemetry" name="Telemetry Logs" parent="fleet_menu_telematics_section" action="fleet_telematics.action_fleet_telemetry_event" sequence="2"/>
+        <menuitem id="fleet_menu_geofences" name="Geofences" parent="fleet_menu_telematics_section" action="fleet_telematics.action_fleet_geofence" sequence="3"/>
+        <menuitem id="fleet_menu_driving_events" name="Driving Safety Events" parent="fleet_menu_telematics_section" action="fleet_telematics.action_fleet_driving_event" sequence="4"/>
+
+        <!-- ================================================================ -->
+        <!-- 10. Leases & Rentals                                             -->
+        <!-- ================================================================ -->
+        <menuitem id="fleet_menu_lease_section" name="Leases &amp; Rentals" parent="fleet_menu_root" sequence="100" web_icon="file-text"/>
+        <menuitem id="fleet_menu_leases" name="Lease &amp; Rental Contracts" parent="fleet_menu_lease_section" action="fleet_lease.action_fleet_lease_contract" sequence="1"/>
+
+        <!-- ================================================================ -->
+        <!-- 11. Configuration                                                -->
+        <!-- ================================================================ -->
+        <menuitem id="fleet_menu_config_section" name="Configuration" parent="fleet_menu_root" sequence="110" web_icon="settings"/>
+        <menuitem id="fleet_menu_classes" name="Vehicle Classes" parent="fleet_menu_config_section" action="fleet.action_fleet_vehicle_class" sequence="1"/>
+        <menuitem id="fleet_menu_depots" name="Depots &amp; Sites" parent="fleet_menu_config_section" action="fleet.action_fleet_depot" sequence="2"/>
+        <menuitem id="fleet_menu_inspection_templates" name="Inspection Templates" parent="fleet_menu_config_section" action="fleet_maintenance.action_fleet_inspection_template" sequence="3"/>
+    </data>
+</nexa>

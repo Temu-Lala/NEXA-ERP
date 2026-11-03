@@ -1,0 +1,18 @@
+{
+  "name": "stock_quality",
+  "display_name": "Stock Quality Control",
+  "version": "1.0.0",
+  "summary": "Inspection plans, quality checks with measurements, quarantine holds and separation of duties",
+  "description": "Quality plans scoped by product, category or supplier; inspection checks with measured characteristics; failed stock lands on controlled quarantine holds that a different person must release. Received-but-pending-inspection lots are blocked from issue until disposition (blueprint sections 5 and 7).",
+  "author": "Nexa",
+  "depends": ["base", "product", "stock"],
+  "data": [
+    "security/security.xml",
+    "security/sys.access.csv",
+    "data/quality_cron.xml",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Inventory"
+}

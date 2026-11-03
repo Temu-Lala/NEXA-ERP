@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_staff_root" name="Staff" parent="school.school_menu_root" sequence="14" web_icon="users" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_staff_member" name="Staff Members" parent="school_menu_staff_root" action="school_staff.action_school_staff_member" sequence="1" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_staff_qualification" name="Qualifications" parent="school_menu_staff_root" action="school_staff.action_school_staff_qualification" sequence="2" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_staff_substitution" name="Substitutions" parent="school_menu_staff_root" action="school_staff.action_school_staff_substitution" sequence="3" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_staff_performance" name="Performance Reviews" parent="school_menu_staff_root" action="school_staff.action_school_staff_performance_review" sequence="4" groups="school.group_school_manager"/>
+    </data>
+</nexa>

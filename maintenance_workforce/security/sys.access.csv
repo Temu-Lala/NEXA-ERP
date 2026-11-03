@@ -1,0 +1,8 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_skill_category,maintenance.skill.category all,maintenance.skill.category,,1,1,1,1
+access_maint_skill,maintenance.skill all,maintenance.skill,,1,1,1,1
+access_maint_technician,maintenance.technician all,maintenance.technician,,1,1,1,1
+access_maint_technician_skill,maintenance.technician.skill all,maintenance.technician.skill,,1,1,1,1
+access_maint_technician_certificate,maintenance.technician.certificate all,maintenance.technician.certificate,,1,1,1,1
+access_maint_shift_schedule,maintenance.shift.schedule all,maintenance.shift.schedule,,1,1,1,1
+access_maint_labor_entry,maintenance.labor.entry all,maintenance.labor.entry,,1,1,1,1

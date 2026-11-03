@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Target Period -->
+        <view id="view_sale_target_period_list" model="sale.target.period" type="list">
+            <field name="name" string="Reference"/>
+            <field name="team_id" string="Team"/>
+            <field name="user_id" string="Salesperson"/>
+            <field name="period_type" string="Period"/>
+            <field name="date_start" string="Start"/>
+            <field name="date_end" string="End"/>
+            <field name="target_revenue" string="Target"/>
+            <field name="achieved_revenue" string="Achieved"/>
+            <field name="attainment_pct" string="Attain %"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_sale_target_period_form" model="sale.target.period" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Q1-2026 North"/></h1></div>
+                <group>
+                    <group string="Period">
+                        <field name="team_id" string="Sales Team"/>
+                        <field name="user_id" string="Salesperson"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="period_type" string="Period Type"/>
+                        <field name="date_start" string="Start Date"/>
+                        <field name="date_end" string="End Date"/>
+                        <field name="currency" string="Currency"/>
+                    </group>
+                    <group string="Status">
+                        <field name="state" string="Status"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group string="Targets">
+                    <field name="target_revenue" string="Revenue Target"/>
+                    <field name="target_volume" string="Volume Target"/>
+                    <field name="target_margin_pct" string="Margin Target %"/>
+                </group>
+                <group string="Achieved">
+                    <field name="achieved_revenue" string="Achieved Revenue"/>
+                    <field name="achieved_volume" string="Achieved Volume"/>
+                    <field name="achieved_margin_pct" string="Achieved Margin %"/>
+                    <field name="attainment_pct" string="Attainment %"/>
+                </group>
+                <group string="Forecast">
+                    <field name="forecast_revenue" string="Forecast Revenue"/>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_sale_target_period" type="window" model="sale.target.period" name="Sales Targets" view_mode="list,form"/>
+    </data>
+</nexa>

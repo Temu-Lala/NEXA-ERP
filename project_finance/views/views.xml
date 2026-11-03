@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_project_budget_list" model="project.budget" type="list">
+            <field name="project_id" string="Project"/>
+            <field name="name" string="Budget"/>
+            <field name="state" string="Status"/>
+            <field name="total_amount" string="Total"/>
+        </view>
+        <view id="view_project_budget_form" model="project.budget" type="form">
+            <header>
+                <button name="action_compute" string="Compute Total" type="object" invisible="state != 'draft'"/>
+                <button name="action_confirm" string="Confirm" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'confirmed'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="project_id" string="Project"/>
+                    <field name="name" string="Budget Name"/>
+                    <field name="state" string="Status"/>
+                    <field name="total_amount" string="Total"/>
+                </group>
+                <field name="note" string="Note"/>
+                <separator string="Budget Lines"/>
+                <field name="lines" nolabel="1"/>
+            </sheet>
+        </view>
+        <action id="action_project_budget" type="window" model="project.budget" name="Budgets" view_mode="list,form"/>
+
+        <view id="view_project_budget_line_list" model="project.budget.line" type="list">
+            <field name="budget_id" string="Budget"/>
+            <field name="category" string="Cost Category"/>
+            <field name="amount" string="Planned Amount"/>
+            <field name="sequence" string="Sequence"/>
+        </view>
+        <view id="view_project_budget_line_form" model="project.budget.line" type="form">
+            <sheet>
+                <group>
+                    <field name="budget_id" string="Budget"/>
+                    <field name="category" string="Cost Category"/>
+                    <field name="amount" string="Planned Amount"/>
+                    <field name="sequence" string="Sequence"/>
+                </group>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_project_budget_line" type="window" model="project.budget.line" name="Budget Lines" view_mode="list,form"/>
+
+        <view id="view_project_cost_list" model="project.cost" type="list">
+            <field name="date" string="Date"/>
+            <field name="project_id" string="Project"/>
+            <field name="category" string="Cost Category"/>
+            <field name="amount" string="Amount"/>
+            <field name="billable" string="Billable" widget="boolean_toggle"/>
+            <field name="source_type" string="Source"/>
+        </view>
+        <view id="view_project_cost_form" model="project.cost" type="form">
+            <header>
+                <button name="action_post" string="Roll Up to Project" type="object" class="sum_highlight"/>
+                <button name="action_refresh" string="Refresh" type="object"/>
+            </header>
+            <sheet>
+                <group>
+                    <field name="project_id" string="Project"/>
+                    <field name="date" string="Date"/>
+                    <field name="category" string="Cost Category"/>
+                    <field name="amount" string="Amount"/>
+                    <field name="billable" string="Billable"/>
+                    <field name="source_type" string="Source Reference"/>
+                </group>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_project_cost" type="window" model="project.cost" name="Project Costs" view_mode="list,form"/>
+    </data>
+</nexa>

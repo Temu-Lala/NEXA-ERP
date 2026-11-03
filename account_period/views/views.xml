@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_fiscal_year_list" model="account.fiscal.year" type="list">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="company_id"/>
+            <field name="date_from"/>
+            <field name="date_last"/>
+            <field name="state"/>
+        </view>
+        <view id="view_fiscal_year_form" model="account.fiscal.year" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="company_id"/>
+                        <field name="period_selection"/>
+                    </group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_last"/>
+                        <field name="state"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_period_list" model="account.period" type="list">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="fiscal_year_id"/>
+            <field name="date_from"/>
+            <field name="date_to"/>
+            <field name="period_type"/>
+            <field name="state"/>
+            <field name="move_count"/>
+        </view>
+        <view id="view_period_form" model="account.period" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="fiscal_year_id"/>
+                        <field name="period_type"/>
+                    </group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="state"/>
+                        <field name="move_count"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_close_run_list" model="account.period.close.run" type="list">
+            <field name="name"/>
+            <field name="period_id"/>
+            <field name="company_id"/>
+            <field name="state"/>
+            <field name="exception_count"/>
+        </view>
+        <view id="view_close_run_form" model="account.period.close.run" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="period_id"/>
+                        <field name="company_id"/>
+                        <field name="state"/>
+                    </group>
+                    <group>
+                        <field name="started_by"/>
+                        <field name="closed_by"/>
+                        <field name="closed_at"/>
+                        <field name="exception_count"/>
+                    </group>
+                </group>
+                <group string="Checklist">
+                    <field name="tasks" nolabel="1"/>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_close_task_list" model="account.period.close.task" type="list">
+            <field name="sequence"/>
+            <field name="category"/>
+            <field name="name"/>
+            <field name="responsible_id"/>
+            <field name="done"/>
+            <field name="completed_at"/>
+        </view>
+        <action id="action_fiscal_years" type="window" model="account.fiscal.year" name="Fiscal Years" view_mode="list,form"/>
+        <action id="action_periods" type="window" model="account.period" name="Accounting Periods" view_mode="list,form"/>
+        <action id="action_period_close_runs" type="window" model="account.period.close.run" name="Period Close Runs" view_mode="list,form"/>
+        <action id="action_period_close_tasks" type="window" model="account.period.close.task" name="Close Checklist" view_mode="list,form"/>
+    </data>
+</nexa>

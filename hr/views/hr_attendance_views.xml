@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hr_attendance_list" model="hr.attendance" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="check_in" widget="datetime" string="Check In"/>
+            <field name="check_out" widget="datetime" string="Check Out"/>
+            <field name="worked_hours" string="Worked Hours"/>
+            <field name="status" widget="badge" string="Status"/>
+        </view>
+        <view id="view_hr_attendance_form" model="hr.attendance" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Attendance">
+                        <field name="employee_id" string="Employee"/>
+                        <field name="check_in" widget="datetime" string="Check In"/>
+                        <field name="check_out" widget="datetime" string="Check Out"/>
+                    </group>
+                    <group string="Summary">
+                        <field name="worked_hours" string="Worked Hours"/>
+                        <field name="shift_id" string="Shift"/>
+                        <field name="status" string="Status"/>
+                        <field name="minutes_late" string="Late (min)"/>
+                        <field name="minutes_early" string="Early (min)"/>
+                        <field name="missing_punch" string="Missing Punch"/>
+                        <field name="corrected" string="Corrected"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_hr_attendance_search" model="hr.attendance" type="search">
+            <field name="employee_id" string="Employee"/>
+            <field name="shift_id" string="Shift"/>
+            <filter name="exc_late" string="Late" domain='[["status","in","late,late_and_early"]]'/>
+            <filter name="exc_early" string="Early Leave" domain='[["status","in","early_leave,late_and_early"]]'/>
+            <filter name="exc_missing" string="Missing Punch" domain='[["missing_punch","=",true]]'/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_status" string="Status" group_by="status"/>
+        </view>
+        <action id="action_hr_attendance" type="window" model="hr.attendance" name="Attendances" view_mode="list,form"/>
+    </data>
+</nexa>

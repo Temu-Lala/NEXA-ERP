@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ===================== Employment History ===================== -->
+
+        <view id="view_employment_history_list" model="hr.employment.history" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="department_id" string="Department"/>
+            <field name="job_id" string="Position"/>
+            <field name="manager_id" string="Manager"/>
+            <field name="cost_center" string="Cost Center"/>
+            <field name="work_location" string="Location"/>
+            <field name="grade_name" string="Grade"/>
+            <field name="valid_from" string="Valid From" widget="date"/>
+            <field name="valid_to" string="Valid To" widget="date"/>
+            <field name="reason" widget="badge" string="Reason"/>
+            <field name="is_current" string="Current"/>
+        </view>
+        <view id="view_employment_history_form" model="hr.employment.history" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Employee">
+                        <field name="employee_id"/>
+                        <field name="department_id"/>
+                        <field name="job_id"/>
+                        <field name="manager_id"/>
+                        <field name="grade_name"/>
+                    </group>
+                    <group string="Placement">
+                        <field name="employment_type"/>
+                        <field name="work_location"/>
+                        <field name="cost_center"/>
+                        <field name="company_id"/>
+                        <field name="is_current"/>
+                    </group>
+                </group>
+                <group col="2" string="Validity">
+                    <field name="valid_from" widget="date"/>
+                    <field name="valid_to" widget="date"/>
+                    <field name="reason"/>
+                </group>
+                <group string="Note">
+                    <field name="change_note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_employment_history_search" model="hr.employment.history" type="search">
+            <field name="employee_id" string="Employee"/>
+            <field name="department_id" string="Department"/>
+            <field name="manager_id" string="Manager"/>
+            <filter name="current_only" string="Current Placement" domain='[["valid_to","=",""]]'/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_department" string="Department" group_by="department_id"/>
+            <filter name="group_manager" string="Manager" group_by="manager_id"/>
+            <filter name="group_reason" string="Reason" group_by="reason"/>
+        </view>
+
+        <!-- ===================== Job Grades & Salary Bands ===================== -->
+
+        <view id="view_job_grade_list" model="hr.job.grade" type="list">
+            <field name="name" string="Grade"/>
+            <field name="code" string="Code"/>
+            <field name="level" string="Level"/>
+            <field name="salary_min" string="Band Min"/>
+            <field name="salary_mid" string="Band Mid"/>
+            <field name="salary_max" string="Band Max"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_job_grade_form" model="hr.job.grade" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Definition">
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="level"/>
+                        <field name="active"/>
+                    </group>
+                    <group string="Salary Band">
+                        <field name="salary_min"/>
+                        <field name="salary_mid"/>
+                        <field name="salary_max"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+
+        <!-- ===================== Employee Relationships ===================== -->
+
+        <view id="view_employee_relationship_list" model="hr.employee.relationship" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="name" string="Name"/>
+            <field name="kind" widget="badge" string="Kind"/>
+            <field name="relation" string="Relationship"/>
+            <field name="phone" string="Phone"/>
+            <field name="email" string="Email"/>
+            <field name="is_primary" string="Primary"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_employee_relationship_form" model="hr.employee.relationship" type="form">
+            <sheet>
+                <group col="2">
+                    <group string="Person">
+                        <field name="employee_id"/>
+                        <field name="name"/>
+                        <field name="kind"/>
+                        <field name="relation"/>
+                        <field name="birth_date" widget="date"/>
+                    </group>
+                    <group string="Contact">
+                        <field name="phone" widget="phone"/>
+                        <field name="email" widget="email"/>
+                        <field name="is_primary"/>
+                        <field name="company_id"/>
+                        <field name="active"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="notes" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_employee_relationship_search" model="hr.employee.relationship" type="search">
+            <field name="employee_id" string="Employee"/>
+            <field name="name" string="Name"/>
+            <filter name="dependents" string="Dependents" domain='[["kind","=","dependent"]]'/>
+            <filter name="emergency" string="Emergency Contacts" domain='[["kind","=","emergency_contact"]]'/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_kind" string="Kind" group_by="kind"/>
+            <filter name="group_relation" string="Relationship" group_by="relation"/>
+        </view>
+
+        <!-- ===================== Expiry Alerts ===================== -->
+
+        <view id="view_expiry_alert_list" model="hr.expiry.alert" type="list">
+            <field name="due_date" string="Due Date" widget="date"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="alert_type" widget="badge" string="Type"/>
+            <field name="reference" string="Reference"/>
+            <field name="message" string="Detail"/>
+            <field name="state" widget="badge" string="Status"/>
+        </view>
+        <view id="view_expiry_alert_form" model="hr.expiry.alert" type="form">
+            <sheet>
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+                </header>
+                <group col="2">
+                    <group string="Alert">
+                        <field name="employee_id"/>
+                        <field name="alert_type"/>
+                        <field name="reference"/>
+                        <field name="due_date" widget="date"/>
+                    </group>
+                    <group string="Tracking">
+                        <field name="state"/>
+                        <field name="detected_at"/>
+                        <field name="company_id"/>
+                    </group>
+                </group>
+                <group string="Message">
+                    <field name="message" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_expiry_alert_search" model="hr.expiry.alert" type="search">
+            <field name="employee_id" string="Employee"/>
+            <field name="reference" string="Reference"/>
+            <filter name="open_alerts" string="Open" domain='[["state","=","open"]]'/>
+            <filter name="group_type" string="Type" group_by="alert_type"/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+        </view>
+
+        <!-- ===================== Actions ===================== -->
+
+        <action id="action_employment_history" type="window" model="hr.employment.history" name="Employment History" view_mode="list,search,form"/>
+        <action id="action_job_grade" type="window" model="hr.job.grade" name="Job Grades &amp; Salary Bands" view_mode="list,form"/>
+        <action id="action_employee_relationship" type="window" model="hr.employee.relationship" name="Dependents &amp; Contacts" view_mode="list,search,form"/>
+        <action id="action_expiry_alert" type="window" model="hr.expiry.alert" name="Expiry Alerts" view_mode="list,search,form"/>
+    </data>
+</nexa>

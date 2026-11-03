@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Account Profile -->
+        <view id="view_crm_account_profile_list" model="crm.account.profile" type="list">
+            <field name="partner_id" string="Account"/>
+            <field name="code" string="Code"/>
+            <field name="segment" string="Segment"/>
+            <field name="industry" string="Industry"/>
+            <field name="size" string="Size"/>
+            <field name="region" string="Region"/>
+            <field name="account_manager_id" string="Account Manager"/>
+            <field name="lifecycle" string="Lifecycle"/>
+            <field name="health_score" string="Health"/>
+        </view>
+        <view id="view_crm_account_profile_form" model="crm.account.profile" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="partner_id" placeholder="Account"/></h1></div>
+                <group>
+                    <group string="Identity">
+                        <field name="partner_id" string="Account"/>
+                        <field name="code" string="Account Code"/>
+                        <field name="segment" string="Segment"/>
+                        <field name="industry" string="Industry"/>
+                        <field name="size" string="Company Size"/>
+                        <field name="region" string="Region"/>
+                        <field name="website" string="Website"/>
+                    </group>
+                    <group string="Relationship">
+                        <field name="account_manager_id" string="Account Manager"/>
+                        <field name="lifecycle" string="Lifecycle"/>
+                        <field name="health_score" string="Health Score"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <group string="Tags">
+                    <field name="tag_link_ids" nolimit="true">
+                        <list>
+                            <field name="tag_id" string="Tag"/>
+                        </list>
+                    </field>
+                </group>
+                <group string="Health">
+                    <field name="health_notes" string="Health Rationale"/>
+                    <field name="notes" string="Notes"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_account_profile" type="window" model="crm.account.profile" name="Accounts" view_mode="list,form"/>
+
+        <!-- Account Tag -->
+        <view id="view_crm_account_tag_list" model="crm.account.tag" type="list">
+            <field name="name" string="Name"/>
+            <field name="color" string="Color"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_crm_account_tag_form" model="crm.account.tag" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Strategic"/></h1></div>
+                <group>
+                    <field name="color" string="Color Index"/>
+                    <field name="active" string="Active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_account_tag" type="window" model="crm.account.tag" name="Account Tags" view_mode="list,form"/>
+
+        <!-- Segment -->
+        <view id="view_crm_account_segment_list" model="crm.account.segment" type="list">
+            <field name="name" string="Name"/>
+            <field name="criteria_type" string="Criteria"/>
+            <field name="criteria_value" string="Value"/>
+            <field name="member_count" string="Members"/>
+            <field name="dynamic" string="Dynamic"/>
+            <field name="owner_id" string="Owned By"/>
+        </view>
+        <view id="view_crm_account_segment_form" model="crm.account.segment" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Enterprise - Manufacturing"/></h1></div>
+                <group>
+                    <group>
+                        <field name="criteria_type" string="Criteria Type"/>
+                        <field name="criteria_value" string="Criteria Value"/>
+                        <field name="dynamic" string="Dynamic"/>
+                    </group>
+                    <group>
+                        <field name="member_count" string="Members"/>
+                        <field name="owner_id" string="Owned By"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_crm_account_segment" type="window" model="crm.account.segment" name="Customer Segments" view_mode="list,form"/>
+
+        <!-- Renewal -->
+        <view id="view_crm_account_renewal_list" model="crm.account.renewal" type="list">
+            <field name="name" string="Reference"/>
+            <field name="profile_id" string="Account"/>
+            <field name="renewal_date" string="Renewal Date"/>
+            <field name="contract_value" string="Contract Value"/>
+            <field name="probability" string="Probability"/>
+            <field name="status" string="Status"/>
+            <field name="owner_id" string="Responsible"/>
+        </view>
+        <view id="view_crm_account_renewal_form" model="crm.account.renewal" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. RENEW-2026-01"/></h1></div>
+                <group>
+                    <group>
+                        <field name="profile_id" string="Account"/>
+                        <field name="renewal_date" string="Renewal Date"/>
+                        <field name="contract_value" string="Contract Value"/>
+                        <field name="probability" string="Renewal Probability (%)"/>
+                    </group>
+                    <group>
+                        <field name="status" string="Status"/>
+                        <field name="owner_id" string="Responsible"/>
+                        <field name="company_id" string="Company"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                </group>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_crm_account_renewal" type="window" model="crm.account.renewal" name="Renewals" view_mode="list,form"/>
+    </data>
+</nexa>

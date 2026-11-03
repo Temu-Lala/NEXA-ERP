@@ -1,0 +1,17 @@
+{
+    "name": "helpdesk_channel",
+    "display_name": "Helpdesk Omnichannel & Routing",
+    "version": "1.0.0",
+    "summary": "Channel adapters, unified inbox, saved views and intelligent routing",
+    "description": "Normalises inbound events from email, portal, chat, forms, API and monitoring into the single helpdesk ticket model with duplicate detection and bounded delivery retries; adds personal/shared saved views, capacity-aware routing rules with a scheduled auto-router and dry-run testing, plus agent availability tracking.",
+    "author": "Nexa",
+    "depends": ["base", "helpdesk"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/channel_cron.xml"
+    ],
+    "application": false,
+    "category": "Services"
+}

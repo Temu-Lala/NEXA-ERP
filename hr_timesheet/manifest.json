@@ -1,0 +1,16 @@
+{
+    "name": "hr_timesheet",
+    "display_name": "Timesheets",
+    "version": "1.0.0",
+    "summary": "Employee timesheets with billable project time",
+    "description": "Daily/weekly timesheet lines allocated to project and task, with billable flag, hours and approval state. Bridges the workforce (hr) and Projects modules and feeds project costing.",
+    "author": "Nexa",
+    "depends": ["base", "hr", "project"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Human Resources"
+}

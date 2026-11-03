@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Downtime Category List & Form                                     -->
+        <!-- ================================================================ -->
+        <view id="view_maint_downtime_category_list" model="maintenance.downtime.category" type="list">
+            <field name="code" string="Code"/>
+            <field name="name" string="Name"/>
+            <field name="downtime_cat" string="Category"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_downtime_category_form" model="maintenance.downtime.category" type="form">
+            <sheet>
+                <group>
+                    <field name="name" string="Category Name"/>
+                    <field name="code" string="Code"/>
+                    <field name="downtime_cat" string="Downtime Category"/>
+                    <field name="active" string="Active"/>
+                </group>
+                <separator string="Description"/>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_maint_downtime_category" type="window" model="maintenance.downtime.category" name="Downtime Categories" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Downtime Event V2 List, Form, Search, Action                      -->
+        <!-- ================================================================ -->
+        <view id="view_maint_downtime_v2_search" model="maintenance.downtime.v2" type="search">
+            <filter name="stopped_line" string="Production Line Stopped" domain='[["production_line_stopped","=",true]]'/>
+            <filter name="group_asset" string="By Asset" group_by="asset_id"/>
+            <filter name="group_category" string="By Category" group_by="category_id"/>
+        </view>
+        <view id="view_maint_downtime_v2_list" model="maintenance.downtime.v2" type="list">
+            <field name="name" string="Name"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="category_id" string="Category"/>
+            <field name="start_time" string="Start"/>
+            <field name="end_time" string="End"/>
+            <field name="total_duration_hours" string="Total (hrs)"/>
+            <field name="production_line_stopped" string="Line Stopped" widget="boolean_toggle"/>
+            <field name="lost_production_qty" string="Lost Qty"/>
+            <field name="lost_production_unit" string="Unit"/>
+            <field name="estimated_loss_cost" string="Est. Loss ($)"/>
+        </view>
+        <view id="view_maint_downtime_v2_form" model="maintenance.downtime.v2" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="DT-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Event Context">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="category_id" string="Downtime Category"/>
+                        <field name="work_order_id" string="Work Order"/>
+                        <field name="downtime_event_id" string="Base Downtime Event"/>
+                    </group>
+                    <group string="Duration Breakdown">
+                        <field name="start_time" string="Start Time"/>
+                        <field name="end_time" string="End Time"/>
+                        <field name="total_duration_hours" string="Total Duration (hrs)"/>
+                        <field name="repair_duration_hours" string="Active Repair (hrs)"/>
+                        <field name="waiting_for_parts_hours" string="Waiting for Parts (hrs)"/>
+                        <field name="waiting_for_tech_hours" string="Waiting for Tech (hrs)"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Production Impact">
+                        <group>
+                            <field name="production_line_stopped" string="Production Line Stopped"/>
+                            <field name="production_line_ref" string="Line Reference"/>
+                            <field name="lost_production_qty" string="Lost Production Qty"/>
+                            <field name="lost_production_unit" string="Unit"/>
+                            <field name="estimated_loss_cost" string="Estimated Cost of Loss"/>
+                        </group>
+                    </page>
+                    <page string="Return to Service">
+                        <group>
+                            <group string="Operations Approval">
+                                <field name="operations_approved_by" string="Approved By"/>
+                                <field name="operations_approved_at" string="Approved At"/>
+                            </group>
+                            <group string="Release &amp; Restart">
+                                <field name="return_to_service_by" string="Released By"/>
+                                <field name="return_to_service_at" string="Released At"/>
+                                <field name="restart_checks_required" string="Restart Checks Req."/>
+                                <field name="restart_checks_completed" string="Restart Checks Done"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" string="Notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <action id="action_maint_downtime_v2" type="window" model="maintenance.downtime.v2" name="Downtime Events" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Condition Rule List & Form                                        -->
+        <!-- ================================================================ -->
+        <view id="view_maint_condition_rule_list" model="maintenance.condition.rule" type="list">
+            <field name="name" string="Rule"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="asset_category_id" string="Category"/>
+            <field name="parameter_name" string="Parameter"/>
+            <field name="operator" string="Op"/>
+            <field name="threshold_value" string="Threshold"/>
+            <field name="unit" string="Unit"/>
+            <field name="alert_severity" string="Severity"/>
+            <field name="active" string="Active" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_condition_rule_form" model="maintenance.condition.rule" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Rule Name..."/></h1>
+                </div>
+                <group>
+                    <group string="Scope">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="asset_category_id" string="Asset Category"/>
+                        <field name="parameter_name" string="Parameter Name"/>
+                        <field name="unit" string="Unit"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group string="Condition &amp; Threshold">
+                        <field name="operator" string="Operator"/>
+                        <field name="threshold_value" string="Threshold Value"/>
+                        <field name="hysteresis_value" string="Hysteresis Value"/>
+                        <field name="debounce_minutes" string="Debounce (min)"/>
+                        <field name="alert_severity" string="Alert Severity"/>
+                        <field name="create_maintenance_alert" string="Create Maintenance Alert"/>
+                        <field name="maintenance_priority" string="Maintenance Priority"/>
+                    </group>
+                </group>
+                <separator string="Alert Message"/>
+                <field name="alert_message" string="Alert Message"/>
+            </sheet>
+        </view>
+        <action id="action_maint_condition_rule" type="window" model="maintenance.condition.rule" name="Condition Rules" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Condition Reading List, Form, Search, Action                      -->
+        <!-- ================================================================ -->
+        <view id="view_maint_condition_reading_search" model="maintenance.condition.reading" type="search">
+            <filter name="alerts" string="Triggered Alert" domain='[["triggered_alert","=",true]]'/>
+            <filter name="manual" string="Manual" domain='[["source","=","manual"]]'/>
+            <filter name="sensor" string="Sensor" domain='[["source","=","sensor"]]'/>
+            <filter name="group_asset" string="By Asset" group_by="asset_id"/>
+            <filter name="group_parameter" string="By Parameter" group_by="parameter_name"/>
+        </view>
+        <view id="view_maint_condition_reading_list" model="maintenance.condition.reading" type="list">
+            <field name="reading_time" string="Time"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="parameter_name" string="Parameter"/>
+            <field name="value" string="Value"/>
+            <field name="unit" string="Unit"/>
+            <field name="source" string="Source"/>
+            <field name="triggered_alert" string="Alert" widget="boolean_toggle"/>
+        </view>
+        <view id="view_maint_condition_reading_form" model="maintenance.condition.reading" type="form">
+            <sheet>
+                <group>
+                    <group string="Reading">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="rule_id" string="Condition Rule"/>
+                        <field name="parameter_name" string="Parameter Name"/>
+                        <field name="reading_time" string="Reading Time"/>
+                        <field name="value" string="Measured Value"/>
+                        <field name="unit" string="Unit"/>
+                    </group>
+                    <group string="Origin &amp; Alert">
+                        <field name="source" string="Source"/>
+                        <field name="external_ref" string="External Reference"/>
+                        <field name="triggered_alert" string="Triggered Alert"/>
+                        <field name="alert_id" string="Resulting Alert"/>
+                        <field name="recorded_by" string="Recorded By"/>
+                    </group>
+                </group>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_condition_reading" type="window" model="maintenance.condition.reading" name="Condition Readings" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Condition Alert List, Form, Search, Action                        -->
+        <!-- ================================================================ -->
+        <view id="view_maint_condition_alert_search" model="maintenance.condition.alert" type="search">
+            <filter name="active" string="Active" domain='[["state","=","active"]]'/>
+            <filter name="acknowledged" string="Acknowledged" domain='[["state","=","acknowledged"]]'/>
+            <filter name="resolved" string="Resolved" domain='[["state","=","resolved"]]'/>
+            <filter name="critical" string="Critical" domain='[["alert_severity","=","critical"]]'/>
+            <filter name="group_asset" string="By Asset" group_by="asset_id"/>
+            <filter name="group_severity" string="By Severity" group_by="alert_severity"/>
+            <filter name="group_state" string="By Status" group_by="state"/>
+        </view>
+        <view id="view_maint_condition_alert_list" model="maintenance.condition.alert" type="list">
+            <field name="name" string="Alert"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="parameter_name" string="Parameter"/>
+            <field name="alert_severity" string="Severity"/>
+            <field name="state" string="Status"/>
+            <field name="alert_time" string="Triggered"/>
+            <field name="triggered_value" string="Value"/>
+            <field name="threshold_value" string="Threshold"/>
+            <field name="unit" string="Unit"/>
+            <field name="acknowledged_by" string="Ack By"/>
+        </view>
+        <view id="view_maint_condition_alert_form" model="maintenance.condition.alert" type="form">
+            <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="ALT-0001"/></h1>
+                </div>
+                <group>
+                    <group string="Alert Details">
+                        <field name="asset_id" string="Asset"/>
+                        <field name="rule_id" string="Condition Rule"/>
+                        <field name="alert_severity" string="Severity"/>
+                        <field name="state" string="Status"/>
+                        <field name="alert_time" string="Alert Time"/>
+                        <field name="resolved_time" string="Resolved Time"/>
+                    </group>
+                    <group string="Measurements">
+                        <field name="parameter_name" string="Parameter"/>
+                        <field name="triggered_value" string="Triggered Value"/>
+                        <field name="threshold_value" string="Threshold Value"/>
+                        <field name="unit" string="Unit"/>
+                        <field name="work_order_id" string="Associated Work Order"/>
+                    </group>
+                </group>
+                <group string="Resolution &amp; Suppression">
+                    <field name="acknowledged_by" string="Acknowledged By"/>
+                    <field name="acknowledged_at" string="Acknowledged At"/>
+                    <field name="resolved_by" string="Resolved By"/>
+                    <field name="suppressed_until" string="Suppressed Until"/>
+                </group>
+                <separator string="Alert Message"/>
+                <field name="alert_message" string="Alert Message"/>
+                <separator string="Notes"/>
+                <field name="notes" string="Notes"/>
+            </sheet>
+        </view>
+        <action id="action_maint_condition_alert" type="window" model="maintenance.condition.alert" name="Condition Alerts" view_mode="list,form"/>
+    </data>
+</nexa>

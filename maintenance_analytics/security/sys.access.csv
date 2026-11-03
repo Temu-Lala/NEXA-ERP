@@ -1,0 +1,7 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_maint_wo_history_user,access_maint_wo_history_user,maintenance.wo.history,,1,1,1,1
+access_maint_reliability_metric_user,access_maint_reliability_metric_user,maintenance.reliability.metric,,1,1,1,1
+access_maint_rca_user,access_maint_rca_user,maintenance.rca,,1,1,1,1
+access_maint_corrective_action_user,access_maint_corrective_action_user,maintenance.corrective.action,,1,1,1,1
+access_maint_rca_wo_link_user,access_maint_rca_wo_link_user,maintenance.rca.wo.link,,1,1,1,1
+access_maint_cost_summary_user,access_maint_cost_summary_user,maintenance.cost.summary,,1,1,1,1

@@ -1,0 +1,16 @@
+{
+    "name": "website_shop_promotion",
+    "display_name": "E-Commerce Promotions",
+    "version": "1.0.0",
+    "summary": "Promotions, rule engine, coupon codes, and redemption tracking",
+    "description": "Commercial controls on top of the E-Commerce anchor: percentage/fixed/free-shipping/customer-group promotions with eligibility rules, stacking/priority, usage and per-customer budgets, coupon codes, and redemption tracking against carts and checkouts. Campaigns run without modifying product master data.",
+    "author": "Nexa",
+    "depends": ["base", "website_shop", "website_shop_cart", "website_shop_checkout"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Website"
+}

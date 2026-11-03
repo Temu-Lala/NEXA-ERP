@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Grading scales -->
+        <view id="view_school_grading_scale_list" model="school.grading.scale" type="list">
+            <field name="name" string="Name"/>
+            <field name="code" string="Code"/>
+            <field name="academic_year_id" string="Academic Year"/>
+            <field name="pass_percentage" string="Pass %"/>
+            <field name="is_default" string="Default"/>
+            <field name="band_count" string="Bands"/>
+        </view>
+        <view id="view_school_grading_scale_form" model="school.grading.scale" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Standard 4.0 GPA"/></h1></div>
+                <group>
+                    <group string="Scheme">
+                        <field name="code"/>
+                        <field name="academic_year_id"/>
+                        <field name="pass_percentage"/>
+                        <field name="is_default"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Bands">
+                        <field name="bands" nolabel="1">
+                            <list editable="bottom">
+                                <field name="sequence"/>
+                                <field name="min_percentage"/>
+                                <field name="max_percentage"/>
+                                <field name="grade"/>
+                                <field name="grade_points"/>
+                                <field name="remark"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_grading_scale" type="window" model="school.grading.scale" name="Grading Scales" view_mode="list,form"/>
+
+        <!-- Exams -->
+        <view id="view_school_exam_list" model="school.exam" type="list">
+            <field name="name" string="Exam"/>
+            <field name="exam_type" string="Type"/>
+            <field name="subject_id" string="Subject"/>
+            <field name="class_id" string="Class"/>
+            <field name="section_id" string="Section"/>
+            <field name="term_id" string="Term"/>
+            <field name="exam_date" string="Date"/>
+            <field name="state" string="Status"/>
+            <field name="score_count" string="Scores"/>
+            <field name="avg_pct" string="Avg %"/>
+        </view>
+        <view id="view_school_exam_form" model="school.exam" type="form">
+            <header>
+                <button name="exam_schedule" string="Schedule" type="object"/>
+                <button name="exam_conduct" string="Mark Conducted" type="object"/>
+                <button name="exam_publish" string="Publish Results" type="object" class="sum_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Term 1 Mathematics Final"/></h1></div>
+                <group>
+                    <group string="Assessment">
+                        <field name="exam_type"/>
+                        <field name="subject_id"/>
+                        <field name="class_id"/>
+                        <field name="section_id"/>
+                        <field name="academic_year_id"/>
+                        <field name="term_id"/>
+                    </group>
+                    <group string="Marking">
+                        <field name="exam_date"/>
+                        <field name="max_marks"/>
+                        <field name="weight"/>
+                        <field name="scale_id"/>
+                        <field name="score_count" readonly="true"/>
+                        <field name="avg_pct" readonly="true"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Scores">
+                        <field name="scores" nolabel="1">
+                            <list editable="bottom">
+                                <field name="student_id"/>
+                                <field name="marks_obtained"/>
+                                <field name="absent"/>
+                                <field name="percentage"/>
+                                <field name="grade"/>
+                                <field name="grade_points"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_exam" type="window" model="school.exam" name="Exams" view_mode="list,form"/>
+
+        <!-- Gradebook (scores) -->
+        <view id="view_school_exam_score_list" model="school.exam.score" type="list">
+            <field name="exam_id" string="Exam"/>
+            <field name="student_id" string="Student"/>
+            <field name="marks_obtained" string="Marks"/>
+            <field name="absent" string="Absent"/>
+            <field name="percentage" string="%"/>
+            <field name="grade" string="Grade"/>
+            <field name="grade_points" string="Points"/>
+        </view>
+        <view id="view_school_exam_score_form" model="school.exam.score" type="form">
+            <sheet>
+                <group>
+                    <group string="Entry">
+                        <field name="exam_id"/>
+                        <field name="student_id"/>
+                        <field name="marks_obtained"/>
+                        <field name="absent"/>
+                    </group>
+                    <group string="Result">
+                        <field name="percentage" readonly="true"/>
+                        <field name="grade" readonly="true"/>
+                        <field name="grade_points" readonly="true"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="remarks"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_exam_score" type="window" model="school.exam.score" name="Gradebook" view_mode="list,form"/>
+
+        <!-- Report cards -->
+        <view id="view_school_report_card_list" model="school.report.card" type="list">
+            <field name="student_id" string="Student"/>
+            <field name="academic_year_id" string="Academic Year"/>
+            <field name="term_id" string="Term"/>
+            <field name="section_id" string="Section"/>
+            <field name="overall_pct" string="Overall %"/>
+            <field name="gpa" string="GPA"/>
+            <field name="overall_grade" string="Grade"/>
+            <field name="class_rank" string="Rank"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_report_card_form" model="school.report.card" type="form">
+            <header>
+                <button name="report_generate" string="Generate" type="object"/>
+                <button name="report_submit" string="Submit" type="object"/>
+                <button name="report_approve" string="Approve" type="object" class="sum_highlight"/>
+                <button name="report_reject" string="Reject" type="object"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Learner">
+                        <field name="student_id"/>
+                        <field name="academic_year_id"/>
+                        <field name="term_id"/>
+                        <field name="class_id"/>
+                        <field name="section_id"/>
+                        <field name="scale_id"/>
+                    </group>
+                    <group string="Summary">
+                        <field name="subject_count" readonly="true"/>
+                        <field name="total_marks" readonly="true"/>
+                        <field name="obtained_marks" readonly="true"/>
+                        <field name="overall_pct" readonly="true"/>
+                        <field name="gpa" readonly="true"/>
+                        <field name="overall_grade" readonly="true"/>
+                        <field name="class_rank" readonly="true"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Subjects">
+                        <field name="lines" nolabel="1">
+                            <list>
+                                <field name="subject_id"/>
+                                <field name="max_marks"/>
+                                <field name="obtained_marks"/>
+                                <field name="percentage"/>
+                                <field name="grade"/>
+                                <field name="grade_points"/>
+                                <field name="weight"/>
+                                <field name="remark"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Remarks">
+                        <field name="remarks" nolabel="1"/>
+                        <field name="approved_by_id"/>
+                        <field name="approve_date"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="notes"/>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_report_card" type="window" model="school.report.card" name="Report Cards" view_mode="list,form"/>
+
+        <!-- Transcripts -->
+        <view id="view_school_transcript_list" model="school.transcript" type="list">
+            <field name="student_id" string="Student"/>
+            <field name="title" string="Title"/>
+            <field name="total_credits" string="Credits"/>
+            <field name="cumulative_gpa" string="CGPA"/>
+            <field name="overall_grade" string="Grade"/>
+            <field name="certificate_no" string="Certificate No"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_school_transcript_form" model="school.transcript" type="form">
+            <header>
+                <button name="transcript_generate" string="Generate" type="object"/>
+                <button name="transcript_issue" string="Issue" type="object" class="sum_highlight"/>
+                <field name="state" widget="statusbar"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="title"/></h1></div>
+                <group>
+                    <group string="Learner">
+                        <field name="student_id"/>
+                        <field name="scale_id"/>
+                    </group>
+                    <group string="Outcome">
+                        <field name="total_credits" readonly="true"/>
+                        <field name="cumulative_gpa" readonly="true"/>
+                        <field name="overall_grade" readonly="true"/>
+                        <field name="issue_date"/>
+                        <field name="certificate_no"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Courses">
+                        <field name="lines" nolabel="1">
+                            <list>
+                                <field name="academic_year_id"/>
+                                <field name="term_id"/>
+                                <field name="subject_id"/>
+                                <field name="credits"/>
+                                <field name="percentage"/>
+                                <field name="grade"/>
+                                <field name="grade_points"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </page>
+                </notebook>
+                <group>
+                    <field name="company_id"/>
+                    <field name="active"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_school_transcript" type="window" model="school.transcript" name="Transcripts" view_mode="list,form"/>
+    </data>
+</nexa>

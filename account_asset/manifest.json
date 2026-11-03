@@ -1,0 +1,16 @@
+{
+    "name": "account_asset",
+    "display_name": "Asset Depreciation",
+    "version": "1.0.0",
+    "summary": "Depreciation books, schedules, runs, and asset disposals",
+    "description": "Deep fixed-asset accounting on top of the account anchor: financial and tax depreciation books with configurable methods and conventions, generated depreciation schedules, period depreciation runs, and disposals with gain/loss capture.",
+    "author": "Nexa",
+    "depends": ["base", "account"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Accounting"
+}

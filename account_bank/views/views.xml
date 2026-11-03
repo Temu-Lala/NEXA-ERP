@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_cash_session_list" model="account.cash.session" type="list">
+            <field name="name"/>
+            <field name="journal_id"/>
+            <field name="cashier_id"/>
+            <field name="opening_date"/>
+            <field name="closing_date"/>
+            <field name="computed_balance"/>
+            <field name="counted_balance"/>
+            <field name="difference"/>
+            <field name="state"/>
+        </view>
+        <view id="view_cash_session_form" model="account.cash.session" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="journal_id"/>
+                        <field name="company_id"/>
+                        <field name="cashier_id"/>
+                        <field name="state"/>
+                    </group>
+                    <group>
+                        <field name="opening_date"/>
+                        <field name="closing_date"/>
+                        <field name="opening_balance"/>
+                        <field name="computed_balance"/>
+                        <field name="counted_balance"/>
+                        <field name="difference"/>
+                    </group>
+                </group>
+                <group string="Moves">
+                    <field name="moves" nolabel="1"/>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_cash_move_list" model="account.cash.move" type="list">
+            <field name="date"/>
+            <field name="session_id"/>
+            <field name="type"/>
+            <field name="payment_method"/>
+            <field name="amount"/>
+            <field name="reference"/>
+        </view>
+        <view id="view_cash_move_form" model="account.cash.move" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="session_id"/>
+                        <field name="date"/>
+                        <field name="type"/>
+                        <field name="payment_method"/>
+                    </group>
+                    <group>
+                        <field name="amount"/>
+                        <field name="counterparty_account_id"/>
+                        <field name="reference"/>
+                        <field name="move_line_id"/>
+                    </group>
+                </group>
+                <group string="Description">
+                    <field name="description" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_stmt_import_list" model="account.bank.statement.import" type="list">
+            <field name="name"/>
+            <field name="bank_journal_id"/>
+            <field name="format"/>
+            <field name="imported_at"/>
+            <field name="line_count"/>
+            <field name="matched_count"/>
+            <field name="unmatched_count"/>
+            <field name="state"/>
+        </view>
+        <view id="view_stmt_import_form" model="account.bank.statement.import" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="bank_journal_id"/>
+                        <field name="format"/>
+                        <field name="statement_id"/>
+                    </group>
+                    <group>
+                        <field name="imported_at"/>
+                        <field name="state"/>
+                        <field name="line_count"/>
+                        <field name="matched_count"/>
+                        <field name="unmatched_count"/>
+                    </group>
+                </group>
+                <group string="Raw Data">
+                    <field name="raw_data" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_settlement_list" model="account.provider.settlement" type="list">
+            <field name="name"/>
+            <field name="provider"/>
+            <field name="period_date_from"/>
+            <field name="period_date_to"/>
+            <field name="gross_amount"/>
+            <field name="fee_amount"/>
+            <field name="net_amount"/>
+            <field name="state"/>
+        </view>
+        <view id="view_settlement_form" model="account.provider.settlement" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="provider"/>
+                        <field name="period_date_from"/>
+                        <field name="period_date_to"/>
+                        <field name="currency_id"/>
+                    </group>
+                    <group>
+                        <field name="gross_amount"/>
+                        <field name="fee_amount"/>
+                        <field name="net_amount"/>
+                        <field name="clearing_account_id"/>
+                        <field name="bank_account_id"/>
+                        <field name="state"/>
+                        <field name="journal_entry_id"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_cash_sessions" type="window" model="account.cash.session" name="Cash Sessions" view_mode="list,form"/>
+        <action id="action_cash_moves" type="window" model="account.cash.move" name="Cash Movements" view_mode="list,form"/>
+        <action id="action_stmt_imports" type="window" model="account.bank.statement.import" name="Statement Imports" view_mode="list,form"/>
+        <action id="action_settlements" type="window" model="account.provider.settlement" name="Provider Settlements" view_mode="list,form"/>
+    </data>
+</nexa>

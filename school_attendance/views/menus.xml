@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="school_menu_attendance_root" name="Attendance" parent="school.school_menu_root" sequence="12" web_icon="calendar-check" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_attendance_session" name="Sessions" parent="school_menu_attendance_root" action="school_attendance.action_school_attendance_session" sequence="1" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_absence_alert" name="Absence Alerts" parent="school_menu_attendance_root" action="school_attendance.action_school_absence_alert" sequence="2" groups="school.group_school_clerk"/>
+        <menuitem id="school_menu_attendance_correction" name="Corrections" parent="school_menu_attendance_root" action="school_attendance.action_school_attendance_correction" sequence="3" groups="school.group_school_manager"/>
+    </data>
+</nexa>

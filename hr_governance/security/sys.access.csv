@@ -1,0 +1,11 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_setting_user,access_setting_user,hr.setting,hr.group_hr_user,1,0,0,0
+access_setting_manager,access_setting_manager,hr.setting,hr.group_hr_manager,1,1,1,1
+access_parameter_user,access_parameter_user,hr.parameter,hr.group_hr_user,1,0,0,0
+access_parameter_manager,access_parameter_manager,hr.parameter,hr.group_hr_manager,1,1,1,1
+access_approval_policy_user,access_approval_policy_user,hr.approval.policy,hr.group_hr_user,1,0,0,0
+access_approval_policy_manager,access_approval_policy_manager,hr.approval.policy,hr.group_hr_manager,1,1,1,1
+access_approval_level_user,access_approval_level_user,hr.approval.level,hr.group_hr_user,1,0,0,0
+access_approval_level_manager,access_approval_level_manager,hr.approval.level,hr.group_hr_manager,1,1,1,1
+access_integration_user,access_integration_user,hr.integration.setting,hr.group_hr_user,1,0,0,0
+access_integration_manager,access_integration_manager,hr.integration.setting,hr.group_hr_manager,1,1,1,1

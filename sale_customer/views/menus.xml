@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="sale_menu_customer_root" name="Customers &amp; Teams" parent="sale.sale_menu_root" sequence="20" web_icon="users" groups="sale.group_sale_user"/>
+        <menuitem id="sale_menu_customer_profile" name="Customer Profiles" parent="sale_menu_customer_root" action="sale_customer.action_sale_customer_profile" sequence="1" groups="sale.group_sale_user"/>
+        <menuitem id="sale_menu_team" name="Sales Teams" parent="sale_menu_customer_root" action="sale_customer.action_sale_team" sequence="2" groups="sale.group_sale_manager"/>
+        <menuitem id="sale_menu_team_member" name="Team Members" parent="sale_menu_customer_root" action="sale_customer.action_sale_team_member" sequence="3" groups="sale.group_sale_manager"/>
+    </data>
+</nexa>

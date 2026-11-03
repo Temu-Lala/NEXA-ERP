@@ -1,0 +1,21 @@
+{
+    "name": "school_governance",
+    "display_name": "School Governance",
+    "version": "1.0.0",
+    "summary": "Effective-dated governance policies with typed parameters, an approval workflow with separation of duties and an append-only decision trail, access-role mappings and external system integrations",
+    "description": "Implements the governance module from the blueprint. A school.governance.policy is an effective-dated, versioned configuration for one domain (grading, admission, fees, attendance, academics or assessment) whose concrete knobs are typed school.governance.policy.parameter records such as a pass mark, a minimum age or fee due days; a policy is effective only when it is active and today falls inside its optional window. A change is brought into force through a school.governance.approval request that follows a strict pending to approved/rejected/cancelled state machine, enforces separation of duties so a requester may never decide their own submission, and records every move in an append-only school.governance.approval.decision trail that is never edited. A school.governance.access.role maps a security group to a governed area and an approval capability, and a school.governance.integration describes an external connector (SIS, payment, email, SMS, ERP or calendar) by endpoint and a secret REFERENCE only, never the secret itself, with enable, disable and connection-test actions. The effectiveness test, the approval state machine, the separation-of-duties predicate, the sync-eligibility gate and the expiry and version arithmetic are server-validated and unit-tested; a daily cron archives active policies whose effective window has closed. The module reuses campuses and classes from the school data model. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_setup"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/expiry_cron.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

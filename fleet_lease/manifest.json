@@ -1,0 +1,16 @@
+{
+    "name": "fleet_lease",
+    "display_name": "Fleet Lease & Rental",
+    "version": "1.0.0",
+    "summary": "Vehicle leasing, rental contracts, mileage terms and financial settlements",
+    "description": "Manage operating and finance leases, vendor agreements, monthly payments, excess mileage rates, and lease returns.",
+    "author": "Nexa",
+    "depends": ["base", "fleet"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": false,
+    "category": "Operations"
+}

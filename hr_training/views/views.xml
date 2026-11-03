@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_training_course_list" model="hr.training.course" type="list">
+            <field name="name" string="Course"/>
+            <field name="code" string="Code"/>
+            <field name="course_type" string="Type"/>
+            <field name="duration" string="Duration"/>
+            <field name="cost" string="Cost"/>
+            <field name="mandatory" string="Mandatory"/>
+        </view>
+        <view id="view_training_course_form" model="hr.training.course" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="course_type"/>
+                    <field name="instructor"/>
+                    <field name="duration"/>
+                    <field name="cost"/>
+                    <field name="mandatory"/>
+                    <field name="active"/>
+                </group>
+                <group>
+                    <field name="description"/>
+                    <field name="prerequisites"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_training_session_list" model="hr.training.session" type="list">
+            <field name="course_id" string="Course"/>
+            <field name="name" string="Session"/>
+            <field name="date_start" string="Start"/>
+            <field name="date_end" string="End"/>
+            <field name="location" string="Location"/>
+            <field name="capacity" string="Capacity"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_training_session_form" model="hr.training.session" type="form">
+            <sheet>
+                <group>
+                    <field name="course_id"/>
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="location"/>
+                    <field name="capacity"/>
+                    <field name="state"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_training_enrollment_list" model="hr.training.enrollment" type="list">
+            <field name="session_id" string="Session"/>
+            <field name="employee_id" string="Employee"/>
+            <field name="completion_date" string="Completed"/>
+            <field name="score" string="Score"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_training_enrollment_form" model="hr.training.enrollment" type="form">
+            <sheet>
+                <group>
+                    <field name="session_id"/>
+                    <field name="employee_id"/>
+                    <field name="enrollment_date"/>
+                    <field name="completion_date"/>
+                    <field name="score"/>
+                    <field name="state"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_training_certificate_list" model="hr.training.certificate" type="list">
+            <field name="employee_id" string="Employee"/>
+            <field name="name" string="Certificate"/>
+            <field name="course_id" string="Course"/>
+            <field name="issue_date" string="Issued"/>
+            <field name="expiry_date" string="Expires"/>
+        </view>
+        <view id="view_training_certificate_form" model="hr.training.certificate" type="form">
+            <sheet>
+                <group>
+                    <field name="employee_id"/>
+                    <field name="name"/>
+                    <field name="course_id"/>
+                    <field name="issue_date"/>
+                    <field name="expiry_date"/>
+                    <field name="issuer"/>
+                </group>
+                <group>
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_training_course" type="window" model="hr.training.course" name="Training Courses" view_mode="list,form"/>
+        <action id="action_training_session" type="window" model="hr.training.session" name="Training Sessions" view_mode="list,form"/>
+        <action id="action_training_enrollment" type="window" model="hr.training.enrollment" name="Enrollments" view_mode="list,form"/>
+        <action id="action_training_certificate" type="window" model="hr.training.certificate" name="Certifications" view_mode="list,form"/>
+    </data>
+</nexa>

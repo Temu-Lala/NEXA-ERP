@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_project_meeting_attendee_list" model="project.meeting.attendee" type="list">
+            <field name="user_id" string="Attendee"/>
+            <field name="required" string="Required" widget="boolean_toggle"/>
+            <field name="attended" string="Attended" widget="boolean_toggle"/>
+        </view>
+        <view id="view_project_meeting_attendee_form" model="project.meeting.attendee" type="form">
+            <sheet>
+                <group>
+                    <field name="meeting_id" string="Meeting"/>
+                    <field name="user_id" string="Attendee"/>
+                    <field name="required" string="Required"/>
+                    <field name="attended" string="Attended"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_project_meeting_list" model="project.meeting" type="list">
+            <field name="name" string="Subject"/>
+            <field name="project_id" string="Project"/>
+            <field name="date" string="Date"/>
+            <field name="organizer_id" string="Organizer"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_project_meeting_form" model="project.meeting" type="form">
+            <header>
+                <button name="action_schedule" string="Schedule" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_hold" string="Mark Held" type="object" class="sum_highlight" invisible="state != 'scheduled'"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state == 'held' or state == 'cancelled'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Meeting">
+                        <field name="name" string="Subject"/>
+                        <field name="project_id" string="Project"/>
+                        <field name="date" string="Date"/>
+                        <field name="location" string="Location"/>
+                        <field name="organizer_id" string="Organizer"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Agenda">
+                        <field name="agenda" nolabel="1"/>
+                    </page>
+                    <page string="Minutes">
+                        <field name="minutes" nolabel="1"/>
+                    </page>
+                    <page string="Attendees">
+                        <field name="attendees" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <view id="view_project_action_item_list" model="project.action.item" type="list">
+            <field name="name" string="Action"/>
+            <field name="project_id" string="Project"/>
+            <field name="assigned_to" string="Owner"/>
+            <field name="due_date" string="Due Date"/>
+            <field name="priority" string="Priority"/>
+            <field name="overdue" string="Overdue" widget="boolean_toggle"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_project_action_item_form" model="project.action.item" type="form">
+            <header>
+                <button name="action_start" string="Start" type="object" class="sum_highlight" invisible="state != 'open'"/>
+                <button name="action_complete" string="Complete" type="object" class="sum_highlight" invisible="state != 'open' and state != 'in_progress'"/>
+                <button name="action_cancel" string="Cancel" type="object" invisible="state == 'done' or state == 'cancelled'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Action">
+                        <field name="name" string="Action"/>
+                        <field name="project_id" string="Project"/>
+                        <field name="meeting_id" string="Origin Meeting"/>
+                        <field name="task_id" string="Related Task"/>
+                    </group>
+                    <group string="Ownership">
+                        <field name="assigned_to" string="Owner"/>
+                        <field name="due_date" string="Due Date"/>
+                        <field name="priority" string="Priority"/>
+                        <field name="overdue" string="Overdue"/>
+                    </group>
+                </group>
+                <field name="description" string="Details"/>
+            </sheet>
+        </view>
+        <view id="view_project_action_item_kanban" model="project.action.item" type="kanban" default_group_by="state" records_draggable="false"></view>
+
+        <view id="view_project_document_list" model="project.document" type="list">
+            <field name="name" string="Title"/>
+            <field name="project_id" string="Project"/>
+            <field name="category" string="Category"/>
+            <field name="owner_id" string="Owner"/>
+            <field name="version" string="Version"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_project_document_form" model="project.document" type="form">
+            <header>
+                <button name="action_submit" string="Submit for Review" type="object" class="sum_highlight" invisible="state != 'draft'"/>
+                <button name="action_approve" string="Approve" type="object" class="sum_highlight" invisible="state != 'in_review'"/>
+                <button name="action_reject" string="Return to Draft" type="object" invisible="state != 'in_review'"/>
+                <button name="action_archive" string="Archive" type="object" invisible="state != 'approved'"/>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <group>
+                    <group string="Document">
+                        <field name="name" string="Title"/>
+                        <field name="project_id" string="Project"/>
+                        <field name="category" string="Category"/>
+                        <field name="link" string="Location / URL"/>
+                        <field name="version" string="Version"/>
+                    </group>
+                    <group string="Control">
+                        <field name="owner_id" string="Owner"/>
+                        <field name="approved_by" string="Approved By"/>
+                    </group>
+                </group>
+                <field name="description" string="Summary"/>
+            </sheet>
+        </view>
+
+        <action id="action_project_meeting" type="window" model="project.meeting" name="Meetings" view_mode="list,form"/>
+        <action id="action_project_action_item" type="window" model="project.action.item" name="Action Items" view_mode="kanban,list,form"/>
+        <action id="action_project_action_item_my" type="window" model="project.action.item" name="My Actions" view_mode="list,form" domain='[["assigned_to","=","$uid"]]'/>
+        <action id="action_project_action_item_overdue" type="window" model="project.action.item" name="Overdue Actions" view_mode="list,form" domain='[["overdue","=","true"]]'/>
+        <action id="action_project_document" type="window" model="project.document" name="Documents" view_mode="list,form"/>
+    </data>
+</nexa>

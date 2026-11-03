@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data noupdate="true">
+        <record id="cron_hr_leave_accrual_run" model="sys.cron">
+            <field name="name">HR: Run leave period accrual</field>
+            <field name="code">hr.leave.accrual.run</field>
+            <field name="interval_number">1440</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</nexa>

@@ -1,0 +1,21 @@
+{
+    "name": "school_analytics",
+    "display_name": "School Analytics",
+    "version": "1.0.0",
+    "summary": "Decision-grade KPIs, point-in-time snapshots, role dashboards and threshold alert rules for enrollment, attendance, academic performance and teacher workload",
+    "description": "Implements the analytics and dashboards module from the blueprint. A school.analytics.kpi defines a metric and how it is computed: an aggregation (count, average, sum or rate) performed generically over a source model addressed by name, so enrollment, attendance, exam and workload records are measured through the ORM registry without this module importing the modules it observes. Each refresh writes a school.analytics.snapshot — a point-in-time value with its numerator, denominator and optional academic-year and campus scope — that projects a formatted display value in its KPI's unit. A school.analytics.dashboard groups tiles (school.analytics.dashboard.widget) that each bind the dashboard to a KPI with a visual style, and a school.analytics.alert rule raises when a KPI's latest snapshot crosses a threshold using a comparison operator and severity. The rate, average and sum arithmetic, the trend and gauge-band classification, the threshold comparison and the numerator in-list parsing are server-validated and unit-tested; a daily cron recomputes every active KPI and re-evaluates the alert rules, and manual actions refresh an individual KPI, snapshot or dashboard on demand. The module reuses the academic-year and campus records for snapshot scope. Navigated under the single School app.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "school",
+        "school_setup"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "data/refresh_cron.xml"
+    ],
+    "application": false,
+    "category": "School"
+}

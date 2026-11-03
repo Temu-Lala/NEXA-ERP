@@ -1,0 +1,16 @@
+{
+    "name": "documents",
+    "display_name": "Documents",
+    "version": "1.0.0",
+    "summary": "Document management (DMS)",
+    "description": "Organize documents into folders with ownership and status.",
+    "author": "Nexa",
+    "depends": ["base"],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Productivity"
+}

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Promotion -->
+        <view id="view_ecom_promotion_list" model="ecom.promotion" type="list">
+            <field name="priority" string="Priority"/>
+            <field name="name" string="Promotion"/>
+            <field name="code" string="Code"/>
+            <field name="type" string="Type"/>
+            <field name="discount" string="Discount"/>
+            <field name="start_date" string="Start"/>
+            <field name="end_date" string="End"/>
+            <field name="state" string="State"/>
+        </view>
+        <view id="view_ecom_promotion_form" model="ecom.promotion" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="e.g. Summer Sale"/></h1></div>
+                <group>
+                    <group string="Campaign">
+                        <field name="code" string="Code"/>
+                        <field name="store_id" string="Store"/>
+                        <field name="type" string="Type"/>
+                        <field name="state" string="State"/>
+                        <field name="priority" string="Priority"/>
+                        <field name="company_id" string="Company"/>
+                    </group>
+                    <group string="Discount &amp; Limits">
+                        <field name="discount" string="Discount"/>
+                        <field name="max_discount" string="Max Discount"/>
+                        <field name="min_order_amount" string="Min Order Amount"/>
+                        <field name="min_qty" string="Min Quantity"/>
+                        <field name="stacking_rule" string="Stacking"/>
+                        <field name="usage_limit" string="Usage Limit"/>
+                        <field name="used_count" string="Used Count"/>
+                        <field name="per_customer_limit" string="Per-Customer Limit"/>
+                    </group>
+                </group>
+                <group string="Schedule">
+                    <group>
+                        <field name="start_date" string="Start"/>
+                    </group>
+                    <group>
+                        <field name="end_date" string="End"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Rules">
+                        <field name="rules"/>
+                    </page>
+                </notebook>
+                <field name="note" string="Note"/>
+            </sheet>
+        </view>
+        <action id="action_promotion" type="window" model="ecom.promotion" name="Promotions" view_mode="list,form"/>
+
+        <!-- Promotion Rule -->
+        <view id="view_ecom_promotion_rule_list" model="ecom.promotion.rule" type="list">
+            <field name="sequence" widget="handle"/>
+            <field name="promotion_id" string="Promotion"/>
+            <field name="field" string="Field"/>
+            <field name="operator" string="Operator"/>
+            <field name="value" string="Value"/>
+            <field name="amount" string="Amount"/>
+        </view>
+        <view id="view_ecom_promotion_rule_form" model="ecom.promotion.rule" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="promotion_id" string="Promotion"/>
+                        <field name="sequence" string="Sequence"/>
+                        <field name="field" string="Field"/>
+                    </group>
+                    <group>
+                        <field name="operator" string="Operator"/>
+                        <field name="value" string="Value"/>
+                        <field name="amount" string="Amount"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_promotion_rule" type="window" model="ecom.promotion.rule" name="Promotion Rules" view_mode="list,form"/>
+
+        <!-- Coupon -->
+        <view id="view_ecom_coupon_list" model="ecom.coupon" type="list">
+            <field name="code" string="Code"/>
+            <field name="promotion_id" string="Promotion"/>
+            <field name="store_id" string="Store"/>
+            <field name="uses" string="Uses"/>
+            <field name="max_uses" string="Max Uses"/>
+            <field name="expiration_date" string="Expiration"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_ecom_coupon_form" model="ecom.coupon" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="code" placeholder="SAVE20"/></h1></div>
+                <group>
+                    <group>
+                        <field name="promotion_id" string="Promotion"/>
+                        <field name="store_id" string="Store"/>
+                        <field name="expiration_date" string="Expiration Date"/>
+                        <field name="active" string="Active"/>
+                    </group>
+                    <group>
+                        <field name="max_uses" string="Max Uses"/>
+                        <field name="uses" string="Uses"/>
+                        <field name="per_customer_limit" string="Per-Customer Limit"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Redemptions">
+                        <field name="redemptions"/>
+                    </page>
+                </notebook>
+                <field name="description" string="Description"/>
+            </sheet>
+        </view>
+        <action id="action_coupon" type="window" model="ecom.coupon" name="Coupons" view_mode="list,form"/>
+
+        <!-- Coupon Redemption -->
+        <view id="view_ecom_coupon_redemption_list" model="ecom.coupon.redemption" type="list">
+            <field name="coupon_id" string="Coupon"/>
+            <field name="partner_id" string="Customer"/>
+            <field name="cart_id" string="Cart"/>
+            <field name="checkout_id" string="Checkout"/>
+            <field name="amount_discounted" string="Discount"/>
+            <field name="date" string="Date"/>
+            <field name="state" string="State"/>
+        </view>
+        <view id="view_ecom_coupon_redemption_form" model="ecom.coupon.redemption" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="coupon_id" string="Coupon"/>
+                        <field name="partner_id" string="Customer"/>
+                        <field name="cart_id" string="Cart"/>
+                    </group>
+                    <group>
+                        <field name="checkout_id" string="Checkout"/>
+                        <field name="amount_discounted" string="Discount"/>
+                        <field name="date" string="Date"/>
+                        <field name="state" string="State"/>
+                    </group>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_coupon_redemption" type="window" model="ecom.coupon.redemption" name="Coupon Redemptions" view_mode="list,form"/>
+    </data>
+</nexa>

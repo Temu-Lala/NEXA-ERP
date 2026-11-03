@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ============================================================ -->
+        <!-- Trip Views & Actions                                         -->
+        <!-- ============================================================ -->
+        <view id="view_fleet_trip_list" model="fleet.trip" type="list">
+            <field name="name" string="Trip Ref"/>
+            <field name="requester_id" string="Requester"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <field name="purpose" string="Purpose"/>
+            <field name="priority" string="Priority"/>
+            <field name="planned_departure" string="Planned Departure"/>
+            <field name="planned_return" string="Planned Return"/>
+            <field name="actual_distance_km" string="Distance (km)"/>
+            <field name="total_trip_cost" string="Total Cost"/>
+            <field name="state" string="Status"/>
+        </view>
+
+        <view id="view_fleet_trip_form" model="fleet.trip" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="requester_id"/>
+                    <field name="department"/>
+                    <field name="purpose"/>
+                    <field name="priority"/>
+                    <field name="state"/>
+                </group>
+                <group string="Resource Allocation">
+                    <field name="vehicle_id"/>
+                    <field name="driver_id"/>
+                    <field name="driver_rating"/>
+                </group>
+                <group string="Routing &amp; Schedule">
+                    <field name="origin_address"/>
+                    <field name="destination_address"/>
+                    <field name="planned_departure"/>
+                    <field name="planned_return"/>
+                    <field name="actual_departure"/>
+                    <field name="actual_return"/>
+                </group>
+                <group string="Distance &amp; Odometer">
+                    <field name="estimated_distance_km"/>
+                    <field name="actual_distance_km"/>
+                    <field name="start_odometer"/>
+                    <field name="end_odometer"/>
+                </group>
+                <group string="Payload &amp; Passengers">
+                    <field name="passenger_count"/>
+                    <field name="cargo_weight_kg"/>
+                    <field name="cargo_description"/>
+                </group>
+                <group string="Financials &amp; Expenses">
+                    <field name="fuel_cost"/>
+                    <field name="toll_cost"/>
+                    <field name="parking_cost"/>
+                    <field name="other_expenses"/>
+                    <field name="total_trip_cost"/>
+                </group>
+                <group string="Approvals &amp; Dispatch">
+                    <field name="approved_by"/>
+                    <field name="dispatched_by"/>
+                    <field name="reconciled_by"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <view id="view_fleet_trip_search" model="fleet.trip" type="search">
+            <field name="name" string="Trip Ref"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <field name="requester_id" string="Requester"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="dispatched" string="Dispatched" domain='[["state","=","dispatched"]]'/>
+            <filter name="in_progress" string="In Progress" domain='[["state","=","in_progress"]]'/>
+            <filter name="returned" string="Returned" domain='[["state","=","returned"]]'/>
+            <filter name="reconciled" string="Reconciled" domain='[["state","=","reconciled"]]'/>
+            <filter name="closed" string="Closed" domain='[["state","=","closed"]]'/>
+            <filter name="urgent" string="Urgent" domain='[["priority","=","urgent"]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_purpose" string="Purpose" group_by="purpose"/>
+            <filter name="group_driver" string="Driver" group_by="driver_id"/>
+            <filter name="group_vehicle" string="Vehicle" group_by="vehicle_id"/>
+        </view>
+
+        <action id="action_fleet_trip" type="window" model="fleet.trip" name="Trips &amp; Dispatch" view_mode="list,form"/>
+
+        <!-- ============================================================ -->
+        <!-- Trip Stops                                                   -->
+        <!-- ============================================================ -->
+        <view id="view_fleet_trip_stop_list" model="fleet.trip.stop" type="list">
+            <field name="sequence" string="Seq"/>
+            <field name="trip_id" string="Trip"/>
+            <field name="stop_type" string="Stop Type"/>
+            <field name="location_name" string="Location"/>
+            <field name="address" string="Address"/>
+            <field name="scheduled_arrival" string="Scheduled Arrival"/>
+            <field name="actual_arrival" string="Actual Arrival"/>
+            <field name="status" string="Status"/>
+        </view>
+
+        <view id="view_fleet_trip_stop_form" model="fleet.trip.stop" type="form">
+            <sheet>
+                <group>
+                    <field name="trip_id"/>
+                    <field name="sequence"/>
+                    <field name="stop_type"/>
+                    <field name="status"/>
+                    <field name="location_name"/>
+                    <field name="address"/>
+                </group>
+                <group string="Timing">
+                    <field name="scheduled_arrival"/>
+                    <field name="actual_arrival"/>
+                    <field name="actual_departure"/>
+                </group>
+                <group string="Contact Details">
+                    <field name="contact_person"/>
+                    <field name="contact_phone"/>
+                </group>
+                <group string="Notes">
+                    <field name="notes"/>
+                </group>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_trip_stop" type="window" model="fleet.trip.stop" name="Trip Stops" view_mode="list,form"/>
+    </data>
+</nexa>

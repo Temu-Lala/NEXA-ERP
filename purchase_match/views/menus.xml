@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_purchase_match_root" name="Matching" parent="purchase.purchase_menu_root" sequence="35" web_icon="check-square" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_invoice_match" name="Invoice Matches" parent="menu_purchase_match_root" action="purchase_match.action_purchase_invoice_match_case" sequence="1" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_match_exception" name="Matching Exceptions" parent="menu_purchase_match_root" action="purchase_match.action_purchase_invoice_match_exception" sequence="2" groups="purchase.group_purchase_manager"/>
+        <menuitem id="menu_purchase_match_event" name="Matching Outbox" parent="menu_purchase_match_root" action="purchase_match.action_purchase_invoice_match_event" sequence="3" groups="purchase.group_purchase_manager"/>
+    </data>
+</nexa>

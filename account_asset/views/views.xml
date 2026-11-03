@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_asset_book_list" model="account.asset.book" type="list">
+            <field name="name"/>
+            <field name="asset_id"/>
+            <field name="book_type"/>
+            <field name="method"/>
+            <field name="cost"/>
+            <field name="accumulated_dep"/>
+            <field name="net_book_value"/>
+            <field name="state"/>
+        </view>
+        <view id="view_asset_book_form" model="account.asset.book" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="asset_id"/>
+                        <field name="book_type"/>
+                        <field name="method"/>
+                        <field name="convention"/>
+                        <field name="state"/>
+                    </group>
+                    <group>
+                        <field name="cost"/>
+                        <field name="residual_value"/>
+                        <field name="useful_life"/>
+                        <field name="start_date"/>
+                        <field name="accumulated_dep"/>
+                        <field name="net_book_value"/>
+                    </group>
+                </group>
+                <group string="Accounts">
+                    <group>
+                        <field name="journal_id"/>
+                        <field name="expense_account_id"/>
+                    </group>
+                    <group>
+                        <field name="depreciation_account_id"/>
+                    </group>
+                </group>
+                <group string="Depreciation Lines">
+                    <field name="lines" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_dep_line_list" model="account.asset.depreciation.line" type="list">
+            <field name="book_id"/>
+            <field name="sequence"/>
+            <field name="date"/>
+            <field name="amount"/>
+            <field name="depreciated"/>
+        </view>
+        <view id="view_dep_run_list" model="account.asset.depreciation.run" type="list">
+            <field name="name"/>
+            <field name="period_id"/>
+            <field name="date_from"/>
+            <field name="date_to"/>
+            <field name="total_amount"/>
+            <field name="state"/>
+        </view>
+        <view id="view_dep_run_form" model="account.asset.depreciation.run" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="period_id"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group>
+                        <field name="state"/>
+                        <field name="total_amount"/>
+                        <field name="journal_entry_id"/>
+                    </group>
+                </group>
+                <group string="Books">
+                    <field name="book_scope" nolabel="1"/>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_disposal_list" model="account.asset.disposal" type="list">
+            <field name="asset_id"/>
+            <field name="date"/>
+            <field name="method"/>
+            <field name="proceeds"/>
+            <field name="gain_loss"/>
+            <field name="state"/>
+        </view>
+        <view id="view_disposal_form" model="account.asset.disposal" type="form">
+            <sheet>
+                <group>
+                    <group>
+                        <field name="asset_id"/>
+                        <field name="book_id"/>
+                        <field name="date"/>
+                        <field name="method"/>
+                    </group>
+                    <group>
+                        <field name="proceeds"/>
+                        <field name="cost_removed"/>
+                        <field name="accumulated_removed"/>
+                        <field name="gain_loss"/>
+                        <field name="state"/>
+                        <field name="journal_entry_id"/>
+                    </group>
+                </group>
+                <group string="Notes">
+                    <field name="note" nolabel="1"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_asset_books" type="window" model="account.asset.book" name="Depreciation Books" view_mode="list,form"/>
+        <action id="action_dep_lines" type="window" model="account.asset.depreciation.line" name="Depreciation Schedules" view_mode="list,form"/>
+        <action id="action_dep_runs" type="window" model="account.asset.depreciation.run" name="Depreciation Runs" view_mode="list,form"/>
+        <action id="action_disposals" type="window" model="account.asset.disposal" name="Asset Disposals" view_mode="list,form"/>
+    </data>
+</nexa>

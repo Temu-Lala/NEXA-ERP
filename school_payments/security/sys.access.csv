@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_school_fee_bill_cashier,access_school_fee_bill_cashier,school.fee.bill,group_school_cashier,1,1,1,0
+access_school_fee_bill_manager,access_school_fee_bill_manager,school.fee.bill,group_school_manager,1,1,1,1
+access_school_payment_cashier,access_school_payment_cashier,school.payment,group_school_cashier,1,1,1,0
+access_school_payment_manager,access_school_payment_manager,school.payment,group_school_manager,1,1,1,1
+access_school_penalty_cashier,access_school_penalty_cashier,school.penalty,group_school_cashier,1,1,1,0
+access_school_penalty_manager,access_school_penalty_manager,school.penalty,group_school_manager,1,1,1,1
+access_school_penalty_waiver_cashier,access_school_penalty_waiver_cashier,school.penalty.waiver,group_school_cashier,1,0,0,0
+access_school_penalty_waiver_manager,access_school_penalty_waiver_manager,school.penalty.waiver,group_school_manager,1,1,1,1

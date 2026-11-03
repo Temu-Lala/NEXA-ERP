@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- ================================================================ -->
+        <!-- Fuel Cards                                                       -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_fuel_card_list" model="fleet.fuel.card" type="list">
+            <field name="card_number" string="Card Number"/>
+            <field name="provider" string="Provider"/>
+            <field name="assigned_vehicle_id" string="Vehicle"/>
+            <field name="assigned_driver_id" string="Driver"/>
+            <field name="expiry_date" string="Expiry Date"/>
+            <field name="daily_limit" string="Daily Limit"/>
+            <field name="monthly_limit" string="Monthly Limit"/>
+            <field name="status" string="Status"/>
+        </view>
+
+        <view id="view_fleet_fuel_card_form" model="fleet.fuel.card" type="form">
+            <sheet>
+                <group>
+                    <group string="Card Details">
+                        <field name="card_number"/>
+                        <field name="provider"/>
+                        <field name="status"/>
+                        <field name="expiry_date"/>
+                    </group>
+                    <group string="Assignments &amp; Limits">
+                        <field name="assigned_vehicle_id"/>
+                        <field name="assigned_driver_id"/>
+                        <field name="daily_limit"/>
+                        <field name="monthly_limit"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Notes">
+                        <field name="notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_fuel_card" type="window" model="fleet.fuel.card" name="Fuel Cards" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Fuel Transactions                                                -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_fuel_transaction_list" model="fleet.fuel.transaction" type="list">
+            <field name="name" string="Transaction #"/>
+            <field name="timestamp" string="Timestamp"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <field name="fuel_card_id" string="Card"/>
+            <field name="station_name" string="Station"/>
+            <field name="quantity_litres" string="Litres"/>
+            <field name="unit_price" string="Unit Price"/>
+            <field name="total_amount" string="Total Amount"/>
+            <field name="fuel_economy_l_100km" string="L/100km"/>
+            <field name="status" string="Status"/>
+        </view>
+
+        <view id="view_fleet_fuel_transaction_form" model="fleet.fuel.transaction" type="form">
+            <sheet>
+                <group>
+                    <group string="Transaction Info">
+                        <field name="name"/>
+                        <field name="timestamp"/>
+                        <field name="vehicle_id"/>
+                        <field name="driver_id"/>
+                        <field name="trip_id"/>
+                        <field name="fuel_card_id"/>
+                        <field name="odometer"/>
+                        <field name="source"/>
+                    </group>
+                    <group string="Fuel &amp; Cost">
+                        <field name="fuel_type"/>
+                        <field name="fill_type"/>
+                        <field name="quantity_litres"/>
+                        <field name="unit_price"/>
+                        <field name="total_amount"/>
+                        <field name="currency"/>
+                        <field name="payment_method"/>
+                        <field name="receipt_ref"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Station">
+                        <field name="station_name"/>
+                        <field name="station_location"/>
+                    </group>
+                    <group string="Analytics &amp; Verification">
+                        <field name="fuel_economy_l_100km"/>
+                        <field name="cost_per_km"/>
+                        <field name="status"/>
+                        <field name="flag_reason"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Notes">
+                        <field name="notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_fuel_transaction" type="window" model="fleet.fuel.transaction" name="Fuel Transactions" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- EV Charging Sessions                                             -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_charging_session_list" model="fleet.charging.session" type="list">
+            <field name="name" string="Session #"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="driver_id" string="Driver"/>
+            <field name="charging_station" string="Station"/>
+            <field name="start_time" string="Start Time"/>
+            <field name="end_time" string="End Time"/>
+            <field name="energy_delivered_k_wh" string="Energy (kWh)"/>
+            <field name="total_cost" string="Total Cost"/>
+            <field name="status" string="Status"/>
+        </view>
+
+        <view id="view_fleet_charging_session_form" model="fleet.charging.session" type="form">
+            <sheet>
+                <group>
+                    <group string="Session Info">
+                        <field name="name"/>
+                        <field name="vehicle_id"/>
+                        <field name="driver_id"/>
+                        <field name="charging_station"/>
+                        <field name="location"/>
+                        <field name="connector_type"/>
+                        <field name="status"/>
+                    </group>
+                    <group string="Charge Metrics &amp; Cost">
+                        <field name="start_time"/>
+                        <field name="end_time"/>
+                        <field name="duration_minutes"/>
+                        <field name="start_soc_pct"/>
+                        <field name="end_soc_pct"/>
+                        <field name="energy_delivered_k_wh"/>
+                        <field name="unit_price_k_wh"/>
+                        <field name="total_cost"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Notes">
+                        <field name="notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_charging_session" type="window" model="fleet.charging.session" name="EV Charging Sessions" view_mode="list,form"/>
+
+        <!-- ================================================================ -->
+        <!-- Fuel Anomalies                                                   -->
+        <!-- ================================================================ -->
+        <view id="view_fleet_fuel_anomaly_list" model="fleet.fuel.anomaly" type="list">
+            <field name="name" string="Anomaly ID"/>
+            <field name="vehicle_id" string="Vehicle"/>
+            <field name="transaction_id" string="Transaction"/>
+            <field name="rule_triggered" string="Rule Triggered"/>
+            <field name="severity" string="Severity"/>
+            <field name="confidence_score" string="Confidence"/>
+            <field name="status" string="Status"/>
+            <field name="reviewer_id" string="Reviewer"/>
+        </view>
+
+        <view id="view_fleet_fuel_anomaly_form" model="fleet.fuel.anomaly" type="form">
+            <sheet>
+                <group>
+                    <group string="Anomaly Details">
+                        <field name="name"/>
+                        <field name="vehicle_id"/>
+                        <field name="transaction_id"/>
+                        <field name="rule_triggered"/>
+                    </group>
+                    <group string="Assessment &amp; Status">
+                        <field name="severity"/>
+                        <field name="confidence_score"/>
+                        <field name="status"/>
+                        <field name="reviewer_id"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Resolution Notes">
+                        <field name="resolution_notes"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+
+        <action id="action_fleet_fuel_anomaly" type="window" model="fleet.fuel.anomaly" name="Fuel Anomalies" view_mode="list,form"/>
+    </data>
+</nexa>

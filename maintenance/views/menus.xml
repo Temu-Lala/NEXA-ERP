@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <!-- Single Maintenance application anchor. maintenance owns the consolidated
+             navigation tree so the sidebar rebuilds self-consistently in the workspace.
+             Companion modules contribute models/views/actions referenced by xmlids. -->
+        <menuitem id="maintenance_menu_root" name="Maintenance" sequence="70" web_icon="tool" action="maintenance_overview.action_maint_overview_wo_state"/>
+
+        <!-- ================================================================ -->
+        <!-- 0. Maintenance Overview (executive landing dashboard)            -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_overview_section" name="Overview" parent="maintenance_menu_root" sequence="5" web_icon="bar-chart"/>
+        <menuitem id="maintenance_menu_ov_work_orders" name="Work Orders by Status" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_wo_state" sequence="1" web_icon="clipboard"/>
+        <menuitem id="maintenance_menu_ov_wo_priority" name="Work Orders by Priority" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_wo_priority" sequence="2" web_icon="alert-circle"/>
+        <menuitem id="maintenance_menu_ov_wo_type" name="Work Orders by Type" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_wo_type" sequence="3" web_icon="layers"/>
+        <menuitem id="maintenance_menu_ov_wo_matrix" name="Work Order Matrix" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_wo_pivot" sequence="4" web_icon="grid"/>
+        <menuitem id="maintenance_menu_ov_asset_avail" name="Asset Availability" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_asset_state" sequence="5" web_icon="activity"/>
+        <menuitem id="maintenance_menu_ov_asset_crit" name="Assets by Criticality" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_asset_criticality" sequence="6" web_icon="target"/>
+        <menuitem id="maintenance_menu_ov_cost_type" name="Maintenance Cost by Type" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_cost_type" sequence="7" web_icon="dollar-sign"/>
+        <menuitem id="maintenance_menu_ov_cost_asset" name="Cost by Asset" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_cost_asset_pivot" sequence="8" web_icon="pie-chart"/>
+        <menuitem id="maintenance_menu_ov_pm_compliance" name="PM Compliance &amp; Overdue" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_occurrence_state" sequence="9" web_icon="calendar"/>
+        <menuitem id="maintenance_menu_ov_downtime" name="Downtime by Category" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_downtime_cat" sequence="10" web_icon="alert-triangle"/>
+        <menuitem id="maintenance_menu_ov_alerts" name="Critical Alerts" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_alert_severity" sequence="11" web_icon="bell"/>
+        <menuitem id="maintenance_menu_ov_crit_levels" name="Asset Criticality Levels" parent="maintenance_menu_overview_section" action="maintenance_overview.action_maint_overview_crit_level" sequence="12" web_icon="award"/>
+
+        <!-- ================================================================ -->
+        <!-- 1. Assets & Equipment                                             -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_assets_section" name="Assets &amp; Equipment" parent="maintenance_menu_root" sequence="10" web_icon="package"/>
+        <menuitem id="maintenance_menu_assets" name="Assets" parent="maintenance_menu_assets_section" action="maintenance.action_maint_asset" sequence="1" web_icon="package"/>
+        <menuitem id="maintenance_menu_components" name="Installed Components" parent="maintenance_menu_assets_section" action="maintenance_parts.action_maint_component" sequence="2" web_icon="grid"/>
+        <menuitem id="maintenance_menu_categories" name="Asset Categories" parent="maintenance_menu_assets_section" action="maintenance.action_maint_asset_category" sequence="3" web_icon="layers"/>
+        <menuitem id="maintenance_menu_locations" name="Asset Locations" parent="maintenance_menu_assets_section" action="maintenance.action_maint_asset_location" sequence="4" web_icon="map-pin"/>
+        <menuitem id="maintenance_menu_crit_assessments" name="Criticality Assessments" parent="maintenance_menu_assets_section" action="maintenance_criticality.action_maint_crit_assessment" sequence="5" web_icon="target"/>
+        <menuitem id="maintenance_menu_crit_models" name="Criticality Models" parent="maintenance_menu_assets_section" action="maintenance_criticality.action_maint_crit_model" sequence="6" web_icon="sliders"/>
+        <menuitem id="maintenance_menu_crit_factors" name="Criticality Factors" parent="maintenance_menu_assets_section" action="maintenance_criticality.action_maint_crit_factor" sequence="7" web_icon="award"/>
+
+        <!-- ================================================================ -->
+        <!-- 2. Work Orders & Requests                                         -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_work_section" name="Work Orders &amp; Requests" parent="maintenance_menu_root" sequence="20" web_icon="clipboard"/>
+        <menuitem id="maintenance_menu_requests" name="Maintenance Requests" parent="maintenance_menu_work_section" action="maintenance.action_maint_request" sequence="1" web_icon="alert-circle"/>
+        <menuitem id="maintenance_menu_work_orders" name="Work Orders" parent="maintenance_menu_work_section" action="maintenance.action_maint_work_order" sequence="2" web_icon="clipboard"/>
+        <menuitem id="maintenance_menu_jobplans" name="Job Plans" parent="maintenance_menu_work_section" action="maintenance_jobplan.action_maint_job_plan" sequence="3" web_icon="book-open"/>
+        <menuitem id="maintenance_menu_wo_history" name="Work Order History" parent="maintenance_menu_work_section" action="maintenance_analytics.action_maint_wo_history" sequence="4" web_icon="clock"/>
+        <menuitem id="maintenance_menu_wo_relations" name="Work Order Relationships" parent="maintenance_menu_work_section" action="maintenance_worelation.action_maint_wo_relation" sequence="5" web_icon="share-2"/>
+
+        <!-- ================================================================ -->
+        <!-- 3. Preventive Maintenance                                         -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_pm_section" name="Preventive Maintenance" parent="maintenance_menu_root" sequence="30" web_icon="calendar"/>
+        <menuitem id="maintenance_menu_plans" name="Maintenance Plans" parent="maintenance_menu_pm_section" action="maintenance_equipment.action_maint_plan" sequence="1" web_icon="refresh-cw"/>
+        <menuitem id="maintenance_menu_plan_occurrences" name="Plan Occurrences" parent="maintenance_menu_pm_section" action="maintenance_equipment.action_maint_plan_occurrence" sequence="2" web_icon="calendar"/>
+        <menuitem id="maintenance_menu_meters" name="Usage Meters" parent="maintenance_menu_pm_section" action="maintenance_equipment.action_maint_meter" sequence="3" web_icon="activity"/>
+        <menuitem id="maintenance_menu_meter_readings" name="Meter Readings" parent="maintenance_menu_pm_section" action="maintenance_equipment.action_maint_meter_reading" sequence="4" web_icon="gauge"/>
+        <menuitem id="maintenance_menu_meter_summaries" name="Meter Summaries" parent="maintenance_menu_pm_section" action="maintenance_equipment.action_maint_asset_meter_summary" sequence="5" web_icon="activity"/>
+
+        <!-- ================================================================ -->
+        <!-- 4. Workforce & Scheduling                                         -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_workforce_section" name="Workforce &amp; Labor" parent="maintenance_menu_root" sequence="40" web_icon="users"/>
+        <menuitem id="maintenance_menu_technicians" name="Technicians" parent="maintenance_menu_workforce_section" action="maintenance_workforce.action_maint_technician" sequence="1" web_icon="users"/>
+        <menuitem id="maintenance_menu_labor_entries" name="Labor Entries" parent="maintenance_menu_workforce_section" action="maintenance_workforce.action_maint_labor_entry" sequence="2" web_icon="clock"/>
+        <menuitem id="maintenance_menu_shift_schedules" name="Shift Schedules" parent="maintenance_menu_workforce_section" action="maintenance_workforce.action_maint_shift_schedule" sequence="3" web_icon="calendar"/>
+        <menuitem id="maintenance_menu_skills" name="Skills &amp; Competencies" parent="maintenance_menu_workforce_section" action="maintenance_workforce.action_maint_skill" sequence="4" web_icon="award"/>
+
+        <!-- ================================================================ -->
+        <!-- 5. Spare Parts & Materials                                        -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_parts_section" name="Spare Parts" parent="maintenance_menu_root" sequence="50" web_icon="package"/>
+        <menuitem id="maintenance_menu_part_requests" name="Part Requests" parent="maintenance_menu_parts_section" action="maintenance_parts.action_maint_part_request" sequence="1" web_icon="shopping-cart"/>
+        <menuitem id="maintenance_menu_parts_consumed" name="Parts Consumed &amp; Returned" parent="maintenance_menu_parts_section" action="maintenance_parts.action_maint_part_consumed" sequence="2" web_icon="minus-circle"/>
+
+        <!-- ================================================================ -->
+        <!-- 6. Inspections & Calibration                                      -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_inspections_section" name="Inspections &amp; Calibration" parent="maintenance_menu_root" sequence="60" web_icon="clipboard-check"/>
+        <menuitem id="maintenance_menu_inspection_runs" name="Inspection Runs" parent="maintenance_menu_inspections_section" action="maintenance_inspection.action_maint_inspection_run" sequence="1" web_icon="check-circle"/>
+        <menuitem id="maintenance_menu_inspection_templates" name="Inspection Templates" parent="maintenance_menu_inspections_section" action="maintenance_inspection.action_maint_inspection_template" sequence="2" web_icon="list"/>
+        <menuitem id="maintenance_menu_calibrations" name="Calibration Records" parent="maintenance_menu_inspections_section" action="maintenance_inspection.action_maint_calibration_record" sequence="3" web_icon="crosshair"/>
+
+        <!-- ================================================================ -->
+        <!-- 7. Safety, Permits & LOTO                                         -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_safety_section" name="Safety &amp; Compliance" parent="maintenance_menu_root" sequence="70" web_icon="shield"/>
+        <menuitem id="maintenance_menu_permits" name="Permits to Work (PTW)" parent="maintenance_menu_safety_section" action="maintenance_safety.action_maint_permit" sequence="1" web_icon="file-text"/>
+        <menuitem id="maintenance_menu_loto" name="LOTO Isolations" parent="maintenance_menu_safety_section" action="maintenance_safety.action_maint_loto_record" sequence="2" web_icon="lock"/>
+        <menuitem id="maintenance_menu_risk_assessments" name="Risk Assessments" parent="maintenance_menu_safety_section" action="maintenance_safety.action_maint_risk_assessment" sequence="3" web_icon="alert-octagon"/>
+        <menuitem id="maintenance_menu_incidents" name="Safety Incidents" parent="maintenance_menu_safety_section" action="maintenance_safety.action_maint_safety_incident" sequence="4" web_icon="alert-triangle"/>
+
+        <!-- ================================================================ -->
+        <!-- 8. Downtime & Condition Monitoring                                -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_downtime_section" name="Downtime &amp; IoT" parent="maintenance_menu_root" sequence="80" web_icon="alert-triangle"/>
+        <menuitem id="maintenance_menu_downtime_events" name="Downtime Events" parent="maintenance_menu_downtime_section" action="maintenance_downtime.action_maint_downtime_v2" sequence="1" web_icon="alert-triangle"/>
+        <menuitem id="maintenance_menu_condition_alerts" name="Condition Alerts" parent="maintenance_menu_downtime_section" action="maintenance_downtime.action_maint_condition_alert" sequence="2" web_icon="bell"/>
+        <menuitem id="maintenance_menu_condition_readings" name="Condition Readings" parent="maintenance_menu_downtime_section" action="maintenance_downtime.action_maint_condition_reading" sequence="3" web_icon="activity"/>
+        <menuitem id="maintenance_menu_condition_rules" name="Condition Rules" parent="maintenance_menu_downtime_section" action="maintenance_downtime.action_maint_condition_rule" sequence="4" web_icon="sliders"/>
+
+        <!-- ================================================================ -->
+        <!-- 9. Turnarounds & Outages                                          -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_turnaround_section" name="Turnarounds &amp; Outages" parent="maintenance_menu_root" sequence="90" web_icon="power"/>
+        <menuitem id="maintenance_menu_shutdown_projects" name="Shutdown Projects" parent="maintenance_menu_turnaround_section" action="maintenance_shutdown.action_maint_shutdown_project" sequence="1" web_icon="cpu"/>
+        <menuitem id="maintenance_menu_shutdown_packages" name="Work Packages" parent="maintenance_menu_turnaround_section" action="maintenance_shutdown.action_maint_shutdown_package" sequence="2" web_icon="package"/>
+        <menuitem id="maintenance_menu_windows" name="Maintenance Windows" parent="maintenance_menu_turnaround_section" action="maintenance_shutdown.action_maint_maintenance_window" sequence="3" web_icon="clock"/>
+
+        <!-- ================================================================ -->
+        <!-- 10. Contractors & Warranties                                      -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_contractors_section" name="Contractors &amp; Warranties" parent="maintenance_menu_root" sequence="100" web_icon="truck"/>
+        <menuitem id="maintenance_menu_contractor_dispatches" name="Contractor Dispatches" parent="maintenance_menu_contractors_section" action="maintenance_contractor.action_maint_contractor_dispatch" sequence="1" web_icon="send"/>
+        <menuitem id="maintenance_menu_warranty_claims" name="Warranty Claims" parent="maintenance_menu_contractors_section" action="maintenance_contractor.action_maint_warranty_claim_v2" sequence="2" web_icon="file-text"/>
+        <menuitem id="maintenance_menu_service_contracts" name="Service Contracts" parent="maintenance_menu_contractors_section" action="maintenance_reliability.action_maint_service_contract" sequence="3" web_icon="file-text"/>
+        <menuitem id="maintenance_menu_warranties" name="Warranty Policies" parent="maintenance_menu_contractors_section" action="maintenance_reliability.action_maint_warranty" sequence="4" web_icon="shield"/>
+
+        <!-- ================================================================ -->
+        <!-- 11. Asset Lifecycle Strategy                                      -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_lifecycle_section" name="Asset Lifecycle Strategy" parent="maintenance_menu_root" sequence="110" web_icon="compass"/>
+        <menuitem id="maintenance_menu_condition_scores" name="Condition &amp; Health Index" parent="maintenance_menu_lifecycle_section" action="maintenance_lifecycle.action_maint_asset_condition_score" sequence="1" web_icon="heart"/>
+        <menuitem id="maintenance_menu_proposals" name="Replacement Proposals" parent="maintenance_menu_lifecycle_section" action="maintenance_lifecycle.action_maint_replacement_proposal" sequence="2" web_icon="dollar-sign"/>
+        <menuitem id="maintenance_menu_disposals" name="Asset Decommissioning" parent="maintenance_menu_lifecycle_section" action="maintenance_lifecycle.action_maint_asset_disposal" sequence="3" web_icon="trash-2"/>
+
+        <!-- ================================================================ -->
+        <!-- 12. Reliability Engineering (RCA)                                 -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_reliability_section" name="Reliability Engineering" parent="maintenance_menu_root" sequence="120" web_icon="activity"/>
+        <menuitem id="maintenance_menu_rca" name="Root Cause Analysis (5 Whys)" parent="maintenance_menu_reliability_section" action="maintenance_analytics.action_maint_rca" sequence="1" web_icon="alert-triangle"/>
+        <menuitem id="maintenance_menu_corrective_actions" name="Corrective Actions" parent="maintenance_menu_reliability_section" action="maintenance_analytics.action_maint_corrective_action" sequence="2" web_icon="shield"/>
+        <menuitem id="maintenance_menu_failure_codes" name="Failure Codes" parent="maintenance_menu_reliability_section" action="maintenance_reliability.action_maint_failure_code" sequence="3" web_icon="tag"/>
+
+        <!-- ================================================================ -->
+        <!-- 13. Reports & Analytics                                           -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_reports_section" name="Reports &amp; Analytics" parent="maintenance_menu_root" sequence="130" web_icon="bar-chart"/>
+        <menuitem id="maintenance_menu_reliability_metrics" name="Reliability KPIs (MTBF/MTTR)" parent="maintenance_menu_reports_section" action="maintenance_analytics.action_maint_reliability_metric" sequence="1" web_icon="activity"/>
+        <menuitem id="maintenance_menu_cost_summaries" name="Maintenance Costs" parent="maintenance_menu_reports_section" action="maintenance_analytics.action_maint_cost_summary" sequence="2" web_icon="pie-chart"/>
+
+        <!-- ================================================================ -->
+        <!-- 14. Knowledge & Documentation                                   -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_knowledge_section" name="Knowledge &amp; Documents" parent="maintenance_menu_root" sequence="135" web_icon="book-open"/>
+        <menuitem id="maintenance_menu_documents" name="Knowledge Documents" parent="maintenance_menu_knowledge_section" action="maintenance_knowledge.action_maint_document" sequence="1" web_icon="file-text"/>
+        <menuitem id="maintenance_menu_document_versions" name="Document Versions" parent="maintenance_menu_knowledge_section" action="maintenance_knowledge.action_maint_document_version" sequence="2" web_icon="clock"/>
+        <menuitem id="maintenance_menu_document_links" name="Document Links" parent="maintenance_menu_knowledge_section" action="maintenance_knowledge.action_maint_document_link" sequence="3" web_icon="link"/>
+        <menuitem id="maintenance_menu_doc_categories" name="Document Categories" parent="maintenance_menu_knowledge_section" action="maintenance_knowledge.action_maint_doc_category" sequence="4" web_icon="layers"/>
+
+        <!-- ================================================================ -->
+        <!-- 14. Configuration                                                 -->
+        <!-- ================================================================ -->
+        <menuitem id="maintenance_menu_config" name="Configuration" parent="maintenance_menu_root" sequence="140" web_icon="settings"/>
+        <menuitem id="maintenance_menu_cfg_categories" name="Asset Categories" parent="maintenance_menu_config" action="maintenance.action_maint_asset_category" sequence="1"/>
+        <menuitem id="maintenance_menu_cfg_locations" name="Asset Locations" parent="maintenance_menu_config" action="maintenance.action_maint_asset_location" sequence="2"/>
+        <menuitem id="maintenance_menu_cfg_skills" name="Skills" parent="maintenance_menu_config" action="maintenance_workforce.action_maint_skill" sequence="3"/>
+        <menuitem id="maintenance_menu_cfg_skill_categories" name="Skill Categories" parent="maintenance_menu_config" action="maintenance_workforce.action_maint_skill_category" sequence="4"/>
+        <menuitem id="maintenance_menu_cfg_downtime_cats" name="Downtime Categories" parent="maintenance_menu_config" action="maintenance_downtime.action_maint_downtime_category" sequence="5"/>
+        <menuitem id="maintenance_menu_cfg_insp_templates" name="Inspection Templates" parent="maintenance_menu_config" action="maintenance_inspection.action_maint_inspection_template" sequence="6"/>
+        <menuitem id="maintenance_menu_cfg_failure_codes" name="Failure Codes" parent="maintenance_menu_config" action="maintenance_reliability.action_maint_failure_code" sequence="7"/>
+    </data>
+</nexa>

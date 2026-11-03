@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_event_event_list" model="event.event" type="list">
+            <field name="name" string="Event"/>
+            <field name="organizer_id" string="Organizer"/>
+            <field name="date_start" string="Start"/>
+            <field name="date_end" string="End"/>
+            <field name="capacity" string="Capacity"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_event_event_form" model="event.event" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="organizer_id"/>
+                    <field name="venue"/>
+                </group>
+                <group>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="capacity"/>
+                    <field name="state"/>
+                </group>
+                <group>
+                    <field name="description"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_event_registration_list" model="event.registration" type="list">
+            <field name="name" string="Attendee"/>
+            <field name="event_id" string="Event"/>
+            <field name="partner_id" string="Contact"/>
+            <field name="email" string="Email"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_event_registration_form" model="event.registration" type="form">
+            <sheet>
+                <group>
+                    <field name="name"/>
+                    <field name="event_id"/>
+                    <field name="partner_id"/>
+                </group>
+                <group>
+                    <field name="email"/>
+                    <field name="state"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_event_event" type="window" model="event.event" name="Events" view_mode="list,form"/>
+        <action id="action_event_registration" type="window" model="event.registration" name="Registrations" view_mode="list,form"/>
+    </data>
+</nexa>

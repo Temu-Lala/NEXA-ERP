@@ -1,0 +1,21 @@
+{
+  "name": "maintenance_contractor",
+  "display_name": "Maintenance Contractors & Warranty Management",
+  "version": "1.0.0",
+  "summary": "External contractor dispatches, service verification, warranty claim processing and cost recovery",
+  "description": "Manage external maintenance providers, field service dispatches, contractor site access authorization, service level verification and quality sign-off, warranty claim processing with manufacturer reimbursements, and purchase order/invoice cross-referencing.",
+  "author": "Nexa",
+  "depends": [
+    "base",
+    "maintenance",
+    "maintenance_reliability"
+  ],
+  "data": [
+    "security/sys.access.csv",
+    "data/warranty_cron_data.xml",
+    "views/views.xml",
+    "views/menus.xml"
+  ],
+  "application": false,
+  "category": "Operations"
+}
