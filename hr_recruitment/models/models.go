@@ -53,6 +53,7 @@ const (
 
 type HrJobOpening struct {
 	sdk.Model `nexa:"model=hr.job.opening"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name              sdk.String                  `nexa:"required,string=Position"`
 	JobID             sdk.Many2One[HrJob]         `nexa:"string=Job"`
@@ -68,6 +69,7 @@ type HrJobOpening struct {
 
 type HrRecruitmentInterview struct {
 	sdk.Model `nexa:"model=hr.recruitment.interview"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ApplicantID   sdk.Many2One[HrApplicant]      `nexa:"required,string=Applicant"`
 	OpeningID     sdk.Many2One[HrJobOpening]     `nexa:"string=Job Opening"`
@@ -81,6 +83,7 @@ type HrRecruitmentInterview struct {
 
 type HrRecruitmentOffer struct {
 	sdk.Model `nexa:"model=hr.recruitment.offer"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ApplicantID   sdk.Many2One[HrApplicant]  `nexa:"required,string=Applicant"`
 	OpeningID     sdk.Many2One[HrJobOpening] `nexa:"string=Job Opening"`

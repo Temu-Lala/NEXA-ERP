@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_itam_asset_user,access_itam_asset_user,itam.asset,group_itam_user,1,1,1,0
+access_itam_asset_manager,access_itam_asset_manager,itam.asset,group_itam_manager,1,1,1,1
+access_itam_ci_user,access_itam_ci_user,itam.ci,group_itam_user,1,1,1,0
+access_itam_ci_manager,access_itam_ci_manager,itam.ci,group_itam_manager,1,1,1,1
+access_itam_ci_rel_user,access_itam_ci_rel_user,itam.ci.relation,group_itam_user,1,1,1,0
+access_itam_ci_rel_manager,access_itam_ci_rel_manager,itam.ci.relation,group_itam_manager,1,1,1,1
+access_itam_license_user,access_itam_license_user,itam.license,group_itam_user,1,1,1,0
+access_itam_license_manager,access_itam_license_manager,itam.license,group_itam_manager,1,1,1,1

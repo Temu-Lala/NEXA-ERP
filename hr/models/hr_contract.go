@@ -8,6 +8,7 @@ import (
 // live from the end date (open-ended, running, expiring or expired).
 type HrContract struct {
 	sdk.Model `nexa:"model=hr.contract"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                   `nexa:"required,string=Contract Reference"`
 	EmployeeID   sdk.Many2One[HrEmployee]     `nexa:"required,string=Employee,index"`

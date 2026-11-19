@@ -86,7 +86,7 @@
             <field name="opening_id" string="Job Opening"/>
             <field name="offer_date" string="Offer Date"/>
             <field name="expected_start" string="Expected Start"/>
-            <field name="salary" string="Proposed Salary"/>
+            <field name="salary" string="Proposed Salary" widget="monetary"/>
             <field name="state" string="Status"/>
         </view>
         <view id="view_offer_form" model="hr.recruitment.offer" type="form">
@@ -118,8 +118,77 @@
             </sheet>
         </view>
 
-        <action id="action_job_opening" type="window" model="hr.job.opening" name="Job Openings" view_mode="list,form"/>
-        <action id="action_interview" type="window" model="hr.recruitment.interview" name="Interviews" view_mode="list,form"/>
-        <action id="action_offer" type="window" model="hr.recruitment.offer" name="Offers" view_mode="list,form"/>
+        <view id="view_job_opening_kanban" model="hr.job.opening" type="kanban" default_group_by="state">
+            <field name="state"/>
+            <field name="name"/>
+            <field name="job_id"/>
+            <field name="department_id"/>
+            <field name="recruiter_id"/>
+            <field name="number_of_positions"/>
+            <field name="expected_date"/>
+            <field name="budget_annual" widget="monetary"/>
+            <field name="req_approved"/>
+        </view>
+        <view id="view_job_opening_search" model="hr.job.opening" type="search">
+            <field name="name"/>
+            <field name="job_id"/>
+            <field name="description"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="approved" string="Approved" domain='[["state","=","approved"]]'/>
+            <filter name="open" string="Open" domain='[["state","=","open"]]'/>
+            <filter name="done" string="Done" domain='[["state","=","done"]]'/>
+            <filter name="closed" string="Closed" domain='[["state","in",["closed","refused"]]]]'/>
+            <filter name="req_pending" string="Req Not Approved" domain='[["req_approved","=",false]]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_department" string="Department" group_by="department_id"/>
+            <filter name="group_recruiter" string="Recruiter" group_by="recruiter_id"/>
+            <filter name="group_job" string="Job" group_by="job_id"/>
+            <filter name="group_expected" string="Expected Date" group_by="expected_date"/>
+        </view>
+        <view id="view_interview_kanban" model="hr.recruitment.interview" type="kanban" default_group_by="state">
+            <field name="state"/>
+            <field name="applicant_id"/>
+            <field name="opening_id"/>
+            <field name="interviewer_id"/>
+            <field name="interview_date"/>
+            <field name="location"/>
+            <field name="rating"/>
+        </view>
+        <view id="view_interview_search" model="hr.recruitment.interview" type="search">
+            <field name="applicant_id"/>
+            <field name="opening_id"/>
+            <filter name="pending" string="Pending" domain='[["state","=","pending"]]'/>
+            <filter name="scheduled" string="Scheduled" domain='[["state","=","scheduled"]]'/>
+            <filter name="passed" string="Passed" domain='[["state","=","passed"]]'/>
+            <filter name="failed" string="Failed" domain='[["state","=","failed"]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_opening" string="Job Opening" group_by="opening_id"/>
+            <filter name="group_interviewer" string="Interviewer" group_by="interviewer_id"/>
+            <filter name="group_date" string="Interview Date" group_by="interview_date"/>
+            <filter name="group_rating" string="Rating" group_by="rating"/>
+        </view>
+        <view id="view_offer_kanban" model="hr.recruitment.offer" type="kanban" default_group_by="state">
+            <field name="state"/>
+            <field name="applicant_id"/>
+            <field name="opening_id"/>
+            <field name="offer_date"/>
+            <field name="expected_start"/>
+            <field name="salary" widget="monetary"/>
+            <field name="employee_id"/>
+        </view>
+        <view id="view_offer_search" model="hr.recruitment.offer" type="search">
+            <field name="applicant_id"/>
+            <field name="opening_id"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="sent" string="Sent" domain='[["state","=","sent"]]'/>
+            <filter name="accepted" string="Accepted" domain='[["state","=","accepted"]]'/>
+            <filter name="refused" string="Refused" domain='[["state","=","refused"]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_opening" string="Job Opening" group_by="opening_id"/>
+            <filter name="group_date" string="Offer Date" group_by="offer_date"/>
+        </view>
+        <action id="action_job_opening" type="window" model="hr.job.opening" name="Job Openings" view_mode="kanban,list,form"/>
+        <action id="action_interview" type="window" model="hr.recruitment.interview" name="Interviews" view_mode="kanban,list,form"/>
+        <action id="action_offer" type="window" model="hr.recruitment.offer" name="Offers" view_mode="kanban,list,form"/>
     </data>
 </nexa>

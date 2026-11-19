@@ -26,6 +26,11 @@
                         <field name="cost_method" string="Cost Method"/>
                         <field name="sale_ok" string="Can be Sold"/>
                         <field name="purchase_ok" string="Can be Purchased"/>
+                        <field name="pos_enabled" string="POS Channel"/>
+                        <field name="ecommerce_enabled" string="E-commerce"/>
+                        <field name="wholesale_enabled" string="Wholesale"/>
+                        <field name="age_restricted" string="Age Restricted"/>
+                        <field name="sold_by_weight" string="Sold by Weight"/>
                     </group>
                 </group>
                 <notebook>

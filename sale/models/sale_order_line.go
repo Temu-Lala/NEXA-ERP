@@ -6,6 +6,7 @@ import (
 
 type SaleOrderLine struct {
 	sdk.Model `nexa:"model=sale.order.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	OrderID       sdk.Many2One[SaleOrder]      `nexa:"required,index,string=Order"`
 	ProductID     sdk.Many2One[ProductProduct] `nexa:"string=Product"`

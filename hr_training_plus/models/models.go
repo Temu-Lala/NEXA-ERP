@@ -83,6 +83,7 @@ const (
 // course.
 type HrTrainingProvider struct {
 	sdk.Model `nexa:"model=hr.training.provider"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name    sdk.String                  `nexa:"required,string=Name"`
 	Type    sdk.Selection[ProviderType] `nexa:"string=Type,default=internal,selection=internal:Internal,external:External"`
@@ -115,6 +116,7 @@ type HrTrainingCourseExtension struct {
 // not raise); approving records a decision and does not post any cost.
 type HrTrainingRequest struct {
 	sdk.Model `nexa:"model=hr.training.request"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID    sdk.Many2One[HrEmployee]        `nexa:"required,string=Employee,index"`
 	CourseID      sdk.Many2One[HrTrainingCourse]  `nexa:"string=Course,index"`
@@ -149,6 +151,7 @@ type HrTrainingEnrollmentAttendance struct {
 // HrTrainingPath is an ordered curriculum of courses.
 type HrTrainingPath struct {
 	sdk.Model `nexa:"model=hr.training.path"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name        sdk.String                         `nexa:"required,string=Path"`
 	Description sdk.Text                           `nexa:"string=Description"`
@@ -159,6 +162,7 @@ type HrTrainingPath struct {
 // HrTrainingPathCourse is one ordered course in a learning path.
 type HrTrainingPathCourse struct {
 	sdk.Model `nexa:"model=hr.training.path.course"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	PathID    sdk.Many2One[HrTrainingPath]   `nexa:"required,string=Path,index"`
 	CourseID  sdk.Many2One[HrTrainingCourse] `nexa:"required,string=Course"`
@@ -173,6 +177,7 @@ type HrTrainingPathCourse struct {
 // HrTrainingExam is an assessment tied to a course with a pass mark.
 type HrTrainingExam struct {
 	sdk.Model `nexa:"model=hr.training.exam"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                           `nexa:"required,string=Exam"`
 	CourseID     sdk.Many2One[HrTrainingCourse]       `nexa:"string=Course"`
@@ -185,6 +190,7 @@ type HrTrainingExam struct {
 // HrTrainingExamQuestion is one scored question of an exam.
 type HrTrainingExamQuestion struct {
 	sdk.Model `nexa:"model=hr.training.exam.question"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ExamID   sdk.Many2One[HrTrainingExam] `nexa:"required,string=Exam,index"`
 	Question sdk.Text                     `nexa:"required,string=Question"`
@@ -196,6 +202,7 @@ type HrTrainingExamQuestion struct {
 // pass are derived from the total against the max and the exam's pass mark.
 type HrTrainingAttempt struct {
 	sdk.Model `nexa:"model=hr.training.attempt"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ExamID      sdk.Many2One[HrTrainingExam] `nexa:"required,string=Exam,index"`
 	EmployeeID  sdk.Many2One[HrEmployee]     `nexa:"required,string=Employee,index"`
@@ -215,6 +222,7 @@ type HrTrainingAttempt struct {
 // skill and the level the employee currently has (a positive gap is a shortfall).
 type HrSkillGap struct {
 	sdk.Model `nexa:"model=hr.skill.gap"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID    sdk.Many2One[HrEmployee]  `nexa:"required,string=Employee,index"`
 	JobID         sdk.Many2One[HrJob]       `nexa:"string=Job"`
@@ -234,6 +242,7 @@ type HrSkillGap struct {
 // past its expiry, created idempotently by the cron while still open.
 type HrTrainingCertAlert struct {
 	sdk.Model `nexa:"model=hr.training.cert.alert"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID    sdk.Many2One[HrEmployee]            `nexa:"required,string=Employee,index"`
 	CertificateID sdk.Many2One[HrTrainingCertificate] `nexa:"string=Certificate,index"`

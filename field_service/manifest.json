@@ -1,0 +1,20 @@
+{
+    "name": "field_service",
+    "display_name": "Field Service",
+    "version": "1.0.0",
+    "summary": "Technician dispatch, work orders and service reports",
+    "description": "Field service management: technician profiles with skills/certifications, service work orders with scheduling windows and dispatch states, travel/labor time tracking, customer signatures, parts consumption and service reports. Links to helpdesk tickets and stock for parts.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "stock"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Service Management"
+}

@@ -55,7 +55,7 @@
                     <field name="sequence"/>
                     <field name="amount_type"/>
                     <field name="amount_percent"/>
-                    <field name="amount_fixed"/>
+                    <field name="amount_fixed" widget="monetary"/>
                     <field name="active"/>
                 </group>
                 <group string="Effective Dating">
@@ -102,10 +102,10 @@
             <field name="number" string="Number"/>
             <field name="employee_id" string="Employee"/>
             <field name="run_id" string="Payslip Run"/>
-            <field name="basic" string="Basic"/>
-            <field name="gross" string="Gross"/>
-            <field name="total_deduction" string="Deductions"/>
-            <field name="net" string="Net"/>
+            <field name="basic" string="Basic" widget="monetary"/>
+            <field name="gross" string="Gross" widget="monetary"/>
+            <field name="total_deduction" string="Deductions" widget="monetary"/>
+            <field name="net" string="Net" widget="monetary"/>
             <field name="state" string="Status"/>
         </view>
         <view id="view_payslip_form" model="hr.payslip" type="form">
@@ -124,10 +124,10 @@
                     <field name="date_end"/>
                 </group>
                 <group>
-                    <field name="basic"/>
-                    <field name="gross"/>
-                    <field name="total_deduction"/>
-                    <field name="net"/>
+                    <field name="basic" widget="monetary"/>
+                    <field name="gross" widget="monetary"/>
+                    <field name="total_deduction" widget="monetary"/>
+                    <field name="net" widget="monetary"/>
                     <field name="state"/>
                 </group>
                 <group string="Delivery &amp; Payment">
@@ -146,7 +146,7 @@
             <field name="name" string="Name"/>
             <field name="category_id" string="Category"/>
             <field name="rule_id" string="Salary Rule"/>
-            <field name="amount" string="Amount"/>
+            <field name="amount" string="Amount" widget="monetary"/>
         </view>
         <view id="view_payslip_line_form" model="hr.payslip.line" type="form">
             <sheet>
@@ -156,16 +156,67 @@
                     <field name="category_id"/>
                     <field name="rule_id"/>
                     <field name="sequence"/>
-                    <field name="amount"/>
+                    <field name="amount" widget="monetary"/>
                 </group>
             </sheet>
         </view>
 
+        <view id="view_payslip_run_kanban" model="hr.payslip.run" type="kanban" default_group_by="state">
+            <field name="state"/>
+            <field name="name"/>
+            <field name="structure_id"/>
+            <field name="period_start"/>
+            <field name="period_end"/>
+            <field name="journal_id"/>
+        </view>
+        <view id="view_payslip_run_search" model="hr.payslip.run" type="search">
+            <field name="name"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="confirmed" string="Confirmed" domain='[["state","=","confirmed"]]'/>
+            <filter name="closed" string="Closed" domain='[["state","=","closed"]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_structure" string="Structure" group_by="structure_id"/>
+            <filter name="group_period" string="Period Start" group_by="period_start"/>
+        </view>
+        <view id="view_payslip_kanban" model="hr.payslip" type="kanban" default_group_by="state">
+            <field name="state"/>
+            <field name="number"/>
+            <field name="employee_id"/>
+            <field name="run_id"/>
+            <field name="structure_id"/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+            <field name="basic" widget="monetary"/>
+            <field name="gross" widget="monetary"/>
+            <field name="total_deduction" widget="monetary"/>
+            <field name="net" widget="monetary"/>
+        </view>
+        <view id="view_payslip_search" model="hr.payslip" type="search">
+            <field name="number"/>
+            <field name="employee_id"/>
+            <field name="payment_ref"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="confirmed" string="Confirmed" domain='[["state","=","confirmed"]]'/>
+            <filter name="paid" string="Paid" domain='[["state","=","paid"]]'/>
+            <filter name="unpaid" string="Unpaid" domain='[["paid","=",false],["state","!=","draft"]]'/>
+            <filter name="unreleased" string="Not Released" domain='[["released_to_employee","=",false]]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_run" string="Payslip Run" group_by="run_id"/>
+            <filter name="group_structure" string="Structure" group_by="structure_id"/>
+        </view>
+        <view id="view_payslip_line_search" model="hr.payslip.line" type="search">
+            <field name="name"/>
+            <field name="payslip_id"/>
+            <filter name="group_category" string="Category" group_by="category_id"/>
+            <filter name="group_rule" string="Salary Rule" group_by="rule_id"/>
+            <filter name="group_payslip" string="Payslip" group_by="payslip_id"/>
+        </view>
         <action id="action_payroll_category" type="window" model="hr.payroll.category" name="Payroll Categories" view_mode="list,form"/>
         <action id="action_payroll_structure" type="window" model="hr.payroll.structure" name="Salary Structures" view_mode="list,form"/>
         <action id="action_salary_rule" type="window" model="hr.salary.rule" name="Salary Rules" view_mode="list,form"/>
-        <action id="action_payslip_run" type="window" model="hr.payslip.run" name="Payslip Runs" view_mode="list,form"/>
-        <action id="action_payslip" type="window" model="hr.payslip" name="Payslips" view_mode="list,form"/>
+        <action id="action_payslip_run" type="window" model="hr.payslip.run" name="Payslip Runs" view_mode="kanban,list,form"/>
+        <action id="action_payslip" type="window" model="hr.payslip" name="Payslips" view_mode="kanban,list,form"/>
         <action id="action_payslip_line" type="window" model="hr.payslip.line" name="Payslip Lines" view_mode="list,form"/>
     </data>
 </nexa>

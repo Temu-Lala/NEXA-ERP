@@ -38,6 +38,7 @@ const (
 // projects; capacity is evaluated across all of them, not per project.
 type ProjectResourceAllocation struct {
 	sdk.Model `nexa:"model=project.resource.allocation"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID sdk.Many2One[ProjectProject]   `nexa:"required,index,string=Project"`
 	UserID    sdk.Many2One[CoreUser]         `nexa:"required,index,string=Employee"`
@@ -54,6 +55,7 @@ type ProjectResourceAllocation struct {
 // it becomes a confirmed allocation.
 type ProjectResourceRequest struct {
 	sdk.Model `nexa:"model=project.resource.request"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID   sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`
 	UserID      sdk.Many2One[CoreUser]       `nexa:"string=Requested Employee"`

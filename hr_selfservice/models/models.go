@@ -113,6 +113,7 @@ const (
 // optional department scope.
 type HrServiceTeam struct {
 	sdk.Model `nexa:"model=hr.service.team"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                 `nexa:"required,string=Team"`
 	DepartmentID sdk.Many2One[HrDepartment] `nexa:"string=Department Scope"`
@@ -124,6 +125,7 @@ type HrServiceTeam struct {
 // (in hours) plus the queue that handles it.
 type HrServiceCategory struct {
 	sdk.Model `nexa:"model=hr.service.category"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name             sdk.String                      `nexa:"required,string=Category"`
 	Kind             sdk.Selection[CaseCategoryKind] `nexa:"string=Kind,default=general,selection=letter:Letter,certificate:Certificate,personal_info:Personal Info,general:General,other:Other"`
@@ -144,6 +146,7 @@ type HrServiceCategory struct {
 // records every state / assignment / priority change.
 type HrServiceCase struct {
 	sdk.Model `nexa:"model=hr.service.case"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name           sdk.String                         `nexa:"required,string=Subject"`
 	Number         sdk.String                         `nexa:"string=Case Number"`
@@ -170,6 +173,7 @@ type HrServiceCase struct {
 // the requesting employee.
 type HrServiceCaseMessage struct {
 	sdk.Model `nexa:"model=hr.service.case.message"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	CaseID     sdk.Many2One[HrServiceCase] `nexa:"required,string=Case,index"`
 	AuthorID   sdk.Many2One[CoreUser]      `nexa:"string=Author"`
@@ -181,6 +185,7 @@ type HrServiceCaseMessage struct {
 // HrServiceCaseHistory is the append-only audit of every meaningful case change.
 type HrServiceCaseHistory struct {
 	sdk.Model `nexa:"model=hr.service.case.history"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	CaseID      sdk.Many2One[HrServiceCase]      `nexa:"required,string=Case,index"`
 	Action      sdk.Selection[CaseHistoryAction] `nexa:"string=Action,default=note,selection=created:Created,state:State,assignment:Assignment,priority:Priority,category:Category,resolve:Resolved,message:Message,note:Note,sla:SLA"`
@@ -201,6 +206,7 @@ type HrServiceCaseHistory struct {
 // manager on submit; approving only records a decision.
 type HrSelfServiceRequest struct {
 	sdk.Model `nexa:"model=hr.selfservice.request"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name           sdk.String                     `nexa:"required,string=Summary"`
 	Category       sdk.Selection[RequestCategory] `nexa:"string=Type,default=personal_info,index,selection=leave:Leave,attendance_correction:Attendance Correction,overtime:Overtime,personal_info:Personal Info,letter:Letter / Certificate,other:Other"`

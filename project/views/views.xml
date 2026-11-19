@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <nexa>
     <data>
-        <view id="view_project_project_list" model="project.project" type="list">
+        <view id="view_project_project_list" report_download="csv,pdf,xlsx" model="project.project" type="list">
             <field name="code" string="Reference"/>
             <field name="name" string="Project"/>
             <field name="type_id" string="Type"/>
@@ -36,11 +36,15 @@
                 <button name="action_complete" string="Complete" type="object" class="sum_highlight" invisible="!(state === 'active' || state === 'onhold')"/>
                 <button name="action_cancel" string="Cancel" type="object" invisible="state === 'draft' || state === 'completed' || state === 'cancelled' || state === 'archived'"/>
                 <button name="action_recompute" string="Recompute" type="object" invisible="state == 'archived'"/>
+                <button name="action_clone" string="Clone" type="object" invisible="state == 'archived'"/>
                 <button name="action_archive" string="Archive" type="object" invisible="state == 'archived'"/>
                 <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
             </header>
             <sheet>
                 <div class="sum_button_box">
+                    <button name="action_space_workspace" type="object" class="sum_stat_button" icon="board">
+                        <field name="issue_count" widget="statinfo" string="Workspace"/>
+                    </button>
                     <button name="action_space_issues" type="object" class="sum_stat_button" icon="list">
                         <field name="issue_count" widget="statinfo" string="Issues"/>
                     </button>
@@ -62,8 +66,14 @@
                     <button name="action_space_milestones" type="object" class="sum_stat_button" icon="milestone">
                         <field name="milestone_count" widget="statinfo" string="Milestones"/>
                     </button>
+                    <button name="action_space_timeline" type="object" class="sum_stat_button" icon="timeline">
+                        <field name="issue_count" widget="statinfo" string="Timeline"/>
+                    </button>
                     <button name="action_space_team" type="object" class="sum_stat_button" icon="team">
                         <field name="member_count" widget="statinfo" string="Team"/>
+                    </button>
+                    <button name="action_space_velocity" type="object" class="sum_stat_button" icon="graph">
+                        <field name="sprint_count" widget="statinfo" string="Velocity"/>
                     </button>
                     <button name="action_space_risks" type="object" class="sum_stat_button" icon="risk">
                         <field name="risk_count" widget="statinfo" string="Risks"/>
@@ -73,10 +83,8 @@
                     </button>
                 </div>
                 <div class="sum_title">
-                    <div class="">
                         <h1><field name="name" placeholder="Project Name..."/></h1>
                     </div>
-                </div>
                 <group>
                     <group string="Overview">
                         <field name="image" widget="image" string="Logo"/>
@@ -133,23 +141,159 @@
                 </notebook>
             </sheet>
         </view>
-        <action id="action_project_project" type="window" model="project.project" name="Projects" view_mode="list,kanban,form"/>
+        <view id="view_project_project_search" model="project.project" type="search">
+            <field name="name" string="Project"/>
+            <field name="code" string="Reference"/>
+            <field name="manager_id" string="Manager"/>
+            <field name="customer_id" string="Customer"/>
+            <field name="type_id" string="Type"/>
+            <filter name="filter_active" string="Active" domain='[["state","=","active"]]'/>
+            <filter name="filter_my_projects" string="My Projects" domain='[["manager_id","=","$uid"]]'/>
+            <filter name="filter_at_risk" string="At Risk / Off Track" domain='[["health","in",["atrisk","offtrack"]]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_health" string="Health" group_by="health"/>
+            <filter name="group_manager" string="Manager" group_by="manager_id"/>
+            <filter name="group_type" string="Type" group_by="type_id"/>
+        </view>
+        <!-- Project Workspace: a Jira-class, per-record shell. The frontend
+             ProjectWorkspaceView renders the header (name, health, favorite,
+             create), a tab bar from <tab>, and the Overview dashboard from the
+             live compute counts on the record; every other tab embeds the
+             existing view (kanban/list/gantt/graph) scoped to this project. -->
+        <view id="view_project_project_workspace" model="project.project" type="project_workspace" string="Project Workspace">
+            <field name="name" string="Project"/>
+            <field name="code" string="Reference"/>
+            <field name="image" string="Logo"/>
+            <field name="manager_id" string="Project Manager"/>
+            <field name="state" string="Status"/>
+            <field name="health" string="Health"/>
+            <field name="priority" string="Priority"/>
+            <field name="progress" string="Progress"/>
+            <field name="planned_start" string="Planned Start"/>
+            <field name="planned_end" string="Planned End"/>
+            <field name="target_end" string="Target End"/>
+            <field name="budget" string="Budget"/>
+            <field name="actual_cost" string="Actual Cost"/>
+            <field name="committed_cost" string="Committed Cost"/>
+            <field name="contract_value" string="Contract Value"/>
+            <field name="issue_count" string="Issues"/>
+            <field name="open_issue_count" string="Open"/>
+            <field name="backlog_count" string="Backlog"/>
+            <field name="blocked_count" string="Blocked"/>
+            <field name="sprint_count" string="Sprints"/>
+            <field name="epic_count" string="Epics"/>
+            <field name="milestone_count" string="Milestones"/>
+            <field name="member_count" string="Team"/>
+            <field name="risk_count" string="Risks"/>
+            <field name="document_count" string="Documents"/>
+            <field name="workspace_hidden_tabs" string="Hidden Workspace Tabs"/>
+            <tab id="summary" string="Summary" icon="board"/>
+            <tab id="list" string="List" icon="list" model="project.task" view_type="list" domain_field="project_id"/>
+            <tab id="board" string="Board" icon="board" model="project.task" view_type="kanban" domain_field="project_id"/>
+            <tab id="backlog" string="Backlog" icon="backlog" model="project.task" view_type="list" view="view_project_task_backlog_list" domain_field="project_id" domain='[["sprint_id","=",false],["state","not in",["done","cancelled"]]]'/>
+            <tab id="sprint_plan" string="Sprint Plan" icon="board" model="project.task" view_type="kanban" domain_field="project_id" view="view_project_task_sprint_board"/>
+            <tab id="development" string="Sprints" icon="sprint" model="project.sprint" view_type="list" domain_field="project_id"/>
+            <tab id="forms" string="Forms" icon="epic" model="project.epic" view_type="kanban" domain_field="project_id"/>
+            <tab id="timeline" string="Timeline" icon="timeline" model="project.task" view_type="gantt" domain_field="project_id"/>
+            <tab id="docs" string="Docs" icon="doc"/>
+            <tab id="reports" string="Reports" icon="graph"/>
+        </view>
+        <action id="action_project_jira_workspace" type="window" model="project.project" name="Project Workspace" view_mode="project_workspace,form"/>
+        <!-- Spaces directory: Jira-style card grid of every project. The custom
+             project_spaces view type renders ProjectSpacesView; the record
+             workspace stays one click away on each card. -->
+        <view id="view_project_project_spaces" model="project.project" type="project_spaces" string="Spaces">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="state"/>
+            <field name="health"/>
+            <field name="priority"/>
+            <field name="progress"/>
+            <field name="manager_id"/>
+            <field name="planned_end"/>
+            <field name="issue_count"/>
+            <field name="open_issue_count"/>
+            <field name="sprint_count"/>
+            <field name="epic_count"/>
+            <field name="member_count"/>
+        </view>
+        <view id="view_project_project_reports" model="project.project" type="project_reports" string="Reports">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="state"/>
+            <field name="health"/>
+            <field name="progress"/>
+            <field name="budget"/>
+            <field name="actual_cost"/>
+            <field name="issue_count"/>
+            <field name="open_issue_count"/>
+            <field name="blocked_count"/>
+        </view>
+                <view id="view_project_project_roadmap" model="project.project" type="project_roadmap" string="Roadmap">
+            <field name="name"/>
+        </view>
+        <action id="action_project_roadmap" type="window" model="project.project" name="Roadmap" view_mode="project_roadmap"/>
+<action id="action_project_project" type="window" model="project.project" name="Projects" view_mode="project_spaces,project_reports,project_roadmap,list,kanban,form"/>
 
-        <view id="view_project_task_list" model="project.task" type="list">
+        <view id="view_project_task_list" report_download="csv,pdf,xlsx" model="project.task" type="list">
             <field name="key" string="Key"/>
-            <field name="name" string="Task"/>
+            <field name="name" string="Summary"/>
             <field name="issue_type_id" string="Type"/>
             <field name="project_id" string="Project"/>
             <field name="stage_id" string="Stage"/>
             <field name="sprint_id" string="Sprint"/>
             <field name="epic_id" string="Epic"/>
-            <field name="assigned_to" string="Assigned To"/>
+                        <field name="fix_version_id" string="Fix Version"/>
+            <field name="assigned_to" string="Assignee"/>
             <field name="priority" string="Priority"/>
             <field name="story_points" string="Points"/>
             <field name="state" string="Status"/>
             <field name="resolution" string="Resolution"/>
-            <field name="deadline" string="Deadline"/>
+            <field name="deadline" string="Due Date"/>
+            <field name="is_overdue" string="Overdue"/>
+            <field name="is_blocked" string="Blocked"/>
             <field name="remaining_hours" string="Remaining"/>
+        </view>
+        <view id="view_project_task_sprint_board" model="project.task" type="kanban" default_group_by="sprint_id">
+            <field name="key"/>
+            <field name="name"/>
+            <field name="issue_type_id"/>
+            <field name="assigned_to"/>
+            <field name="priority"/>
+            <field name="story_points"/>
+            <field name="sprint_id"/>
+            <field name="epic_id"/>
+            <field name="deadline"/>
+            <field name="is_overdue"/>
+            <field name="is_blocked"/>
+            <field name="state"/>
+        </view>
+        <view id="view_project_task_search" model="project.task" type="search">
+            <field name="key" string="Key"/>
+            <field name="name" string="Summary"/>
+            <field name="project_id" string="Project"/>
+            <field name="assigned_to" string="Assignee"/>
+            <field name="reporter_id" string="Reporter"/>
+            <field name="issue_type_id" string="Issue Type"/>
+            <field name="epic_id" string="Epic"/>
+                        <field name="fix_version_id" string="Fix Version"/>
+            <field name="sprint_id" string="Sprint"/>
+            <field name="stage_id" string="Stage"/>
+            <filter name="filter_my_tasks" string="Only My Issues" domain='[["assigned_to","=","$uid"]]'/>
+            <filter name="filter_unassigned" string="Unassigned" domain='[["assigned_to","=",false]]'/>
+            <filter name="filter_open" string="Open Issues" domain='[["state","not in",["done","cancelled"]]]'/>
+            <filter name="filter_done" string="Done" domain='[["state","=","done"]]'/>
+            <filter name="filter_blocked" string="Blocked" domain='[["state","=","blocked"]]'/>
+            <filter name="filter_dependency_blocked" string="Blocked by Link" domain='[["is_blocked","=",true]]'/>
+            <filter name="filter_overdue" string="Overdue" domain='[["is_overdue","=",true]]'/>
+            <filter name="filter_high_pri" string="High &amp; Urgent" domain='[["priority","in",["high","urgent"]]]'/>
+            <filter name="group_stage" string="Stage" group_by="stage_id"/>
+            <filter name="group_sprint" string="Sprint" group_by="sprint_id"/>
+            <filter name="group_epic" string="Epic" group_by="epic_id"/>
+            <filter name="group_assignee" string="Assignee" group_by="assigned_to"/>
+            <filter name="group_issue_type" string="Issue Type" group_by="issue_type_id"/>
+            <filter name="group_priority" string="Priority" group_by="priority"/>
+            <filter name="group_project" string="Project" group_by="project_id"/>
         </view>
         <view id="view_project_task_form" model="project.task" type="form">
             <header>
@@ -159,46 +303,45 @@
                 <button name="action_unblock" string="Unblock" type="object" invisible="state != 'blocked'"/>
                 <button name="action_done" string="Done" type="object" class="sum_highlight" invisible="state === 'done' || state === 'cancelled'"/>
                 <button name="action_cancel" string="Cancel" type="object" invisible="state === 'done' || state === 'cancelled'"/>
-                <!-- Watching is offered one button at a time: the reader's own
-                     subscription decides which one they see. -->
                 <button name="action_follow" string="Follow" type="object" invisible="is_followed"/>
                 <button name="action_unfollow" string="Unfollow" type="object" invisible="!is_followed"/>
                 <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
             </header>
             <sheet>
                 <div class="sum_title">
-                    <div class="">
-                        <h1><field name="name" placeholder="Task Title..."/></h1>
+                        <h1><field name="name" placeholder="Task Title..."/> <field name="key" readonly="true"/></h1>
                         <div class="sum_title_sub"><field name="tag_ids" widget="many2many_tags" nolabel="1" placeholder="Labels..."/></div>
-                    </div>
                 </div>
                 <group>
-                    <group string="Assignment">
-                        <field name="image" widget="image" string="Preview"/>
-                        <field name="project_id" string="Project"/>
+                    <group string="Details">
+                        <field name="issue_type_id" string="Issue Type"/>
+                        <field name="key" string="Key" readonly="true"/>
+                        <field name="state" string="Status"/>
+                        <field name="resolution" string="Resolution"/>
+                        <field name="resolved_date" string="Resolved Date" readonly="true"/>
+                        <field name="priority" string="Priority"/>
+                        <field name="story_points" string="Story Points"/>
+                        <field name="stage_id" string="Board Stage"/>
                         <field name="epic_id" string="Epic"/>
+                        <field name="fix_version_id" string="Fix Version"/>
+                        <field name="sprint_id" string="Sprint"/>
+                        <field name="project_id" string="Project"/>
+                    </group>
+                    <group string="People &amp; Dates">
+                        <field name="assigned_to" string="Assignee"/>
+                        <field name="reporter_id" string="Reporter"/>
+                        <field name="follower_count" string="Watchers"/>
+                        <field name="is_followed" invisible="true"/>
+                        <field name="deadline" string="Due Date"/>
+                        <field name="planned_start" string="Planned Start"/>
                         <field name="phase_id" string="Phase"/>
                         <field name="milestone_id" string="Milestone"/>
                         <field name="parent_id" string="Parent Task"/>
-                        <field name="assigned_to" string="Assigned To"/>
-                        <field name="follower_count" string="Watchers"/>
-                        <field name="is_followed" invisible="true"/>
-                    </group>
-                    <group string="Status and Timing">
-                        <field name="key" string="Key" readonly="true"/>
-                        <field name="issue_type_id" string="Issue Type"/>
-                        <field name="stage_id" string="Board Stage"/>
-                        <field name="sprint_id" string="Sprint"/>
-                        <field name="state" string="Status"/>
-                        <field name="resolution" string="Resolution"/>
-                        <field name="priority" string="Priority"/>
-                        <field name="story_points" string="Story Points"/>
-                        <field name="deadline" string="Deadline"/>
-                        <field name="sequence" string="Sequence"/>
+                        <field name="image" widget="image" string="Preview"/>
                     </group>
                 </group>
                 <group>
-                    <group string="Effort">
+                    <group string="Effort &amp; Time Tracking">
                         <field name="est_hours" string="Estimated Hours"/>
                         <field name="actual_hours" string="Spent Hours" readonly="true"/>
                         <field name="remaining_hours" string="Remaining Hours" readonly="true"/>
@@ -206,11 +349,21 @@
                 </group>
                 <notebook>
                     <page string="Description">
-                        <field name="description" string="Description"/>
+                        <field name="description" string="Description" placeholder="Add a description, acceptance criteria, or technical details..."/>
+                    </page>
+                    <page string="Sub-tasks">
+                        <field name="subtasks" nolabel="1"/>
                     </page>
                     <page string="Time Logged">
                         <field name="worklogs" nolabel="1"/>
                     </page>
+                    <page string="Linked Issues">
+                        <field name="links" nolabel="1"/>
+                    </page>
+                    <page string="Checklist">
+                        <field name="checklist_items" nolabel="1"/>
+                    </page>
+                    <page string="Git"><field name="git_links" nolabel="1"/></page>
                     <page string="Comments">
                         <field name="comments" nolabel="1"/>
                     </page>
@@ -220,33 +373,48 @@
         <action id="action_project_task" type="window" model="project.task" name="Tasks" view_mode="list,kanban,form"/>
         <view id="view_project_task_kanban" model="project.task" type="kanban" default_group_by="stage_id" records_draggable="true" quick_create="true">
             <field name="key"/>
-            <field name="image" widget="image"/>
             <field name="name"/>
             <field name="issue_type_id"/>
             <field name="epic_id"/>
-            <field name="stage_id"/>
-            <field name="assigned_to"/>
             <field name="priority" widget="priority"/>
             <field name="story_points"/>
+            <field name="assigned_to"/>
+            <field name="deadline"/>
             <field name="state"/>
-            <field name="project_id"/>
+            <field name="kanban_state"/>
+            <field name="image" widget="image"/>
         </view>
         <action id="action_project_board" type="window" model="project.task" name="Board" view_mode="kanban,list,form"/>
         <action id="action_project_task_my" type="window" model="project.task" name="My Tasks" view_mode="list,kanban,form" domain='[["assigned_to","=","$uid"]]'/>
 
+        <!-- Timeline: project-scoped Gantt over scheduled work (planned_start -> deadline). -->
+        <view id="view_project_task_gantt" model="project.task" type="gantt" date_start="planned_start" date_stop="deadline" string="Timeline">
+            <field name="key" string="Key"/>
+            <field name="name" string="Summary"/>
+            <field name="assigned_to" string="Assignee"/>
+            <field name="priority" string="Priority"/>
+            <field name="planned_start" string="Planned Start"/>
+            <field name="deadline" string="Deadline"/>
+            <field name="state" string="Status"/>
+        </view>
+        <action id="action_project_timeline" type="window" model="project.task" name="Timeline" view_mode="gantt,list,form"/>
+
         <!-- ================================================================ -->
         <!-- Scrum: ranked backlog, sprint planning board, sprints, velocity   -->
         <!-- ================================================================ -->
-        <view id="view_project_task_backlog_list" model="project.task" type="list" default_order="sequence asc, id asc">
-            <field name="sequence" string="Rank"/>
+        <view id="view_project_task_backlog_list" report_download="csv,pdf,xlsx" model="project.task" type="list" default_order="sequence asc, id asc">
+            <field name="sequence" widget="handle"/>
             <field name="key" string="Key"/>
-            <field name="name" string="Task"/>
             <field name="issue_type_id" string="Type"/>
+            <field name="name" string="Summary"/>
             <field name="project_id" string="Project"/>
             <field name="epic_id" string="Epic"/>
+                        <field name="fix_version_id" string="Fix Version"/>
+            <field name="sprint_id" string="Sprint"/>
+            <field name="assigned_to" string="Assignee"/>
             <field name="priority" string="Priority"/>
             <field name="story_points" string="Points"/>
-            <field name="deadline" string="Deadline"/>
+            <field name="deadline" string="Due Date"/>
             <field name="state" string="Status"/>
         </view>
         <action id="action_project_backlog" type="window" model="project.task" name="Backlog" view_mode="list,form" domain='[["sprint_id","=",false],["state","not in",["done","cancelled"]]]'/>
@@ -263,7 +431,7 @@
         </view>
         <action id="action_project_sprint_planning" type="window" model="project.task" name="Sprint Planning" view_mode="kanban,form" domain='[["state","not in",["done","cancelled"]]]'/>
 
-        <view id="view_project_sprint_list" model="project.sprint" type="list" default_order="sequence asc, id asc">
+        <view id="view_project_sprint_list" report_download="csv,pdf,xlsx" model="project.sprint" type="list" default_order="sequence asc, id asc">
             <field name="name" string="Sprint"/>
             <field name="project_id" string="Project"/>
             <field name="state" string="Status"/>
@@ -282,10 +450,8 @@
             </header>
             <sheet>
                 <div class="sum_title">
-                    <div class="">
                         <h1><field name="name" placeholder="Sprint name..."/></h1>
                     </div>
-                </div>
                 <group>
                     <group string="Timebox">
                         <field name="project_id" string="Project"/>
@@ -344,7 +510,7 @@
         <!-- ================================================================ -->
         <!-- Epics: containers with a roll-up computed from their issues       -->
         <!-- ================================================================ -->
-        <view id="view_project_epic_list" model="project.epic" type="list" default_order="sequence asc, id asc">
+        <view id="view_project_epic_list" report_download="csv,pdf,xlsx" model="project.epic" type="list" default_order="sequence asc, id asc">
             <field name="sequence" widget="handle"/>
             <field name="name" string="Epic"/>
             <field name="project_id" string="Project"/>
@@ -374,10 +540,8 @@
             </header>
             <sheet>
                 <div class="sum_title">
-                    <div class="">
                         <h1><field name="name" placeholder="Epic name..."/></h1>
                     </div>
-                </div>
                 <group>
                     <group string="Ownership">
                         <field name="project_id" string="Project"/>
@@ -421,6 +585,7 @@
                     <field name="name" string="Type"/>
                     <field name="allow_timesheets" string="Allow Timesheets"/>
                     <field name="require_approval" string="Require Approval"/>
+                    <field name="workspace_hidden_tabs" string="Hidden Workspace Tabs" placeholder="e.g. reports,timeline"/>
                     <field name="active" string="Active"/>
                 </group>
                 <field name="note" string="Description"/>
@@ -428,7 +593,7 @@
         </view>
         <action id="action_project_type" type="window" model="project.type" name="Project Types" view_mode="list,form"/>
 
-        <view id="view_project_milestone_list" model="project.milestone" type="list">
+        <view id="view_project_milestone_list" report_download="csv,pdf,xlsx" model="project.milestone" type="list">
             <field name="name" string="Milestone"/>
             <field name="project_id" string="Project"/>
             <field name="phase_id" string="Phase"/>
@@ -459,7 +624,7 @@
         </view>
         <action id="action_project_milestone" type="window" model="project.milestone" name="Milestones" view_mode="list,form"/>
 
-        <view id="view_project_board_stage_list" model="project.board.stage" type="list">
+        <view id="view_project_board_stage_list" report_download="csv,pdf,xlsx" model="project.board.stage" type="list">
             <field name="sequence" widget="handle"/>
             <field name="name" string="Stage"/>
             <field name="to_state" string="Sets Status"/>
@@ -503,7 +668,7 @@
         </view>
         <action id="action_project_board_stage" type="window" model="project.board.stage" name="Board Stages" view_mode="list,form"/>
 
-        <view id="view_project_issue_type_list" model="project.issue.type" type="list">
+        <view id="view_project_issue_type_list" report_download="csv,pdf,xlsx" model="project.issue.type" type="list">
             <field name="name" string="Issue Type"/>
             <field name="code" string="Symbol"/>
             <field name="kind" string="Kind"/>
@@ -529,7 +694,7 @@
         </view>
         <action id="action_project_issue_type" type="window" model="project.issue.type" name="Issue Types" view_mode="list,form"/>
 
-        <view id="view_project_tag_list" model="project.tag" type="list">
+        <view id="view_project_tag_list" report_download="csv,pdf,xlsx" model="project.tag" type="list">
             <field name="name" string="Label"/>
             <field name="color" string="Color" widget="color"/>
             <field name="active" string="Active" widget="boolean_toggle"/>
@@ -546,6 +711,19 @@
         <action id="action_project_tag" type="window" model="project.tag" name="Labels" view_mode="list,form"/>
 
         <!-- ================================================================ -->
+        <!-- Task links: typed directional edges (blocks / relates / duplicates).
+             The form embeds this list on the "Linked Issues" page. -->
+        <view id="view_project_task_link_list" report_download="csv,pdf,xlsx" model="project.task.link" type="list">
+            <field name="linked_task_id" string="Linked Issue"/>
+            <field name="link_type" string="Link Type"/>
+            <field name="note" string="Note"/>
+        </view>
+        <view id="view_project_task_checklist_list" report_download="csv,pdf,xlsx" model="project.task.checklist.item" type="list" editable="bottom">
+            <field name="sequence" widget="handle"/>
+            <field name="name" string="Item"/>
+            <field name="done" string="Done" widget="boolean_toggle"/>
+        </view>
+
         <!-- Worklogs: logged time on an issue; drives the effort roll-up      -->
         <!-- ================================================================ -->
         <view id="view_project_worklog_list" model="project.worklog" type="list" default_order="date desc, id desc" editable="bottom">

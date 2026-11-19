@@ -6,16 +6,17 @@ import (
 
 type AccountPayment struct {
 	sdk.Model `nexa:"model=account.payment"`
+	CompanyID sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
-	Name        sdk.String                      `nexa:"string=Number"`
-	PaymentType sdk.Selection[PaymentType]      `nexa:"required,string=Payment Type,default=inbound"`
-	PartnerType sdk.Selection[PartnerType]      `nexa:"string=Partner Type,default=customer"`
-	PartnerID   sdk.Many2One[CorePartner]       `nexa:"string=Partner"`
-	Amount      sdk.Numeric                     `nexa:"required,string=Amount,precision=18,scale=2,default=0"`
-	Date        sdk.Date                        `nexa:"string=Date"`
-	JournalID   sdk.Many2One[AccountJournal]    `nexa:"string=Journal"`
-	Memo        sdk.String                      `nexa:"string=Memo"`
+	Name        sdk.String                        `nexa:"string=Number"`
+	PaymentType sdk.Selection[PaymentType]        `nexa:"required,string=Payment Type,default=inbound"`
+	PartnerType sdk.Selection[PartnerType]        `nexa:"string=Partner Type,default=customer"`
+	PartnerID   sdk.Many2One[CorePartner]         `nexa:"string=Partner"`
+	Amount      sdk.Numeric                       `nexa:"required,string=Amount,precision=18,scale=2,default=0"`
+	Date        sdk.Date                          `nexa:"string=Date"`
+	JournalID   sdk.Many2One[AccountJournal]      `nexa:"string=Journal"`
+	Memo        sdk.String                        `nexa:"string=Memo"`
 	State       sdk.Selection[PaymentRecordState] `nexa:"string=Status,default=draft"`
-	MoveID      sdk.Many2One[AccountMove]       `nexa:"string=Journal Entry"`
-	InvoiceID   sdk.Many2One[AccountMove]       `nexa:"string=Invoice / Bill"`
+	MoveID      sdk.Many2One[AccountMove]         `nexa:"string=Journal Entry"`
+	InvoiceID   sdk.Many2One[AccountMove]         `nexa:"string=Invoice / Bill"`
 }

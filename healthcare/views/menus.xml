@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="hc_menu_root" name="Healthcare" web_icon="hospital" sequence="53" groups="healthcare.group_healthcare_frontdesk"/>
+        <menuitem id="menu_hc_patient" name="Patients" parent="hc_menu_root" action="healthcare.action_hc_patient" sequence="1" groups="healthcare.group_healthcare_frontdesk"/>
+        <menuitem id="menu_hc_provider" name="Providers" parent="hc_menu_root" action="healthcare.action_hc_provider" sequence="2" groups="healthcare.group_healthcare_admin"/>
+        <menuitem id="menu_hc_appt" name="Appointments" parent="hc_menu_root" action="healthcare.action_hc_appt" sequence="3" groups="healthcare.group_healthcare_frontdesk"/>
+        <menuitem id="menu_hc_encounter" name="Encounters" parent="hc_menu_root" action="healthcare.action_hc_encounter" sequence="4" groups="healthcare.group_healthcare_clinical"/>
+            <menuitem id="menu_healthcare_tariff" name="Tariffs" parent="healthcare_menu_root" action="healthcare.action_healthcare_tariff" sequence="5" groups="healthcare.group_healthcare_admin"/>
+        <menuitem id="menu_healthcare_claim" name="Insurance Claims" parent="healthcare_menu_root" action="healthcare.action_healthcare_claim" sequence="6" groups="healthcare.group_healthcare_admin"/>
+        <menuitem id="menu_healthcare_claim_line" name="Claim Lines" parent="healthcare_menu_root" action="healthcare.action_healthcare_claim_line" sequence="7" groups="healthcare.group_healthcare_admin"/>
+    </data>
+</nexa>

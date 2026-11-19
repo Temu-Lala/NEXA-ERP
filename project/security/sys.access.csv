@@ -9,3 +9,9 @@ access_project_task_comment_user,access_project_task_comment_user,project.task.c
 access_project_board_stage_user,access_project_board_stage_user,project.board.stage,,1,1,1,1
 access_project_issue_type_user,access_project_issue_type_user,project.issue.type,,1,1,1,1
 access_project_worklog_user,access_project_worklog_user,project.worklog,,1,1,1,1
+access_project_task_link_user,access_project_task_link_user,project.task.link,,1,1,1,1
+access_project_task_checklist_user,access_project_task_checklist_user,project.task.checklist.item,,1,1,1,1
+access_project_field_definition_user,access_project_field_definition_user,project.field.definition,,1,1,1,1
+access_project_field_value_user,access_project_field_value_user,project.field.value,,1,1,1,1
+access_project_release_user,access_project_release_user,project.release,,1,1,1,1
+access_project_git_link_user,access_project_git_link_user,project.git.link,,1,1,1,1

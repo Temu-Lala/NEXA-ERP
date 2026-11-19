@@ -37,8 +37,11 @@
             <filter name="exc_late" string="Late" domain='[["status","in","late,late_and_early"]]'/>
             <filter name="exc_early" string="Early Leave" domain='[["status","in","early_leave,late_and_early"]]'/>
             <filter name="exc_missing" string="Missing Punch" domain='[["missing_punch","=",true]]'/>
+            <filter name="checked_in" string="Currently Checked In" domain='[["check_out","=",false]]'/>
+            <filter name="checked_out" string="Completed" domain='[["check_out","!=",false]]]'/>
             <filter name="group_employee" string="Employee" group_by="employee_id"/>
             <filter name="group_status" string="Status" group_by="status"/>
+            <filter name="group_date" string="Check In Date" group_by="check_in"/>
         </view>
         <action id="action_hr_attendance" type="window" model="hr.attendance" name="Attendances" view_mode="list,form"/>
     </data>

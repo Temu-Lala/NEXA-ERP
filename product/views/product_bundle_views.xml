@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa><data>
+<view id="view_product_bundle_list" model="product.bundle" type="list">
+<field name="name" string="Bundle"/><field name="product_id" string="Sellable Product"/><field name="active" string="Active"/>
+</view>
+<view id="view_product_bundle_form" model="product.bundle" type="form">
+<sheet><div class="sum_title"><h1><field name="name" placeholder="Bundle..."/></h1></div>
+<group><field name="product_id" string="Sellable Product"/><field name="active" string="Active"/></group>
+<notebook><page string="Components"><field name="lines" nolabel="1"/></page></notebook>
+</sheet></view>
+<view id="view_product_bundle_line_list" model="product.bundle.line" type="list">
+<field name="bundle_id" string="Bundle"/><field name="product_id" string="Component"/><field name="qty" string="Qty"/>
+</view>
+<view id="view_product_bundle_line_form" model="product.bundle.line" type="form">
+<sheet><group><field name="bundle_id" string="Bundle"/><field name="product_id" string="Component"/><field name="qty" string="Qty"/></group></sheet></view>
+<action id="action_product_bundle" type="window" model="product.bundle" name="Bundles" view_mode="list,form"/>
+<action id="action_product_bundle_line" type="window" model="product.bundle.line" name="Bundle Components" view_mode="list,form"/>
+</data></nexa>

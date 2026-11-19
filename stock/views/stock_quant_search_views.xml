@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_stock_quant_search" model="stock.quant" type="search">
+            <field name="product_id"/>
+            <field name="location_id"/>
+            <field name="lot_id"/>
+            <filter name="in_stock" string="In Stock" domain='[["quantity",">",0]]]'/>
+            <filter name="available" string="Available" domain='[["available_quantity",">",0]]]'/>
+            <filter name="negative" string="Negative" domain='[["quantity","&lt;",0]]]'/>
+            <filter name="reserved" string="Has Reservations" domain='[["reserved_quantity",">",0]]]'/>
+            <filter name="empty" string="Empty" domain='[["quantity","=",0]]]'/>
+            <filter name="group_product" string="Product" group_by="product_id"/>
+            <filter name="group_location" string="Location" group_by="location_id"/>
+            <filter name="group_lot" string="Lot" group_by="lot_id"/>
+        </view>
+    </data>
+</nexa>

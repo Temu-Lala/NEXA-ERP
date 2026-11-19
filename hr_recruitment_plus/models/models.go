@@ -97,6 +97,7 @@ type HrApplicantScreening struct {
 // HrInterviewScorecard is one weighted criterion line scored by an interviewer.
 type HrInterviewScorecard struct {
 	sdk.Model `nexa:"model=hr.recruitment.scorecard"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	InterviewID sdk.Many2One[HrRecInterview] `nexa:"required,string=Interview,index"`
 	Criterion   sdk.String                   `nexa:"required,string=Criterion"`
@@ -135,6 +136,7 @@ type HrOfferApproval struct {
 // HrOfferTemplate is a reusable offer letter with {{placeholder}} tokens.
 type HrOfferTemplate struct {
 	sdk.Model `nexa:"model=hr.recruitment.offer.template"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name    sdk.String  `nexa:"required,string=Name"`
 	Subject sdk.String  `nexa:"string=Subject"`
@@ -149,6 +151,7 @@ type HrOfferTemplate struct {
 // HrOnboardingTemplate is a reusable checklist definition.
 type HrOnboardingTemplate struct {
 	sdk.Model `nexa:"model=hr.onboarding.template"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name        sdk.String  `nexa:"required,string=Name"`
 	Active      sdk.Boolean `nexa:"string=Active,default=true"`
@@ -159,6 +162,7 @@ type HrOnboardingTemplate struct {
 // measured from the plan start date.
 type HrOnboardingTemplateLine struct {
 	sdk.Model `nexa:"model=hr.onboarding.template.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	TemplateID    sdk.Many2One[HrOnboardingTemplate] `nexa:"required,string=Template,index"`
 	Name          sdk.String                         `nexa:"required,string=Activity"`

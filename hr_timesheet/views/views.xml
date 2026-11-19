@@ -30,6 +30,33 @@
             </sheet>
         </view>
 
-        <action id="action_timesheet" type="window" model="hr.timesheet" name="Timesheets" view_mode="list,form"/>
+        <view id="view_timesheet_kanban" model="hr.timesheet" type="kanban" default_group_by="state">
+            <field name="state"/>
+            <field name="date"/>
+            <field name="employee_id"/>
+            <field name="project_id"/>
+            <field name="task_id"/>
+            <field name="name"/>
+            <field name="hours"/>
+            <field name="is_billable"/>
+        </view>
+        <view id="view_timesheet_search" model="hr.timesheet" type="search">
+            <field name="name"/>
+            <field name="description"/>
+            <field name="employee_id"/>
+            <field name="project_id"/>
+            <field name="task_id"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="validated" string="Validated" domain='[["state","=","validated"]]'/>
+            <filter name="done" string="Done" domain='[["state","=","done"]]'/>
+            <filter name="billable" string="Billable" domain='[["is_billable","=",true]]'/>
+            <filter name="non_billable" string="Non-Billable" domain='[["is_billable","=",false]]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_project" string="Project" group_by="project_id"/>
+            <filter name="group_task" string="Task" group_by="task_id"/>
+            <filter name="group_date" string="Date" group_by="date"/>
+        </view>
+        <action id="action_timesheet" type="window" model="hr.timesheet" name="Timesheets" view_mode="kanban,list,form"/>
     </data>
 </nexa>

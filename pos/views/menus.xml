@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="pos_menu_root" name="Point of Sale" web_icon="monitor" sequence="46" groups="pos.group_pos_user"/>
+
+        <!-- Sell -->
+        <menuitem id="pos_menu_sell" name="Sell" parent="pos_menu_root" sequence="1" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_terminal" name="Register Terminal" parent="pos_menu_sell" action="pos.action_pos_register_terminal" sequence="1" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_kitchen" name="Kitchen Display" parent="pos_menu_sell" action="pos.action_pos_kitchen" sequence="1" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_reports" name="Reports" parent="pos_menu_sell" action="pos.action_pos_reports" sequence="2" groups="pos.group_pos_manager"/>
+
+        <!-- Sales -->
+        <menuitem id="pos_menu_sales" name="Sales" parent="pos_menu_root" sequence="2" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_order" name="Orders" parent="pos_menu_sales" action="pos.action_pos_order" sequence="1" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_order_line" name="Order Lines" parent="pos_menu_sales" action="pos.action_pos_order_line" sequence="2" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_payment" name="Payments" parent="pos_menu_sales" action="pos.action_pos_payment" sequence="3" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_return" name="Returns" parent="pos_menu_sales" action="pos.action_pos_return" sequence="4" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_return_line" name="Return Lines" parent="pos_menu_sales" action="pos.action_pos_return_line" sequence="5" groups="pos.group_pos_user"/>
+
+        <!-- Stores & Shifts -->
+        <menuitem id="pos_menu_stores" name="Stores &amp; Shifts" parent="pos_menu_root" sequence="3" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_session" name="Sessions" parent="pos_menu_stores" action="pos.action_pos_session" sequence="1" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_cash_movement" name="Cash Movements" parent="pos_menu_stores" action="pos.action_pos_cash_movement" sequence="2" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_store" name="Stores" parent="pos_menu_stores" action="pos.action_pos_store" sequence="3" groups="pos.group_pos_manager"/>
+        <menuitem id="menu_pos_printer" name="Printers" parent="pos_menu_stores" action="pos.action_pos_printer" sequence="6" groups="pos.group_pos_manager"/>
+        <menuitem id="menu_pos_table" name="Tables" parent="pos_menu_stores" action="pos.action_pos_table" sequence="5" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_register" name="Registers" parent="pos_menu_stores" action="pos.action_pos_register" sequence="4" groups="pos.group_pos_manager"/>
+
+        <!-- Pricing -->
+        <menuitem id="pos_menu_pricing" name="Pricing" parent="pos_menu_root" sequence="4" groups="pos.group_pos_manager"/>
+        <menuitem id="menu_pos_promotion" name="Promotions" parent="pos_menu_pricing" action="pos.action_pos_promotion" sequence="1" groups="pos.group_pos_manager"/>
+        <menuitem id="menu_pos_price_list" name="Price Lists" parent="pos_menu_pricing" action="pos.action_pos_price_list" sequence="2" groups="pos.group_pos_manager"/>
+        <menuitem id="menu_pos_price_list_item" name="Price Rules" parent="pos_menu_pricing" action="pos.action_pos_price_list_item" sequence="3" groups="pos.group_pos_manager"/>
+
+        <!-- Customers -->
+        <menuitem id="pos_menu_customers" name="Customers" parent="pos_menu_root" sequence="5" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_giftcard" name="Gift Cards" parent="pos_menu_customers" action="pos.action_pos_giftcard" sequence="1" groups="pos.group_pos_user"/>
+        <menuitem id="menu_pos_loyalty_txn" name="Loyalty Ledger" parent="pos_menu_customers" action="pos.action_pos_loyalty_txn" sequence="2" groups="pos.group_pos_manager"/>
+
+        <!-- Offline -->
+        <menuitem id="pos_menu_offline" name="Offline" parent="pos_menu_root" sequence="6" groups="pos.group_pos_manager"/>
+        <menuitem id="menu_pos_device" name="Devices" parent="pos_menu_offline" action="pos.action_pos_device" sequence="1" groups="pos.group_pos_manager"/>
+        <menuitem id="menu_pos_sync_event" name="Sync Events" parent="pos_menu_offline" action="pos.action_pos_sync_event" sequence="2" groups="pos.group_pos_manager"/>
+
+        <!-- Insights -->
+        <menuitem id="pos_menu_insights" name="Insights" parent="pos_menu_root" sequence="7" groups="pos.group_pos_manager"/>
+        <menuitem id="menu_pos_audit_event" name="Audit Log" parent="pos_menu_insights" action="pos.action_pos_audit_event" sequence="1" groups="pos.group_pos_manager"/>
+    </data>
+</nexa>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <record id="module_category_itam" model="sys.module.category">
+            <field name="name">IT Asset Management</field>
+            <field name="sequence">56</field>
+        </record>
+        <record id="group_itam_user" model="core.group">
+            <field name="name">ITAM / User</field>
+            <field name="category_id" ref="module_category_itam"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_itam_manager" model="core.group">
+            <field name="name">ITAM / Manager</field>
+            <field name="category_id" ref="module_category_itam"/>
+            <field name="implied_ids" eval="[(4, ref('group_itam_user'))]"/>
+        </record>
+    </data>
+</nexa>

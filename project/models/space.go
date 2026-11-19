@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"net/url"
+	"strconv"
 
 	"nexa/core/orm"
 )
@@ -31,6 +32,7 @@ const (
 	memberModel   = "project.member"
 	riskModel     = "project.risk"
 	documentModel = "project.document"
+	typeModel     = "project.type"
 )
 
 func init() {
@@ -44,7 +46,9 @@ func init() {
 	orm.RegisterCompute(projModel, "member_count", []string{"id"}, computeProjectMemberCount)
 	orm.RegisterCompute(projModel, "risk_count", []string{"id"}, computeProjectRiskCount)
 	orm.RegisterCompute(projModel, "document_count", []string{"id"}, computeProjectDocumentCount)
+	orm.RegisterCompute(projModel, "workspace_hidden_tabs", []string{"type_id"}, computeProjectWorkspaceHiddenTabs)
 
+	orm.RegisterObjectAction(projModel, "action_space_workspace", projSpaceWorkspace)
 	orm.RegisterObjectAction(projModel, "action_space_issues", projSpaceIssues)
 	orm.RegisterObjectAction(projModel, "action_space_open", projSpaceOpen)
 	orm.RegisterObjectAction(projModel, "action_space_backlog", projSpaceBacklog)
@@ -56,6 +60,8 @@ func init() {
 	orm.RegisterObjectAction(projModel, "action_space_team", projSpaceTeam)
 	orm.RegisterObjectAction(projModel, "action_space_risks", projSpaceRisks)
 	orm.RegisterObjectAction(projModel, "action_space_documents", projSpaceDocuments)
+	orm.RegisterObjectAction(projModel, "action_space_velocity", projSpaceVelocity)
+	orm.RegisterObjectAction(projModel, "action_space_timeline", projSpaceTimeline)
 }
 
 // ---------------------------------------------------------------------------
@@ -121,6 +127,23 @@ func computeProjectDocumentCount(ctx context.Context, rec map[string]interface{}
 	return rowCountWithin(ctx, rec, documentModel), nil
 }
 
+// computeProjectWorkspaceHiddenTabs surfaces the active project type's hidden-tab
+// configuration onto the project record. The workspace payload reader
+// (swcmeta.applyWorkspaceTabVisibility) uses it to drop suppressed tabs server-side,
+// so a project only ever shows the sections its type allows. No type — or an
+// unreadable one — hides nothing, leaving every tab visible rather than guessing.
+func computeProjectWorkspaceHiddenTabs(ctx context.Context, rec map[string]interface{}) (interface{}, error) {
+	typeID := intID(rec["type_id"])
+	if typeID <= 0 {
+		return "", nil
+	}
+	t := loadRec(orm.ContextWithBypass(ctx, true), typeModel, typeID)
+	if t == nil {
+		return "", nil
+	}
+	return str(t["workspace_hidden_tabs"]), nil
+}
+
 // ---------------------------------------------------------------------------
 // Section navigation (object → project-scoped redirect)
 // ---------------------------------------------------------------------------
@@ -138,7 +161,47 @@ func spaceRedirect(model, viewType string, projectID int, extra ...[]interface{}
 	q.Set("model", model)
 	q.Set("view_type", viewType)
 	q.Set("domain", string(b))
+	if model == taskModel {
+		if viewType == "kanban" {
+			q.Set("action", "project.action_project_board")
+		} else if viewType == "gantt" {
+			q.Set("action", "project.action_project_timeline")
+		} else {
+			q.Set("action", "project.action_project_task")
+		}
+	} else if model == projModel {
+		q.Set("action", "project.action_project_project")
+	} else if model == epicModel {
+		q.Set("action", "project.action_project_epic")
+	} else if model == sprintModel {
+		if viewType == "graph" {
+			q.Set("action", "project.action_project_sprint_velocity")
+		} else {
+			q.Set("action", "project.action_project_sprint")
+		}
+	} else if model == mileModel {
+		q.Set("action", "project.action_project_milestone")
+	}
 	return "/web?" + q.Encode(), nil
+}
+
+// workspaceRedirect opens the per-record Project Workspace shell for this project,
+// optionally landing on a specific tab (e.g. "board"). The frontend reads the id
+// and tab straight from the /web query, so this is the same honest URL mechanism
+// the section buttons already use — no browser-side fakes.
+func workspaceRedirect(id int, tab string) string {
+	q := url.Values{}
+	q.Set("model", projModel)
+	q.Set("view_type", "project_workspace")
+	q.Set("id", strconv.Itoa(id))
+	if tab != "" {
+		q.Set("tab", tab)
+	}
+	return "/web?" + q.Encode()
+}
+
+func projSpaceWorkspace(_ context.Context, _ string, id int, _ map[string]string) (string, error) {
+	return workspaceRedirect(id, ""), nil
 }
 
 func projSpaceIssues(_ context.Context, _ string, id int, _ map[string]string) (string, error) {
@@ -157,7 +220,33 @@ func projSpaceBacklog(_ context.Context, _ string, id int, _ map[string]string) 
 }
 
 func projSpaceBoard(_ context.Context, _ string, id int, _ map[string]string) (string, error) {
-	return spaceRedirect(taskModel, "kanban", id)
+	return workspaceRedirect(id, "board"), nil
+}
+
+func projSpaceBoardOriginal(ctx context.Context, _ string, id int, _ map[string]string) (string, error) {
+	bypass := orm.ContextWithBypass(ctx, true)
+	// If the project has an active sprint, open the active sprint board (Jira Active Board)
+	if orm.DB != nil {
+		sprints, err := orm.SearchPage(bypass, sprintModel, [][]interface{}{
+			{"project_id", "=", id},
+			{"state", "=", string(SprintActive)},
+		}, 1, 0, "sequence asc, id desc")
+		if err == nil && len(sprints) > 0 {
+			sprintID := intID(sprints[0]["id"])
+			return spaceRedirect(taskModel, "kanban", id, []interface{}{"sprint_id", "=", sprintID})
+		}
+	}
+	// Otherwise open the Kanban board excluding cancelled tasks
+	return spaceRedirect(taskModel, "kanban", id, []interface{}{"state", "!=", string(TaskStateCancelled)})
+}
+
+func projSpaceVelocity(_ context.Context, _ string, id int, _ map[string]string) (string, error) {
+	return spaceRedirect(sprintModel, "graph", id, []interface{}{"state", "=", string(SprintClosed)})
+}
+
+// projSpaceTimeline opens the project's Gantt (Timeline) scoped to this space.
+func projSpaceTimeline(_ context.Context, _ string, id int, _ map[string]string) (string, error) {
+	return spaceRedirect(taskModel, "gantt", id)
 }
 
 func projSpaceBlocked(_ context.Context, _ string, id int, _ map[string]string) (string, error) {

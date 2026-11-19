@@ -96,6 +96,7 @@ type StockWave struct {
 // StockWaveLine binds one transfer order into the wave.
 type StockWaveLine struct {
 	sdk.Model `nexa:"model=stock.wave.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 	WaveID    sdk.Many2One[StockWave]    `nexa:"required,index"`
 	PickingID sdk.Many2One[StockPicking] `nexa:"required,index,string=Transfer"`
 	Origin    sdk.String                 `nexa:"string=Source Document"`
@@ -104,6 +105,7 @@ type StockWaveLine struct {
 // StockOpsScanLog is the append-only barcode trail (§16.3).
 type StockOpsScanLog struct {
 	sdk.Model `nexa:"model=stock.ops.scan.log"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 	Name      sdk.String                       `nexa:"required,index,string=Reference"`
 	TaskID    sdk.Many2One[StockOperationTask] `nexa:"index,string=Task"`
 	ProductID sdk.Many2One[ProductProduct]     `nexa:"index,string=Product"`

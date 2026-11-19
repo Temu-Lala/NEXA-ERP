@@ -7,6 +7,7 @@ import (
 // HrJob is a job position (title) that employees can hold within a department.
 type HrJob struct {
 	sdk.Model `nexa:"model=hr.job"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name              sdk.String                 `nexa:"required,string=Job Position"`
 	DepartmentID      sdk.Many2One[HrDepartment] `nexa:"string=Department"`

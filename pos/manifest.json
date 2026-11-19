@@ -1,0 +1,24 @@
+{
+    "name": "pos",
+    "display_name": "Point of Sale",
+    "version": "1.0.0",
+    "summary": "Retail registers, cashier shifts, orders and tenders",
+    "description": "Physical point-of-sale for the ERP: cashier sessions with cash-drawer reconciliation, POS orders with lines and split tenders, returns and end-of-day closing. Integrates with product, stock and sale; never posts accounting directly.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "product",
+        "stock",
+        "sale"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml",
+        "views/pos_table_views.xml",
+        "views/pos_printer_views.xml"
+    ],
+    "application": true,
+    "category": "Sales"
+}

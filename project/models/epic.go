@@ -35,6 +35,7 @@ const (
 // ProjectEpic is a body of work grouping issues across sprints.
 type ProjectEpic struct {
 	sdk.Model `nexa:"model=project.epic"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name        sdk.String                   `nexa:"required,size=120,index,string=Epic"`
 	ProjectID   sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="re_menu_root" name="Real Estate" web_icon="building" sequence="49" groups="realestate.group_real_estate_user"/>
+        <menuitem id="menu_re_property" name="Properties" parent="re_menu_root" action="realestate.action_re_property" sequence="1" groups="realestate.group_real_estate_user"/>
+        <menuitem id="menu_re_unit" name="Units" parent="re_menu_root" action="realestate.action_re_unit" sequence="2" groups="realestate.group_real_estate_user"/>
+        <menuitem id="menu_re_lease" name="Leases" parent="re_menu_root" action="realestate.action_re_lease" sequence="3" groups="realestate.group_real_estate_user"/>
+        <menuitem id="menu_re_rent_payment" name="Rent Payments" parent="re_menu_root" action="realestate.action_re_rent_payment" sequence="4" groups="realestate.group_real_estate_user"/>
+    </data>
+</nexa>

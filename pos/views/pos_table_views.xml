@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa><data>
+<view id="view_pos_table_list" model="pos.table" type="list">
+<field name="name" string="Table"/><field name="section" string="Section"/><field name="seats" string="Seats"/><field name="state" string="Status"/><field name="active" string="Active"/>
+</view>
+<view id="view_pos_table_form" model="pos.table" type="form">
+<sheet><div class="sum_title"><h1><field name="name" placeholder="Table..."/></h1></div>
+<group><field name="store_id" string="Store"/><field name="section" string="Section"/><field name="seats" string="Seats"/><field name="state" string="Status"/><field name="active" string="Active"/></group>
+</sheet></view>
+<action id="action_pos_table" type="window" model="pos.table" name="Tables" view_mode="list,form"/>
+<action id="action_pos_kitchen" type="window" model="pos.order" name="Kitchen Display" view_mode="pos_kitchen"/>
+</data></nexa>

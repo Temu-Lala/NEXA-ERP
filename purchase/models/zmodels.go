@@ -8,5 +8,6 @@ func init() {
 	sdk.MustRegister("purchase",
 		&PurchaseOrder{},
 		&PurchaseOrderLine{},
+		&PurchaseSavingsRecord{},
 	)
 }

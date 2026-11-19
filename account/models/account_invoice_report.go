@@ -6,6 +6,7 @@ import (
 
 type AccountInvoiceReport struct {
 	sdk.Model `nexa:"model=account.invoice.report"`
+	CompanyID sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	MoveID         sdk.Many2One[AccountMove]   `nexa:"index,string=Invoice"`
 	Name           sdk.String                  `nexa:"string=Number"`

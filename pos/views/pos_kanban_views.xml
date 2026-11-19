@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_pos_order_kanban" model="pos.order" type="kanban" default_group_by="state">
+            <field name="state"/>
+            <field name="name"/>
+            <field name="session_id"/>
+            <field name="partner_id"/>
+            <field name="user_id"/>
+            <field name="table_id"/>
+            <field name="course"/>
+            <field name="date_order"/>
+            <field name="amount_total" widget="monetary"/>
+            <field name="amount_paid" widget="monetary"/>
+            <field name="discount" widget="monetary"/>
+        </view>
+        <view id="view_pos_session_kanban" model="pos.session" type="kanban" default_group_by="state">
+            <field name="state"/>
+            <field name="name"/>
+            <field name="user_id"/>
+            <field name="config_name"/>
+            <field name="start_at"/>
+            <field name="stop_at"/>
+            <field name="opening_cash" widget="monetary"/>
+            <field name="expected_cash" widget="monetary"/>
+            <field name="closing_cash" widget="monetary"/>
+            <field name="cash_variance" widget="monetary"/>
+        </view>
+    </data>
+</nexa>

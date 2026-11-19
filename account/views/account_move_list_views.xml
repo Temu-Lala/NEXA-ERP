@@ -5,12 +5,14 @@
             <field name="name" string="Number"/>
             <field name="move_type" string="Type"/>
             <field name="partner_id" string="Partner"/>
+            <field name="journal_id" string="Journal"/>
             <field name="invoice_date" string="Date"/>
+            <field name="invoice_date_due" string="Due Date"/>
             <field name="invoice_origin" string="Source"/>
-            <field name="amount_untaxed" string="Untaxed"/>
-            <field name="amount_tax" string="Tax"/>
-            <field name="amount_total" string="Total"/>
-            <field name="amount_residual" string="Due"/>
+            <field name="amount_untaxed" string="Untaxed" widget="monetary" options="currency_field:currency_id"/>
+            <field name="amount_tax" string="Tax" widget="monetary" options="currency_field:currency_id"/>
+            <field name="amount_total" string="Total" widget="monetary" options="currency_field:currency_id"/>
+            <field name="amount_residual" string="Due" widget="monetary" options="currency_field:currency_id"/>
             <field name="payment_state" string="Payment"/>
             <field name="state" string="Status"/>
         </view>

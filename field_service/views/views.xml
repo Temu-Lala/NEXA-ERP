@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_fs_tech_list" model="fs.technician" type="list">
+            <field name="name" string="Technician"/>
+            <field name="code" string="Code"/>
+            <field name="skills" string="Skills"/>
+            <field name="zone" string="Zone"/>
+            <field name="open_orders" string="Open"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_fs_tech_form" model="fs.technician" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Technician..."/></h1></div>
+                <group>
+                    <field name="code" string="Code"/>
+                    <field name="user_id" string="Linked User"/>
+                    <field name="skills" string="Skills"/>
+                    <field name="zone" string="Service Zone"/>
+                    <field name="open_orders" string="Open Orders" readonly="true"/>
+                    <field name="active" string="Active"/>
+                </group>
+                <group string="Certifications"><field name="certifications" string="Certifications"/></group>
+                <notebook><page string="Work Orders"><field name="orders" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_fs_wo_list" model="fs.workorder" type="list" default_order="id desc">
+            <field name="name" string="WO"/>
+            <field name="title" string="Title"/>
+            <field name="customer_id" string="Customer"/>
+            <field name="technician_id" string="Tech"/>
+            <field name="priority" string="Priority"/>
+            <field name="state" string="Status"/>
+            <field name="scheduled_at" string="Scheduled"/>
+            <field name="first_time_fix" string="1st Fix"/>
+        </view>
+        <view id="view_fs_wo_form" model="fs.workorder" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Work order..."/></h1></div>
+                <group>
+                    <field name="title" string="Title"/>
+                    <field name="ticket_id" string="Ticket"/>
+                    <field name="customer_id" string="Customer"/>
+                    <field name="required_skill" string="Required Skill"/>
+                    <field name="priority" string="Priority"/>
+                    <field name="technician_id" string="Technician"/>
+                    <field name="scheduled_at" string="Scheduled At"/>
+                    <field name="arrived_at" string="Arrived"/>
+                    <field name="completed_at" string="Completed"/>
+                    <field name="travel_min" string="Travel (min)"/>
+                    <field name="labor_min" string="Labor (min)"/>
+                    <field name="first_time_fix" string="First-time Fix"/>
+                    <field name="signature" string="Signature"/>
+                </group>
+                <group string="Site Address"><field name="site_address" string="Site Address"/></group>
+                <group string="Description"><field name="description" string="Description"/></group>
+                <group string="Service Report"><field name="report" string="Service Report"/></group>
+                <notebook><page string="Parts"><field name="parts" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_fs_part_list" model="fs.workorder.part" type="list">
+            <field name="workorder_id" string="Work Order"/>
+            <field name="product_id" string="Part"/>
+            <field name="quantity" string="Qty"/>
+            <field name="unit_cost" string="Unit Cost"/>
+            <field name="amount" string="Amount"/>
+        </view>
+        <view id="view_fs_part_form" model="fs.workorder.part" type="form">
+            <sheet>
+                <group>
+                    <field name="workorder_id" string="Work Order"/>
+                    <field name="product_id" string="Part"/>
+                    <field name="quantity" string="Quantity"/>
+                    <field name="unit_cost" string="Unit Cost"/>
+                    <field name="amount" string="Amount" readonly="true"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_fs_tech" type="window" model="fs.technician" name="Technicians" view_mode="list,form"/>
+        <action id="action_fs_wo" type="window" model="fs.workorder" name="Work Orders" view_mode="list,form"/>
+        <action id="action_fs_part" type="window" model="fs.workorder.part" name="Parts Used" view_mode="list,form"/>
+    </data>
+</nexa>

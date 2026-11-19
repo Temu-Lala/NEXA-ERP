@@ -1,0 +1,19 @@
+{
+    "name": "hospitality",
+    "display_name": "Hospitality",
+    "version": "1.0.0",
+    "summary": "Hotels, rooms, reservations and revenue analytics",
+    "description": "Accommodation management: properties, room types and inventory, reservations with double-booking prevention, check-in/out workflow, and ADR/RevPAR/occupancy analytics. Guest billing integrates through shared finance.",
+    "author": "Nexa",
+    "depends": [
+        "base"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Hospitality"
+}

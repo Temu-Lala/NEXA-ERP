@@ -32,6 +32,7 @@ const (
 // ProjectBudget is an approved financial plan for a project.
 type ProjectBudget struct {
 	sdk.Model `nexa:"model=project.budget"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID   sdk.Many2One[ProjectProject]    `nexa:"required,index,string=Project"`
 	Name        sdk.String                      `nexa:"required,string=Budget Name"`
@@ -44,17 +45,23 @@ type ProjectBudget struct {
 // ProjectBudgetLine is a budgeted amount for one cost category.
 type ProjectBudgetLine struct {
 	sdk.Model `nexa:"model=project.budget.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
-	BudgetID    sdk.Many2One[ProjectBudget] `nexa:"required,index,string=Budget"`
-	Category    sdk.Selection[CostCategory] `nexa:"required,string=Cost Category"`
-	Amount      sdk.Numeric                 `nexa:"string=Planned Amount,precision=18,scale=2,default=0"`
-	Description sdk.Text                    `nexa:"string=Description"`
-	Sequence    sdk.Integer                 `nexa:"string=Sequence,default=10"`
+	BudgetID sdk.Many2One[ProjectBudget] `nexa:"required,index,string=Budget"`
+	Category sdk.Selection[CostCategory] `nexa:"required,string=Cost Category"`
+	Amount   sdk.Numeric                 `nexa:"string=Planned Amount,precision=18,scale=2,default=0"`
+	// Period is the planned spend month (YYYY-MM). Earned-value PV sums lines
+	// whose period has arrived; empty period means unscheduled (counts toward
+	// BAC but not PV until a period is set).
+	Period      sdk.String  `nexa:"string=Period,help='YYYY-MM — planned spend month'"`
+	Description sdk.Text    `nexa:"string=Description"`
+	Sequence    sdk.Integer `nexa:"string=Sequence,default=10"`
 }
 
 // ProjectCost is a source-linked cost snapshot charged against a project.
 type ProjectCost struct {
 	sdk.Model `nexa:"model=project.cost"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID   sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`
 	Date        sdk.Date                     `nexa:"required,string=Date"`

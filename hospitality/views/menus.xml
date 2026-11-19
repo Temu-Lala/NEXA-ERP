@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="hosp_menu_root" name="Hospitality" web_icon="bed" sequence="50" groups="hospitality.group_hospitality_user"/>
+        <menuitem id="menu_hosp_property" name="Properties" parent="hosp_menu_root" action="hospitality.action_hosp_property" sequence="1" groups="hospitality.group_hospitality_user"/>
+        <menuitem id="menu_hosp_room_type" name="Room Types" parent="hosp_menu_root" action="hospitality.action_hosp_room_type" sequence="2" groups="hospitality.group_hospitality_user"/>
+        <menuitem id="menu_hosp_room" name="Rooms" parent="hosp_menu_root" action="hospitality.action_hosp_room" sequence="3" groups="hospitality.group_hospitality_user"/>
+        <menuitem id="menu_hosp_reservation" name="Reservations" parent="hosp_menu_root" action="hospitality.action_hosp_reservation" sequence="4" groups="hospitality.group_hospitality_user"/>
+        <menuitem id="menu_hosp_charge" name="Folio Charges" parent="hosp_menu_root" action="hospitality.action_hosp_charge" sequence="5" groups="hospitality.group_hospitality_user"/>
+            <menuitem id="menu_hospitality_housekeeping" name="Housekeeping" parent="hosp_menu_root" action="hospitality.action_hospitality_housekeeping" sequence="6" groups="hospitality.group_hospitality_user"/>
+        <menuitem id="menu_hospitality_channel" name="Channels" parent="hosp_menu_root" action="hospitality.action_hospitality_channel" sequence="7" groups="hospitality.group_hospitality_manager"/>
+    </data>
+</nexa>

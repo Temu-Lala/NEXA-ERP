@@ -8,13 +8,15 @@
             <field name="name" string="Label"/>
             <field name="tax_id" string="Tax"/>
             <field name="quantity" string="Qty"/>
-            <field name="price_unit" string="Unit Price"/>
-            <field name="price_subtotal" string="Subtotal"/>
+            <field name="price_unit" string="Unit Price" widget="monetary"/>
+            <field name="price_subtotal" string="Subtotal" widget="monetary"/>
             <field name="account_id" string="Account"/>
             <field name="partner_id" string="Partner"/>
-            <field name="debit" string="Debit"/>
-            <field name="credit" string="Credit"/>
-            <field name="amount_residual" string="Residual"/>
+            <field name="debit" string="Debit" widget="monetary"/>
+            <field name="credit" string="Credit" widget="monetary"/>
+            <field name="balance" string="Balance" widget="monetary"/>
+            <field name="amount_residual" string="Residual" widget="monetary"/>
+            <field name="reconciled" string="Reconciled"/>
         </view>
     </data>
 </nexa>

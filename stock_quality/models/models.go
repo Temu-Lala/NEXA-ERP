@@ -67,6 +67,7 @@ const (
 // StockQualityPlan defines what gets inspected, how often, and the pass rule.
 type StockQualityPlan struct {
 	sdk.Model `nexa:"model=stock.quality.plan"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name             sdk.String                    `nexa:"required,index,string=Name"`
 	Scope            sdk.Selection[PlanScope]      `nexa:"required,string=Scope,default=general"`
@@ -83,6 +84,7 @@ type StockQualityPlan struct {
 // StockQualityCheck is one inspection against a receipt move / lot.
 type StockQualityCheck struct {
 	sdk.Model `nexa:"model=stock.quality.check"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                     `nexa:"required,index,string=Reference"`
 	PlanID       sdk.Many2One[StockQualityPlan] `nexa:"index,string=Plan"`
@@ -104,6 +106,7 @@ type StockQualityCheck struct {
 // second-person approval (separation of duties).
 type StockQualityHold struct {
 	sdk.Model `nexa:"model=stock.quality.hold"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name       sdk.String                      `nexa:"required,index,string=Reference"`
 	CheckID    sdk.Many2One[StockQualityCheck] `nexa:"index,string=Origin Check"`

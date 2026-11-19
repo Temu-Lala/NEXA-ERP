@@ -26,6 +26,7 @@ const (
 // ProjectTimesheet is one employee's effort for a week, reviewed as a unit.
 type ProjectTimesheet struct {
 	sdk.Model `nexa:"model=project.timesheet"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	UserID        sdk.Many2One[CoreUser]             `nexa:"required,index,string=Employee"`
 	WeekStart     sdk.Date                           `nexa:"required,index,string=Week Start"`
@@ -43,6 +44,7 @@ type ProjectTimesheet struct {
 // ProjectTimesheetLine is a single effort entry against a task on a timesheet.
 type ProjectTimesheetLine struct {
 	sdk.Model `nexa:"model=project.timesheet.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	TimesheetID sdk.Many2One[ProjectTimesheet] `nexa:"required,index,string=Timesheet"`
 	ProjectID   sdk.Many2One[ProjectProject]   `nexa:"string=Project"`

@@ -6,6 +6,7 @@ import (
 
 type AccountJournal struct {
 	sdk.Model `nexa:"model=account.journal"`
+	CompanyID sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name             sdk.String                   `nexa:"required,string=Journal Name"`
 	Code             sdk.String                   `nexa:"required,unique,string=Short Code"`

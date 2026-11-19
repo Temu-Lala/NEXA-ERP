@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_account_move_line_search" model="account.move.line" type="search">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="move_id"/>
+            <field name="account_id"/>
+            <filter name="unreconciled" string="Unreconciled" domain='[["reconciled","=",false]]]'/>
+            <filter name="reconciled" string="Reconciled" domain='[["reconciled","=",true]]]'/>
+            <filter name="with_balance" string="With Balance" domain='[["balance","!=",0]]]'/>
+            <filter name="debit_lines" string="Debit Lines" domain='[["debit",">",0]]]'/>
+            <filter name="credit_lines" string="Credit Lines" domain='[["credit",">",0]]]'/>
+            <filter name="product_lines" string="Product Lines" domain='[["display_type","=","product"]]'/>
+            <filter name="group_account" string="Account" group_by="account_id"/>
+            <filter name="group_partner" string="Partner" group_by="partner_id"/>
+            <filter name="group_display_type" string="Type" group_by="display_type"/>
+            <filter name="group_analytic" string="Analytic" group_by="analytic_account_id"/>
+        </view>
+    </data>
+</nexa>

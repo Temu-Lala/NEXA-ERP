@@ -11,8 +11,8 @@
                     </group>
                     <group string="Prices">
                         <field name="product_uom_qty" string="Quantity"/>
-                        <field name="price_unit" string="Unit Price"/>
-                        <field name="price_subtotal" string="Subtotal"/>
+                        <field name="price_unit" string="Unit Price" widget="monetary"/>
+                        <field name="price_subtotal" string="Subtotal" widget="monetary"/>
                         <field name="sequence" string="Sequence"/>
                     </group>
                 </group>

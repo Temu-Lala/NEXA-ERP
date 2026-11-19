@@ -88,6 +88,7 @@ const (
 // PurchaseInvoiceMatchCase is a three-way matching case: PO + receipt + invoice.
 type PurchaseInvoiceMatchCase struct {
 	sdk.Model `nexa:"model=purchase.invoice.match.case"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name            sdk.String                                  `nexa:"required,index,string=Reference"`
 	OrderID         sdk.Many2One[PurchaseOrder]                 `nexa:"required,index,string=Purchase Order"`
@@ -133,6 +134,7 @@ type PurchaseInvoiceMatchCase struct {
 // quantity/price, recording variances against tolerance.
 type PurchaseInvoiceMatchLine struct {
 	sdk.Model `nexa:"model=purchase.invoice.match.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	MatchID         sdk.Many2One[PurchaseInvoiceMatchCase] `nexa:"required,index,string=Match Case"`
 	OrderLineID     sdk.Many2One[PurchaseOrderLine]        `nexa:"string=PO Line"`
@@ -157,6 +159,7 @@ type PurchaseInvoiceMatchLine struct {
 // and its authorized resolution. The resolver must not bypass financial controls.
 type PurchaseInvoiceMatchException struct {
 	sdk.Model `nexa:"model=purchase.invoice.match.exception"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name        sdk.String                             `nexa:"required,size=60,string=Reference"`
 	MatchID     sdk.Many2One[PurchaseInvoiceMatchCase] `nexa:"required,index,string=Match Case"`
@@ -177,6 +180,7 @@ type PurchaseInvoiceMatchException struct {
 // consumption; Purchase never posts the bill or authorizes a payment here.
 type PurchaseInvoiceMatchEvent struct {
 	sdk.Model `nexa:"model=purchase.invoice.match.event"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name        sdk.String                             `nexa:"required,index,size=60,string=Reference"`
 	EventType   sdk.Selection[MatchEvent]              `nexa:"required,index,string=Event"`

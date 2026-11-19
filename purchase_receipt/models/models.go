@@ -77,6 +77,7 @@ const (
 // The actual stock movement is an Inventory transaction, kept separate.
 type PurchaseDeliverySchedule struct {
 	sdk.Model `nexa:"model=purchase.delivery.schedule"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name          sdk.String                      `nexa:"required,index,string=Reference"`
 	OrderID       sdk.Many2One[PurchaseOrder]     `nexa:"required,index,string=Purchase Order"`
@@ -97,6 +98,7 @@ type PurchaseDeliverySchedule struct {
 // (stock.picking); it does not re-implement stock movements.
 type PurchaseReceipt struct {
 	sdk.Model `nexa:"model=purchase.receipt"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name             sdk.String                        `nexa:"required,index,string=Reference"`
 	OrderID          sdk.Many2One[PurchaseOrder]       `nexa:"required,index,string=Purchase Order"`
@@ -121,6 +123,7 @@ type PurchaseReceipt struct {
 // independent source of truth.
 type PurchaseReceiptLine struct {
 	sdk.Model `nexa:"model=purchase.receipt.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ReceiptID    sdk.Many2One[PurchaseReceipt]   `nexa:"required,index,string=Receipt"`
 	OrderLineID  sdk.Many2One[PurchaseOrderLine] `nexa:"string=PO Line"`
@@ -142,6 +145,7 @@ type PurchaseReceiptLine struct {
 // Stock returns are executed by Inventory; credit notes by Accounting.
 type PurchaseSupplierReturn struct {
 	sdk.Model `nexa:"model=purchase.supplier.return"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name          sdk.String                               `nexa:"required,index,string=Reference"`
 	OrderID       sdk.Many2One[PurchaseOrder]              `nexa:"required,index,string=Purchase Order"`
@@ -162,6 +166,7 @@ type PurchaseSupplierReturn struct {
 // PurchaseSupplierReturnLine lists returned quantities and reasons.
 type PurchaseSupplierReturnLine struct {
 	sdk.Model `nexa:"model=purchase.supplier.return.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ReturnID      sdk.Many2One[PurchaseSupplierReturn] `nexa:"required,index,string=Return"`
 	ReceiptLineID sdk.Many2One[PurchaseReceiptLine]    `nexa:"string=Receipt Line"`
@@ -179,6 +184,7 @@ type PurchaseSupplierReturnLine struct {
 // Inventory; this record coordinates the commercial disposition and evidence.
 type PurchaseDiscrepancyCase struct {
 	sdk.Model `nexa:"model=purchase.discrepancy.case"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name          sdk.String                          `nexa:"required,index,string=Reference"`
 	ReceiptID     sdk.Many2One[PurchaseReceipt]       `nexa:"required,index,string=Receipt"`
@@ -204,6 +210,7 @@ type PurchaseDiscrepancyCase struct {
 // Accounting and only referenced here.
 type PurchaseSupplierClaim struct {
 	sdk.Model `nexa:"model=purchase.supplier.claim"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name           sdk.String                    `nexa:"required,index,string=Reference"`
 	PartnerID      sdk.Many2One[sdk.Any]         `nexa:"required,string=Supplier,comodel=core.partner"`

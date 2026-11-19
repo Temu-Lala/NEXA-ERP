@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <nexa>
     <data>
-        <menuitem id="menu_project_overview_root" name="Dashboard" parent="project.project_menu_root" sequence="1" web_icon="pie-chart"/>
+        <menuitem id="menu_project_overview_root" name="Dashboard" parent="project.project_menu_insights" sequence="50" web_icon="pie-chart"/>
 
         <menuitem id="menu_project_ovw_state" name="Projects by Status" parent="menu_project_overview_root" action="project_overview.action_project_ovw_state" sequence="1"/>
         <menuitem id="menu_project_ovw_health" name="Portfolio Health" parent="menu_project_overview_root" action="project_overview.action_project_ovw_health" sequence="2"/>

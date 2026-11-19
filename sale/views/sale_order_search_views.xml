@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_sale_order_search" model="sale.order" type="search">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="opportunity_id"/>
+            <field name="note"/>
+            <filter name="quotation" string="Quotations" domain='[["state","in",["draft","sent"]]]]'/>
+            <filter name="order" string="Sales Orders" domain='[["state","=","sale"]]'/>
+            <filter name="cancel" string="Cancelled" domain='[["state","=","cancel"]]'/>
+            <filter name="to_invoice" string="To Invoice" domain='[["invoice_status","=","to invoice"]]'/>
+            <filter name="invoiced" string="Invoiced" domain='[["invoice_status","=","invoiced"]]'/>
+            <filter name="not_invoiced" string="Nothing to Invoice" domain='[["invoice_status","=","no"]]'/>
+            <filter name="my" string="My Orders" domain='[["user_id","=","$uid"]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_partner" string="Customer" group_by="partner_id"/>
+            <filter name="group_user" string="Salesperson" group_by="user_id"/>
+            <filter name="group_invoice_status" string="Invoice Status" group_by="invoice_status"/>
+            <filter name="group_date" string="Order Date" group_by="date_order"/>
+        </view>
+    </data>
+</nexa>

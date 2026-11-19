@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="itam_menu_root" name="IT Assets" web_icon="server" sequence="56" groups="itam.group_itam_user"/>
+        <menuitem id="menu_itam_asset" name="Assets" parent="itam_menu_root" action="itam.action_itam_asset" sequence="1" groups="itam.group_itam_user"/>
+        <menuitem id="menu_itam_ci" name="Config Items" parent="itam_menu_root" action="itam.action_itam_ci" sequence="2" groups="itam.group_itam_user"/>
+        <menuitem id="menu_itam_ci_rel" name="CI Relations" parent="itam_menu_root" action="itam.action_itam_ci_rel" sequence="3" groups="itam.group_itam_user"/>
+        <menuitem id="menu_itam_license" name="Licenses" parent="itam_menu_root" action="itam.action_itam_license" sequence="4" groups="itam.group_itam_user"/>
+    </data>
+</nexa>

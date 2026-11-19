@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="itsm_menu_root" name="ITSM" web_icon="alert-triangle" sequence="45" groups="itsm.group_itsm_user"/>
+        <menuitem id="menu_itsm_incident" name="Incidents" parent="itsm_menu_root" action="itsm.action_itsm_incident" sequence="1" groups="itsm.group_itsm_user"/>
+        <menuitem id="menu_itsm_timeline" name="Incident Timeline" parent="itsm_menu_root" action="itsm.action_itsm_timeline" sequence="2" groups="itsm.group_itsm_user"/>
+        <menuitem id="menu_itsm_problem" name="Problems" parent="itsm_menu_root" action="itsm.action_itsm_problem" sequence="3" groups="itsm.group_itsm_user"/>
+        <menuitem id="menu_itsm_change" name="Changes" parent="itsm_menu_root" action="itsm.action_itsm_change" sequence="4" groups="itsm.group_itsm_user"/>
+        <menuitem id="menu_itsm_release" name="Releases" parent="itsm_menu_root" action="itsm.action_itsm_release" sequence="5" groups="itsm.group_itsm_user"/>
+        <menuitem id="menu_itsm_release_pkg" name="Release Packages" parent="itsm_menu_root" action="itsm.action_itsm_release_pkg" sequence="6" groups="itsm.group_itsm_user"/>
+    </data>
+</nexa>

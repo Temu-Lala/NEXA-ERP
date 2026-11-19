@@ -20,7 +20,9 @@
         "views/product_product_actions.xml",
         "views/product_category_actions.xml",
         "views/product_brand_tag_views.xml",
-        "views/menus.xml"
+        "views/menus.xml",
+        "views/product_pim_views.xml",
+        "views/product_bundle_views.xml"
     ],
     "application": true,
     "category": "Inventory"

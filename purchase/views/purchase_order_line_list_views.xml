@@ -6,8 +6,11 @@
             <field name="product_id" string="Product"/>
             <field name="name" string="Description"/>
             <field name="product_qty" string="Quantity"/>
-            <field name="price_unit" string="Unit Price"/>
-            <field name="price_subtotal" string="Subtotal"/>
+            <field name="qty_received" string="Received"/>
+            <field name="price_unit" string="Unit Price" widget="monetary"/>
+            <field name="benchmark_price" string="Last Price" widget="monetary"/>
+            <field name="price_variance_pct" string="Var %"/>
+            <field name="price_subtotal" string="Subtotal" widget="monetary"/>
         </view>
     </data>
 </nexa>

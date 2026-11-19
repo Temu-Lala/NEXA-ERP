@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_re_property_list" model="realestate.property" type="list">
+            <field name="name" string="Property"/>
+            <field name="ref" string="Ref"/>
+            <field name="kind" string="Type"/>
+            <field name="city" string="City"/>
+            <field name="owner_id" string="Owner"/>
+            <field name="state" string="Status"/>
+            <field name="purchase_price" string="Price"/>
+        </view>
+        <view id="view_re_property_form" model="realestate.property" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Property name..."/></h1></div>
+                <group>
+                    <field name="ref" string="Reference"/>
+                    <field name="kind" string="Type"/>
+                    <field name="city" string="City"/>
+                    <field name="owner_id" string="Owner"/>
+                    <field name="manager_id" string="Manager"/>
+                    <field name="purchase_price" string="Purchase Price"/>
+                </group>
+                <group string="Address"><field name="address" string="Address"/></group>
+                <notebook><page string="Units"><field name="units" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_re_unit_list" model="realestate.unit" type="list">
+            <field name="name" string="Unit"/>
+            <field name="property_id" string="Property"/>
+            <field name="unit_type" string="Type"/>
+            <field name="beds" string="Beds"/>
+            <field name="area_m2" string="Area"/>
+            <field name="rent_amount" string="Rent"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_re_unit_form" model="realestate.unit" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Unit..."/></h1></div>
+                <group>
+                    <field name="property_id" string="Property"/>
+                    <field name="unit_type" string="Unit Type"/>
+                    <field name="floor" string="Floor"/>
+                    <field name="beds" string="Bedrooms"/>
+                    <field name="baths" string="Bathrooms"/>
+                    <field name="area_m2" string="Area (m²)"/>
+                    <field name="rent_amount" string="Monthly Rent"/>
+                    <field name="state" string="Status"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_re_lease_list" model="realestate.lease" type="list" default_order="id desc">
+            <field name="name" string="Lease"/>
+            <field name="unit_id" string="Unit"/>
+            <field name="tenant_id" string="Tenant"/>
+            <field name="state" string="Status"/>
+            <field name="start_date" string="Start"/>
+            <field name="end_date" string="End"/>
+            <field name="rent_amount" string="Rent"/>
+            <field name="deposit" string="Deposit"/>
+        </view>
+        <view id="view_re_lease_form" model="realestate.lease" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Lease reference..."/></h1></div>
+                <group>
+                    <field name="unit_id" string="Unit"/>
+                    <field name="tenant_id" string="Tenant"/>
+                    <field name="start_date" string="Start Date"/>
+                    <field name="end_date" string="End Date"/>
+                    <field name="rent_amount" string="Monthly Rent"/>
+                    <field name="deposit" string="Deposit"/>
+                    <field name="rent_due_day" string="Due Day"/>
+                    <field name="escalation_pct" string="Escalation %"/>
+                </group>
+                <notebook><page string="Payments"><field name="payments" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_re_rent_payment_list" model="realestate.rent.payment" type="list" default_order="due_date desc, id desc">
+            <field name="lease_id" string="Lease"/>
+            <field name="period" string="Period"/>
+            <field name="due_date" string="Due"/>
+            <field name="amount" string="Amount"/>
+            <field name="paid_date" string="Paid"/>
+            <field name="state" string="Status"/>
+            <field name="is_overdue" string="Overdue"/>
+            <field name="reference" string="Ref"/>
+        </view>
+        <view id="view_re_rent_payment_form" model="realestate.rent.payment" type="form">
+            <sheet>
+                <group>
+                    <field name="lease_id" string="Lease"/>
+                    <field name="period" string="Period (YYYY-MM)"/>
+                    <field name="due_date" string="Due Date"/>
+                    <field name="amount" string="Amount"/>
+                    <field name="paid_date" string="Paid Date"/>
+                    <field name="state" string="Status"/>
+                    <field name="is_overdue" string="Overdue" readonly="true"/>
+                    <field name="reference" string="Payment Reference"/>
+                    <field name="note" string="Note"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_re_property" type="window" model="realestate.property" name="Properties" view_mode="list,form"/>
+        <action id="action_re_unit" type="window" model="realestate.unit" name="Units" view_mode="list,form"/>
+        <action id="action_re_lease" type="window" model="realestate.lease" name="Leases" view_mode="list,form"/>
+        <action id="action_re_rent_payment" type="window" model="realestate.rent.payment" name="Rent Payments" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -5,7 +5,7 @@
             <field name="name" string="Number"/>
             <field name="payment_type" string="Type"/>
             <field name="partner_id" string="Partner"/>
-            <field name="amount" string="Amount"/>
+            <field name="amount" string="Amount" widget="monetary"/>
             <field name="date" string="Date"/>
             <field name="journal_id" string="Journal"/>
             <field name="invoice_id" string="Invoice"/>

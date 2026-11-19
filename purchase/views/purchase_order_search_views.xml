@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_purchase_order_search" model="purchase.order" type="search">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="notes"/>
+            <filter name="rfq" string="RFQs" domain='[["state","in",["draft","sent"]]]]'/>
+            <filter name="po" string="Purchase Orders" domain='[["state","=","purchase"]]'/>
+            <filter name="cancel" string="Cancelled" domain='[["state","=","cancel"]]'/>
+            <filter name="to_bill" string="To Bill" domain='[["invoice_status","=","to invoice"]]'/>
+            <filter name="billed" string="Billed" domain='[["invoice_status","=","invoiced"]]'/>
+            <filter name="not_billed" string="Nothing to Bill" domain='[["invoice_status","=","no"]]'/>
+            <filter name="maverick" string="Maverick Buys" domain='[["is_maverick","=",true]]]'/>
+            <filter name="my" string="My Purchases" domain='[["user_id","=","$uid"]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_partner" string="Vendor" group_by="partner_id"/>
+            <filter name="group_user" string="Buyer" group_by="user_id"/>
+            <filter name="group_invoice_status" string="Billing Status" group_by="invoice_status"/>
+            <filter name="group_date" string="Deadline" group_by="date_order"/>
+        </view>
+    </data>
+</nexa>

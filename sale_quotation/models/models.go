@@ -52,6 +52,7 @@ const (
 // referencing the shared approval.request rather than duplicating an engine.
 type SaleQuotationApproval struct {
 	sdk.Model `nexa:"model=sale.quotation.approval"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                        `nexa:"required,index,string=Reference"`
 	OrderID      sdk.Many2One[SaleOrder]           `nexa:"required,index,string=Quotation"`
@@ -72,6 +73,7 @@ type SaleQuotationApproval struct {
 // the document the customer saw.
 type SaleQuotationRevision struct {
 	sdk.Model `nexa:"model=sale.quotation.revision"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name          sdk.String              `nexa:"required,index,string=Reference"`
 	OrderID       sdk.Many2One[SaleOrder] `nexa:"required,index,string=Quotation"`
@@ -91,6 +93,7 @@ type SaleQuotationRevision struct {
 // SaleQuotationHistory records quotation state transitions with actor and reason.
 type SaleQuotationHistory struct {
 	sdk.Model `nexa:"model=sale.quotation.status.history"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	OrderID   sdk.Many2One[SaleOrder] `nexa:"required,index,string=Quotation"`
 	FromState sdk.String              `nexa:"size=30,string=From"`
@@ -104,6 +107,7 @@ type SaleQuotationHistory struct {
 // order confirmation. Accounting owns balances; Sales keeps only the decision.
 type SaleCreditCheck struct {
 	sdk.Model `nexa:"model=sale.credit.check"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name              sdk.String                    `nexa:"required,index,string=Reference"`
 	OrderID           sdk.Many2One[SaleOrder]       `nexa:"required,index,string=Order"`

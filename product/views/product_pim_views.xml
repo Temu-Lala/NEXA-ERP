@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_product_variant_list" model="product.variant" type="list">
+            <field name="product_id" string="Product"/><field name="name" string="Variant"/><field name="sku" string="SKU"/><field name="barcode" string="Barcode"/><field name="list_price" string="Price"/><field name="standard_price" string="Cost"/><field name="active" string="Active"/>
+        </view>
+        <view id="view_product_variant_form" model="product.variant" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Variant..."/></h1></div>
+                <group><field name="product_id" string="Product"/><field name="sku" string="SKU"/><field name="barcode" string="Barcode"/><field name="list_price" string="Price"/><field name="standard_price" string="Cost"/><field name="active" string="Active"/></group>
+                <group string="Attributes"><field name="attributes" string="Attributes (JSON)"/></group>
+            </sheet>
+        </view>
+        <view id="view_product_attribute_list" model="product.attribute" type="list">
+            <field name="name" string="Attribute"/><field name="code" string="Code"/><field name="kind" string="Type"/><field name="create_variant" string="Variants"/><field name="active" string="Active"/>
+        </view>
+        <view id="view_product_attribute_form" model="product.attribute" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Attribute..."/></h1></div>
+                <group><field name="code" string="Code"/><field name="kind" string="Type"/><field name="create_variant" string="Creates Variants"/><field name="active" string="Active"/></group>
+                <group string="Allowed Values"><field name="values" string="Values"/></group>
+            </sheet>
+        </view>
+        <view id="view_product_barcode_list" model="product.barcode" type="list">
+            <field name="product_id" string="Product"/><field name="variant_id" string="Variant"/><field name="code" string="Barcode"/><field name="symbology" string="Type"/><field name="source" string="Source"/><field name="is_primary" string="Primary"/><field name="active" string="Active"/>
+        </view>
+        <view id="view_product_barcode_form" model="product.barcode" type="form">
+            <sheet>
+                <group><field name="product_id" string="Product"/><field name="variant_id" string="Variant"/><field name="code" string="Barcode"/><field name="symbology" string="Symbology"/><field name="source" string="Source"/><field name="is_primary" string="Primary"/><field name="active" string="Active"/></group>
+            </sheet>
+        </view>
+        <view id="view_product_supplier_list" model="product.supplier" type="list">
+            <field name="product_id" string="Product"/><field name="partner_id" string="Supplier"/><field name="supplier_sku" string="Supplier SKU"/><field name="price" string="Price"/><field name="min_qty" string="Min Qty"/><field name="lead_days" string="Lead Days"/><field name="preferred" string="Preferred"/>
+        </view>
+        <view id="view_product_supplier_form" model="product.supplier" type="form">
+            <sheet>
+                <group><field name="product_id" string="Product"/><field name="partner_id" string="Supplier"/><field name="supplier_sku" string="Supplier SKU"/><field name="supplier_code" string="Part No"/><field name="price" string="Purchase Price"/><field name="min_qty" string="Min Order Qty"/><field name="lead_days" string="Lead Time (days)"/><field name="priority" string="Priority"/><field name="preferred" string="Preferred"/><field name="active" string="Active"/></group>
+            </sheet>
+        </view>
+        <view id="view_product_price_history_list" model="product.price.history" type="list" default_order="at desc, id desc">
+            <field name="product_id" string="Product"/><field name="variant_id" string="Variant"/><field name="field" string="Field"/><field name="old_value" string="Old"/><field name="new_value" string="New"/><field name="reason" string="Reason"/><field name="user_id" string="By"/><field name="at" string="At"/>
+        </view>
+        <view id="view_product_price_history_form" model="product.price.history" type="form">
+            <sheet>
+                <group><field name="product_id" string="Product"/><field name="variant_id" string="Variant"/><field name="field" string="Field"/><field name="old_value" string="Old"/><field name="new_value" string="New"/><field name="reason" string="Reason"/><field name="user_id" string="Changed By"/><field name="at" string="At"/></group>
+            </sheet>
+        </view>
+        <action id="action_product_variant" type="window" model="product.variant" name="Variants" view_mode="list,form"/>
+        <action id="action_product_attribute" type="window" model="product.attribute" name="Attributes" view_mode="list,form"/>
+        <action id="action_product_barcode" type="window" model="product.barcode" name="Barcodes" view_mode="list,form"/>
+        <action id="action_product_supplier" type="window" model="product.supplier" name="Product Suppliers" view_mode="list,form"/>
+        <action id="action_product_price_history" type="window" model="product.price.history" name="Price History" view_mode="list,form"/>
+    </data>
+</nexa>

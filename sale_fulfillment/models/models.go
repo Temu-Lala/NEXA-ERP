@@ -44,6 +44,7 @@ const (
 // order line. Quantities here are a mirrored snapshot for visibility only.
 type SaleOrderReservationLink struct {
 	sdk.Model `nexa:"model=sale.order.reservation.link"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String              `nexa:"required,size=60,string=Reference"`
 	OrderID      sdk.Many2One[SaleOrder] `nexa:"required,index,string=Order"`
@@ -60,6 +61,7 @@ type SaleOrderReservationLink struct {
 // references the authoritative Inventory transfer.
 type SaleShipmentLink struct {
 	sdk.Model `nexa:"model=sale.shipment.link"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name          sdk.String                   `nexa:"required,index,string=Reference"`
 	OrderID       sdk.Many2One[SaleOrder]      `nexa:"required,index,string=Order"`
@@ -78,6 +80,7 @@ type SaleShipmentLink struct {
 // outcome references, and the credit/refund reference issued by Accounting.
 type SaleReturn struct {
 	sdk.Model `nexa:"model=sale.return"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name           sdk.String                     `nexa:"required,index,string=Reference"`
 	OrderID        sdk.Many2One[SaleOrder]        `nexa:"required,index,string=Original Order"`
@@ -100,6 +103,7 @@ type SaleReturn struct {
 // after Inventory inspection, never automatic.
 type SaleReturnLine struct {
 	sdk.Model `nexa:"model=sale.return.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ReturnID    sdk.Many2One[SaleReturn] `nexa:"required,index,string=Return"`
 	ProductID   sdk.Many2One[sdk.Any]    `nexa:"string=Product,comodel=product.product"`

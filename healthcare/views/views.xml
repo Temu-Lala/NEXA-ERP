@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hc_provider_list" model="healthcare.provider" type="list">
+            <field name="name" string="Provider"/>
+            <field name="code" string="Code"/>
+            <field name="specialty" string="Specialty"/>
+            <field name="department" string="Department"/>
+            <field name="license_no" string="License"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_hc_provider_form" model="healthcare.provider" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Provider name..."/></h1></div>
+                <group>
+                    <field name="code" string="Provider Code"/>
+                    <field name="specialty" string="Specialty"/>
+                    <field name="department" string="Department"/>
+                    <field name="license_no" string="License Number"/>
+                    <field name="user_id" string="Linked User"/>
+                    <field name="active" string="Active"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_hc_patient_list" model="healthcare.patient" type="list">
+            <field name="patient_no" string="Patient No"/>
+            <field name="name" string="Name"/>
+            <field name="date_of_birth" string="DOB"/>
+            <field name="age_years" string="Age"/>
+            <field name="gender" string="Gender"/>
+            <field name="phone" string="Phone"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_hc_patient_form" model="healthcare.patient" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Patient name..."/></h1></div>
+                <group>
+                    <field name="patient_no" string="Patient No"/>
+                    <field name="date_of_birth" string="Date of Birth"/>
+                    <field name="age_years" string="Age" readonly="true"/>
+                    <field name="gender" string="Gender"/>
+                    <field name="phone" string="Phone"/>
+                    <field name="email" string="Email"/>
+                    <field name="blood_type" string="Blood Type"/>
+                    <field name="consent_records" string="Consent on File"/>
+                </group>
+                <group string="Emergency"><field name="emergency_name" string="Emergency Contact"/><field name="emergency_phone" string="Emergency Phone"/></group>
+                <group string="Allergies"><field name="allergies" string="Allergies"/></group>
+                <group string="Address"><field name="address" string="Address"/></group>
+                <notebook>
+                    <page string="Appointments"><field name="appointments" nolabel="1"/></page>
+                    <page string="Encounters"><field name="encounters" nolabel="1"/></page>
+                </notebook>
+            </sheet>
+        </view>
+        <view id="view_hc_appt_list" model="healthcare.appointment" type="list" default_order="scheduled_at desc, id desc">
+            <field name="name" string="Appointment"/>
+            <field name="patient_id" string="Patient"/>
+            <field name="provider_id" string="Provider"/>
+            <field name="scheduled_at" string="Scheduled"/>
+            <field name="duration_min" string="Min"/>
+            <field name="type" string="Type"/>
+            <field name="reason" string="Reason"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_hc_appt_form" model="healthcare.appointment" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Appointment..."/></h1></div>
+                <group>
+                    <field name="patient_id" string="Patient"/>
+                    <field name="provider_id" string="Provider"/>
+                    <field name="scheduled_at" string="Scheduled At"/>
+                    <field name="duration_min" string="Duration (min)"/>
+                    <field name="type" string="Type"/>
+                    <field name="reason" string="Reason"/>
+                    <field name="encounter" string="Encounter" readonly="true"/>
+                </group>
+                <group string="Internal Note"><field name="note" string="Internal Note"/></group>
+            </sheet>
+        </view>
+        <view id="view_hc_encounter_list" model="healthcare.encounter" type="list" default_order="encounter_date desc, id desc">
+            <field name="name" string="Encounter"/>
+            <field name="patient_id" string="Patient"/>
+            <field name="provider_id" string="Provider"/>
+            <field name="encounter_date" string="Date"/>
+            <field name="type" string="Type"/>
+            <field name="chief_complaint" string="Complaint"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_hc_encounter_form" model="healthcare.encounter" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Encounter..."/></h1></div>
+                <group>
+                    <field name="patient_id" string="Patient"/>
+                    <field name="provider_id" string="Provider"/>
+                    <field name="appointment_id" string="Appointment"/>
+                    <field name="encounter_date" string="Date"/>
+                    <field name="type" string="Type"/>
+                    <field name="chief_complaint" string="Chief Complaint"/>
+                </group>
+                <group string="Clinical Notes"><field name="notes" string="Clinical Notes"/></group>
+            </sheet>
+        </view>
+        <action id="action_hc_provider" type="window" model="healthcare.provider" name="Providers" view_mode="list,form"/>
+        <action id="action_hc_patient" type="window" model="healthcare.patient" name="Patients" view_mode="list,form"/>
+        <action id="action_hc_appt" type="window" model="healthcare.appointment" name="Appointments" view_mode="list,form"/>
+        <action id="action_hc_encounter" type="window" model="healthcare.encounter" name="Encounters" view_mode="list,form"/>
+        <view id="view_healthcare_tariff_list" model="healthcare.tariff" type="list">
+            <field name="name" string="Tariff"/><field name="service" string="Service"/><field name="category" string="Category"/><field name="price" string="Price"/><field name="payer_share" string="Ins %"/><field name="active" string="Active"/>
+        </view>
+        <view id="view_healthcare_tariff_form" model="healthcare.tariff" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Tariff..."/></h1></div>
+                <group><field name="code" string="Code"/><field name="service" string="Service"/><field name="category" string="Category"/><field name="price" string="Price"/><field name="currency_id" string="Currency"/><field name="payer_share" string="Insurance Share %"/><field name="active" string="Active"/></group>
+            </sheet>
+        </view>
+        <view id="view_healthcare_claim_list" model="healthcare.claim" type="list" default_order="id desc">
+            <field name="name" string="Claim"/><field name="patient_id" string="Patient"/><field name="payer_id" string="Payer"/><field name="amount_total" string="Billed"/><field name="amount_approved" string="Approved"/><field name="amount_paid" string="Paid"/><field name="state" string="Status"/>
+        </view>
+        <view id="view_healthcare_claim_form" model="healthcare.claim" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Claim ref..."/></h1></div>
+                <group><field name="patient_id" string="Patient"/><field name="encounter_id" string="Encounter"/><field name="payer_id" string="Payer"/><field name="policy_no" string="Policy No"/><field name="copay" string="Patient Copay"/><field name="amount_total" string="Billed" readonly="true"/><field name="amount_approved" string="Approved"/><field name="amount_paid" string="Paid"/><field name="submitted_at" string="Submitted"/><field name="decided_at" string="Decided"/><field name="denial_reason" string="Denial Reason"/></group>
+                <notebook><page string="Lines"><field name="lines" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_healthcare_claim_line_list" model="healthcare.claim.line" type="list">
+            <field name="claim_id" string="Claim"/><field name="tariff_id" string="Tariff"/><field name="service" string="Service"/><field name="quantity" string="Qty"/><field name="unit_price" string="Price"/><field name="amount" string="Amount"/><field name="approved" string="Approved"/><field name="diagnosis" string="Dx"/><field name="procedure" string="CPT"/>
+        </view>
+        <view id="view_healthcare_claim_line_form" model="healthcare.claim.line" type="form">
+            <sheet>
+                <group><field name="claim_id" string="Claim"/><field name="tariff_id" string="Tariff"/><field name="service" string="Service"/><field name="quantity" string="Qty"/><field name="unit_price" string="Unit Price"/><field name="amount" string="Amount" readonly="true"/><field name="approved" string="Approved"/><field name="diagnosis" string="Diagnosis Code"/><field name="procedure" string="Procedure Code"/></group>
+            </sheet>
+        </view>
+        <action id="action_healthcare_tariff" type="window" model="healthcare.tariff" name="Tariffs" view_mode="list,form"/>
+        <action id="action_healthcare_claim" type="window" model="healthcare.claim" name="Insurance Claims" view_mode="list,form"/>
+        <action id="action_healthcare_claim_line" type="window" model="healthcare.claim.line" name="Claim Lines" view_mode="list,form"/>
+    </data>
+</nexa>

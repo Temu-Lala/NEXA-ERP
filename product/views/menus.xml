@@ -4,9 +4,16 @@
         <menuitem id="menu_product_root" name="Products" web_icon="package" sequence="25" groups="product.group_product_user"/>
         <menuitem id="menu_product_catalog" name="Catalog" parent="menu_product_root" sequence="10" groups="product.group_product_user"/>
         <menuitem id="menu_product_products" name="All Products" parent="menu_product_catalog" action="product.action_product_product" sequence="1" web_icon="package" groups="product.group_product_user"/>
+        <menuitem id="menu_product_variants" name="Variants" parent="menu_product_catalog" action="product.action_product_variant" sequence="2" groups="product.group_product_user"/>
+        <menuitem id="menu_product_barcodes" name="Barcodes" parent="menu_product_catalog" action="product.action_product_barcode" sequence="3" groups="product.group_product_user"/>
         <menuitem id="menu_product_config" name="Configuration" parent="menu_product_root" sequence="90" web_icon="settings" groups="product.group_product_user"/>
         <menuitem id="menu_product_categories" name="Categories" parent="menu_product_config" action="product.action_product_category" sequence="1" web_icon="layers" groups="product.group_product_user"/>
         <menuitem id="menu_product_brands" name="Brands" parent="menu_product_config" action="product.action_product_brand" sequence="2" groups="product.group_product_user"/>
         <menuitem id="menu_product_tags" name="Tags" parent="menu_product_config" action="product.action_product_tag" sequence="3" groups="product.group_product_user"/>
+        <menuitem id="menu_product_attributes" name="Attributes" parent="menu_product_config" action="product.action_product_attribute" sequence="4" groups="product.group_product_manager"/>
+        <menuitem id="menu_product_suppliers" name="Product Suppliers" parent="menu_product_config" action="product.action_product_supplier" sequence="5" groups="product.group_product_manager"/>
+        <menuitem id="menu_product_price_history" name="Price History" parent="menu_product_config" action="product.action_product_price_history" sequence="6" groups="product.group_product_manager"/>
+            <menuitem id="menu_product_bundles" name="Bundles" parent="menu_product_catalog" action="product.action_product_bundle" sequence="4" groups="product.group_product_user"/>
+        <menuitem id="menu_product_bundle_lines" name="Bundle Components" parent="menu_product_catalog" action="product.action_product_bundle_line" sequence="5" groups="product.group_product_user"/>
     </data>
 </nexa>

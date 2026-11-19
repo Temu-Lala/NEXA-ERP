@@ -8,6 +8,7 @@ import (
 // requests and allocations reference.
 type HrLeaveType struct {
 	sdk.Model `nexa:"model=hr.leave.type"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name               sdk.String  `nexa:"required,string=Leave Type"`
 	RequiresAllocation sdk.Boolean `nexa:"string=Requires Allocation,default=true"`
@@ -20,6 +21,7 @@ type HrLeaveType struct {
 // itself subject to the same approval workflow as a request.
 type HrLeaveAllocation struct {
 	sdk.Model `nexa:"model=hr.leave.allocation"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID   sdk.Many2One[HrEmployee]  `nexa:"required,string=Employee,index"`
 	LeaveTypeID  sdk.Many2One[HrLeaveType] `nexa:"required,string=Leave Type,index"`
@@ -35,6 +37,7 @@ type HrLeaveAllocation struct {
 // and the record moves through the draft -> confirm -> validate/refuse workflow.
 type HrLeave struct {
 	sdk.Model `nexa:"model=hr.leave"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID   sdk.Many2One[HrEmployee]  `nexa:"required,string=Employee,index"`
 	LeaveTypeID  sdk.Many2One[HrLeaveType] `nexa:"required,string=Leave Type,index"`

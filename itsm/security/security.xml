@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <record id="module_category_itsm" model="sys.module.category">
+            <field name="name">IT Service Management</field>
+            <field name="sequence">44</field>
+        </record>
+        <record id="group_itsm_user" model="core.group">
+            <field name="name">ITSM / User</field>
+            <field name="category_id" ref="module_category_itsm"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_itsm_manager" model="core.group">
+            <field name="name">ITSM / Manager</field>
+            <field name="category_id" ref="module_category_itsm"/>
+            <field name="implied_ids" eval="[(4, ref('group_itsm_user'))]"/>
+        </record>
+    </data>
+</nexa>

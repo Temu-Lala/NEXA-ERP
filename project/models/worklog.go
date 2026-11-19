@@ -25,6 +25,7 @@ const worklogModel = "project.worklog"
 // ProjectWorklog is one logged unit of work on an issue.
 type ProjectWorklog struct {
 	sdk.Model `nexa:"model=project.worklog"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	TaskID  sdk.Many2One[ProjectTask] `nexa:"required,index,string=Task"`
 	UserID  sdk.Many2One[CoreUser]    `nexa:"required,index,string=User"`

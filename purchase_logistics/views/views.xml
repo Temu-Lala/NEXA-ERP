@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_purchase_shipment_list" model="purchase.shipment" type="list" default_order="expected_date asc, id asc">
+            <field name="name" string="Reference"/>
+            <field name="order_id" string="Purchase Order"/>
+            <field name="supplier_id" string="Supplier"/>
+            <field name="carrier" string="Carrier"/>
+            <field name="mode" string="Mode"/>
+            <field name="state" string="Status"/>
+            <field name="tracking_no" string="Tracking"/>
+            <field name="expected_date" string="Expected"/>
+            <field name="actual_date" string="Actual"/>
+        </view>
+        <view id="view_purchase_shipment_form" model="purchase.shipment" type="form">
+            <header>
+                <field name="state" widget="statusbar" options="{'clickable': '0'}"/>
+            </header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Shipment reference..."/></h1></div>
+                <group>
+                    <group string="Shipment">
+                        <field name="order_id" string="Purchase Order"/>
+                        <field name="receipt_id" string="Receipt"/>
+                        <field name="supplier_id" string="Supplier"/>
+                        <field name="project_ref" string="Project"/>
+                        <field name="carrier" string="Carrier"/>
+                        <field name="mode" string="Mode"/>
+                        <field name="tracking_no" string="Tracking Number"/>
+                        <field name="incoterm" string="Incoterm"/>
+                    </group>
+                    <group string="Route &amp; Dates">
+                        <field name="origin" string="Origin"/>
+                        <field name="destination" string="Destination"/>
+                        <field name="expected_date" string="Expected Arrival"/>
+                        <field name="actual_date" string="Actual Arrival"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Tracking Events">
+                        <field name="events" nolabel="1"/>
+                    </page>
+                    <page string="Freight Charges">
+                        <field name="charges" nolabel="1"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="description" string="Description"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <view id="view_purchase_shipment_event_list" model="purchase.shipment.event" type="list">
+            <field name="shipment_id" string="Shipment"/>
+            <field name="kind" string="Event"/>
+            <field name="location" string="Location"/>
+            <field name="occurred_at" string="Timestamp"/>
+            <field name="note" string="Note"/>
+        </view>
+        <view id="view_purchase_shipment_event_form" model="purchase.shipment.event" type="form">
+            <sheet>
+                <group>
+                    <field name="shipment_id" string="Shipment"/>
+                    <field name="kind" string="Event"/>
+                    <field name="location" string="Location"/>
+                    <field name="occurred_at" string="Timestamp"/>
+                    <field name="note" string="Note"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_purchase_freight_charge_list" model="purchase.freight.charge" type="list">
+            <field name="shipment_id" string="Shipment"/>
+            <field name="kind" string="Type"/>
+            <field name="amount" string="Amount"/>
+            <field name="currency" string="Currency"/>
+            <field name="note" string="Note"/>
+        </view>
+        <view id="view_purchase_freight_charge_form" model="purchase.freight.charge" type="form">
+            <sheet>
+                <group>
+                    <field name="shipment_id" string="Shipment"/>
+                    <field name="kind" string="Type"/>
+                    <field name="amount" string="Amount"/>
+                    <field name="currency" string="Currency"/>
+                    <field name="note" string="Note"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_purchase_shipment" type="window" model="purchase.shipment" name="Shipments" view_mode="list,form"/>
+        <action id="action_purchase_shipment_event" type="window" model="purchase.shipment.event" name="Tracking Events" view_mode="list,form"/>
+        <action id="action_purchase_freight_charge" type="window" model="purchase.freight.charge" name="Freight Charges" view_mode="list,form"/>
+    </data>
+</nexa>

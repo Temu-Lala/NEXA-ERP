@@ -8,6 +8,7 @@ import (
 // an open Job Position and (once hired) to the created employee record.
 type HrApplicant struct {
 	sdk.Model `nexa:"model=hr.applicant"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                    `nexa:"required,string=Applicant"`
 	JobID        sdk.Many2One[HrJob]           `nexa:"string=Job Position,index"`

@@ -129,6 +129,7 @@ const (
 // is a pure function of the plan type/rate/cap against a reference salary.
 type HrBenefitPlan struct {
 	sdk.Model `nexa:"model=hr.benefit.plan"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name             sdk.String                      `nexa:"required,string=Plan Name"`
 	Kind             sdk.Selection[BenefitKind]      `nexa:"string=Kind,index,default=insurance,selection=insurance:Insurance,health:Health,retirement:Retirement,other:Other"`
@@ -154,6 +155,7 @@ type HrBenefitPlan struct {
 // re-validates eligibility and is maker-checker guarded.
 type HrBenefitEnrollment struct {
 	sdk.Model `nexa:"model=hr.benefit.enrollment"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID           sdk.Many2One[HrEmployee]         `nexa:"required,string=Employee,index"`
 	PlanID               sdk.Many2One[HrBenefitPlan]      `nexa:"required,string=Plan,index"`
@@ -173,6 +175,7 @@ type HrBenefitEnrollment struct {
 // HrBenefitDependent is a covered person on an enrolment.
 type HrBenefitDependent struct {
 	sdk.Model `nexa:"model=hr.benefit.dependent"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EnrollmentID sdk.Many2One[HrBenefitEnrollment] `nexa:"required,string=Enrollment,index"`
 	Name         sdk.String                        `nexa:"required,string=Name"`
@@ -190,6 +193,7 @@ type HrBenefitDependent struct {
 // outcome only; it never posts into payroll.
 type HrAllowanceRequest struct {
 	sdk.Model `nexa:"model=hr.allowance"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID  sdk.Many2One[HrEmployee]          `nexa:"required,string=Employee,index"`
 	Kind        sdk.Selection[AllowanceKind]      `nexa:"string=Kind,index,default=allowance,selection=allowance:Allowance,reimbursement:Reimbursement"`
@@ -215,6 +219,7 @@ type HrAllowanceRequest struct {
 // band. Applying records the decision only — payroll remains a separate run.
 type HrCompensationChange struct {
 	sdk.Model `nexa:"model=hr.compensation.change"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID    sdk.Many2One[HrEmployee]       `nexa:"required,string=Employee,index"`
 	ChangeType    sdk.Selection[CompChangeType]  `nexa:"string=Change Type,index,default=raise,selection=promotion:Promotion,raise:Salary Raise,market_adjustment:Market Adjustment,correction:Correction"`
@@ -240,6 +245,7 @@ type HrCompensationChange struct {
 // department, with a budget cap on individual increases.
 type HrCompReviewCycle struct {
 	sdk.Model `nexa:"model=hr.comp.review.cycle"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name              sdk.String                      `nexa:"required,string=Cycle Name"`
 	CycleYear         sdk.Integer                     `nexa:"string=Year"`
@@ -256,6 +262,7 @@ type HrCompReviewCycle struct {
 // manager + maker-checker guarded and respects the cycle's budget cap.
 type HrCompReviewLine struct {
 	sdk.Model `nexa:"model=hr.comp.review.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	CycleID             sdk.Many2One[HrCompReviewCycle] `nexa:"required,string=Cycle,index"`
 	EmployeeID          sdk.Many2One[HrEmployee]        `nexa:"required,string=Employee,index"`

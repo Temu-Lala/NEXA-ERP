@@ -54,6 +54,7 @@ const (
 // SourceLine; workflow rows are written directly by the lot actions.
 type StockTraceabilityEvent struct {
 	sdk.Model `nexa:"model=stock.traceability.event"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name             sdk.String                    `nexa:"required,index,string=Reference"`
 	EventType        sdk.Selection[TraceEventType] `nexa:"required,index,string=Event Type,default=internal"`
@@ -74,6 +75,7 @@ type StockTraceabilityEvent struct {
 // Resolving (or re-dispositioning) the lot closes the alert.
 type StockLotExpiryAlert struct {
 	sdk.Model `nexa:"model=stock.lot.expiry.alert"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	LotID         sdk.Many2One[StockLot]        `nexa:"required,index,string=Lot"`
 	ProductID     sdk.Many2One[ProductProduct]  `nexa:"index,string=Product"`

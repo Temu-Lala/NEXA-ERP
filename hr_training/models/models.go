@@ -43,6 +43,7 @@ const (
 // HrTrainingCourse is a catalog item for training programs.
 type HrTrainingCourse struct {
 	sdk.Model `nexa:"model=hr.training.course"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name          sdk.String                `nexa:"required,string=Course"`
 	Code          sdk.String                `nexa:"string=Code"`
@@ -59,6 +60,7 @@ type HrTrainingCourse struct {
 // HrTrainingSession is a scheduled delivery of a course.
 type HrTrainingSession struct {
 	sdk.Model `nexa:"model=hr.training.session"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	CourseID  sdk.Many2One[HrTrainingCourse] `nexa:"required,string=Course"`
 	Name      sdk.String                     `nexa:"string=Session Name"`
@@ -72,6 +74,7 @@ type HrTrainingSession struct {
 // HrTrainingEnrollment records an employee's participation in a session.
 type HrTrainingEnrollment struct {
 	sdk.Model `nexa:"model=hr.training.enrollment"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	SessionID      sdk.Many2One[HrTrainingSession] `nexa:"required,string=Session"`
 	EmployeeID     sdk.Many2One[HrEmployee]        `nexa:"required,string=Employee"`
@@ -85,6 +88,7 @@ type HrTrainingEnrollment struct {
 // HrTrainingCertificate records a certification earned by an employee.
 type HrTrainingCertificate struct {
 	sdk.Model `nexa:"model=hr.training.certificate"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID sdk.Many2One[HrEmployee]       `nexa:"required,string=Employee"`
 	CourseID   sdk.Many2One[HrTrainingCourse] `nexa:"string=Course"`

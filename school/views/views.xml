@@ -127,7 +127,37 @@
                 <field name="notes" string="Notes"/>
             </sheet>
         </view>
-        <action id="action_school_student" type="window" model="school.student" name="Students" view_mode="list,form"/>
+        <view id="view_school_student_kanban" model="school.student" type="kanban" default_group_by="class_id">
+            <field name="class_id"/>
+            <field name="code"/>
+            <field name="name"/>
+            <field name="section_id"/>
+            <field name="roll_number"/>
+            <field name="gender"/>
+            <field name="guardian_name"/>
+            <field name="guardian_phone"/>
+            <field name="academic_year_id"/>
+            <field name="status"/>
+        </view>
+        <view id="view_school_student_search" model="school.student" type="search">
+            <field name="name"/>
+            <field name="code"/>
+            <field name="guardian_name"/>
+            <field name="guardian_phone"/>
+            <field name="guardian_email"/>
+            <filter name="active_students" string="Active" domain='[["status","=","active"]]'/>
+            <filter name="inactive" string="Inactive" domain='[["status","=","inactive"]]'/>
+            <filter name="suspended" string="Suspended" domain='[["status","=","suspended"]]'/>
+            <filter name="retained" string="Retained" domain='[["status","=","retained"]]'/>
+            <filter name="graduated" string="Graduated / Alumni" domain='[["status","in",["graduated","alumni"]]]]'/>
+            <filter name="teacher_child" string="Teacher's Children" domain='[["is_teacher_child","=",true]]]'/>
+            <filter name="group_class" string="Class" group_by="class_id"/>
+            <filter name="group_section" string="Section" group_by="section_id"/>
+            <filter name="group_year" string="Academic Year" group_by="academic_year_id"/>
+            <filter name="group_status" string="Status" group_by="status"/>
+            <filter name="group_gender" string="Gender" group_by="gender"/>
+        </view>
+        <action id="action_school_student" type="window" model="school.student" name="Students" view_mode="kanban,list,form"/>
 
         <!-- Fee Category -->
         <view id="view_school_fee_category_list" model="school.fee.category" type="list">

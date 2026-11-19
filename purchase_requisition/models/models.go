@@ -87,6 +87,7 @@ type CoreUserAlias = basemodels.CoreUser
 // It is not yet a commitment to a supplier.
 type PurchaseRequisition struct {
 	sdk.Model `nexa:"model=purchase.requisition"`
+	CompanyID   sdk.Many2One[ReqCoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name             sdk.String                               `nexa:"required,index,string=Reference"`
 	DateReq          sdk.Date                                 `nexa:"string=Date,default=today"`
@@ -122,6 +123,7 @@ type PurchaseRequisition struct {
 // PurchaseRequisitionLine is a requested product or service on a requisition.
 type PurchaseRequisitionLine struct {
 	sdk.Model `nexa:"model=purchase.requisition.line"`
+	CompanyID   sdk.Many2One[ReqCoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	RequisitionID sdk.Many2One[PurchaseRequisition] `nexa:"required,index,string=Requisition"`
 	Sequence      sdk.Integer                       `nexa:"string=Sequence,default=10"`
@@ -139,6 +141,7 @@ type PurchaseRequisitionLine struct {
 // PurchaseRequisitionHistory records requisition state transitions.
 type PurchaseRequisitionHistory struct {
 	sdk.Model `nexa:"model=purchase.requisition.status.history"`
+	CompanyID   sdk.Many2One[ReqCoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	RequisitionID sdk.Many2One[PurchaseRequisition] `nexa:"required,index,string=Requisition"`
 	FromState     sdk.String                        `nexa:"size=30,string=From"`
@@ -153,6 +156,7 @@ type PurchaseRequisitionHistory struct {
 // by Accounting; Purchase stores only the check snapshot.
 type PurchaseBudgetCheck struct {
 	sdk.Model `nexa:"model=purchase.budget.check"`
+	CompanyID   sdk.Many2One[ReqCoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name           sdk.String                        `nexa:"required,size=60,string=Reference"`
 	RequisitionID  sdk.Many2One[PurchaseRequisition] `nexa:"string=Requisition"`

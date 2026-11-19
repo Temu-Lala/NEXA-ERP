@@ -403,7 +403,7 @@
         <action id="action_stock_procurement_group" type="window" model="stock.procurement.group" name="Procurement Groups" view_mode="list,form"/>
         <action id="action_stock_lot" type="window" model="stock.lot" name="Lots / Batches" view_mode="list,form"/>
         <action id="action_stock_serial" type="window" model="stock.serial" name="Serial Numbers" view_mode="list,form"/>
-        <action id="action_stock_picking" type="window" model="stock.picking" name="Transfers" view_mode="list,form"/>
+        <action id="action_stock_picking" type="window" model="stock.picking" name="Transfers" view_mode="kanban,list,form"/>
         <action id="action_stock_move" type="window" model="stock.move" name="Stock Moves" view_mode="list,form"/>
         <action id="action_stock_move_line" type="window" model="stock.move.line" name="Operations" view_mode="list,form"/>
         <action id="action_stock_quant" type="window" model="stock.quant" name="On Hand Quantity" view_mode="list,form"/>

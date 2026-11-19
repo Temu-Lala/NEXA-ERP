@@ -6,8 +6,46 @@
             <field name="partner_id" string="Vendor"/>
             <field name="date_order" string="Deadline"/>
             <field name="user_id" string="Buyer"/>
-            <field name="amount_total" string="Total"/>
+            <field name="is_maverick" string="Maverick"/>
+            <field name="amount_total" string="Total" widget="monetary"/>
+            <field name="invoice_status" string="Billing Status"/>
             <field name="state" string="Status"/>
         </view>
+        <!-- Spend analytics: savings records -->
+        <view id="view_purchase_savings_list" model="purchase.savings.record" type="list" default_order="period desc, id desc">
+            <field name="name" string="Reference"/>
+            <field name="category" string="Category"/>
+            <field name="supplier_ref" string="Supplier"/>
+            <field name="baseline_price" string="Baseline" widget="monetary"/>
+            <field name="achieved_price" string="Achieved" widget="monetary"/>
+            <field name="quantity" string="Qty"/>
+            <field name="realized_amount" string="Realized" widget="monetary"/>
+            <field name="period" string="Period"/>
+            <field name="realized" string="Verified"/>
+        </view>
+        <view id="view_purchase_savings_form" model="purchase.savings.record" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Saving reference..."/></h1></div>
+                <group>
+                    <group string="Saving">
+                        <field name="category" string="Category"/>
+                        <field name="supplier_ref" string="Supplier"/>
+                        <field name="order_ref" string="Purchase Order"/>
+                        <field name="product_ref" string="Product"/>
+                        <field name="period" string="Period (YYYY-MM)"/>
+                    </group>
+                    <group string="Value">
+                        <field name="baseline_price" string="Baseline Price" widget="monetary"/>
+                        <field name="achieved_price" string="Achieved Price" widget="monetary"/>
+                        <field name="quantity" string="Quantity"/>
+                        <field name="realized_amount" string="Realized Amount" widget="monetary" readonly="true"/>
+                        <field name="realized" string="Verified / Realized"/>
+                        <field name="evidence" string="Evidence Reference"/>
+                    </group>
+                </group>
+                <group string="Note"><field name="note" string="Note"/></group>
+            </sheet>
+        </view>
+        <action id="action_purchase_savings" type="window" model="purchase.savings.record" name="Savings" view_mode="list,form"/>
     </data>
 </nexa>

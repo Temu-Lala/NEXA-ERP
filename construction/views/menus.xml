@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="construction_menu_root" name="Construction" web_icon="hard-hat" sequence="47" groups="construction.group_construction_user"/>
+        <menuitem id="menu_construction_boq" name="Bills of Quantities" parent="construction_menu_root" action="construction.action_construction_boq" sequence="1" groups="construction.group_construction_user"/>
+        <menuitem id="menu_construction_boq_line" name="BOQ Lines" parent="construction_menu_root" action="construction.action_construction_boq_line" sequence="2" groups="construction.group_construction_user"/>
+        <menuitem id="menu_construction_rfi" name="RFIs" parent="construction_menu_root" action="construction.action_construction_rfi" sequence="3" groups="construction.group_construction_user"/>
+        <menuitem id="menu_construction_variation" name="Variations" parent="construction_menu_root" action="construction.action_construction_variation" sequence="4" groups="construction.group_construction_user"/>
+        <menuitem id="menu_construction_diary" name="Site Diaries" parent="construction_menu_root" action="construction.action_construction_diary" sequence="5" groups="construction.group_construction_user"/>
+            <menuitem id="menu_construction_subcontract" name="Subcontracts" parent="construction_menu_root" action="construction.action_construction_subcontract" sequence="6" groups="construction.group_construction_user"/>
+        <menuitem id="menu_construction_certificate" name="Certificates" parent="construction_menu_root" action="construction.action_construction_certificate" sequence="7" groups="construction.group_construction_user"/>
+    </data>
+</nexa>

@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <nexa>
     <data>
-        <menuitem id="project_menu_root" name="Project" sequence="63"/>
-        <menuitem id="project_menu_projects" name="Projects" parent="project_menu_root" action="project.action_project_project" sequence="1"/>
-        <menuitem id="project_menu_board" name="Board" parent="project_menu_root" action="project.action_project_board" sequence="2"/>
-        <menuitem id="project_menu_tasks" name="Tasks" parent="project_menu_root" action="project.action_project_task" sequence="3"/>
-        <menuitem id="project_menu_mytasks" name="My Tasks" parent="project_menu_root" action="project.action_project_task_my" sequence="4"/>
-        <menuitem id="project_menu_milestones" name="Milestones" parent="project_menu_root" action="project.action_project_milestone" sequence="5"/>
-        <menuitem id="project_menu_planning" name="Planning" parent="project_menu_root" sequence="6"/>
+        <menuitem id="project_menu_root" name="Project" action="project.action_project_project" sequence="63"/>
+
+        <!-- Your work: personal queue, like Jira "For you" -->
+        <menuitem id="project_menu_yourwork" name="Your Work" parent="project_menu_root" sequence="0"/>
+        <menuitem id="project_menu_mytasks" name="My Tasks" parent="project_menu_yourwork" action="project.action_project_task_my" sequence="1"/>
+        <menuitem id="project_menu_worklogs" name="Timesheets" parent="project_menu_yourwork" action="project.action_project_worklog" sequence="2"/>
+
+        <!-- Spaces: the project directory (card grid) -->
+        <menuitem id="project_menu_spaces" name="Spaces" parent="project_menu_root" sequence="10"/>
+        <menuitem id="project_menu_projects" name="All Spaces" parent="project_menu_spaces" action="project.action_project_project" sequence="1"/>
+
+        <!-- Plan: agile planning -->
+        <menuitem id="project_menu_planning" name="Plan" parent="project_menu_root" sequence="20"/>
         <menuitem id="project_menu_backlog" name="Backlog" parent="project_menu_planning" action="project.action_project_backlog" sequence="1"/>
         <menuitem id="project_menu_sprint_planning" name="Sprint Planning" parent="project_menu_planning" action="project.action_project_sprint_planning" sequence="2"/>
         <menuitem id="project_menu_sprints" name="Sprints" parent="project_menu_planning" action="project.action_project_sprint" sequence="3"/>
-        <menuitem id="project_menu_sprint_velocity" name="Velocity" parent="project_menu_planning" action="project.action_project_sprint_velocity" sequence="4"/>
-        <menuitem id="project_menu_sprint_burndown" name="Burndown" parent="project_menu_planning" action="project.action_project_sprint_burndown" sequence="5"/>
-        <menuitem id="project_menu_epics" name="Epics" parent="project_menu_planning" action="project.action_project_epic" sequence="6"/>
-        <menuitem id="project_menu_worklogs" name="Timesheets" parent="project_menu_root" action="project.action_project_worklog" sequence="7"/>
+        <menuitem id="project_menu_epics" name="Epics" parent="project_menu_planning" action="project.action_project_epic" sequence="4"/>
+        <menuitem id="project_menu_sprint_velocity" name="Velocity" parent="project_menu_planning" action="project.action_project_sprint_velocity" sequence="5"/>
+        <menuitem id="project_menu_sprint_burndown" name="Burndown" parent="project_menu_planning" action="project.action_project_sprint_burndown" sequence="6"/>
+
+        <!-- Track: execution views -->
+        <menuitem id="project_menu_track" name="Track" parent="project_menu_root" sequence="30"/>
+        <menuitem id="project_menu_board" name="Board" parent="project_menu_track" action="project.action_project_board" sequence="1"/>
+        <menuitem id="project_menu_timeline" name="Timeline" parent="project_menu_track" action="project.action_project_timeline" sequence="2"/>
+        <menuitem id="project_menu_tasks" name="Tasks" parent="project_menu_track" action="project.action_project_task" sequence="3"/>
+        <menuitem id="project_menu_milestones" name="Milestones" parent="project_menu_track" action="project.action_project_milestone" sequence="4"/>
+
+        <!-- Insights: reports (portfolio dashboard lives in project_overview) -->
+        <menuitem id="project_menu_insights" name="Insights" parent="project_menu_root" sequence="40"/>
+
+        <!-- Configure -->
         <menuitem id="project_menu_config" name="Configuration" parent="project_menu_root" sequence="90"/>
         <menuitem id="project_menu_types" name="Project Types" parent="project_menu_config" action="project.action_project_type" sequence="1"/>
         <menuitem id="project_menu_stages" name="Board Stages" parent="project_menu_config" action="project.action_project_board_stage" sequence="2"/>

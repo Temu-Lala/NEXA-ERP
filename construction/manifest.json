@@ -1,0 +1,20 @@
+{
+    "name": "construction",
+    "display_name": "Construction Management",
+    "version": "1.0.0",
+    "summary": "Sites, bills of quantities, RFIs, variations and site diaries",
+    "description": "Project-based construction management on top of the project module: BOQ estimating, requests for information, variation/change orders with approval states, and daily site diaries. Earned-value metrics come from the project module's EVM computes.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "project"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Projects"
+}

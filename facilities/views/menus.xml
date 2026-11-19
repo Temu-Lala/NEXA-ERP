@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="fac_menu_root" name="Facilities" web_icon="home" sequence="57" groups="facilities.group_facilities_user"/>
+        <menuitem id="menu_fac_bld" name="Buildings" parent="fac_menu_root" action="facilities.action_fac_bld" sequence="1" groups="facilities.group_facilities_user"/>
+        <menuitem id="menu_fac_room" name="Rooms" parent="fac_menu_root" action="facilities.action_fac_room" sequence="2" groups="facilities.group_facilities_user"/>
+        <menuitem id="menu_fac_bkg" name="Bookings" parent="fac_menu_root" action="facilities.action_fac_bkg" sequence="3" groups="facilities.group_facilities_user"/>
+        <menuitem id="menu_fac_req" name="Requests" parent="fac_menu_root" action="facilities.action_fac_req" sequence="4" groups="facilities.group_facilities_user"/>
+    </data>
+</nexa>

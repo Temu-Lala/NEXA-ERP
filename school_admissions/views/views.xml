@@ -98,7 +98,48 @@
                 </group>
             </sheet>
         </view>
-        <action id="action_school_applicant" type="window" model="school.applicant" name="Admission Applications" view_mode="list,form"/>
+        <view id="view_school_applicant_kanban" model="school.applicant" type="kanban" default_group_by="state" records_draggable="false">
+            <field name="state"/>
+            <field name="application_no"/>
+            <field name="first_name"/>
+            <field name="last_name"/>
+            <field name="class_id"/>
+            <field name="section_id"/>
+            <field name="campus_id"/>
+            <field name="source"/>
+            <field name="exam_score"/>
+            <field name="interview_score"/>
+            <field name="application_fee"/>
+            <field name="fee_paid"/>
+            <field name="waitlist_rank"/>
+            <field name="offer_expiry"/>
+            <field name="duplicate_suspect"/>
+        </view>
+        <view id="view_school_applicant_search" model="school.applicant" type="search">
+            <field name="application_no"/>
+            <field name="first_name"/>
+            <field name="last_name"/>
+            <field name="guardian_name"/>
+            <field name="guardian_phone"/>
+            <field name="previous_school"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="submitted" string="Submitted" domain='[["state","=","submitted"]]'/>
+            <filter name="in_review" string="In Review" domain='[["state","in",["under_review","assessment"]]]]'/>
+            <filter name="offered" string="Offered" domain='[["state","=","offered"]]'/>
+            <filter name="waitlisted" string="Waitlisted" domain='[["state","=","waitlisted"]]'/>
+            <filter name="accepted" string="Accepted" domain='[["state","=","accepted"]]'/>
+            <filter name="enrolled" string="Enrolled" domain='[["state","=","enrolled"]]'/>
+            <filter name="rejected" string="Rejected" domain='[["state","=","rejected"]]'/>
+            <filter name="fee_unpaid" string="Fee Unpaid" domain='[["fee_paid","=",false],["application_fee","&gt;",0]]]'/>
+            <filter name="duplicates" string="Duplicate Suspects" domain='[["duplicate_suspect","=",true]]]'/>
+            <filter name="docs_incomplete" string="Docs Incomplete" domain='[["docs_complete","=",false]]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_class" string="Class" group_by="class_id"/>
+            <filter name="group_campus" string="Campus" group_by="campus_id"/>
+            <filter name="group_source" string="Source" group_by="source"/>
+            <filter name="group_year" string="Academic Year" group_by="academic_year_id"/>
+        </view>
+        <action id="action_school_applicant" type="window" model="school.applicant" name="Admission Applications" view_mode="kanban,list,form"/>
 
         <!-- Read-only decision audit -->
         <view id="view_school_admission_decision_list" model="school.admission.decision" type="list">

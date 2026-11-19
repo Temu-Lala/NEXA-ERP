@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_agri_farm_list" model="agriculture.farm" type="list">
+            <field name="name" string="Farm"/>
+            <field name="ref" string="Ref"/>
+            <field name="location" string="Location"/>
+            <field name="region" string="Region"/>
+            <field name="area_ha" string="Area ha"/>
+            <field name="area_ha_total" string="Cultivated"/>
+            <field name="manager_id" string="Manager"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_agri_farm_form" model="agriculture.farm" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Farm name..."/></h1></div>
+                <group>
+                    <field name="ref" string="Reference"/>
+                    <field name="location" string="Location"/>
+                    <field name="region" string="Region"/>
+                    <field name="area_ha" string="Total Area (ha)"/>
+                    <field name="area_ha_total" string="Cultivated Area" readonly="true"/>
+                    <field name="manager_id" string="Manager"/>
+                </group>
+                <notebook><page string="Fields"><field name="fields" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_agri_field_list" model="agriculture.field" type="list">
+            <field name="name" string="Field"/>
+            <field name="farm_id" string="Farm"/>
+            <field name="area_ha" string="Area ha"/>
+            <field name="soil_type" string="Soil"/>
+            <field name="irrigation" string="Irrigation"/>
+        </view>
+        <view id="view_agri_field_form" model="agriculture.field" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Field..."/></h1></div>
+                <group>
+                    <field name="farm_id" string="Farm"/>
+                    <field name="area_ha" string="Area (ha)"/>
+                    <field name="soil_type" string="Soil Type"/>
+                    <field name="irrigation" string="Irrigation"/>
+                </group>
+                <group string="Notes"><field name="notes" string="Notes"/></group>
+                <notebook><page string="Crop Plans"><field name="plans" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_agri_crop_plan_list" model="agriculture.crop.plan" type="list" default_order="id desc">
+            <field name="name" string="Plan"/>
+            <field name="field_id" string="Field"/>
+            <field name="crop" string="Crop"/>
+            <field name="variety" string="Variety"/>
+            <field name="season" string="Season"/>
+            <field name="year" string="Year"/>
+            <field name="area_ha" string="Area"/>
+            <field name="expected_yield" string="Exp Yield"/>
+            <field name="actual_yield" string="Act Yield"/>
+            <field name="total_cost" string="Cost"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_agri_crop_plan_form" model="agriculture.crop.plan" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Crop plan..."/></h1></div>
+                <group>
+                    <field name="field_id" string="Field"/>
+                    <field name="crop" string="Crop"/>
+                    <field name="variety" string="Variety"/>
+                    <field name="season" string="Season"/>
+                    <field name="year" string="Year"/>
+                    <field name="area_ha" string="Planted Area (ha)"/>
+                    <field name="expected_yield" string="Expected Yield (kg)"/>
+                    <field name="actual_yield" string="Actual Yield (kg)"/>
+                    <field name="total_cost" string="Total Cost" readonly="true"/>
+                </group>
+                <notebook><page string="Activities"><field name="activities" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_agri_activity_list" model="agriculture.activity" type="list" default_order="date desc, id desc">
+            <field name="plan_id" string="Plan"/>
+            <field name="activity_type" string="Type"/>
+            <field name="date" string="Date"/>
+            <field name="quantity" string="Qty"/>
+            <field name="unit" string="Unit"/>
+            <field name="product_id" string="Input"/>
+            <field name="unit_cost" string="Unit Cost"/>
+            <field name="amount" string="Amount"/>
+        </view>
+        <view id="view_agri_activity_form" model="agriculture.activity" type="form">
+            <sheet>
+                <group>
+                    <field name="plan_id" string="Crop Plan"/>
+                    <field name="activity_type" string="Type"/>
+                    <field name="date" string="Date"/>
+                    <field name="quantity" string="Quantity"/>
+                    <field name="unit" string="Unit"/>
+                    <field name="product_id" string="Input/Product"/>
+                    <field name="unit_cost" string="Unit Cost"/>
+                    <field name="amount" string="Amount" readonly="true"/>
+                </group>
+                <group string="Notes"><field name="notes" string="Notes"/></group>
+            </sheet>
+        </view>
+        <action id="action_agri_farm" type="window" model="agriculture.farm" name="Farms" view_mode="list,form"/>
+        <action id="action_agri_field" type="window" model="agriculture.field" name="Fields" view_mode="list,form"/>
+        <action id="action_agri_crop_plan" type="window" model="agriculture.crop.plan" name="Crop Plans" view_mode="list,form"/>
+        <action id="action_agri_activity" type="window" model="agriculture.activity" name="Activities" view_mode="list,form"/>
+        <view id="view_agriculture_herd_list" model="agriculture.herd" type="list">
+            <field name="name" string="Herd"/><field name="farm_id" string="Farm"/><field name="species" string="Species"/><field name="breed" string="Breed"/><field name="purpose" string="Purpose"/>
+        </view>
+        <view id="view_agriculture_herd_form" model="agriculture.herd" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Herd..."/></h1></div>
+                <group><field name="farm_id" string="Farm"/><field name="species" string="Species"/><field name="breed" string="Breed"/><field name="purpose" string="Purpose"/></group>
+                <notebook><page string="Animals"><field name="animals" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_agriculture_animal_list" model="agriculture.animal" type="list">
+            <field name="name" string="Animal"/><field name="herd_id" string="Herd"/><field name="tag" string="Tag"/><field name="sex" string="Sex"/><field name="birth_date" string="Born"/><field name="weight" string="kg"/><field name="state" string="Status"/>
+        </view>
+        <view id="view_agriculture_animal_form" model="agriculture.animal" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Animal..."/></h1></div>
+                <group><field name="herd_id" string="Herd"/><field name="tag" string="Ear Tag/RFID"/><field name="sex" string="Sex"/><field name="birth_date" string="Birth Date"/><field name="weight" string="Weight (kg)"/><field name="state" string="Status"/></group>
+                <notebook><page string="Events"><field name="events" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_agriculture_animal_event_list" model="agriculture.animal.event" type="list" default_order="date desc, id desc">
+            <field name="animal_id" string="Animal"/><field name="kind" string="Type"/><field name="date" string="Date"/><field name="qty" string="Qty"/><field name="unit" string="Unit"/><field name="product_id" string="Product"/><field name="vet_name" string="Vet"/>
+        </view>
+        <view id="view_agriculture_animal_event_form" model="agriculture.animal.event" type="form">
+            <sheet>
+                <group><field name="animal_id" string="Animal"/><field name="kind" string="Type"/><field name="date" string="Date"/><field name="qty" string="Qty"/><field name="unit" string="Unit"/><field name="product_id" string="Product"/><field name="vet_name" string="Vet/Provider"/></group>
+                <group string="Note"><field name="note" string="Note"/></group>
+            </sheet>
+        </view>
+        <action id="action_agriculture_herd" type="window" model="agriculture.herd" name="Herds" view_mode="list,form"/>
+        <action id="action_agriculture_animal" type="window" model="agriculture.animal" name="Animals" view_mode="list,form"/>
+        <action id="action_agriculture_animal_event" type="window" model="agriculture.animal.event" name="Animal Events" view_mode="list,form"/>
+    </data>
+</nexa>

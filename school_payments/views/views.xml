@@ -49,7 +49,35 @@
                 <field name="notes" string="Notes"/>
             </sheet>
         </view>
-        <action id="action_school_fee_bill" type="window" model="school.fee.bill" name="Fee Bills" view_mode="list,form"/>
+        <view id="view_school_fee_bill_kanban" model="school.fee.bill" type="kanban" default_group_by="status">
+            <field name="status"/>
+            <field name="name"/>
+            <field name="student_id"/>
+            <field name="fee_category_id"/>
+            <field name="period_label"/>
+            <field name="total_amount" widget="monetary"/>
+            <field name="amount_paid" widget="monetary"/>
+            <field name="balance" widget="monetary"/>
+            <field name="due_date"/>
+            <field name="currency"/>
+        </view>
+        <view id="view_school_fee_bill_search" model="school.fee.bill" type="search">
+            <field name="name"/>
+            <field name="student_id"/>
+            <field name="period_label"/>
+            <filter name="unpaid" string="Unpaid" domain='[["status","=","unpaid"]]'/>
+            <filter name="partial" string="Partially Paid" domain='[["status","=","partial"]]'/>
+            <filter name="paid" string="Paid" domain='[["status","=","paid"]]'/>
+            <filter name="void" string="Void" domain='[["status","=","void"]]'/>
+            <filter name="with_balance" string="Has Balance" domain='[["balance","&gt;",0]]]'/>
+            <filter name="group_status" string="Status" group_by="status"/>
+            <filter name="group_student" string="Student" group_by="student_id"/>
+            <filter name="group_category" string="Fee Category" group_by="fee_category_id"/>
+            <filter name="group_period" string="Period" group_by="period_label"/>
+            <filter name="group_due" string="Due Date" group_by="due_date"/>
+            <filter name="group_year" string="Academic Year" group_by="academic_year_id"/>
+        </view>
+        <action id="action_school_fee_bill" type="window" model="school.fee.bill" name="Fee Bills" view_mode="kanban,list,form"/>
 
         <!-- Payment -->
         <view id="view_school_payment_list" model="school.payment" type="list">
@@ -86,6 +114,20 @@
                 </group>
                 <field name="notes" string="Notes"/>
             </sheet>
+        </view>
+        <view id="view_school_payment_search" model="school.payment" type="search">
+            <field name="name"/>
+            <field name="student_id"/>
+            <field name="reference"/>
+            <filter name="cash" string="Cash" domain='[["method","=","cash"]]'/>
+            <filter name="bank" string="Bank" domain='[["method","=","bank"]]'/>
+            <filter name="mobile" string="Mobile" domain='[["method","=","mobile"]]'/>
+            <filter name="check" string="Check" domain='[["method","=","check"]]'/>
+            <filter name="group_method" string="Method" group_by="method"/>
+            <filter name="group_student" string="Student" group_by="student_id"/>
+            <filter name="group_cashier" string="Cashier" group_by="cashier_id"/>
+            <filter name="group_date" string="Payment Date" group_by="payment_date"/>
+            <filter name="group_period" string="Period" group_by="period_label"/>
         </view>
         <action id="action_school_payment" type="window" model="school.payment" name="Payments" view_mode="list,form"/>
 

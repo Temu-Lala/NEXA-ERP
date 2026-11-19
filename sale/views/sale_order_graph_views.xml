@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_sale_order_graph" model="sale.order" type="graph" chart="bar" string="Order Value">
+            <field name="state" type="row"/>
+            <field name="amount_total" type="measure"/>
+        </view>
+        <view id="view_sale_order_graph_partner" model="sale.order" type="graph" chart="bar" string="Top Customers">
+            <field name="partner_id" type="row"/>
+            <field name="amount_total" type="measure"/>
+        </view>
+    </data>
+</nexa>

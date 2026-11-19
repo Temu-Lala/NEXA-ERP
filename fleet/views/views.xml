@@ -205,6 +205,21 @@
             </sheet>
         </view>
 
+        <view id="view_fleet_vehicle_kanban" model="fleet.vehicle" type="kanban" default_group_by="availability_state">
+            <field name="availability_state"/>
+            <field name="name"/>
+            <field name="plate_number"/>
+            <field name="brand_id"/>
+            <field name="model_id"/>
+            <field name="vehicle_class_id"/>
+            <field name="model_year"/>
+            <field name="odometer"/>
+            <field name="fuel_type"/>
+            <field name="depot_id"/>
+            <field name="condition_state"/>
+            <field name="compliance_state"/>
+            <field name="lifecycle_state"/>
+        </view>
         <view id="view_fleet_vehicle_search" model="fleet.vehicle" type="search">
             <field name="name" string="Fleet Number"/>
             <field name="plate_number" string="License Plate"/>
@@ -216,14 +231,20 @@
             <filter name="in_service" string="In Service" domain='[["lifecycle_state","=","active"]]'/>
             <filter name="operational" string="Operational" domain='[["condition_state","=","operational"]]'/>
             <filter name="compliance_expiring" string="Compliance Expiring" domain='[["compliance_state","=","expiring"]]'/>
+            <filter name="non_compliant" string="Non-Compliant" domain='[["compliance_state","=","overdue"]]'/>
+            <filter name="needs_repair" string="Needs Repair" domain='[["condition_state","in",["defective","unsafe","under_repair"]]]]'/>
+            <filter name="on_trip" string="On Trip" domain='[["availability_state","=","on_trip"]]'/>
             <filter name="group_brand" string="Brand" group_by="brand_id"/>
             <filter name="group_class" string="Class" group_by="vehicle_class_id"/>
             <filter name="group_lifecycle" string="Lifecycle State" group_by="lifecycle_state"/>
             <filter name="group_condition" string="Condition State" group_by="condition_state"/>
             <filter name="group_depot" string="Depot" group_by="depot_id"/>
+            <filter name="group_availability" string="Availability" group_by="availability_state"/>
+            <filter name="group_compliance" string="Compliance" group_by="compliance_state"/>
+            <filter name="group_fuel" string="Fuel Type" group_by="fuel_type"/>
         </view>
 
-        <action id="action_fleet_vehicle" type="window" model="fleet.vehicle" name="Vehicles" view_mode="list,form"/>
+        <action id="action_fleet_vehicle" type="window" model="fleet.vehicle" name="Vehicles" view_mode="kanban,list,form"/>
 
         <!-- ================================================================ -->
         <!-- Odometer Readings                                                -->
@@ -343,6 +364,13 @@
             </sheet>
         </view>
 
+        <view id="view_fleet_service_search" model="fleet.service" type="search">
+            <field name="name"/>
+            <field name="vehicle_id"/>
+            <field name="notes"/>
+            <filter name="group_vehicle" string="Vehicle" group_by="vehicle_id"/>
+            <filter name="group_date" string="Service Date" group_by="service_date"/>
+        </view>
         <action id="action_fleet_service" type="window" model="fleet.service" name="Service Log" view_mode="list,form"/>
     </data>
 </nexa>

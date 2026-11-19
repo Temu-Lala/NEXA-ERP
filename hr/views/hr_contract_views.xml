@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <nexa>
     <data>
+        <view id="view_hr_contract_kanban" model="hr.contract" type="kanban" default_group_by="state" records_draggable="false">
+            <field name="state"/>
+            <field name="name"/>
+            <field name="employee_id"/>
+            <field name="type"/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+            <field name="trial_end_date"/>
+        </view>
         <view id="view_hr_contract_list" model="hr.contract" type="list">
             <field name="name" string="Reference"/>
             <field name="employee_id" string="Employee"/>
@@ -42,7 +51,9 @@
             <filter name="open" string="Open-Ended" domain='[["state","=","open"]]'/>
             <filter name="group_type" string="Contract Type" group_by="type"/>
             <filter name="group_employee" string="Employee" group_by="employee_id"/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_end" string="End Date" group_by="date_end"/>
         </view>
-        <action id="action_hr_contract" type="window" model="hr.contract" name="Contracts" view_mode="list,form"/>
+        <action id="action_hr_contract" type="window" model="hr.contract" name="Contracts" view_mode="kanban,list,form"/>
     </data>
 </nexa>

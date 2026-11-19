@@ -44,6 +44,7 @@ const (
 // HrAppraisalCycle defines a review period (e.g. Annual 2026, Q1 Review).
 type HrAppraisalCycle struct {
 	sdk.Model `nexa:"model=hr.appraisal.cycle"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                 `nexa:"required,string=Name"`
 	DateStart    sdk.Date                   `nexa:"required,string=Start Date"`
@@ -55,6 +56,7 @@ type HrAppraisalCycle struct {
 // HrAppraisal is an individual employee appraisal within a cycle.
 type HrAppraisal struct {
 	sdk.Model `nexa:"model=hr.appraisal"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	CycleID         sdk.Many2One[HrAppraisalCycle] `nexa:"required,string=Cycle"`
 	EmployeeID      sdk.Many2One[HrEmployee]       `nexa:"required,string=Employee"`
@@ -68,6 +70,7 @@ type HrAppraisal struct {
 // HrAppraisalGoal represents a measurable objective.
 type HrAppraisalGoal struct {
 	sdk.Model `nexa:"model=hr.appraisal.goal"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                 `nexa:"required,string=Goal"`
 	EmployeeID   sdk.Many2One[HrEmployee]   `nexa:"required,string=Employee"`
@@ -82,6 +85,7 @@ type HrAppraisalGoal struct {
 // HrAppraisalLine is a scored evaluation item within an appraisal.
 type HrAppraisalLine struct {
 	sdk.Model `nexa:"model=hr.appraisal.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	AppraisalID sdk.Many2One[HrAppraisal] `nexa:"required,string=Appraisal"`
 	SkillID     sdk.Many2One[HrSkill]     `nexa:"string=Competency"`

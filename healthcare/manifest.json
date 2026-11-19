@@ -1,0 +1,19 @@
+{
+    "name": "healthcare",
+    "display_name": "Healthcare",
+    "version": "1.0.0",
+    "summary": "Patient administration, appointments and encounters",
+    "description": "Healthcare administration layer: patient registration with consent flags, provider directory, appointment scheduling, and encounter records. Strict role separation — front-desk staff never see clinical notes; clinical access is a separate group. Not a clinical decision-support system.",
+    "author": "Nexa",
+    "depends": [
+        "base"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Healthcare"
+}

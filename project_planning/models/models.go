@@ -41,6 +41,7 @@ const (
 // ProjectTaskDependency links a predecessor task to a successor task with a typed relation.
 type ProjectTaskDependency struct {
 	sdk.Model `nexa:"model=project.task.dependency"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID      sdk.Many2One[ProjectProject]  `nexa:"index,string=Project"`
 	TaskID         sdk.Many2One[ProjectTask]     `nexa:"required,index,string=Task"`
@@ -53,6 +54,7 @@ type ProjectTaskDependency struct {
 // ProjectDeliverable is a work output that must be produced and accepted.
 type ProjectDeliverable struct {
 	sdk.Model `nexa:"model=project.deliverable"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID    sdk.Many2One[ProjectProject]              `nexa:"required,index,string=Project"`
 	MilestoneID  sdk.Many2One[projmodels.ProjectMilestone] `nexa:"string=Milestone"`
@@ -69,6 +71,7 @@ type ProjectDeliverable struct {
 // ProjectStatusHistory records a status transition on a project or task (audit timeline).
 type ProjectStatusHistory struct {
 	sdk.Model `nexa:"model=project.status.history"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID  sdk.Many2One[ProjectProject] `nexa:"index,string=Project"`
 	TaskID     sdk.Many2One[ProjectTask]    `nexa:"index,string=Task"`

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_itsm_incident_list" model="itsm.incident" type="list" default_order="id desc">
+            <field name="name" string="Ref"/>
+            <field name="title" string="Title"/>
+            <field name="service" string="Service"/>
+            <field name="priority" string="Priority"/>
+            <field name="major" string="Major"/>
+            <field name="state" string="Status"/>
+            <field name="detected_at" string="Detected"/>
+            <field name="resolved_at" string="Resolved"/>
+        </view>
+        <view id="view_itsm_incident_form" model="itsm.incident" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Incident ref..."/></h1></div>
+                <group>
+                    <field name="title" string="Title"/>
+                    <field name="ticket_id" string="Ticket"/>
+                    <field name="service" string="Impacted Service"/>
+                    <field name="priority" string="Priority"/>
+                    <field name="major" string="Major Incident"/>
+                    <field name="commander_id" string="Commander"/>
+                    <field name="detected_at" string="Detected At"/>
+                    <field name="resolved_at" string="Resolved At"/>
+                    <field name="problem_id" string="Linked Problem"/>
+                </group>
+                <group string="Description"><field name="description" string="Description"/></group>
+                <group string="Workaround"><field name="workaround" string="Workaround"/></group>
+                <group string="Root Cause"><field name="root_cause" string="Root Cause"/></group>
+                <notebook><page string="Timeline"><field name="timeline" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_itsm_timeline_list" model="itsm.timeline" type="list" default_order="at desc, id desc">
+            <field name="incident_id" string="Incident"/>
+            <field name="at" string="Time"/>
+            <field name="kind" string="Event"/>
+            <field name="note" string="Note"/>
+            <field name="user_id" string="By"/>
+        </view>
+        <view id="view_itsm_timeline_form" model="itsm.timeline" type="form">
+            <sheet>
+                <group>
+                    <field name="incident_id" string="Incident"/>
+                    <field name="at" string="Timestamp"/>
+                    <field name="kind" string="Event Type"/>
+                    <field name="note" string="Note"/>
+                    <field name="user_id" string="Author"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_itsm_problem_list" model="itsm.problem" type="list">
+            <field name="name" string="Ref"/>
+            <field name="title" string="Title"/>
+            <field name="priority" string="Priority"/>
+            <field name="known_error" string="Known Error"/>
+            <field name="state" string="Status"/>
+            <field name="owner_id" string="Owner"/>
+        </view>
+        <view id="view_itsm_problem_form" model="itsm.problem" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Problem ref..."/></h1></div>
+                <group>
+                    <field name="title" string="Title"/>
+                    <field name="priority" string="Priority"/>
+                    <field name="known_error" string="Known Error"/>
+                    <field name="owner_id" string="Owner"/>
+                </group>
+                <group string="Description"><field name="description" string="Description"/></group>
+                <group string="Root Cause Analysis"><field name="root_cause" string="Root Cause"/></group>
+                <group string="Workaround"><field name="workaround" string="Workaround"/></group>
+                <group string="Permanent Fix"><field name="fix" string="Permanent Fix"/></group>
+            </sheet>
+        </view>
+        <view id="view_itsm_change_list" model="itsm.change" type="list" default_order="id desc">
+            <field name="name" string="Ref"/>
+            <field name="title" string="Title"/>
+            <field name="kind" string="Type"/>
+            <field name="risk" string="Risk"/>
+            <field name="state" string="Status"/>
+            <field name="window_start" string="Window"/>
+        </view>
+        <view id="view_itsm_change_form" model="itsm.change" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Change ref..."/></h1></div>
+                <group>
+                    <field name="title" string="Title"/>
+                    <field name="ticket_id" string="Ticket"/>
+                    <field name="kind" string="Type"/>
+                    <field name="risk" string="Risk"/>
+                    <field name="window_start" string="Window Start"/>
+                    <field name="window_end" string="Window End"/>
+                    <field name="requested_by_id" string="Requested By"/>
+                    <field name="approved_by_id" string="Approved By"/>
+                </group>
+                <group string="Description"><field name="description" string="Description"/></group>
+                <group string="Impact"><field name="impact" string="Impact Assessment"/></group>
+                <group string="Implementation Plan"><field name="plan" string="Implementation Plan"/></group>
+                <group string="Test Plan"><field name="test_plan" string="Test Plan"/></group>
+                <group string="Rollback Plan"><field name="rollback_plan" string="Rollback Plan"/></group>
+            </sheet>
+        </view>
+        <view id="view_itsm_release_list" model="itsm.release" type="list">
+            <field name="name" string="Release"/>
+            <field name="version" string="Version"/>
+            <field name="stage" string="Stage"/>
+            <field name="planned_date" string="Planned"/>
+            <field name="deployed_at" string="Deployed"/>
+            <field name="owner_id" string="Manager"/>
+        </view>
+        <view id="view_itsm_release_form" model="itsm.release" type="form">
+            <header><field name="stage" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Release..."/></h1></div>
+                <group>
+                    <field name="version" string="Version"/>
+                    <field name="planned_date" string="Planned Date"/>
+                    <field name="deployed_at" string="Deployed At"/>
+                    <field name="owner_id" string="Release Manager"/>
+                </group>
+                <group string="Description"><field name="description" string="Description"/></group>
+                <group string="Release Notes"><field name="release_notes" string="Release Notes"/></group>
+                <group string="Test Evidence"><field name="test_evidence" string="Test Evidence"/></group>
+                <group string="Rollback"><field name="rollback_plan" string="Rollback Plan"/></group>
+                <notebook><page string="Packages"><field name="packages" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_itsm_release_pkg_list" model="itsm.release.package" type="list">
+            <field name="release_id" string="Release"/>
+            <field name="name" string="Package"/>
+            <field name="version" string="Version"/>
+            <field name="depends_on" string="Depends On"/>
+            <field name="deployed" string="Deployed"/>
+            <field name="sequence" string="Order"/>
+        </view>
+        <view id="view_itsm_release_pkg_form" model="itsm.release.package" type="form">
+            <sheet>
+                <group>
+                    <field name="release_id" string="Release"/>
+                    <field name="name" string="Package"/>
+                    <field name="version" string="Version"/>
+                    <field name="depends_on" string="Depends On"/>
+                    <field name="deployed" string="Deployed"/>
+                    <field name="sequence" string="Deploy Order"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_itsm_incident" type="window" model="itsm.incident" name="Incidents" view_mode="list,form"/>
+        <action id="action_itsm_timeline" type="window" model="itsm.timeline" name="Incident Timeline" view_mode="list,form"/>
+        <action id="action_itsm_problem" type="window" model="itsm.problem" name="Problems" view_mode="list,form"/>
+        <action id="action_itsm_change" type="window" model="itsm.change" name="Changes" view_mode="list,form"/>
+        <action id="action_itsm_release" type="window" model="itsm.release" name="Releases" view_mode="list,form"/>
+        <action id="action_itsm_release_pkg" type="window" model="itsm.release.package" name="Release Packages" view_mode="list,form"/>
+    </data>
+</nexa>

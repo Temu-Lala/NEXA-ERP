@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_fac_bld_list" model="facilities.building" type="list">
+            <field name="name" string="Building"/>
+            <field name="floors" string="Floors"/>
+            <field name="manager_id" string="Manager"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_fac_bld_form" model="facilities.building" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Building..."/></h1></div>
+                <group>
+                    <field name="address" string="Address"/>
+                    <field name="floors" string="Floors"/>
+                    <field name="manager_id" string="Manager"/>
+                    <field name="state" string="Status"/>
+                </group>
+                <notebook><page string="Rooms"><field name="rooms" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_fac_room_list" model="facilities.room" type="list">
+            <field name="name" string="Room"/>
+            <field name="building_id" string="Building"/>
+            <field name="kind" string="Type"/>
+            <field name="floor" string="Floor"/>
+            <field name="capacity" string="Cap"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_fac_room_form" model="facilities.room" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Room..."/></h1></div>
+                <group>
+                    <field name="building_id" string="Building"/>
+                    <field name="kind" string="Type"/>
+                    <field name="floor" string="Floor"/>
+                    <field name="capacity" string="Capacity"/>
+                    <field name="equipment" string="Equipment"/>
+                    <field name="state" string="Status"/>
+                </group>
+                <notebook><page string="Bookings"><field name="bookings" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_fac_bkg_list" model="facilities.booking" type="list" default_order="start_at desc, id desc">
+            <field name="name" string="Booking"/>
+            <field name="room_id" string="Room"/>
+            <field name="user_id" string="By"/>
+            <field name="purpose" string="Purpose"/>
+            <field name="start_at" string="Start"/>
+            <field name="end_at" string="End"/>
+            <field name="attendees" string="Pax"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_fac_bkg_form" model="facilities.booking" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Booking..."/></h1></div>
+                <group>
+                    <field name="room_id" string="Room"/>
+                    <field name="user_id" string="Booked By"/>
+                    <field name="purpose" string="Purpose"/>
+                    <field name="start_at" string="Start"/>
+                    <field name="end_at" string="End"/>
+                    <field name="attendees" string="Attendees"/>
+                    <field name="state" string="Status"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_fac_req_list" model="facilities.request" type="list" default_order="id desc">
+            <field name="name" string="Request"/>
+            <field name="building_id" string="Building"/>
+            <field name="kind" string="Type"/>
+            <field name="priority" string="Priority"/>
+            <field name="state" string="Status"/>
+            <field name="requested_by_id" string="By"/>
+            <field name="assigned_to_id" string="Assigned"/>
+        </view>
+        <view id="view_fac_req_form" model="facilities.request" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Request..."/></h1></div>
+                <group>
+                    <field name="building_id" string="Building"/>
+                    <field name="room_id" string="Room/Space"/>
+                    <field name="kind" string="Type"/>
+                    <field name="priority" string="Priority"/>
+                    <field name="requested_by_id" string="Requested By"/>
+                    <field name="assigned_to_id" string="Assigned To"/>
+                    <field name="resolved_at" string="Resolved At"/>
+                </group>
+                <group string="Description"><field name="description" string="Description"/></group>
+            </sheet>
+        </view>
+        <action id="action_fac_bld" type="window" model="facilities.building" name="Buildings" view_mode="list,form"/>
+        <action id="action_fac_room" type="window" model="facilities.room" name="Rooms" view_mode="list,form"/>
+        <action id="action_fac_bkg" type="window" model="facilities.booking" name="Bookings" view_mode="list,form"/>
+        <action id="action_fac_req" type="window" model="facilities.request" name="Requests" view_mode="list,form"/>
+    </data>
+</nexa>

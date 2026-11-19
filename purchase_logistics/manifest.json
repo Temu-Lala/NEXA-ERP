@@ -1,0 +1,21 @@
+{
+    "name": "purchase_logistics",
+    "display_name": "Purchase Logistics",
+    "version": "1.0.0",
+    "summary": "Shipments, freight tracking and landed-cost allocation for procurement",
+    "description": "Supply-chain execution layer for Procure-to-Pay: shipments with milestone tracking, freight charges and landed-cost allocation across purchase orders and receipts. References authoritative purchase and inventory records; never posts stock or accounting itself.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "purchase",
+        "purchase_receipt",
+        "purchase_supplier"
+    ],
+    "data": [
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Purchase"
+}

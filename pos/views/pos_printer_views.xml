@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa><data>
+<view id="view_pos_printer_list" model="pos.printer" type="list">
+<field name="name" string="Printer"/><field name="ip_address" string="IP"/><field name="port" string="Port"/><field name="active" string="Active"/>
+</view>
+<view id="view_pos_printer_form" model="pos.printer" type="form">
+<sheet><div class="sum_title"><h1><field name="name" placeholder="Printer..."/></h1></div>
+<group><field name="ip_address" string="IP Address"/><field name="port" string="Port"/><field name="store_id" string="Store"/><field name="active" string="Active"/></group>
+</sheet></view>
+<action id="action_pos_printer" type="window" model="pos.printer" name="Printers" view_mode="list,form"/>
+</data></nexa>

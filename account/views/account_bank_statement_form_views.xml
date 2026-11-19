@@ -2,17 +2,32 @@
 <nexa>
     <data>
         <view id="view_account_bank_statement_form" model="account.bank.statement" type="form">
+            <header>
+                <field name="state" widget="statusbar"/>
+            </header>
             <sheet>
+                <div class="sum_title">
+                    <h1><field name="name" placeholder="Statement"/></h1>
+                </div>
                 <group>
-                    <field name="name"/>
-                    <field name="journal_id"/>
-                    <field name="date"/>
-                    <field name="balance_end"/>
-                    <field name="state"/>
+                    <group string="Statement">
+                        <field name="journal_id"/>
+                        <field name="date"/>
+                        <field name="balance_end" widget="monetary"/>
+                    </group>
                 </group>
                 <notebook>
                     <page string="Lines">
-                        <field name="line_ids"/>
+                        <field name="line_ids" string="Statement Lines">
+                            <list editable="bottom">
+                                <field name="date" string="Date"/>
+                                <field name="name" string="Label"/>
+                                <field name="partner_id" string="Partner"/>
+                                <field name="amount" string="Amount" widget="monetary"/>
+                                <field name="is_reconciled" string="Reconciled"/>
+                                <field name="move_line_id" string="Matched Item"/>
+                            </list>
+                        </field>
                     </page>
                 </notebook>
             </sheet>

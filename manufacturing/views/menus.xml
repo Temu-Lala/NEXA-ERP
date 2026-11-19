@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="manufacturing_menu_root" name="Manufacturing" web_icon="factory" sequence="50" groups="manufacturing.group_manufacturing_user"/>
+        <menuitem id="menu_mrp_bom" name="Bills of Materials" parent="manufacturing_menu_root" action="manufacturing.action_mrp_bom" sequence="1" groups="manufacturing.group_manufacturing_user"/>
+        <menuitem id="menu_mrp_bom_line" name="BOM Lines" parent="manufacturing_menu_root" action="manufacturing.action_mrp_bom_line" sequence="2" groups="manufacturing.group_manufacturing_user"/>
+        <menuitem id="menu_mrp_workorder" name="Work Orders" parent="manufacturing_menu_root" action="manufacturing.action_mrp_workorder" sequence="3" groups="manufacturing.group_manufacturing_user"/>
+        <menuitem id="menu_mrp_workorder_line" name="Component Demand" parent="manufacturing_menu_root" action="manufacturing.action_mrp_workorder_line" sequence="4" groups="manufacturing.group_manufacturing_user"/>
+            <menuitem id="menu_mrp_workcenter" name="Work Centers" parent="manufacturing_menu_root" action="manufacturing.action_mrp_workcenter" sequence="5" groups="manufacturing.group_manufacturing_user"/>
+        <menuitem id="menu_mrp_routing" name="Routings" parent="manufacturing_menu_root" action="manufacturing.action_mrp_routing" sequence="6" groups="manufacturing.group_manufacturing_user"/>
+        <menuitem id="menu_mrp_routing_line" name="Routing Lines" parent="manufacturing_menu_root" action="manufacturing.action_mrp_routing_line" sequence="7" groups="manufacturing.group_manufacturing_user"/>
+            <menuitem id="menu_mrp_plan" name="MRP Plans" parent="manufacturing_menu_root" action="manufacturing.action_mrp_plan" sequence="8" groups="manufacturing.group_manufacturing_user"/>
+        <menuitem id="menu_mrp_plan_line" name="Plan Lines" parent="manufacturing_menu_root" action="manufacturing.action_mrp_plan_line" sequence="9" groups="manufacturing.group_manufacturing_user"/>
+            <menuitem id="menu_mrp_scenario" name="Scenarios" parent="mrp_menu_root" action="manufacturing.action_mrp_scenario" sequence="9" groups="manufacturing.group_mrp_user"/>
+        <menuitem id="menu_mrp_scenario_line" name="Scenario Lines" parent="mrp_menu_root" action="manufacturing.action_mrp_scenario_line" sequence="10" groups="manufacturing.group_mrp_user"/>
+    </data>
+</nexa>

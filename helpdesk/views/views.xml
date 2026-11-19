@@ -62,6 +62,19 @@
         <!-- ===================== Tickets ===================== -->
 
         <view id="view_helpdesk_ticket_kanban" model="helpdesk.ticket" type="kanban" default_group_by="state" records_draggable="false">
+            <field name="state"/>
+            <field name="number"/>
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="team_id"/>
+            <field name="assigned_to"/>
+            <field name="category_id"/>
+            <field name="priority"/>
+            <field name="ticket_type"/>
+            <field name="channel"/>
+            <field name="tag_ids"/>
+            <field name="reopened_count"/>
+            <field name="message_count"/>
         </view>
 
         <view id="view_helpdesk_ticket_list" model="helpdesk.ticket" type="list">
@@ -246,8 +259,8 @@
         </view>
 
         <action id="action_helpdesk_team" type="window" model="helpdesk.team" name="Teams" view_mode="list,form"/>
-        <action id="action_helpdesk_ticket" type="window" model="helpdesk.ticket" name="Tickets" view_mode="list,kanban,form"/>
-        <action id="action_helpdesk_ticket_my" type="window" model="helpdesk.ticket" name="My Tickets" view_mode="list,kanban,form" domain='[["assigned_to","=","$uid"]]'/>
+        <action id="action_helpdesk_ticket" type="window" model="helpdesk.ticket" name="Tickets" view_mode="kanban,list,form"/>
+        <action id="action_helpdesk_ticket_my" type="window" model="helpdesk.ticket" name="My Tickets" view_mode="kanban,list,form" domain='[["assigned_to","=","$uid"]]'/>
         <action id="action_helpdesk_ticket_category" type="window" model="helpdesk.ticket.category" name="Ticket Categories" view_mode="list,form"/>
         <action id="action_helpdesk_ticket_tag" type="window" model="helpdesk.ticket.tag" name="Ticket Tags" view_mode="list,form"/>
         <action id="action_helpdesk_ticket_message" type="window" model="helpdesk.ticket.message" name="Ticket Messages" view_mode="list,form"/>

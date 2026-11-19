@@ -1,0 +1,7 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_fs_tech_user,access_fs_tech_user,fs.technician,group_fs_user,1,1,1,0
+access_fs_tech_manager,access_fs_tech_manager,fs.technician,group_fs_manager,1,1,1,1
+access_fs_wo_user,access_fs_wo_user,fs.workorder,group_fs_user,1,1,1,0
+access_fs_wo_manager,access_fs_wo_manager,fs.workorder,group_fs_manager,1,1,1,1
+access_fs_part_user,access_fs_part_user,fs.workorder.part,group_fs_user,1,1,1,0
+access_fs_part_manager,access_fs_part_manager,fs.workorder.part,group_fs_manager,1,1,1,1

@@ -82,6 +82,28 @@ func CreateCustomerInvoiceFromSale(ctx context.Context, orderID int) (int, error
 	})
 }
 
+// CreatePOSInvoiceFromOrder posts a POS sale as a customer invoice.
+// Idempotent: dedupes on invoice_origin (order name) + move_type.
+func CreatePOSInvoiceFromOrder(ctx context.Context, orderID int) (int, error) {
+	return createBillFromOrder(ctx, orderBillSpec{
+		orderModel:      "pos.order",
+		orderID:         orderID,
+		confirmedState:  "done",
+		lineModel:       "pos.order.line",
+		qtyField:        "qty",
+		moveType:        "out_invoice",
+		seqCode:         "account.move.out_invoice",
+		docPrefix:       "POS-INV",
+		journalType:     "sale",
+		incomeSide:      true,
+		taxUse:          "sale",
+		narrationPrefix: "POS invoice for",
+		afterCreate: func(context.Context, int) error {
+			return nil
+		},
+	})
+}
+
 func CreateVendorBillFromPurchase(ctx context.Context, poID int) (int, error) {
 	return createBillFromOrder(ctx, orderBillSpec{
 		orderModel:      "purchase.order",
@@ -102,6 +124,19 @@ func CreateVendorBillFromPurchase(ctx context.Context, poID int) (int, error) {
 			})
 		},
 	})
+}
+
+func coID(v interface{}) int {
+	if arr, ok := v.([]interface{}); ok {
+		if len(arr) == 0 {
+			return 0
+		}
+		v = arr[0]
+	}
+	if n, ok := orm.CoerceInt64(v); ok {
+		return int(n)
+	}
+	return 0
 }
 
 func createBillFromOrder(ctx context.Context, spec orderBillSpec) (int, error) {
@@ -157,7 +192,9 @@ func createBillFromOrder(ctx context.Context, spec orderBillSpec) (int, error) {
 	if err != nil {
 		return 0, err
 	}
+	orderCo := coID(order["company_id"])
 	moveID, err := orm.Create(bypass, moveModel, map[string]interface{}{
+		"company_id":      orderCo,
 		"name":            name,
 		"move_type":       spec.moveType,
 		"partner_id":      partnerID,
@@ -185,6 +222,7 @@ func createBillFromOrder(ctx context.Context, spec orderBillSpec) (int, error) {
 		productID, _ := orm.CoerceInt64(ln["product_id"])
 		acct := productAccountID(bypass, productID, spec.incomeSide, fallbackAcct)
 		vals := map[string]interface{}{
+			"company_id":     orderCo,
 			"move_id":        moveID,
 			"account_id":     acct,
 			"product_id":     productID,
@@ -566,15 +604,15 @@ func createTaxLine(ctx context.Context, moveID int, accountID, partnerID, taxID 
 		return err
 	}
 	_, err = orm.Create(ctx, lineModel, map[string]interface{}{
-		"move_id":      moveID,
-		"account_id":   accountID,
-		"partner_id":   partnerID,
+		"move_id":       moveID,
+		"account_id":    accountID,
+		"partner_id":    partnerID,
 		"tax_origin_id": taxID,
-		"name":         name,
-		"display_type": "tax",
-		"debit":        round2(debit),
-		"credit":       round2(credit),
-		"balance":      round2(debit - credit),
+		"name":          name,
+		"display_type":  "tax",
+		"debit":         round2(debit),
+		"credit":        round2(credit),
+		"balance":       round2(debit - credit),
 	})
 	return err
 }
@@ -688,4 +726,126 @@ func writeMoveAuditLog(ctx context.Context, moveID int, action string, move map[
 		"date":     time.Now().Format(time.RFC3339),
 	})
 	return err
+}
+
+// CreatePOSCreditNoteFromReturn issues an out_refund reversing the POS
+// invoice for a refunded return (spec: returns must reverse accounting).
+// Amounts are scaled by return_total / order_total for partial returns.
+func CreatePOSCreditNoteFromReturn(ctx context.Context, returnID int) (int, error) {
+	bypass := orm.ContextWithBypass(ctx, true)
+	ret, err := orm.SearchOne(bypass, "pos.return", map[string]interface{}{"id": returnID})
+	if err != nil || ret == nil {
+		return 0, fmt.Errorf("return not found")
+	}
+	orderID, _ := orm.CoerceInt64(ret["order_id"])
+	ord, err := orm.SearchOne(bypass, "pos.order", map[string]interface{}{"id": orderID})
+	if err != nil || ord == nil {
+		return 0, fmt.Errorf("order not found")
+	}
+	// find the posted POS invoice
+	origin := orm.AsString(ord["name"])
+	moves, err := orm.SearchPage(bypass, "account.move",
+		[][]interface{}{
+			{"invoice_origin", "=", origin},
+			{"move_type", "=", "out_invoice"},
+			{"state", "=", "posted"},
+		}, 1, 0, "id desc")
+	if err != nil || len(moves) == 0 {
+		return 0, nil // no invoice to reverse — not an error
+	}
+	src := moves[0]
+	moveID, _ := orm.CoerceInt64(src["id"])
+	// idempotent: skip if a credit note already references this invoice+return
+	dup, _ := orm.SearchPage(bypass, "account.move",
+		[][]interface{}{
+			{"reversed_entry_id", "=", moveID},
+			{"ref", "ilike", fmt.Sprintf("POS-RET-%d", returnID)},
+		}, 1, 0, "id asc")
+	if len(dup) > 0 {
+		return oidOf(dup[0]), nil
+	}
+	ratio := 1.0
+	ot, rt := pf(ord["total"]), pf(ret["total"])
+	if ot > 0 {
+		ratio = rt / ot
+		if ratio > 1 {
+			ratio = 1
+		}
+	}
+	moveModel, err := modelOrErr("account.move")
+	if err != nil {
+		return 0, err
+	}
+	date := time.Now().Format("2006-01-02")
+	cnCo := coID(src["company_id"])
+	newID, err := orm.Create(bypass, moveModel, map[string]interface{}{
+		"company_id":        cnCo,
+		"name":              nextDocName(bypass, "account.move.out_refund", "RINV"),
+		"move_type":         "out_refund",
+		"partner_id":        src["partner_id"],
+		"journal_id":        src["journal_id"],
+		"date":              date,
+		"invoice_date":      date,
+		"state":             "draft",
+		"invoice_origin":    origin,
+		"ref":               fmt.Sprintf("POS-RET-%d %s", returnID, orm.AsString(ret["name"])),
+		"reversed_entry_id": moveID,
+		"amount_untaxed":    pf(src["amount_untaxed"]) * ratio,
+		"amount_tax":        pf(src["amount_tax"]) * ratio,
+		"amount_total":      pf(src["amount_total"]) * ratio,
+	})
+	if err != nil {
+		return 0, err
+	}
+	// copy & scale invoice lines
+	srcLines, _ := orm.SearchPage(bypass, "account.move.line",
+		[][]interface{}{{"move_id", "=", moveID}}, 500, 0, "sequence asc, id asc")
+	lineModel, lerr := modelOrErr("account.move.line")
+	if lerr == nil {
+		for _, sl := range srcLines {
+			vals := map[string]interface{}{}
+			for k, v := range sl {
+				vals[k] = v
+			}
+			delete(vals, "id")
+			vals["move_id"] = newID
+			vals["company_id"] = cnCo
+			for _, nf := range []string{"debit", "credit", "balance", "amount_currency", "price_unit", "price_subtotal", "price_total"} {
+				if n, ok := vals[nf].(float64); ok {
+					vals[nf] = n * ratio
+				} else if n, ok2 := pf2(vals[nf]); ok2 {
+					vals[nf] = n * ratio
+				}
+			}
+			_, _ = orm.Create(bypass, lineModel, vals)
+		}
+	}
+	// post the credit note
+	_, _ = actionPostMove(bypass, "account.move", int(newID), nil)
+	return int(newID), nil
+}
+
+func oidOf(row map[string]interface{}) int {
+	id, _ := orm.CoerceInt64(row["id"])
+	return int(id)
+}
+
+func pf(v interface{}) float64 {
+	switch n := v.(type) {
+	case float64:
+		return n
+	case int64:
+		return float64(n)
+	case int:
+		return float64(n)
+	case string:
+		f, _ := strconv.ParseFloat(strings.TrimSpace(n), 64)
+		return f
+	}
+	return 0
+}
+
+func pf2(v interface{}) (float64, bool) {
+	f := pf(v)
+	return f, f != 0
 }

@@ -6,6 +6,7 @@ import (
 
 type AccountAccount struct {
 	sdk.Model `nexa:"model=account.account"`
+	CompanyID sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Code        sdk.String                 `nexa:"required,unique,string=Code"`
 	Name        sdk.String                 `nexa:"required,string=Account Name"`

@@ -11,6 +11,15 @@
             <field name="priority" widget="priority"/>
             <field name="user_id"/>
             <field name="date_deadline"/>
+            <field name="probability"/>
+            <field name="prorated_revenue"/>
+            <field name="days_in_stage"/>
+            <field name="duplicate_lead_count"/>
+            <field name="meeting_count"/>
+            <field name="quotation_count"/>
+            <field name="tag_ids"/>
+            <field name="date_last_stage_update"/>
+            <field name="color"/>
         </view>
     </data>
 </nexa>

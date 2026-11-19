@@ -1,0 +1,20 @@
+{
+    "name": "agriculture",
+    "display_name": "Agriculture",
+    "version": "1.0.0",
+    "summary": "Farms, fields, crop plans and field activities",
+    "description": "Farm management: land parcels and soil records, seasonal crop plans with expected yield, and field activity logging (planting, irrigation, inputs, harvest) with per-plan cost tracking. Integrates with stock for input inventory and purchase for procurement.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "stock"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Agriculture"
+}

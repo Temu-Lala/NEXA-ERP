@@ -56,6 +56,7 @@ const (
 // attendees and recorded minutes. Holding a meeting can spawn action items.
 type ProjectMeeting struct {
 	sdk.Model `nexa:"model=project.meeting"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name      sdk.String                           `nexa:"required,string=Subject"`
 	ProjectID sdk.Many2One[ProjectProject]         `nexa:"required,index,string=Project"`
@@ -71,6 +72,7 @@ type ProjectMeeting struct {
 // ProjectMeetingAttendee is an invited person on a meeting and whether they came.
 type ProjectMeetingAttendee struct {
 	sdk.Model `nexa:"model=project.meeting.attendee"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	MeetingID sdk.Many2One[ProjectMeeting] `nexa:"required,index,string=Meeting"`
 	UserID    sdk.Many2One[CoreUser]       `nexa:"required,string=Attendee"`
@@ -82,6 +84,7 @@ type ProjectMeetingAttendee struct {
 // It carries its own owner and due date; overdue status is derived by a cron.
 type ProjectActionItem struct {
 	sdk.Model `nexa:"model=project.action.item"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name        sdk.String                    `nexa:"required,string=Action"`
 	ProjectID   sdk.Many2One[ProjectProject]  `nexa:"required,index,string=Project"`
@@ -99,6 +102,7 @@ type ProjectActionItem struct {
 // project. Approval is separated from the author so a draft cannot self-approve.
 type ProjectDocument struct {
 	sdk.Model `nexa:"model=project.document"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name        sdk.String                   `nexa:"required,string=Title"`
 	ProjectID   sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`

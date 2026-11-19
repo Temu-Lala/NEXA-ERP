@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_sale_order_pivot" model="sale.order" type="pivot" string="Sales Analysis">
+            <field name="partner_id" type="row"/>
+            <field name="user_id" type="col"/>
+            <field name="amount_total" type="measure"/>
+        </view>
+        <view id="view_sale_order_pivot_state" model="sale.order" type="pivot" string="Revenue by Status">
+            <field name="state" type="row"/>
+            <field name="invoice_status" type="col"/>
+            <field name="amount_total" type="measure"/>
+        </view>
+    </data>
+</nexa>

@@ -26,9 +26,9 @@ const (
 type MoveState string
 
 const (
-	MoveStateDraft    MoveState = "draft"
-	MoveStatePosted   MoveState = "posted"
-	MoveStateCancel   MoveState = "cancel"
+	MoveStateDraft  MoveState = "draft"
+	MoveStatePosted MoveState = "posted"
+	MoveStateCancel MoveState = "cancel"
 )
 
 type PaymentState string
@@ -64,11 +64,11 @@ const (
 type JournalType string
 
 const (
-	JournalTypeSale      JournalType = "sale"
-	JournalTypePurchase  JournalType = "purchase"
-	JournalTypeGeneral   JournalType = "general"
-	JournalTypeBank      JournalType = "bank"
-	JournalTypeCash      JournalType = "cash"
+	JournalTypeSale     JournalType = "sale"
+	JournalTypePurchase JournalType = "purchase"
+	JournalTypeGeneral  JournalType = "general"
+	JournalTypeBank     JournalType = "bank"
+	JournalTypeCash     JournalType = "cash"
 )
 
 type DisplayType string

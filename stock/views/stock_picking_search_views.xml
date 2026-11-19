@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_stock_picking_search" model="stock.picking" type="search">
+            <field name="name"/>
+            <field name="origin"/>
+            <field name="picking_type_id"/>
+            <field name="note"/>
+            <filter name="my" string="My Transfers" domain='[["assigned_user_id","=","$uid"]]'/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="ready" string="Ready to Validate" domain='[["state","=","assigned"]]'/>
+            <filter name="waiting" string="Waiting" domain='[["state","in",["confirmed"]]]]'/>
+            <filter name="done" string="Done" domain='[["state","=","done"]]'/>
+            <filter name="cancelled" string="Cancelled" domain='[["state","=","cancelled"]]'/>
+            <filter name="incoming" string="Receipts" domain='[["operation","=","incoming"]]'/>
+            <filter name="outgoing" string="Deliveries" domain='[["operation","=","outgoing"]]'/>
+            <filter name="internal" string="Internal" domain='[["operation","=","internal"]]'/>
+            <filter name="unassigned" string="Unassigned" domain='[["assigned_user_id","=",false]]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_operation" string="Operation" group_by="operation"/>
+            <filter name="group_type" string="Operation Type" group_by="picking_type_id"/>
+            <filter name="group_user" string="Assigned To" group_by="assigned_user_id"/>
+            <filter name="group_scheduled" string="Scheduled Date" group_by="scheduled_date"/>
+            <filter name="group_destination" string="Destination" group_by="destination_id"/>
+        </view>
+    </data>
+</nexa>

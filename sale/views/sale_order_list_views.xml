@@ -7,7 +7,8 @@
             <field name="date_order" string="Order Date"/>
             <field name="user_id" string="Salesperson"/>
             <field name="opportunity_id" string="Opportunity"/>
-            <field name="amount_total" string="Total"/>
+            <field name="amount_untaxed" string="Untaxed Amount" widget="monetary"/>
+            <field name="amount_total" string="Total" widget="monetary"/>
             <field name="invoice_status" string="Invoice Status"/>
             <field name="state" string="Status"/>
         </view>

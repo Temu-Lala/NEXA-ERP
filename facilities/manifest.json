@@ -1,0 +1,19 @@
+{
+    "name": "facilities",
+    "display_name": "Facilities",
+    "version": "1.0.0",
+    "summary": "Buildings, rooms, bookings and facility requests",
+    "description": "Workplace facilities management: building and room registers, meeting-space and desk bookings with conflict checking, and facility service requests (cleaning, security, repairs) with priority and status workflow.",
+    "author": "Nexa",
+    "depends": [
+        "base"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Facilities"
+}

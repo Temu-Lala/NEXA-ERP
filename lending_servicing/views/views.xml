@@ -7,6 +7,13 @@
         <!-- ============================================================ -->
 
         <view id="view_loan_schedule_version_kanban" model="loan.schedule.version" type="kanban" default_group_by="status" records_draggable="false">
+            <field name="status"/>
+            <field name="account_id"/>
+            <field name="version"/>
+            <field name="interest_method"/>
+            <field name="total_amount" widget="monetary"/>
+            <field name="installment_count"/>
+            <field name="paid_count"/>
         </view>
 
         <view id="view_loan_schedule_version_list" model="loan.schedule.version" type="list">
@@ -66,7 +73,7 @@
         </view>
 
         <action id="action_loan_schedule_version" type="window" model="loan.schedule.version" name="Repayment Schedules">
-            <field name="view_mode">list,kanban,form</field>
+            <field name="view_mode">kanban,list,form</field>
         </action>
 
         <!-- ============================================================ -->

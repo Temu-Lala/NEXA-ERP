@@ -112,6 +112,7 @@ type StockValuationEvent struct {
 // StockLandedCost capitalizes freight/duty/customs onto received stock.
 type StockLandedCost struct {
 	sdk.Model `nexa:"model=stock.landed.cost"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 	Name      sdk.String                        `nexa:"required,index,string=Reference"`
 	PickingID sdk.Many2One[StockPicking]        `nexa:"required,index,string=Received Transfer"`
 	Lines     sdk.One2Many[StockLandedCostLine] `nexa:"string=Cost Lines"`

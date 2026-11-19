@@ -7,6 +7,7 @@ import (
 // HrDepartment is an organisational unit in the company hierarchy.
 type HrDepartment struct {
 	sdk.Model `nexa:"model=hr.department"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name           sdk.String                 `nexa:"required,string=Department"`
 	ParentID       sdk.Many2One[HrDepartment] `nexa:"string=Parent Department"`

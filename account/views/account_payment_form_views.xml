@@ -17,7 +17,7 @@
                         <field name="payment_type" string="Payment Type"/>
                         <field name="partner_type" string="Partner Type"/>
                         <field name="partner_id" string="Partner"/>
-                        <field name="amount" string="Amount"/>
+                        <field name="amount" string="Amount" widget="monetary"/>
                         <field name="date" string="Date"/>
                         <field name="journal_id" string="Journal"/>
                     </group>

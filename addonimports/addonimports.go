@@ -188,4 +188,18 @@ import (
 	_ "nexa_addons/stock_returns"
 	_ "nexa_addons/stock_traceability"
 	_ "nexa_addons/stock_valuation"
+
+	// Industry suites (added)
+	_ "nexa_addons/agriculture"
+	_ "nexa_addons/construction"
+	_ "nexa_addons/facilities"
+	_ "nexa_addons/field_service"
+	_ "nexa_addons/healthcare"
+	_ "nexa_addons/hospitality"
+	_ "nexa_addons/itam"
+	_ "nexa_addons/itsm"
+	_ "nexa_addons/manufacturing"
+	_ "nexa_addons/pos"
+	_ "nexa_addons/purchase_logistics"
+	_ "nexa_addons/real_estate"
 )

@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_fac_bld_user,access_fac_bld_user,facilities.building,group_facilities_user,1,1,1,0
+access_fac_bld_manager,access_fac_bld_manager,facilities.building,group_facilities_manager,1,1,1,1
+access_fac_room_user,access_fac_room_user,facilities.room,group_facilities_user,1,1,1,0
+access_fac_room_manager,access_fac_room_manager,facilities.room,group_facilities_manager,1,1,1,1
+access_fac_bkg_user,access_fac_bkg_user,facilities.booking,group_facilities_user,1,1,1,0
+access_fac_bkg_manager,access_fac_bkg_manager,facilities.booking,group_facilities_manager,1,1,1,1
+access_fac_req_user,access_fac_req_user,facilities.request,group_facilities_user,1,1,1,0
+access_fac_req_manager,access_fac_req_manager,facilities.request,group_facilities_manager,1,1,1,1

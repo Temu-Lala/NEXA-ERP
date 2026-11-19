@@ -1,0 +1,13 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_itsm_incident_user,access_itsm_incident_user,itsm.incident,group_itsm_user,1,1,1,0
+access_itsm_incident_manager,access_itsm_incident_manager,itsm.incident,group_itsm_manager,1,1,1,1
+access_itsm_timeline_user,access_itsm_timeline_user,itsm.timeline,group_itsm_user,1,1,1,0
+access_itsm_timeline_manager,access_itsm_timeline_manager,itsm.timeline,group_itsm_manager,1,1,1,1
+access_itsm_problem_user,access_itsm_problem_user,itsm.problem,group_itsm_user,1,1,1,0
+access_itsm_problem_manager,access_itsm_problem_manager,itsm.problem,group_itsm_manager,1,1,1,1
+access_itsm_change_user,access_itsm_change_user,itsm.change,group_itsm_user,1,1,1,0
+access_itsm_change_manager,access_itsm_change_manager,itsm.change,group_itsm_manager,1,1,1,1
+access_itsm_release_user,access_itsm_release_user,itsm.release,group_itsm_user,1,1,1,0
+access_itsm_release_manager,access_itsm_release_manager,itsm.release,group_itsm_manager,1,1,1,1
+access_itsm_release_pkg_user,access_itsm_release_pkg_user,itsm.release.package,group_itsm_user,1,1,1,0
+access_itsm_release_pkg_manager,access_itsm_release_pkg_manager,itsm.release.package,group_itsm_manager,1,1,1,1

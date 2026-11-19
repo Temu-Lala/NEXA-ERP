@@ -143,6 +143,18 @@
         <!-- ============================================================ -->
 
         <view id="view_loan_application_kanban" model="loan.application" type="kanban" default_group_by="state" records_draggable="false">
+            <field name="state"/>
+            <field name="name"/>
+            <field name="number"/>
+            <field name="borrower_id"/>
+            <field name="product_id"/>
+            <field name="requested_amount" widget="monetary"/>
+            <field name="currency_id"/>
+            <field name="tenor"/>
+            <field name="officer_id"/>
+            <field name="applied_date"/>
+            <field name="guarantor_count"/>
+            <field name="collateral_required"/>
         </view>
 
         <view id="view_loan_application_list" model="loan.application" type="list">
@@ -150,7 +162,8 @@
             <field name="number"/>
             <field name="borrower_id"/>
             <field name="product_id"/>
-            <field name="requested_amount"/>
+            <field name="requested_amount" string="Requested" widget="monetary" options="currency_field:currency_id"/>
+            <field name="currency_id"/>
             <field name="state" widget="badge"/>
         </view>
 
@@ -180,7 +193,7 @@
                         <field name="applied_date"/>
                     </group>
                     <group string="Request">
-                        <field name="requested_amount"/>
+                        <field name="requested_amount" widget="monetary" options="currency_field:currency_id"/>
                         <field name="currency_id"/>
                         <field name="tenor"/>
                         <field name="purpose"/>
@@ -213,7 +226,7 @@
         </view>
 
         <action id="action_loan_application" type="window" model="loan.application" name="Loan Applications">
-            <field name="view_mode">list,kanban,form</field>
+            <field name="view_mode">kanban,list,form</field>
         </action>
 
         <!-- ============================================================ -->
@@ -224,11 +237,27 @@
             <field name="name"/>
             <field name="number"/>
             <field name="borrower_id"/>
-            <field name="principal"/>
-            <field name="outstanding_principal"/>
+            <field name="product_id"/>
+            <field name="principal" widget="monetary" options="currency_field:currency_id"/>
+            <field name="outstanding_principal" widget="monetary" options="currency_field:currency_id"/>
+            <field name="currency_id"/>
             <field name="next_due_date"/>
             <field name="days_past_due"/>
             <field name="status" widget="badge"/>
+        </view>
+
+        <view id="view_loan_account_kanban" model="loan.account" type="kanban" default_group_by="status" records_draggable="false">
+            <field name="status"/>
+            <field name="name"/>
+            <field name="number"/>
+            <field name="borrower_id"/>
+            <field name="product_id"/>
+            <field name="outstanding_principal" widget="monetary"/>
+            <field name="currency_id"/>
+            <field name="interest_rate"/>
+            <field name="next_due_date"/>
+            <field name="days_past_due"/>
+            <field name="officer_id"/>
         </view>
 
         <view id="view_loan_account_form" model="loan.account" type="form">
@@ -254,9 +283,9 @@
                         <field name="status"/>
                     </group>
                     <group string="Balances">
-                        <field name="outstanding_principal"/>
-                        <field name="accrued_interest"/>
-                        <field name="paid_total"/>
+                        <field name="outstanding_principal" widget="monetary" options="currency_field:currency_id"/>
+                        <field name="accrued_interest" widget="monetary" options="currency_field:currency_id"/>
+                        <field name="paid_total" widget="monetary" options="currency_field:currency_id"/>
                         <field name="next_due_date"/>
                         <field name="days_past_due"/>
                     </group>
@@ -264,8 +293,8 @@
                 <group string="Contract Terms">
                     <field name="product_id"/>
                     <field name="version_id"/>
-                    <field name="principal"/>
-                    <field name="disbursed_amount"/>
+                    <field name="principal" widget="monetary" options="currency_field:currency_id"/>
+                    <field name="disbursed_amount" widget="monetary" options="currency_field:currency_id"/>
                     <field name="currency_id"/>
                     <field name="interest_rate"/>
                     <field name="interest_method"/>
@@ -289,14 +318,21 @@
             <filter name="active" string="Active" domain='[["status","=","active"]]'/>
             <filter name="delinquent" string="Delinquent" domain='[["status","=","delinquent"]]'/>
             <filter name="overdue" string="Past Due" domain='[["days_past_due","&gt;",0]]'/>
+            <filter name="dpd30" string="30+ Days Past Due" domain='[["days_past_due","&gt;",30]]'/>
+            <filter name="dpd90" string="90+ Days Past Due" domain='[["days_past_due","&gt;",90]]'/>
+            <filter name="restructured" string="Restructured" domain='[["status","=","restructured"]]'/>
+            <filter name="written_off" string="Written Off" domain='[["status","=","written_off"]]'/>
             <filter name="closed" string="Closed" domain='[["status","in",["closed","written_off"]]]'/>
             <filter name="group_borrower" string="Borrower" group_by="borrower_id"/>
             <filter name="group_product" string="Product" group_by="product_id"/>
+            <filter name="group_officer" string="Loan Officer" group_by="officer_id"/>
+            <filter name="group_currency" string="Currency" group_by="currency_id"/>
             <filter name="group_status" string="Status" group_by="status"/>
+            <filter name="group_due" string="Next Due Date" group_by="next_due_date"/>
         </view>
 
         <action id="action_loan_account" type="window" model="loan.account" name="Loan Accounts">
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">kanban,list,form</field>
         </action>
 
     </data>

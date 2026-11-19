@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_itam_asset_list" model="itam.asset" type="list">
+            <field name="name" string="Asset"/>
+            <field name="asset_tag" string="Tag"/>
+            <field name="kind" string="Type"/>
+            <field name="device_model" string="Model"/>
+            <field name="vendor" string="Vendor"/>
+            <field name="assigned_to_id" string="Assigned"/>
+            <field name="warranty_expiring" string="Warranty!"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_itam_asset_form" model="itam.asset" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Asset name..."/></h1></div>
+                <group>
+                    <field name="asset_tag" string="Asset Tag"/>
+                    <field name="kind" string="Type"/>
+                    <field name="serial_no" string="Serial"/>
+                    <field name="device_model" string="Model"/>
+                    <field name="vendor" string="Vendor"/>
+                    <field name="purchase_date" string="Purchase"/>
+                    <field name="warranty_until" string="Warranty Until"/>
+                    <field name="warranty_expiring" string="Expiring" readonly="true"/>
+                    <field name="assigned_to_id" string="Assigned To"/>
+                    <field name="department" string="Department"/>
+                    <field name="location" string="Location"/>
+                    <field name="disposal_date" string="Disposal"/>
+                </group>
+                <group string="Note"><field name="note" string="Note"/></group>
+            </sheet>
+        </view>
+        <view id="view_itam_ci_list" model="itam.ci" type="list">
+            <field name="name" string="CI"/>
+            <field name="code" string="ID"/>
+            <field name="kind" string="Type"/>
+            <field name="asset_id" string="Asset"/>
+            <field name="criticality" string="Criticality"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_itam_ci_form" model="itam.ci" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="CI name..."/></h1></div>
+                <group>
+                    <field name="code" string="CI ID"/>
+                    <field name="kind" string="Type"/>
+                    <field name="asset_id" string="Asset"/>
+                    <field name="criticality" string="Criticality"/>
+                    <field name="state" string="Status"/>
+                </group>
+                <group string="Description"><field name="description" string="Description"/></group>
+                <notebook><page string="Dependencies"><field name="relations" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_itam_ci_rel_list" model="itam.ci.relation" type="list">
+            <field name="ci_id" string="CI"/>
+            <field name="depends_on_id" string="Depends On"/>
+            <field name="relation" string="Relation"/>
+        </view>
+        <view id="view_itam_ci_rel_form" model="itam.ci.relation" type="form">
+            <sheet>
+                <group>
+                    <field name="ci_id" string="Configuration Item"/>
+                    <field name="depends_on_id" string="Depends On"/>
+                    <field name="relation" string="Relation Type"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_itam_license_list" model="itam.license" type="list">
+            <field name="name" string="License"/>
+            <field name="product" string="Product"/>
+            <field name="vendor" string="Vendor"/>
+            <field name="seats_total" string="Seats"/>
+            <field name="seats_used" string="Used"/>
+            <field name="utilization_pct" string="Util %"/>
+            <field name="expiry_date" string="Expiry"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_itam_license_form" model="itam.license" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="License..."/></h1></div>
+                <group>
+                    <field name="product" string="Product/Software"/>
+                    <field name="vendor" string="Vendor"/>
+                    <field name="seats_total" string="Seats"/>
+                    <field name="seats_used" string="Seats Used"/>
+                    <field name="utilization_pct" string="Utilization %" readonly="true"/>
+                    <field name="expiry_date" string="Expiry Date"/>
+                    <field name="renewal_date" string="Renewal Date"/>
+                    <field name="cost" string="Cost"/>
+                    <field name="state" string="Status"/>
+                </group>
+                <group string="Note"><field name="note" string="Note"/></group>
+            </sheet>
+        </view>
+        <action id="action_itam_asset" type="window" model="itam.asset" name="Assets" view_mode="list,form"/>
+        <action id="action_itam_ci" type="window" model="itam.ci" name="Config Items" view_mode="list,form"/>
+        <action id="action_itam_ci_rel" type="window" model="itam.ci.relation" name="CI Relations" view_mode="list,form"/>
+        <action id="action_itam_license" type="window" model="itam.license" name="Licenses" view_mode="list,form"/>
+    </data>
+</nexa>

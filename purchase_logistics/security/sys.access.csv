@@ -1,0 +1,7 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_shipment_user,access_purchase_shipment_user,purchase.shipment,group_purchase_user,1,1,1,0
+access_purchase_shipment_manager,access_purchase_shipment_manager,purchase.shipment,group_purchase_manager,1,1,1,1
+access_purchase_shipment_event_user,access_purchase_shipment_event_user,purchase.shipment.event,group_purchase_user,1,1,1,0
+access_purchase_shipment_event_manager,access_purchase_shipment_event_manager,purchase.shipment.event,group_purchase_manager,1,1,1,1
+access_purchase_freight_charge_user,access_purchase_freight_charge_user,purchase.freight.charge,group_purchase_user,1,1,1,0
+access_purchase_freight_charge_manager,access_purchase_freight_charge_manager,purchase.freight.charge,group_purchase_manager,1,1,1,1

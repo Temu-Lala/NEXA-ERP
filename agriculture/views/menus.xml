@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="agri_menu_root" name="Agriculture" web_icon="tractor" sequence="52" groups="agriculture.group_agriculture_user"/>
+        <menuitem id="menu_agri_farm" name="Farms" parent="agri_menu_root" action="agriculture.action_agri_farm" sequence="1" groups="agriculture.group_agriculture_user"/>
+        <menuitem id="menu_agri_field" name="Fields" parent="agri_menu_root" action="agriculture.action_agri_field" sequence="2" groups="agriculture.group_agriculture_user"/>
+        <menuitem id="menu_agri_crop_plan" name="Crop Plans" parent="agri_menu_root" action="agriculture.action_agri_crop_plan" sequence="3" groups="agriculture.group_agriculture_user"/>
+        <menuitem id="menu_agri_activity" name="Activities" parent="agri_menu_root" action="agriculture.action_agri_activity" sequence="4" groups="agriculture.group_agriculture_user"/>
+            <menuitem id="menu_agriculture_herd" name="Herds" parent="agriculture_menu_root" action="agriculture.action_agriculture_herd" sequence="5" groups="agriculture.group_agriculture_user"/>
+        <menuitem id="menu_agriculture_animal" name="Animals" parent="agriculture_menu_root" action="agriculture.action_agriculture_animal" sequence="6" groups="agriculture.group_agriculture_user"/>
+        <menuitem id="menu_agriculture_animal_event" name="Animal Events" parent="agriculture_menu_root" action="agriculture.action_agriculture_animal_event" sequence="7" groups="agriculture.group_agriculture_user"/>
+    </data>
+</nexa>

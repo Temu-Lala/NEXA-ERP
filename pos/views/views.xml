@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_pos_session_list" model="pos.session" type="list" default_order="id desc">
+            <field name="name" string="Session"/>
+            <field name="user_id" string="Cashier"/>
+            <field name="config_name" string="Register"/>
+            <field name="state" string="Status"/>
+            <field name="start_at" string="Opened"/>
+            <field name="stop_at" string="Closed"/>
+            <field name="opening_cash" string="Open Cash" widget="monetary"/>
+            <field name="expected_cash" string="Expected" widget="monetary"/>
+            <field name="closing_cash" string="Counted" widget="monetary"/>
+            <field name="cash_variance" string="Variance" widget="monetary"/>
+        </view>
+        <view id="view_pos_session_form" model="pos.session" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Session..."/></h1></div>
+                <group>
+                    <field name="user_id" string="Cashier"/>
+                    <field name="config_name" string="Register/Config"/>
+                    <field name="opening_cash" string="Opening Cash" widget="monetary"/>
+                    <field name="expected_cash" string="Expected Cash" widget="monetary" readonly="true"/>
+                    <field name="closing_cash" string="Counted Cash" widget="monetary"/>
+                    <field name="cash_variance" string="Variance" widget="monetary" readonly="true"/>
+                    <field name="start_at" string="Opened At"/>
+                    <field name="stop_at" string="Closed At"/>
+                </group>
+                <notebook><page string="Orders"><field name="orders" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_pos_order_list" model="pos.order" type="list" default_order="id desc">
+            <field name="name" string="Receipt"/>
+            <field name="session_id" string="Session"/>
+            <field name="partner_id" string="Customer"/>
+            <field name="state" string="Status"/>
+            <field name="date_order" string="Date"/>
+            <field name="amount_total" string="Total" widget="monetary"/>
+            <field name="amount_paid" string="Paid" widget="monetary"/>
+        </view>
+        <view id="view_pos_order_form" model="pos.order" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Receipt..."/></h1></div>
+                <group>
+                    <field name="session_id" string="Session"/>
+                    <field name="partner_id" string="Customer"/>
+                    <field name="user_id" string="Cashier"/>
+                    <field name="date_order" string="Date"/>
+                    <field name="discount" string="Discount" widget="monetary"/>
+                    <field name="amount_total" string="Total" widget="monetary" readonly="true"/>
+                    <field name="amount_paid" string="Paid" widget="monetary" readonly="true"/>
+                    <field name="points_earned" string="Points" readonly="true"/>
+                </group>
+                <notebook>
+                    <page string="Lines"><field name="lines" nolabel="1"/></page>
+                    <page string="Payments"><field name="payments" nolabel="1"/></page>
+                    <page string="Note"><field name="note" string="Note"/></page>
+                </notebook>
+            </sheet>
+        </view>
+        <view id="view_pos_order_line_list" model="pos.order.line" type="list">
+            <field name="order_id" string="Order"/>
+            <field name="product_id" string="Product"/>
+            <field name="name" string="Description"/>
+            <field name="qty" string="Qty"/>
+            <field name="price_unit" string="Price" widget="monetary"/>
+            <field name="discount_pct" string="Disc %"/>
+            <field name="price_subtotal" string="Subtotal" widget="monetary"/>
+        </view>
+        <view id="view_pos_order_line_form" model="pos.order.line" type="form">
+            <sheet>
+                <group>
+                    <field name="order_id" string="Order"/>
+                    <field name="product_id" string="Product"/>
+                    <field name="name" string="Description"/>
+                    <field name="qty" string="Quantity"/>
+                    <field name="price_unit" string="Unit Price" widget="monetary"/>
+                    <field name="discount_pct" string="Discount %"/>
+                    <field name="price_subtotal" string="Subtotal" widget="monetary"/>
+                    <field name="sequence" string="Sequence"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_pos_payment_list" model="pos.payment" type="list">
+            <field name="order_id" string="Order"/>
+            <field name="method" string="Method"/>
+            <field name="amount" string="Amount" widget="monetary"/>
+            <field name="reference" string="Reference"/>
+            <field name="note" string="Note"/>
+        </view>
+        <view id="view_pos_payment_form" model="pos.payment" type="form">
+            <sheet>
+                <group>
+                    <field name="order_id" string="Order"/>
+                    <field name="method" string="Method"/>
+                    <field name="amount" string="Amount" widget="monetary"/>
+                    <field name="reference" string="Reference"/>
+                    <field name="note" string="Note"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_pos_session" type="window" model="pos.session" name="Sessions" view_mode="kanban,list,form"/>
+        <action id="action_pos_order" type="window" model="pos.order" name="Orders" view_mode="kanban,list,form"/>
+        <action id="action_pos_order_line" type="window" model="pos.order.line" name="Order Lines" view_mode="list,form"/>
+        <action id="action_pos_payment" type="window" model="pos.payment" name="Payments" view_mode="list,form"/>
+        <view id="view_pos_return_list" model="pos.return" type="list" default_order="id desc">
+            <field name="name" string="Return"/>
+            <field name="order_id" string="Order"/>
+            <field name="reason" string="Reason"/>
+            <field name="amount_total" string="Refund"/>
+            <field name="state" string="Status"/>
+            <field name="refund_method" string="Method"/>
+        </view>
+        <view id="view_pos_return_form" model="pos.return" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Return..."/></h1></div>
+                <group>
+                    <field name="order_id" string="Original Order"/>
+                    <field name="session_id" string="Session"/>
+                    <field name="reason" string="Reason"/>
+                    <field name="amount_total" string="Refund Total"/>
+                    <field name="refund_method" string="Refund Method"/>
+                    <field name="requested_by_id" string="Requested By"/>
+                    <field name="approved_by_id" string="Approved By"/>
+                </group>
+                <group string="Note"><field name="note" string="Note"/></group>
+            </sheet>
+        </view>
+
+        <action id="action_pos_return" type="window" model="pos.return" name="Returns" view_mode="list,form"/>
+        <action id="action_pos_return_line" type="window" model="pos.return" name="Return Lines" view_mode="list"/>
+        <view id="view_pos_store_list" model="pos.store" type="list">
+            <field name="name" string="Store"/><field name="code" string="Code"/><field name="city" string="City"/><field name="state" string="Status"/>
+        </view>
+        <view id="view_pos_store_form" model="pos.store" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Store..."/></h1></div>
+                <group><field name="code" string="Store Code"/><field name="address" string="Address"/><field name="phone" string="Phone"/><field name="manager_id" string="Manager"/><field name="timezone" string="Timezone"/><field name="state" string="Status"/></group>
+                <notebook><page string="Registers"><field name="registers" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_pos_register_list" model="pos.register" type="list">
+            <field name="name" string="Register"/><field name="code" string="ID"/><field name="store_id" string="Store"/><field name="device_id" string="Device"/><field name="state" string="Status"/>
+        </view>
+        <view id="view_pos_register_form" model="pos.register" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Register..."/></h1></div>
+                <group><field name="store_id" string="Store"/><field name="code" string="Register ID"/><field name="device_id" string="Device/Terminal ID"/><field name="cash_drawer" string="Cash Drawer"/><field name="state" string="Status"/></group>
+                <notebook><page string="Sessions"><field name="sessions" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_pos_promotion_list" model="pos.promotion" type="list">
+            <field name="name" string="Promotion"/><field name="code" string="Code"/><field name="kind" string="Type"/><field name="value" string="Value"/><field name="min_basket" string="Min"/><field name="used_count" string="Used"/><field name="active" string="Active"/>
+        </view>
+        <view id="view_pos_promotion_form" model="pos.promotion" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Promotion..."/></h1></div>
+                <group><field name="code" string="Coupon Code"/><field name="kind" string="Type"/><field name="value" string="Value"/><field name="min_basket" string="Min Basket"/><field name="buy_qty" string="Buy Qty"/><field name="get_qty" string="Get Qty"/><field name="product_id" string="Product"/><field name="category_id" string="Category"/><field name="start_at" string="Starts"/><field name="end_at" string="Ends"/><field name="usage_limit" string="Usage Limit"/><field name="used_count" string="Used"/><field name="active" string="Active"/></group>
+            </sheet>
+        </view>
+        <view id="view_pos_giftcard_list" model="pos.giftcard" type="list">
+            <field name="code" string="Code"/><field name="initial" string="Initial"/><field name="balance" string="Balance"/><field name="expires_at" string="Expires"/><field name="state" string="Status"/>
+        </view>
+        <view id="view_pos_giftcard_form" model="pos.giftcard" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="code" placeholder="Card code..."/></h1></div>
+                <group><field name="initial" string="Initial Value"/><field name="balance" string="Balance"/><field name="issued_to_id" string="Issued To"/><field name="expires_at" string="Expires"/><field name="state" string="Status"/></group>
+            </sheet>
+        </view>
+        <view id="view_pos_cash_movement_list" model="pos.cash.movement" type="list" default_order="at desc, id desc">
+            <field name="session_id" string="Session"/><field name="kind" string="Type"/><field name="amount" string="Amount"/><field name="reason" string="Reason"/><field name="user_id" string="By"/><field name="at" string="At"/>
+        </view>
+        <view id="view_pos_cash_movement_form" model="pos.cash.movement" type="form">
+            <sheet>
+                <group><field name="session_id" string="Session"/><field name="kind" string="Type"/><field name="amount" string="Amount"/><field name="reason" string="Reason"/><field name="user_id" string="By"/><field name="at" string="At"/></group>
+            </sheet>
+        </view>
+        <action id="action_pos_store" type="window" model="pos.store" name="Stores" view_mode="list,form"/>
+        <action id="action_pos_register" type="window" model="pos.register" name="Registers" view_mode="list,form"/>
+        <action id="action_pos_promotion" type="window" model="pos.promotion" name="Promotions" view_mode="list,form"/>
+        <action id="action_pos_giftcard" type="window" model="pos.giftcard" name="Gift Cards" view_mode="list,form"/>
+        <action id="action_pos_cash_movement" type="window" model="pos.cash.movement" name="Cash Movements" view_mode="list,form"/>
+        <view id="view_pos_device_list" model="pos.device" type="list">
+            <field name="name" string="Device"/><field name="device_id" string="ID"/><field name="store_id" string="Store"/><field name="register_id" string="Register"/><field name="last_sync_at" string="Last Sync"/><field name="active" string="Active"/>
+        </view>
+        <view id="view_pos_device_form" model="pos.device" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Device..."/></h1></div>
+                <group><field name="device_id" string="Device ID"/><field name="store_id" string="Store"/><field name="register_id" string="Register"/><field name="user_id" string="Cashier"/><field name="last_sync_at" string="Last Sync"/><field name="active" string="Active"/></group>
+                <notebook><page string="Sync Events"><field name="events" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_pos_sync_event_list" model="pos.sync.event" type="list" default_order="id desc">
+            <field name="device_id" string="Device"/><field name="client_txn_id" string="Client Txn"/><field name="kind" string="Type"/><field name="state" string="Status"/><field name="server_order_id" string="Order"/><field name="error" string="Error"/><field name="received_at" string="Received"/>
+        </view>
+        <view id="view_pos_sync_event_form" model="pos.sync.event" type="form">
+            <sheet>
+                <group><field name="device_id" string="Device"/><field name="client_txn_id" string="Client Txn ID"/><field name="kind" string="Type"/><field name="state" string="Status"/><field name="server_order_id" string="Server Order"/><field name="device_time" string="Device Time"/><field name="received_at" string="Received"/><field name="applied_at" string="Applied"/><field name="error" string="Error"/></group>
+                <group string="Payload"><field name="payload" string="Payload"/></group>
+            </sheet>
+        </view>
+        <action id="action_pos_device" type="window" model="pos.device" name="Devices" view_mode="list,form"/>
+        <action id="action_pos_sync_event" type="window" model="pos.sync.event" name="Sync Events" view_mode="list,form"/>
+        <view id="view_pos_order_register" model="pos.order" type="pos_register" string="Register"/>
+        <action id="action_pos_register_terminal" type="window" model="pos.order" name="POS Register" view_mode="pos_register"/>
+        <view id="view_pos_order_reports" model="pos.order" type="pos_reports" string="Reports"/>
+        <action id="action_pos_reports" type="window" model="pos.order" name="POS Reports" view_mode="pos_reports"/>
+        <view id="view_pos_price_list_list" model="pos.price.list" type="list">
+            <field name="name" string="Price List"/><field name="code" string="Code"/><field name="kind" string="Type"/><field name="store_id" string="Store"/><field name="partner_id" string="Customer"/><field name="active" string="Active"/>
+        </view>
+        <view id="view_pos_price_list_form" model="pos.price.list" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Price list..."/></h1></div>
+                <group><field name="code" string="Code"/><field name="kind" string="Type"/><field name="store_id" string="Store"/><field name="partner_id" string="Customer"/><field name="currency_id" string="Currency"/><field name="active" string="Active"/></group>
+                <notebook><page string="Items"><field name="items" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_pos_price_list_item_list" model="pos.price.list.item" type="list">
+            <field name="price_list_id" string="Price List"/><field name="product_id" string="Product"/><field name="category_id" string="Category"/><field name="min_qty" string="Min Qty"/><field name="price" string="Price"/><field name="discount_pct" string="Disc %"/>
+        </view>
+        <view id="view_pos_price_list_item_form" model="pos.price.list.item" type="form">
+            <sheet>
+                <group><field name="price_list_id" string="Price List"/><field name="product_id" string="Product"/><field name="category_id" string="Category"/><field name="min_qty" string="Min Qty"/><field name="price" string="Price"/><field name="discount_pct" string="Discount %"/></group>
+            </sheet>
+        </view>
+        <action id="action_pos_price_list" type="window" model="pos.price.list" name="Price Lists" view_mode="list,form"/>
+        <action id="action_pos_price_list_item" type="window" model="pos.price.list.item" name="Price List Items" view_mode="list,form"/>
+        <view id="view_pos_loyalty_txn_list" model="pos.loyalty.txn" type="list" default_order="at desc, id desc">
+            <field name="partner_id" string="Customer"/><field name="order_id" string="Order"/><field name="kind" string="Type"/><field name="points" string="Points"/><field name="balance_after" string="Balance"/><field name="note" string="Note"/><field name="user_id" string="By"/><field name="at" string="At"/>
+        </view>
+        <view id="view_pos_loyalty_txn_form" model="pos.loyalty.txn" type="form">
+            <sheet>
+                <group><field name="partner_id" string="Customer"/><field name="order_id" string="Order"/><field name="kind" string="Type"/><field name="points" string="Points"/><field name="balance_after" string="Balance After"/><field name="note" string="Note"/><field name="user_id" string="By"/><field name="at" string="At"/></group>
+            </sheet>
+        </view>
+        <view id="view_pos_audit_event_list" model="pos.audit.event" type="list" default_order="at desc, id desc">
+            <field name="model_name" string="Model"/><field name="record_id" string="Record"/><field name="action" string="Action"/><field name="user_id" string="User"/><field name="detail" string="Detail"/><field name="at" string="At"/>
+        </view>
+        <view id="view_pos_audit_event_form" model="pos.audit.event" type="form">
+            <sheet>
+                <group><field name="model_name" string="Model"/><field name="record_id" string="Record ID"/><field name="action" string="Action"/><field name="user_id" string="User"/><field name="at" string="At"/></group>
+                <group string="Detail"><field name="detail" string="Detail"/></group>
+            </sheet>
+        </view>
+        <action id="action_pos_loyalty_txn" type="window" model="pos.loyalty.txn" name="Loyalty Ledger" view_mode="list,form"/>
+        <action id="action_pos_audit_event" type="window" model="pos.audit.event" name="Audit Log" view_mode="list,form"/>
+    </data>
+</nexa>

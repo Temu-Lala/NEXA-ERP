@@ -82,6 +82,7 @@ const (
 // quick filtering (Jira-style labels). Color drives the chip hue in the UI.
 type ProjectTag struct {
 	sdk.Model `nexa:"model=project.tag"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name   sdk.String  `nexa:"required,size=60,index,string=Label"`
 	Color  sdk.Integer `nexa:"string=Color Index,default=0"`
@@ -91,17 +92,23 @@ type ProjectTag struct {
 // ProjectType is a configurable project category driving behavior rules.
 type ProjectType struct {
 	sdk.Model `nexa:"model=project.type"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name            sdk.String  `nexa:"required,index,string=Type"`
 	AllowTimesheets sdk.Boolean `nexa:"string=Allow Timesheets,default=true"`
 	RequireApproval sdk.Boolean `nexa:"string=Require Approval,default=false"`
-	Active          sdk.Boolean `nexa:"string=Active,default=true"`
-	Note            sdk.Text    `nexa:"string=Description"`
+	// WorkspaceHiddenTabs is a comma-separated list of project_workspace tab ids
+	// (board, backlog, timeline, issues, reports) to suppress for projects of this
+	// type. Empty keeps every tab visible, so existing types are unaffected.
+	WorkspaceHiddenTabs sdk.String  `nexa:"string=Hidden Workspace Tabs"`
+	Active              sdk.Boolean `nexa:"string=Active,default=true"`
+	Note                sdk.Text    `nexa:"string=Description"`
 }
 
 // ProjectPhase is a WBS phase grouping tasks and milestones within a project.
 type ProjectPhase struct {
 	sdk.Model `nexa:"model=project.phase"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                   `nexa:"required,string=Phase"`
 	ProjectID    sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`
@@ -115,6 +122,7 @@ type ProjectPhase struct {
 // ProjectMilestone is a major delivery point on a project timeline.
 type ProjectMilestone struct {
 	sdk.Model `nexa:"model=project.milestone"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                    `nexa:"required,string=Milestone"`
 	ProjectID    sdk.Many2One[ProjectProject]  `nexa:"required,index,string=Project"`
@@ -131,6 +139,7 @@ type ProjectMilestone struct {
 // ProjectMember is a person assigned to a project with a role and allocation.
 type ProjectMember struct {
 	sdk.Model `nexa:"model=project.member"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID     sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`
 	UserID        sdk.Many2One[CoreUser]       `nexa:"required,string=User"`
@@ -145,6 +154,7 @@ type ProjectMember struct {
 // person even if they were not watching.
 type ProjectTaskComment struct {
 	sdk.Model `nexa:"model=project.task.comment,mail_comment=task_id"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	TaskID     sdk.Many2One[ProjectTask] `nexa:"required,index,string=Task"`
 	AuthorID   sdk.Many2One[CoreUser]    `nexa:"string=Author"`
@@ -158,6 +168,7 @@ type ProjectProject struct {
 	// watching. Health and progress stay out of the thread — the daily recompute
 	// writes them whether or not anything meaningful happened.
 	sdk.Model `nexa:"model=project.project,mail_thread=manager_id;sponsor_id,mail_notify=state;priority"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name          sdk.String                     `nexa:"required,string=Project Name"`
 	Image         sdk.Image                      `nexa:"string=Logo"`
@@ -205,38 +216,49 @@ type ProjectProject struct {
 	MemberCount    sdk.Integer `nexa:"string=Team,compute=computeProjectMemberCount"`
 	RiskCount      sdk.Integer `nexa:"string=Risks,compute=computeProjectRiskCount"`
 	DocumentCount  sdk.Integer `nexa:"string=Documents,compute=computeProjectDocumentCount"`
+
+	// WorkspaceHiddenTabs mirrors the project type's hidden-tab config onto the
+	// record so the workspace payload can drop suppressed tabs server-side (see
+	// swcmeta.applyWorkspaceTabVisibility). It reads nothing but the linked type;
+	// with no type set it is empty, which leaves every section visible.
+	WorkspaceHiddenTabs sdk.String `nexa:"string=Hidden Workspace Tabs,compute=computeProjectWorkspaceHiddenTabs"`
 }
 
 type ProjectTask struct {
-	// Chatter opt-in. The assignee is subscribed automatically, and the listed
-	// fields are announced to everyone watching the issue. The lifecycle STATE is
-	// tracked rather than the board column: a drag writes the stage and the
-	// reconciler then writes the state, so tracking both would tell the thread
-	// about one action twice.
-	sdk.Model `nexa:"model=project.task,mail_thread=assigned_to,mail_notify=assigned_to;state;priority;deadline"`
+	// Chatter opt-in. The assignee and reporter are subscribed automatically, and
+	// the listed fields are announced to everyone watching the issue.
+	sdk.Model `nexa:"model=project.task,mail_thread=assigned_to;reporter_id,mail_notify=assigned_to;state;priority;deadline;resolution"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
-	Name           sdk.String                       `nexa:"required,string=Task Title"`
-	Image          sdk.Image                        `nexa:"string=Preview"`
-	ProjectID      sdk.Many2One[ProjectProject]     `nexa:"index,string=Project"`
-	ParentID       sdk.Many2One[ProjectTask]        `nexa:"string=Parent Task"`
-	PhaseID        sdk.Many2One[ProjectPhase]       `nexa:"string=Phase"`
-	MilestoneID    sdk.Many2One[ProjectMilestone]   `nexa:"string=Milestone"`
-	AssignedTo     sdk.Many2One[CoreUser]           `nexa:"string=Assigned To"`
-	Priority       sdk.Selection[TaskPriority]      `nexa:"string=Priority,default=normal"`
-	State          sdk.Selection[TaskState]         `nexa:"string=Status,default=todo"`
-	KanbanState    sdk.Selection[KanbanState]       `nexa:"string=Kanban State,default=standard"`
-	Deadline       sdk.Date                         `nexa:"string=Deadline"`
-	PlannedStart   sdk.Date                         `nexa:"string=Planned Start"`
-	EstHours       sdk.Numeric                      `nexa:"string=Estimated Hours,precision=18,scale=2,default=0"`
-	RemainingHours sdk.Numeric                      `nexa:"string=Remaining Hours,compute=computeTaskRemainingHours"`
-	ActualHours    sdk.Numeric                      `nexa:"string=Spent Hours,compute=computeTaskSpentHours"`
-	Worklogs       sdk.One2Many[ProjectWorklog]     `nexa:"string=Worklogs"`
-	Sequence       sdk.Integer                      `nexa:"string=Sequence,default=10"`
-	Comments       sdk.One2Many[ProjectTaskComment] `nexa:"string=Comments"`
-	Description    sdk.Text                         `nexa:"string=Description"`
-	TagIDs         sdk.Many2Many[ProjectTag]        `nexa:"string=Labels,table=project_task_tag_rel,left=task_id,right=tag_id"`
-	FollowerCount  sdk.Integer                      `nexa:"string=Watchers,compute=computeTaskFollowers"`
-	IsFollowed     sdk.Boolean                      `nexa:"string=Following,compute=computeTaskFollowing"`
+	Name           sdk.String                             `nexa:"required,string=Task Title"`
+	Image          sdk.Image                              `nexa:"string=Preview"`
+	ProjectID      sdk.Many2One[ProjectProject]           `nexa:"index,string=Project"`
+	ParentID       sdk.Many2One[ProjectTask]              `nexa:"string=Parent Task"`
+	Subtasks       sdk.One2Many[ProjectTask]              `nexa:"string=Sub-tasks,inverse=parent_id"`
+	PhaseID        sdk.Many2One[ProjectPhase]             `nexa:"string=Phase"`
+	MilestoneID    sdk.Many2One[ProjectMilestone]         `nexa:"string=Milestone"`
+	FixVersionID   sdk.Many2One[ProjectRelease]           `nexa:"index,string=Fix Version"`
+	AssignedTo     sdk.Many2One[CoreUser]                 `nexa:"string=Assigned To"`
+	ReporterID     sdk.Many2One[CoreUser]                 `nexa:"string=Reporter"`
+	Priority       sdk.Selection[TaskPriority]            `nexa:"string=Priority,default=normal"`
+	State          sdk.Selection[TaskState]               `nexa:"string=Status,default=todo"`
+	KanbanState    sdk.Selection[KanbanState]             `nexa:"string=Kanban State,default=standard"`
+	Deadline       sdk.Date                               `nexa:"string=Deadline"`
+	PlannedStart   sdk.Date                               `nexa:"string=Planned Start"`
+	ResolvedDate   sdk.Date                               `nexa:"string=Resolved Date"`
+	EstHours       sdk.Numeric                            `nexa:"string=Estimated Hours,precision=18,scale=2,default=0"`
+	RemainingHours sdk.Numeric                            `nexa:"string=Remaining Hours,compute=computeTaskRemainingHours"`
+	ActualHours    sdk.Numeric                            `nexa:"string=Spent Hours,compute=computeTaskSpentHours"`
+	Worklogs       sdk.One2Many[ProjectWorklog]           `nexa:"string=Worklogs"`
+	Links          sdk.One2Many[ProjectTaskLink]          `nexa:"string=Linked Issues"`
+	ChecklistItems sdk.One2Many[ProjectTaskChecklistItem] `nexa:"string=Checklist"`
+	GitLinks       sdk.One2Many[ProjectGitLink]           `nexa:"string=Git Links"`
+	Sequence       sdk.Integer                            `nexa:"string=Sequence,default=10"`
+	Comments       sdk.One2Many[ProjectTaskComment]       `nexa:"string=Comments"`
+	Description    sdk.Text                               `nexa:"string=Description"`
+	TagIDs         sdk.Many2Many[ProjectTag]              `nexa:"string=Labels,table=project_task_tag_rel,left=task_id,right=tag_id"`
+	FollowerCount  sdk.Integer                            `nexa:"string=Watchers,compute=computeTaskFollowers"`
+	IsFollowed     sdk.Boolean                            `nexa:"string=Following,compute=computeTaskFollowing"`
 
 	// Agile board layer (nullable, additive — see agile.go). Stage drives the state
 	// machine; Key is a stable PROJECT-n identifier allocated on create.
@@ -247,6 +269,7 @@ type ProjectTask struct {
 	StoryPoints sdk.Integer                     `nexa:"string=Story Points,default=0"`
 	Key         sdk.String                      `nexa:"index,size=30,string=Key"`
 	Resolution  sdk.Selection[Resolution]       `nexa:"string=Resolution,default=none,selection=none:Not Resolved,done:Done,wont_fix:Won't Fix,duplicate:Duplicate,cannot_reproduce:Cannot Reproduce,cancelled:Cancelled"`
+	IsBlocked   sdk.Boolean                     `nexa:"string=Blocked,compute=computeTaskIsBlocked"`
 }
 
 type TaskPriority string
@@ -274,5 +297,7 @@ func init() {
 		&ProjectSprintSnapshot{},
 		&ProjectEpic{},
 		&ProjectWorklog{},
+		&ProjectTaskLink{},
+		&ProjectTaskChecklistItem{},
 	)
 }

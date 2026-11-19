@@ -86,6 +86,7 @@ const (
 // PurchaseSupplierProfile layers procurement data on a shared partner.
 type PurchaseSupplierProfile struct {
 	sdk.Model `nexa:"model=purchase.supplier.profile"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name           sdk.String                    `nexa:"required,size=120,string=Reference"`
 	PartnerID      sdk.Many2One[CorePartner]     `nexa:"required,index,string=Supplier"`
@@ -107,6 +108,7 @@ type PurchaseSupplierProfile struct {
 // PurchaseRFQ is a request-for-quotation header.
 type PurchaseRFQ struct {
 	sdk.Model `nexa:"model=purchase.rfq"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name           sdk.String                        `nexa:"required,index,string=Reference"`
 	DateRFQ        sdk.Date                          `nexa:"string=Date,default=today"`
@@ -129,6 +131,7 @@ type PurchaseRFQ struct {
 // PurchaseRFQLine is a requested product/service on an RFQ.
 type PurchaseRFQLine struct {
 	sdk.Model `nexa:"model=purchase.rfq.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	RFQID       sdk.Many2One[PurchaseRFQ] `nexa:"required,index,string=RFQ"`
 	Sequence    sdk.Integer               `nexa:"string=Sequence,default=10"`
@@ -144,6 +147,7 @@ type PurchaseRFQLine struct {
 // PurchaseRFQSupplier records an invited supplier and its response status.
 type PurchaseRFQSupplier struct {
 	sdk.Model `nexa:"model=purchase.rfq.supplier"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	RFQID         sdk.Many2One[PurchaseRFQ]  `nexa:"required,index,string=RFQ"`
 	PartnerID     sdk.Many2One[CorePartner]  `nexa:"required,string=Supplier"`
@@ -156,6 +160,7 @@ type PurchaseRFQSupplier struct {
 // PurchaseQuotation is a supplier's commercial offer against an RFQ.
 type PurchaseQuotation struct {
 	sdk.Model `nexa:"model=purchase.quotation"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name          sdk.String                          `nexa:"required,index,string=Reference"`
 	RFQID         sdk.Many2One[PurchaseRFQ]           `nexa:"required,index,string=RFQ"`
@@ -180,6 +185,7 @@ type PurchaseQuotation struct {
 // PurchaseQuotationLine is an offered price line on a supplier quotation.
 type PurchaseQuotationLine struct {
 	sdk.Model `nexa:"model=purchase.quotation.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	QuotationID  sdk.Many2One[PurchaseQuotation] `nexa:"required,index,string=Quotation"`
 	RFQLineID    sdk.Many2One[PurchaseRFQLine]   `nexa:"string=RFQ Line"`
@@ -197,6 +203,7 @@ type PurchaseQuotationLine struct {
 // PurchaseEvaluation captures weighted scoring of quotations for an RFQ.
 type PurchaseEvaluation struct {
 	sdk.Model `nexa:"model=purchase.evaluation"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name           sdk.String                `nexa:"required,size=60,string=Reference"`
 	RFQID          sdk.Many2One[PurchaseRFQ] `nexa:"required,index,string=RFQ"`
@@ -215,6 +222,7 @@ type PurchaseEvaluation struct {
 // PurchaseAward records the approved supplier-selection decision.
 type PurchaseAward struct {
 	sdk.Model `nexa:"model=purchase.award"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name               sdk.String                                 `nexa:"required,index,string=Reference"`
 	RFQID              sdk.Many2One[PurchaseRFQ]                  `nexa:"required,index,string=RFQ"`
@@ -238,6 +246,7 @@ type PurchaseAward struct {
 // terms cannot be silently changed after award.
 type PurchaseQuotationRound struct {
 	sdk.Model `nexa:"model=purchase.quotation.round"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                      `nexa:"required,index,string=Reference"`
 	RFQID        sdk.Many2One[PurchaseRFQ]       `nexa:"required,index,string=RFQ"`

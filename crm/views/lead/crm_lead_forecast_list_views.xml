@@ -10,6 +10,7 @@
             <field name="recurring_revenue" string="Recurring Revenue"/>
             <field name="probability" string="Probability"/>
             <field name="stage_id" string="Stage"/>
+            <field name="team_id" string="Sales Team"/>
             <field name="user_id" string="Salesperson"/>
         </view>
     </data>

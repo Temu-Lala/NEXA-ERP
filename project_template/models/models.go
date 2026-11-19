@@ -8,6 +8,7 @@ import (
 // instantiated into a concrete project, standardising how repeatable work starts.
 type ProjectTemplate struct {
 	sdk.Model `nexa:"model=project.template"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name        sdk.String                         `nexa:"required,string=Template"`
 	Category    sdk.String                         `nexa:"index,string=Category"`
@@ -21,6 +22,7 @@ type ProjectTemplate struct {
 // duration (days) used as guidance when the project is created.
 type ProjectTemplatePhase struct {
 	sdk.Model `nexa:"model=project.template.phase"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	TemplateID   sdk.Many2One[ProjectTemplate] `nexa:"required,index,string=Template"`
 	Name         sdk.String                    `nexa:"required,string=Phase"`
@@ -32,6 +34,7 @@ type ProjectTemplatePhase struct {
 // blueprint phase so the phase structure is reproduced on instantiation.
 type ProjectTemplateTask struct {
 	sdk.Model `nexa:"model=project.template.task"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	TemplateID  sdk.Many2One[ProjectTemplate]      `nexa:"required,index,string=Template"`
 	PhaseID     sdk.Many2One[ProjectTemplatePhase] `nexa:"string=Phase"`

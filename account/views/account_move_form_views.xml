@@ -32,10 +32,10 @@
                         <field name="invoice_origin" string="Source Document"/>
                         <field name="ref" string="Reference"/>
                         <field name="reversed_entry_id" string="Reversal Of"/>
-                        <field name="amount_untaxed" string="Untaxed"/>
-                        <field name="amount_tax" string="Tax"/>
-                        <field name="amount_total" string="Total"/>
-                        <field name="amount_residual" string="Amount Due"/>
+                        <field name="amount_untaxed" string="Untaxed" widget="monetary" options="currency_field:currency_id"/>
+                        <field name="amount_tax" string="Tax" widget="monetary" options="currency_field:currency_id"/>
+                        <field name="amount_total" string="Total" widget="monetary" options="currency_field:currency_id"/>
+                        <field name="amount_residual" string="Amount Due" widget="monetary" options="currency_field:currency_id"/>
                         <field name="payment_state" string="Payment Status"/>
                     </group>
                 </group>
@@ -50,8 +50,11 @@
                                 <field name="analytic_account_id" string="Analytic"/>
                                 <field name="tax_id" string="Tax"/>
                                 <field name="quantity" string="Qty"/>
-                                <field name="price_unit" string="Unit Price"/>
-                                <field name="price_subtotal" string="Subtotal"/>
+                                <field name="price_unit" string="Unit Price" widget="monetary"/>
+                                <field name="price_subtotal" string="Subtotal" widget="monetary"/>
+                                <field name="debit" string="Debit" widget="monetary"/>
+                                <field name="credit" string="Credit" widget="monetary"/>
+                                <field name="balance" string="Balance" widget="monetary"/>
                             </list>
                         </field>
                     </page>

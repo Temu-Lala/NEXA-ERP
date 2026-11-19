@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_hosp_property_list" model="hospitality.property" type="list">
+            <field name="name" string="Property"/>
+            <field name="ref" string="Ref"/>
+            <field name="city" string="City"/>
+            <field name="stars" string="Stars"/>
+            <field name="occupancy_rate" string="Occupancy %"/>
+            <field name="adr" string="ADR"/>
+            <field name="revpar" string="RevPAR"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_hosp_property_form" model="hospitality.property" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Property name..."/></h1></div>
+                <group>
+                    <field name="ref" string="Reference"/>
+                    <field name="city" string="City"/>
+                    <field name="stars" string="Stars"/>
+                    <field name="manager_id" string="Manager"/>
+                    <field name="occupancy_rate" string="Occupancy %" readonly="true"/>
+                    <field name="adr" string="ADR" readonly="true"/>
+                    <field name="revpar" string="RevPAR" readonly="true"/>
+                </group>
+                <group string="Address"><field name="address" string="Address"/></group>
+                <notebook><page string="Room Types"><field name="room_types" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_hosp_room_type_list" model="hospitality.room.type" type="list">
+            <field name="name" string="Type"/>
+            <field name="property_id" string="Property"/>
+            <field name="capacity" string="Guests"/>
+            <field name="base_rate" string="Rate/night"/>
+        </view>
+        <view id="view_hosp_room_type_form" model="hospitality.room.type" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Room type..."/></h1></div>
+                <group>
+                    <field name="property_id" string="Property"/>
+                    <field name="capacity" string="Max Guests"/>
+                    <field name="base_rate" string="Base Rate/night"/>
+                </group>
+                <notebook><page string="Rooms"><field name="rooms" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_hosp_room_list" model="hospitality.room" type="list">
+            <field name="name" string="Room"/>
+            <field name="property_id" string="Property"/>
+            <field name="room_type_id" string="Type"/>
+            <field name="number" string="Number"/>
+            <field name="floor" string="Floor"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_hosp_room_form" model="hospitality.room" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Room..."/></h1></div>
+                <group>
+                    <field name="property_id" string="Property"/>
+                    <field name="room_type_id" string="Room Type"/>
+                    <field name="number" string="Room Number"/>
+                    <field name="floor" string="Floor"/>
+                    <field name="state" string="Status"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_hosp_reservation_list" model="hospitality.reservation" type="list" default_order="check_in desc, id desc">
+            <field name="name" string="Confirmation"/>
+            <field name="property_id" string="Property"/>
+            <field name="room_id" string="Room"/>
+            <field name="guest_name" string="Guest"/>
+            <field name="check_in" string="Check-in"/>
+            <field name="check_out" string="Check-out"/>
+            <field name="nights" string="Nights"/>
+            <field name="total_amount" string="Total"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_hosp_reservation_form" model="hospitality.reservation" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Confirmation..."/></h1></div>
+                <group>
+                    <field name="property_id" string="Property"/>
+                    <field name="room_id" string="Room"/>
+                    <field name="guest_id" string="Guest"/>
+                    <field name="guest_name" string="Guest Name"/>
+                    <field name="check_in" string="Check-in"/>
+                    <field name="check_out" string="Check-out"/>
+                    <field name="rate_per_night" string="Rate/night"/>
+                    <field name="nights" string="Nights" readonly="true"/>
+                    <field name="total_amount" string="Total" readonly="true"/>
+                    <field name="source" string="Source"/>
+                </group>
+                <group string="Note"><field name="note" string="Note"/></group>
+                <notebook><page string="Folio"><field name="charges" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_hosp_charge_list" model="hospitality.charge" type="list">
+            <field name="reservation_id" string="Reservation"/>
+            <field name="department" string="Dept"/>
+            <field name="description" string="Description"/>
+            <field name="quantity" string="Qty"/>
+            <field name="unit_price" string="Price"/>
+            <field name="amount" string="Amount"/>
+            <field name="charge_date" string="Date"/>
+            <field name="posted" string="Posted"/>
+        </view>
+        <view id="view_hosp_charge_form" model="hospitality.charge" type="form">
+            <sheet>
+                <group>
+                    <field name="reservation_id" string="Reservation"/>
+                    <field name="department" string="Department"/>
+                    <field name="description" string="Description"/>
+                    <field name="quantity" string="Quantity"/>
+                    <field name="unit_price" string="Unit Price"/>
+                    <field name="amount" string="Amount" readonly="true"/>
+                    <field name="charge_date" string="Date"/>
+                    <field name="posted" string="Posted"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_hosp_property" type="window" model="hospitality.property" name="Properties" view_mode="list,form"/>
+        <action id="action_hosp_room_type" type="window" model="hospitality.room.type" name="Room Types" view_mode="list,form"/>
+        <action id="action_hosp_room" type="window" model="hospitality.room" name="Rooms" view_mode="list,form"/>
+        <action id="action_hosp_reservation" type="window" model="hospitality.reservation" name="Reservations" view_mode="list,form"/>
+        <action id="action_hosp_charge" type="window" model="hospitality.charge" name="Folio Charges" view_mode="list,form"/>
+        <view id="view_hospitality_housekeeping_list" model="hospitality.housekeeping" type="list" default_order="id desc">
+            <field name="name" string="Task"/><field name="room_id" string="Room"/><field name="kind" string="Type"/><field name="priority" string="Priority"/><field name="state" string="Status"/><field name="assigned_to_id" string="Assigned"/><field name="due_at" string="Due"/>
+        </view>
+        <view id="view_hospitality_housekeeping_form" model="hospitality.housekeeping" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Task..."/></h1></div>
+                <group><field name="room_id" string="Room"/><field name="kind" string="Type"/><field name="priority" string="Priority"/><field name="assigned_to_id" string="Assigned To"/><field name="due_at" string="Due At"/><field name="done_at" string="Done At"/></group>
+                <group string="Note"><field name="note" string="Note"/></group>
+            </sheet>
+        </view>
+        <view id="view_hospitality_channel_list" model="hospitality.channel" type="list">
+            <field name="name" string="Channel"/><field name="code" string="Code"/><field name="kind" string="Type"/><field name="commission_pct" string="Comm %"/><field name="active" string="Active"/>
+        </view>
+        <view id="view_hospitality_channel_form" model="hospitality.channel" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Channel..."/></h1></div>
+                <group><field name="code" string="Code"/><field name="kind" string="Channel Type"/><field name="commission_pct" string="Commission %"/><field name="active" string="Active"/></group>
+            </sheet>
+        </view>
+        <action id="action_hospitality_housekeeping" type="window" model="hospitality.housekeeping" name="Housekeeping" view_mode="list,form"/>
+        <action id="action_hospitality_channel" type="window" model="hospitality.channel" name="Channels" view_mode="list,form"/>
+    </data>
+</nexa>

@@ -205,7 +205,7 @@
         <!-- ===================== Actions ===================== -->
 
         <action id="action_sla_policy" type="window" model="helpdesk.sla.policy" name="SLA Policies" view_mode="list,form"/>
-        <action id="action_sla_timer" type="window" model="helpdesk.sla.timer" name="SLA Timers" view_mode="list,search,form"/>
+        <action id="action_sla_timer" type="window" model="helpdesk.sla.timer" name="SLA Timers" view_mode="list,form"/>
         <action id="action_sla_event" type="window" model="helpdesk.sla.event" name="SLA Events" view_mode="list,form"/>
         <action id="action_escalation_rule" type="window" model="helpdesk.escalation.rule" name="Escalation Rules" view_mode="list,form"/>
         <action id="action_business_calendar" type="window" model="helpdesk.business.calendar" name="Business Calendars" view_mode="list,form"/>

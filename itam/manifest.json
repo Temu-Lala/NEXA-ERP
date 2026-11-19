@@ -1,0 +1,19 @@
+{
+    "name": "itam",
+    "display_name": "IT Asset Management",
+    "version": "1.0.0",
+    "summary": "Assets, configuration items and license compliance",
+    "description": "ITAM/CMDB: technology asset register with lifecycle and warranty, configuration items with dependency relationships, software license tracking with utilization, and asset-to-ticket/change linkage. Financial asset accounting stays in the accounting module — this is the operational CMDB.",
+    "author": "Nexa",
+    "depends": [
+        "base"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "IT Management"
+}

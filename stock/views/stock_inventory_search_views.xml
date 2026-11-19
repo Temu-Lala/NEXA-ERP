@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_stock_inventory_search" model="stock.inventory" type="search">
+            <field name="name"/>
+            <field name="location_id"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="in_progress" string="In Progress" domain='[["state","=","in_progress"]]'/>
+            <filter name="done" string="Done" domain='[["state","=","done"]]'/>
+            <filter name="cancelled" string="Cancelled" domain='[["state","=","cancelled"]]'/>
+            <filter name="blind" string="Blind Count" domain='[["blind_count","=",true]]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_location" string="Location" group_by="location_id"/>
+            <filter name="group_date" string="Inventory Date" group_by="inventory_date"/>
+        </view>
+    </data>
+</nexa>

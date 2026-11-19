@@ -90,6 +90,7 @@ const (
 
 type StockWarehouse struct {
 	sdk.Model `nexa:"model=stock.warehouse"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name              sdk.String                  `nexa:"required,string=Warehouse Name"`
 	Code              sdk.String                  `nexa:"string=Short Code"`
@@ -105,6 +106,7 @@ type StockWarehouse struct {
 
 type StockLocation struct {
 	sdk.Model `nexa:"model=stock.location"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name        sdk.String                   `nexa:"required,string=Location Name"`
 	Usage       sdk.Selection[LocationUsage] `nexa:"string=Location Type,default=internal"`
@@ -123,6 +125,7 @@ type StockLocation struct {
 // transfer (blueprint §4.3, §6.1, §7).
 type StockPickingType struct {
 	sdk.Model `nexa:"model=stock.picking.type"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name          sdk.String                      `nexa:"required,string=Name"`
 	Code          sdk.String                      `nexa:"required,string=Code"`
@@ -139,6 +142,7 @@ type StockPickingType struct {
 // back to the demand that triggered them (blueprint §9).
 type StockProcurementGroup struct {
 	sdk.Model `nexa:"model=stock.procurement.group"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name sdk.String `nexa:"required,string=Name"`
 	Note sdk.Text   `nexa:"string=Note"`
@@ -146,6 +150,7 @@ type StockProcurementGroup struct {
 
 type StockLot struct {
 	sdk.Model `nexa:"model=stock.lot"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                   `nexa:"required,string=Lot Number"`
 	ProductID    sdk.Many2One[ProductProduct] `nexa:"required,string=Product"`
@@ -161,6 +166,7 @@ type StockLot struct {
 
 type StockSerial struct {
 	sdk.Model `nexa:"model=stock.serial"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name       sdk.String                   `nexa:"required,string=Serial Number"`
 	ProductID  sdk.Many2One[ProductProduct] `nexa:"required,string=Product"`
@@ -173,6 +179,7 @@ type StockSerial struct {
 
 type StockPicking struct {
 	sdk.Model `nexa:"model=stock.picking"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name               sdk.String                          `nexa:"required,string=Reference"`
 	PickingTypeID      sdk.Many2One[StockPickingType]      `nexa:"string=Operation Type"`
@@ -192,6 +199,7 @@ type StockPicking struct {
 
 type StockMove struct {
 	sdk.Model `nexa:"model=stock.move"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name               sdk.String                          `nexa:"string=Description"`
 	ProductID          sdk.Many2One[ProductProduct]        `nexa:"required,string=Product"`
@@ -214,6 +222,7 @@ type StockMove struct {
 // behind the ledger and are append-only once the move is posted.
 type StockMoveLine struct {
 	sdk.Model `nexa:"model=stock.move.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	MoveID           sdk.Many2One[StockMove]      `nexa:"required,string=Move"`
 	PickingID        sdk.Many2One[StockPicking]   `nexa:"string=Transfer"`
@@ -227,6 +236,7 @@ type StockMoveLine struct {
 
 type StockQuant struct {
 	sdk.Model `nexa:"model=stock.quant"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProductID         sdk.Many2One[ProductProduct] `nexa:"required,string=Product"`
 	LocationID        sdk.Many2One[StockLocation]  `nexa:"required,string=Location"`
@@ -239,6 +249,7 @@ type StockQuant struct {
 
 type StockInventory struct {
 	sdk.Model `nexa:"model=stock.inventory"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name          sdk.String                       `nexa:"required,string=Reference"`
 	InventoryDate sdk.Date                         `nexa:"string=Inventory Date"`
@@ -251,6 +262,7 @@ type StockInventory struct {
 
 type StockInventoryLine struct {
 	sdk.Model `nexa:"model=stock.inventory.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	InventoryID    sdk.Many2One[StockInventory] `nexa:"required,string=Inventory"`
 	ProductID      sdk.Many2One[ProductProduct] `nexa:"required,string=Product"`
@@ -266,6 +278,7 @@ type StockInventoryLine struct {
 // (blueprint §4.3, §13). It posts a real move; it never edits quants.
 type StockScrap struct {
 	sdk.Model `nexa:"model=stock.scrap"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name            sdk.String                   `nexa:"required,string=Reference"`
 	ProductID       sdk.Many2One[ProductProduct] `nexa:"required,string=Product"`

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"time"
 
 	"nexa/core/event"
 	"nexa/core/orm"
@@ -61,6 +62,7 @@ const (
 // enforced on write, so a column physically cannot be over-filled (see wip.go).
 type ProjectBoardStage struct {
 	sdk.Model `nexa:"model=project.board.stage"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name           sdk.String               `nexa:"required,size=80,index,string=Stage"`
 	Sequence       sdk.Integer              `nexa:"string=Sequence,default=10"`
@@ -83,6 +85,7 @@ type ProjectBoardStage struct {
 // the default for newly created issues.
 type ProjectIssueType struct {
 	sdk.Model `nexa:"model=project.issue.type"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name      sdk.String               `nexa:"required,size=60,string=Name"`
 	Code      sdk.String               `nexa:"size=10,index,string=Symbol"`
@@ -133,6 +136,11 @@ func onIssueCreated(ctx context.Context, ev event.Event) error {
 	patch := map[string]interface{}{}
 	if strings.TrimSpace(str(rec["key"])) == "" {
 		patch["key"] = allocateIssueKey(bypass, rec)
+	}
+	if intID(rec["reporter_id"]) == 0 {
+		if uid := orm.UIDFromContext(ctx); uid > 0 {
+			patch["reporter_id"] = uid
+		}
 	}
 	if intID(rec["stage_id"]) == 0 {
 		if sid := firstStageID(bypass); sid > 0 {
@@ -186,14 +194,26 @@ func onIssueUpdated(ctx context.Context, ev event.Event) error {
 		stage := loadRec(bypass, stageModel, sid)
 		if stage != nil {
 			want := TaskState(str(stage["to_state"]))
+			// Workflow guard: a finishing column is refused while the issue still
+			// has open subtasks or unchecked checklist items — Jira's "definition
+			// of done" enforcement. The card stays in its previous state.
+			if boolv(stage["done"]) && !doneBlockersClear(bypass, id) {
+				want = ""
+			}
 			if want != "" && TaskState(str(rec["state"])) != want {
 				patch["state"] = string(want)
 			}
-			if boolv(stage["done"]) {
+			if boolv(stage["done"]) && want != "" {
 				if Resolution(str(rec["resolution"])) == "" || Resolution(str(rec["resolution"])) == ResNone {
 					patch["resolution"] = string(ResDone)
+					patch["resolved_date"] = time.Now().Format("2006-01-02")
 				}
 				patch["remaining_hours"] = 0
+			} else {
+				if Resolution(str(rec["resolution"])) == ResDone {
+					patch["resolution"] = string(ResNone)
+					patch["resolved_date"] = false
+				}
 			}
 		}
 	}
@@ -205,6 +225,51 @@ func onIssueUpdated(ctx context.Context, ev event.Event) error {
 		}
 	}
 	return nil
+}
+
+// doneBlockersClear reports whether an issue may enter a done stage: it has no
+// open subtasks and no unchecked checklist items — the definition-of-done gate.
+func doneBlockersClear(ctx context.Context, taskID int) bool {
+	if taskID <= 0 {
+		return true
+	}
+	open, err := orm.SearchCount(orm.ContextWithBypass(ctx, true), taskModel,
+		[][]interface{}{
+			{"parent_id", "=", taskID},
+			{"state", "not in", []interface{}{string(TaskStateDone), string(TaskStateCancelled)}},
+		})
+	if err != nil || open > 0 {
+		return false
+	}
+	open, err = orm.SearchCount(orm.ContextWithBypass(ctx, true), checkItemModel,
+		[][]interface{}{{"task_id", "=", taskID}, {"done", "=", false}})
+	if err != nil || open > 0 {
+		return false
+	}
+	// Open "blocks" links targeting this issue also gate Done — you cannot
+	// finish work that an unfinished blocker still holds.
+	links, err := orm.SearchPage(ctx, linkModel, [][]interface{}{
+		{"linked_task_id", "=", taskID},
+		{"link_type", "=", "blocks"},
+	}, 200, 0, "id asc")
+	if err != nil {
+		return false
+	}
+	for _, l := range links {
+		bid := intID(l["task_id"])
+		if bid <= 0 {
+			continue
+		}
+		blk := loadRec(ctx, taskModel, bid)
+		if blk == nil {
+			continue
+		}
+		st := TaskState(str(blk["state"]))
+		if st != TaskStateDone && st != TaskStateCancelled {
+			return false
+		}
+	}
+	return true
 }
 
 // allocateIssueKey builds PROJECT-n using the project's short reference and the next

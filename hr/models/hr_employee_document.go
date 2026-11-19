@@ -9,6 +9,7 @@ import (
 // record, while the metadata here drives categorisation and expiry tracking.
 type HrEmployeeDocument struct {
 	sdk.Model `nexa:"model=hr.employee.document"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name           sdk.String                      `nexa:"required,string=Title"`
 	EmployeeID     sdk.Many2One[HrEmployee]        `nexa:"required,string=Employee,index"`

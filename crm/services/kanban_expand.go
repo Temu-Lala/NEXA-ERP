@@ -69,20 +69,22 @@ func expandCRMStageColumns(ctx context.Context, model, groupField string, record
 		}
 		rottingDays := int(coerceInt(st["rotting_threshold_days"]))
 		cols = append(cols, swcmeta.KanbanColumn{
-			Value:       id,
-			Label:       orm.AsString(st["name"]),
-			Sequence:    int(coerceInt(st["sequence"])),
-			Color:       int(coerceInt(st["color"])),
-			RottingDays: rottingDays,
-			Fold:        fold,
-			Records:     recs,
-			ProgressSum: columnProratedSum(recs),
+			Value:         id,
+			Label:         orm.AsString(st["name"]),
+			Sequence:      int(coerceInt(st["sequence"])),
+			Color:         int(coerceInt(st["color"])),
+			RottingDays:   rottingDays,
+			Fold:          fold,
+			Records:       recs,
+			ProgressSum:   columnProratedSum(recs),
+			ProgressLabel: "Pipeline",
 		})
 	}
 	if len(unassigned) > 0 {
 		cols = append([]swcmeta.KanbanColumn{{
 			Value: 0, Label: "New", Sequence: -1, Records: unassigned,
-			ProgressSum: columnProratedSum(unassigned),
+			ProgressSum:   columnProratedSum(unassigned),
+			ProgressLabel: "Pipeline",
 		}}, cols...)
 	}
 	applyColumnProgressMax(cols)
@@ -106,11 +108,12 @@ func expandCRMForecastColumns(ctx context.Context, model, groupField string, rec
 	cols := make([]swcmeta.KanbanColumn, 0, len(order))
 	for i, key := range order {
 		cols = append(cols, swcmeta.KanbanColumn{
-			Value:       int64(i + 1),
-			Label:       key,
-			Sequence:    i,
-			Records:     buckets[key],
-			ProgressSum: columnProratedSum(buckets[key]),
+			Value:         int64(i + 1),
+			Label:         key,
+			Sequence:      i,
+			Records:       buckets[key],
+			ProgressSum:   columnProratedSum(buckets[key]),
+			ProgressLabel: "Pipeline",
 		})
 	}
 	applyColumnProgressMax(cols)

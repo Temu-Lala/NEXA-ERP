@@ -1,0 +1,19 @@
+{
+    "name": "real_estate",
+    "display_name": "Real Estate",
+    "version": "1.0.0",
+    "summary": "Properties, units, leases and rent collection",
+    "description": "Property portfolio management: buildings and units, lease agreements with deposits and escalation, and rent payment tracking with arrears visibility. Integrates with partners for owners/tenants; feeds accounting through shared finance.",
+    "author": "Nexa",
+    "depends": [
+        "base"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Real Estate"
+}

@@ -6,6 +6,7 @@ import (
 
 type CrmOpportunityToQuotation struct {
 	sdk.Model `nexa:"model=crm.opportunity.to.quotation"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	LeadID    sdk.Many2One[CrmLead]       `nexa:"required,string=Opportunity"`
 	PartnerID sdk.Many2One[CorePartner]   `nexa:"string=Customer"`

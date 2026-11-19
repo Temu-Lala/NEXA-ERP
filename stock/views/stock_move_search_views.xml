@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_stock_move_search" model="stock.move" type="search">
+            <field name="name"/>
+            <field name="product_id"/>
+            <field name="origin"/>
+            <field name="picking_id"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="waiting" string="Waiting" domain='[["state","=","confirmed"]]'/>
+            <filter name="ready" string="Ready" domain='[["state","=","assigned"]]'/>
+            <filter name="done" string="Done" domain='[["state","=","done"]]'/>
+            <filter name="cancelled" string="Cancelled" domain='[["state","=","cancelled"]]'/>
+            <filter name="partially" string="Partially Reserved" domain='[["reserved_quantity",">",0],["reserved_quantity","&lt;","quantity"]]'/>
+            <filter name="unreserved" string="Not Reserved" domain='[["reserved_quantity","=",0],["state","!=","done"],["state","!=","cancelled"]]'/>
+            <filter name="with_lot" string="Tracked by Lot" domain='[["lot_id","!=",false]]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_product" string="Product" group_by="product_id"/>
+            <filter name="group_picking" string="Transfer" group_by="picking_id"/>
+            <filter name="group_location" string="Source Location" group_by="source_location_id"/>
+        </view>
+    </data>
+</nexa>

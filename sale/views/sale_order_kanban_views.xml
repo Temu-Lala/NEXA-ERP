@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_sale_order_kanban" model="sale.order" type="kanban" priority="10" default_group_by="state" quick_create="true">
+            <field name="state"/>
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="user_id"/>
+            <field name="opportunity_id"/>
+            <field name="date_order"/>
+            <field name="invoice_status"/>
+            <field name="amount_untaxed"/>
+            <field name="amount_total" widget="monetary"/>
+        </view>
+    </data>
+</nexa>

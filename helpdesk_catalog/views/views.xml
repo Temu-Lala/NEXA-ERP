@@ -79,6 +79,18 @@
         </view>
 
         <!-- Service requests -->
+        <view id="view_service_request_kanban" model="helpdesk.service.request" type="kanban" default_group_by="state" records_draggable="false">
+            <field name="state"/>
+            <field name="number"/>
+            <field name="item_id"/>
+            <field name="requestor_id"/>
+            <field name="department"/>
+            <field name="priority"/>
+            <field name="required_by"/>
+            <field name="task_progress_pct"/>
+            <field name="days_open"/>
+            <field name="ticket_id"/>
+        </view>
         <view id="view_service_request_list" model="helpdesk.service.request" type="list">
             <field name="number" string="Reference"/>
             <field name="item_id" string="Service"/>
@@ -238,7 +250,26 @@
 
         <action id="action_catalog_category" type="window" model="helpdesk.catalog.category" name="Catalog Categories" view_mode="list,form"/>
         <action id="action_catalog_item" type="window" model="helpdesk.catalog.item" name="Services" view_mode="list,form"/>
-        <action id="action_service_request" type="window" model="helpdesk.service.request" name="Service Requests" view_mode="list,form"/>
+        <view id="view_service_request_search" model="helpdesk.service.request" type="search">
+            <field name="number"/>
+            <field name="item_id"/>
+            <field name="requestor_id"/>
+            <field name="department"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="submitted" string="Submitted" domain='[["state","=","submitted"]]'/>
+            <filter name="in_approval" string="In Approval" domain='[["state","=","in_approval"]]'/>
+            <filter name="fulfilling" string="Fulfilling" domain='[["state","=","fulfilling"]]'/>
+            <filter name="completed" string="Completed" domain='[["state","=","completed"]]'/>
+            <filter name="rejected" string="Rejected" domain='[["state","=","rejected"]]'/>
+            <filter name="my" string="Raised By Me" domain='[["user_id","=","$uid"]]'/>
+            <filter name="urgent" string="Urgent" domain='[["priority","=","urgent"]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_item" string="Service Item" group_by="item_id"/>
+            <filter name="group_priority" string="Priority" group_by="priority"/>
+            <filter name="group_user" string="Raised By" group_by="user_id"/>
+            <filter name="group_required" string="Required By" group_by="required_by"/>
+        </view>
+        <action id="action_service_request" type="window" model="helpdesk.service.request" name="Service Requests" view_mode="kanban,list,form"/>
         <action id="action_fulfillment_task" type="window" model="helpdesk.fulfillment.task" name="Fulfilment Tasks" view_mode="list,form"/>
         <action id="action_request_approval" type="window" model="helpdesk.request.approval" name="Request Approvals" view_mode="list,form"/>
         <action id="action_request_value" type="window" model="helpdesk.service.request.value" name="Request Values" view_mode="list,form"/>

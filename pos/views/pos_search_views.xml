@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_pos_order_search" model="pos.order" type="search">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="note"/>
+            <filter name="paid" string="Paid" domain='[["state","in",["paid","done"]]]]'/>
+            <filter name="held" string="Held / Parked" domain='[["state","in",["held","layaway"]]]]'/>
+            <filter name="refunded" string="Refunded" domain='[["state","=","refunded"]]'/>
+            <filter name="void" string="Void" domain='[["state","=","void"]]'/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="my" string="My Orders" domain='[["user_id","=","$uid"]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_session" string="Session" group_by="session_id"/>
+            <filter name="group_cashier" string="Cashier" group_by="user_id"/>
+            <filter name="group_date" string="Date" group_by="date_order"/>
+        </view>
+        <view id="view_pos_session_search" model="pos.session" type="search">
+            <field name="name"/>
+            <field name="config_name"/>
+            <filter name="open" string="Open" domain='[["state","=","open"]]'/>
+            <filter name="closing" string="Closing" domain='[["state","=","closing"]]'/>
+            <filter name="closed" string="Closed" domain='[["state","=","closed"]]'/>
+            <filter name="variance" string="Has Variance" domain='[["cash_variance","!=",0]]]'/>
+            <filter name="my" string="My Sessions" domain='[["user_id","=","$uid"]]'/>
+            <filter name="group_state" string="Status" group_by="state"/>
+            <filter name="group_cashier" string="Cashier" group_by="user_id"/>
+            <filter name="group_register" string="Register" group_by="config_name"/>
+        </view>
+    </data>
+</nexa>

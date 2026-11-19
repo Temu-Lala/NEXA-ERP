@@ -139,6 +139,7 @@ type HrAppraisalPerformance struct {
 // HrPerformanceKpi is a measurable indicator tracked against a goal over a period.
 type HrPerformanceKpi struct {
 	sdk.Model `nexa:"model=hr.performance.kpi"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	GoalID         sdk.Many2One[HrAppraisalGoal] `nexa:"required,string=Goal,index"`
 	Name           sdk.String                    `nexa:"required,string=KPI"`
@@ -160,6 +161,7 @@ type HrPerformanceKpi struct {
 // to competencies) that seeds a fresh appraisal's lines.
 type HrAppraisalTemplate struct {
 	sdk.Model `nexa:"model=hr.appraisal.template"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name        sdk.String                            `nexa:"required,string=Name"`
 	Description sdk.Text                              `nexa:"string=Description"`
@@ -170,6 +172,7 @@ type HrAppraisalTemplate struct {
 // HrAppraisalTemplateLine is one default criteria row of a template.
 type HrAppraisalTemplateLine struct {
 	sdk.Model `nexa:"model=hr.appraisal.template.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	TemplateID sdk.Many2One[HrAppraisalTemplate] `nexa:"required,string=Template,index"`
 	Name       sdk.String                        `nexa:"required,string=Criteria"`
@@ -187,6 +190,7 @@ type HrAppraisalTemplateLine struct {
 // weighted average (see compute_peer_score). Feedback is advisory and never pays.
 type HrAppraisalFeedback struct {
 	sdk.Model `nexa:"model=hr.appraisal.feedback"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	AppraisalID sdk.Many2One[HrAppraisal]       `nexa:"required,string=Appraisal,index"`
 	ReviewerID  sdk.Many2One[HrEmployee]        `nexa:"string=Reviewer"`
@@ -204,6 +208,7 @@ type HrAppraisalFeedback struct {
 // HrPerformanceCheckin is a periodic one-to-one progress note against a goal.
 type HrPerformanceCheckin struct {
 	sdk.Model `nexa:"model=hr.performance.checkin"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID  sdk.Many2One[HrEmployee]      `nexa:"required,string=Employee,index"`
 	ManagerID   sdk.Many2One[HrEmployee]      `nexa:"string=Manager"`
@@ -223,6 +228,7 @@ type HrPerformanceCheckin struct {
 // tied to an objective.
 type HrPerformanceDevPlan struct {
 	sdk.Model `nexa:"model=hr.performance.devplan"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID sdk.Many2One[HrEmployee]                 `nexa:"required,string=Employee,index"`
 	Name       sdk.String                               `nexa:"required,string=Plan"`
@@ -237,6 +243,7 @@ type HrPerformanceDevPlan struct {
 // HrPerformanceDevPlanAction is one item within a development plan.
 type HrPerformanceDevPlanAction struct {
 	sdk.Model `nexa:"model=hr.performance.devplan.action"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	PlanID      sdk.Many2One[HrPerformanceDevPlan] `nexa:"required,string=Plan,index"`
 	Description sdk.String                         `nexa:"required,string=Action"`
@@ -255,6 +262,7 @@ type HrPerformanceDevPlanAction struct {
 // a succeeded / failed outcome. Approval records a decision; it never changes pay.
 type HrPerformancePip struct {
 	sdk.Model `nexa:"model=hr.performance.pip"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID  sdk.Many2One[HrEmployee]  `nexa:"required,string=Employee,index"`
 	AppraisalID sdk.Many2One[HrAppraisal] `nexa:"string=Source Appraisal"`
@@ -279,6 +287,7 @@ type HrPerformancePip struct {
 // writes an append-only history entry; it never touches payroll.
 type HrCalibrationSession struct {
 	sdk.Model `nexa:"model=hr.calibration.session"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                       `nexa:"required,string=Session"`
 	CycleID      sdk.Many2One[HrAppraisalCycle]   `nexa:"string=Cycle"`
@@ -293,6 +302,7 @@ type HrCalibrationSession struct {
 // calibrated rating, the adjustment reason, and an approval gate.
 type HrCalibrationLine struct {
 	sdk.Model `nexa:"model=hr.calibration.line"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	SessionID        sdk.Many2One[HrCalibrationSession] `nexa:"required,string=Session,index"`
 	AppraisalID      sdk.Many2One[HrAppraisal]          `nexa:"required,string=Appraisal,index"`
@@ -308,6 +318,7 @@ type HrCalibrationLine struct {
 // (proposed / adjusted / approved / applied) with the from/to rating and actor.
 type HrCalibrationHistory struct {
 	sdk.Model `nexa:"model=hr.calibration.history"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	SessionID   sdk.Many2One[HrCalibrationSession] `nexa:"string=Session,index"`
 	LineID      sdk.Many2One[HrCalibrationLine]    `nexa:"string=Line,index"`

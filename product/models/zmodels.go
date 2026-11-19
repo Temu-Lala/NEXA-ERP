@@ -10,5 +10,12 @@ func init() {
 		&ProductCategory{},
 		&ProductProduct{},
 		&ProductTag{},
+		&ProductAttribute{},
+		&ProductVariant{},
+		&ProductBarcode{},
+		&ProductSupplier{},
+		&ProductPriceHistory{},
+		&ProductBundle{},
+		&ProductBundleLine{},
 	)
 }

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_mrp_bom_list" model="mrp.bom" type="list" default_order="name asc">
+            <field name="name" string="BOM"/>
+            <field name="product_id" string="Finished Product"/>
+            <field name="product_qty" string="Qty"/>
+            <field name="uom" string="UoM"/>
+            <field name="variant" string="Variant"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_mrp_bom_form" model="mrp.bom" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="BOM reference..."/></h1></div>
+                <group>
+                    <group string="Product">
+                        <field name="product_id" string="Finished Product"/>
+                        <field name="product_qty" string="Quantity"/>
+                        <field name="uom" string="Unit of Measure"/>
+                    </group>
+                    <group string="Notes"><field name="description" string="Description"/></group>
+                </group>
+                <notebook>
+                    <page string="Components">
+                        <field name="lines" nolabel="1"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <view id="view_mrp_bom_line_list" model="mrp.bom.line" type="list">
+            <field name="bom_id" string="BOM"/>
+            <field name="product_id" string="Component"/>
+            <field name="product_qty" string="Qty"/>
+            <field name="sequence" string="Seq"/>
+            <field name="note" string="Note"/>
+        </view>
+        <view id="view_mrp_bom_line_form" model="mrp.bom.line" type="form">
+            <sheet>
+                <group>
+                    <field name="bom_id" string="BOM"/>
+                    <field name="product_id" string="Component"/>
+                    <field name="product_qty" string="Quantity"/>
+                    <field name="sequence" string="Sequence"/>
+                    <field name="note" string="Note"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_mrp_workorder_list" model="mrp.workorder" type="list" default_order="id desc">
+            <field name="name" string="Reference"/>
+            <field name="product_id" string="Product"/>
+            <field name="bom_id" string="BOM"/>
+            <field name="product_qty" string="Qty"/>
+            <field name="qty_produced" string="Produced"/>
+            <field name="state" string="Status"/>
+            <field name="date_start" string="Start"/>
+            <field name="date_finished" string="Finish"/>
+        </view>
+        <view id="view_mrp_workorder_form" model="mrp.workorder" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Work order reference..."/></h1></div>
+                <group>
+                    <group string="Production">
+                        <field name="product_id" string="Product"/>
+                        <field name="bom_id" string="BOM"/>
+                        <field name="product_qty" string="Quantity to Produce"/>
+                        <field name="qty_produced" string="Quantity Produced"/>
+                        <field name="qty_scrapped" string="Scrap Qty"/>
+                        <field name="yield_pct" string="Yield %" readonly="true"/>
+                        <field name="backflush" string="Backflush"/>
+                        <field name="planned_minutes" string="Planned Minutes" readonly="true"/>
+                        <field name="component_cost" string="Component Cost" readonly="true"/>
+                        <field name="labor_cost" string="Labor Cost" readonly="true"/>
+                        <field name="production_cost" string="Total Cost" readonly="true"/>
+                        <field name="unit_cost" string="Unit Cost" readonly="true"/>
+                        <field name="origin" string="Source"/>
+                    </group>
+                    <group string="Schedule">
+                        <field name="date_start" string="Planned Start"/>
+                        <field name="date_finished" string="Planned Finish"/>
+                        <field name="responsible_id" string="Responsible"/>
+                        <field name="issue_picking" string="Component Issue"/>
+                        <field name="receipt_picking" string="FG Receipt"/>
+                        <field name="lot_id" string="Output Lot"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Component Demand">
+                        <field name="lines" nolabel="1"/>
+                    </page>
+                    <page string="Notes">
+                        <field name="description" string="Description"/>
+                    </page>
+                </notebook>
+            </sheet>
+        </view>
+        <view id="view_mrp_workorder_line_list" model="mrp.workorder.line" type="list">
+            <field name="workorder_id" string="Work Order"/>
+            <field name="product_id" string="Component"/>
+            <field name="product_qty" string="Required"/>
+            <field name="qty_consumed" string="Consumed"/>
+            <field name="lot_id" string="Lot"/>
+            <field name="level" string="Lvl"/>
+            <field name="sequence" string="Seq"/>
+        </view>
+        <view id="view_mrp_workorder_line_form" model="mrp.workorder.line" type="form">
+            <sheet>
+                <group>
+                    <field name="workorder_id" string="Work Order"/>
+                    <field name="product_id" string="Component"/>
+                    <field name="product_qty" string="Required Qty"/>
+                    <field name="qty_consumed" string="Consumed Qty"/>
+                    <field name="sequence" string="Sequence"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_mrp_bom" type="window" model="mrp.bom" name="Bills of Materials" view_mode="list,form"/>
+        <action id="action_mrp_bom_line" type="window" model="mrp.bom.line" name="BOM Lines" view_mode="list,form"/>
+        <action id="action_mrp_workorder" type="window" model="mrp.workorder" name="Work Orders" view_mode="list,form"/>
+        <action id="action_mrp_workorder_line" type="window" model="mrp.workorder.line" name="Component Demand" view_mode="list,form"/>
+
+        <view id="view_mrp_workcenter_list" model="mrp.workcenter" type="list">
+            <field name="name" string="Work Center"/>
+            <field name="code" string="Code"/>
+            <field name="capacity_h" string="Cap h/day"/>
+            <field name="cost_per_hour" string="Cost/h"/>
+            <field name="scheduled_minutes" string="Scheduled (min)"/>
+            <field name="utilization_pct" string="Utilization %"/>
+            <field name="sequence" string="Seq"/>
+            <field name="active" string="Active"/>
+        </view>
+        <view id="view_mrp_workcenter_form" model="mrp.workcenter" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Work center..."/></h1></div>
+                <group>
+                    <field name="code" string="Code"/>
+                    <field name="capacity_h" string="Capacity (h/day)"/>
+                    <field name="cost_per_hour" string="Cost per Hour"/>
+                    <field name="scheduled_minutes" string="Scheduled (min)" readonly="true"/>
+                    <field name="utilization_pct" string="Utilization %" readonly="true"/>
+                    <field name="sequence" string="Sequence"/>
+                    <field name="active" string="Active"/>
+                    <field name="note" string="Note"/>
+                </group>
+            </sheet>
+        </view>
+        <view id="view_mrp_routing_list" model="mrp.routing" type="list">
+            <field name="name" string="Routing"/>
+            <field name="bom_id" string="BOM"/>
+        </view>
+        <view id="view_mrp_routing_form" model="mrp.routing" type="form">
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Routing..."/></h1></div>
+                <field name="bom_id" string="BOM"/>
+                <notebook><page string="Operations"><field name="lines" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_mrp_routing_line_list" model="mrp.routing.line" type="list">
+            <field name="routing_id" string="Routing"/>
+            <field name="workcenter_id" string="Work Center"/>
+            <field name="name" string="Operation"/>
+            <field name="duration_min" string="Min/unit"/>
+            <field name="sequence" string="Seq"/>
+        </view>
+        <view id="view_mrp_routing_line_form" model="mrp.routing.line" type="form">
+            <sheet>
+                <group>
+                    <field name="routing_id" string="Routing"/>
+                    <field name="workcenter_id" string="Work Center"/>
+                    <field name="name" string="Operation"/>
+                    <field name="duration_min" string="Duration (min/unit)"/>
+                    <field name="sequence" string="Sequence"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_mrp_workcenter" type="window" model="mrp.workcenter" name="Work Centers" view_mode="list,form"/>
+        <action id="action_mrp_routing" type="window" model="mrp.routing" name="Routings" view_mode="list,form"/>
+        <action id="action_mrp_routing_line" type="window" model="mrp.routing.line" name="Routing Lines" view_mode="list,form"/>
+
+        <view id="view_mrp_plan_list" model="mrp.plan" type="list" default_order="id desc">
+            <field name="name" string="Run"/>
+            <field name="run_date" string="Date"/>
+            <field name="horizon_days" string="Horizon"/>
+            <field name="state" string="Status"/>
+        </view>
+        <view id="view_mrp_plan_form" model="mrp.plan" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="MRP run..."/></h1></div>
+                <group>
+                    <field name="run_date" string="Run Date"/>
+                    <field name="horizon_days" string="Horizon (days)"/>
+                </group>
+                <notebook>
+                    <page string="Recommendations"><field name="lines" nolabel="1"/></page>
+                    <page string="Notes"><field name="note" string="Note"/></page>
+                </notebook>
+            </sheet>
+        </view>
+        <view id="view_mrp_plan_line_list" model="mrp.plan.line" type="list">
+            <field name="plan_id" string="Plan"/>
+            <field name="product_id" string="Product"/>
+            <field name="demand_qty" string="Demand"/>
+            <field name="on_hand_qty" string="On Hand"/>
+            <field name="net_qty" string="Net"/>
+            <field name="action" string="Action"/>
+            <field name="bom_id" string="BOM"/>
+        </view>
+        <view id="view_mrp_plan_line_form" model="mrp.plan.line" type="form">
+            <sheet>
+                <group>
+                    <field name="plan_id" string="Plan"/>
+                    <field name="product_id" string="Product"/>
+                    <field name="demand_qty" string="Demand Qty"/>
+                    <field name="on_hand_qty" string="On Hand"/>
+                    <field name="net_qty" string="Net Requirement"/>
+                    <field name="action" string="Action"/>
+                    <field name="bom_id" string="BOM"/>
+                    <field name="workorder_id" string="Work Order"/>
+                    <field name="note" string="Note"/>
+                </group>
+            </sheet>
+        </view>
+        <action id="action_mrp_plan" type="window" model="mrp.plan" name="MRP Plans" view_mode="list,form"/>
+        <action id="action_mrp_plan_line" type="window" model="mrp.plan.line" name="Plan Lines" view_mode="list,form"/>
+        <view id="view_mrp_scenario_list" model="mrp.scenario" type="list">
+            <field name="name" string="Scenario"/><field name="state" string="Status"/><field name="run_at" string="Last Run"/>
+        </view>
+        <view id="view_mrp_scenario_form" model="mrp.scenario" type="form">
+            <header><field name="state" widget="statusbar" options="{'clickable': '0'}"/></header>
+            <sheet>
+                <div class="sum_title"><h1><field name="name" placeholder="Scenario..."/></h1></div>
+                <group><field name="run_at" string="Last Run"/></group>
+                <group string="Notes"><field name="notes" string="Notes"/></group>
+                <group string="Result Summary"><field name="summary" string="Result"/></group>
+                <notebook><page string="Lines"><field name="lines" nolabel="1"/></page></notebook>
+            </sheet>
+        </view>
+        <view id="view_mrp_scenario_line_list" model="mrp.scenario.line" type="list">
+            <field name="scenario_id" string="Scenario"/><field name="product_id" string="Product"/><field name="bom_id" string="BOM"/><field name="qty" string="Qty"/><field name="result" string="Result"/>
+        </view>
+        <view id="view_mrp_scenario_line_form" model="mrp.scenario.line" type="form">
+            <sheet>
+                <group><field name="scenario_id" string="Scenario"/><field name="product_id" string="Product"/><field name="bom_id" string="BOM"/><field name="qty" string="Qty"/><field name="result" string="Result"/></group>
+            </sheet>
+        </view>
+        <action id="action_mrp_scenario" type="window" model="mrp.scenario" name="Scenarios" view_mode="list,form"/>
+        <action id="action_mrp_scenario_line" type="window" model="mrp.scenario.line" name="Scenario Lines" view_mode="list,form"/>
+    </data>
+</nexa>

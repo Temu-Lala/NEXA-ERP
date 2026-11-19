@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="menu_purchase_logistics_root" name="Logistics" parent="purchase.purchase_menu_root" sequence="30" web_icon="truck" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_shipment" name="Shipments" parent="menu_purchase_logistics_root" action="purchase_logistics.action_purchase_shipment" sequence="1" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_shipment_event" name="Tracking Events" parent="menu_purchase_logistics_root" action="purchase_logistics.action_purchase_shipment_event" sequence="2" groups="purchase.group_purchase_user"/>
+        <menuitem id="menu_purchase_freight_charge" name="Freight Charges" parent="menu_purchase_logistics_root" action="purchase_logistics.action_purchase_freight_charge" sequence="3" groups="purchase.group_purchase_user"/>
+    </data>
+</nexa>

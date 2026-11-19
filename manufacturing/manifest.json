@@ -1,0 +1,21 @@
+{
+    "name": "manufacturing",
+    "display_name": "Manufacturing",
+    "version": "1.0.0",
+    "summary": "Bills of materials, work orders and MRP explosion",
+    "description": "Production foundation for the ERP: multi-level-ready BOMs with component lines, work orders with lifecycle states, and server-side MRP explosion that turns a production order into component demand. Integrates with stock for material consumption and finished-goods receipt in later phases.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "product",
+        "stock"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Manufacturing"
+}

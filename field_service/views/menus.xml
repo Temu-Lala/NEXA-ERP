@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <menuitem id="fs_menu_root" name="Field Service" web_icon="map-pin" sequence="55" groups="field_service.group_fs_user"/>
+        <menuitem id="menu_fs_tech" name="Technicians" parent="fs_menu_root" action="field_service.action_fs_tech" sequence="1" groups="field_service.group_fs_user"/>
+        <menuitem id="menu_fs_wo" name="Work Orders" parent="fs_menu_root" action="field_service.action_fs_wo" sequence="2" groups="field_service.group_fs_user"/>
+        <menuitem id="menu_fs_part" name="Parts Used" parent="fs_menu_root" action="field_service.action_fs_part" sequence="3" groups="field_service.group_fs_user"/>
+    </data>
+</nexa>

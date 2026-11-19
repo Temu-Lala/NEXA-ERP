@@ -2,6 +2,16 @@
 <nexa>
     <data>
         <view id="view_hr_applicant_kanban" model="hr.applicant" type="kanban" default_group_by="stage" records_draggable="1">
+            <field name="stage"/>
+            <field name="name"/>
+            <field name="job_id"/>
+            <field name="department_id"/>
+            <field name="email"/>
+            <field name="phone"/>
+            <field name="source"/>
+            <field name="employee_id"/>
+            <field name="consent_given"/>
+            <field name="duplicate_detected"/>
         </view>
         <view id="view_hr_applicant_list" model="hr.applicant" type="list">
             <field name="name" string="Applicant"/>

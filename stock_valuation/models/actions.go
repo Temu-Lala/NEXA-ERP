@@ -216,10 +216,20 @@ func landedCancel(ctx context.Context, _ string, id int, _ map[string]string) (s
 // Landed cost helpers
 // ---------------------------------------------------------------------------
 
-type receiptLine struct {
+type Landed struct {
 	lineID, pickID, prodID int
 	qty                    float64
 	valueCents             int64
+}
+
+// receiptLine is one posted incoming move line plus its synced receipt-layer
+// value used for landed-cost allocation weights.
+type receiptLine struct {
+	lineID     int
+	prodID     int
+	qty        float64
+	valueCents int64
+	pickID     int
 }
 
 // receiptLinesFor loads the transfer's posted incoming move lines together

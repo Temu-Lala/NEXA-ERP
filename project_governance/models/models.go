@@ -35,6 +35,7 @@ const (
 // ProjectBaseline is an approved snapshot of a project's schedule and budget.
 type ProjectBaseline struct {
 	sdk.Model `nexa:"model=project.baseline"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID     sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`
 	Name          sdk.String                   `nexa:"required,string=Baseline"`
@@ -50,6 +51,7 @@ type ProjectBaseline struct {
 // ProjectDecision records a key decision, its decision maker and rationale.
 type ProjectDecision struct {
 	sdk.Model `nexa:"model=project.decision"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID    sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`
 	Name         sdk.String                   `nexa:"required,string=Decision"`
@@ -64,6 +66,7 @@ type ProjectDecision struct {
 // ProjectFinancialSnapshot is a dated financial summary line for trend reporting.
 type ProjectFinancialSnapshot struct {
 	sdk.Model `nexa:"model=project.financial.snapshot"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID   sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`
 	Date        sdk.Date                     `nexa:"required,string=Date"`

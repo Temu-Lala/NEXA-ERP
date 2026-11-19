@@ -1,0 +1,20 @@
+{
+    "name": "itsm",
+    "display_name": "IT Service Management",
+    "version": "1.0.0",
+    "summary": "Incidents, problems, changes and releases",
+    "description": "ITSM depth on top of helpdesk: incident management with major-incident declaration and commanders, problem management with known-error tracking, change management with risk assessment and approval boards, and release planning with staged deployment. Links back to helpdesk tickets for the support front-end.",
+    "author": "Nexa",
+    "depends": [
+        "base",
+        "helpdesk"
+    ],
+    "data": [
+        "security/security.xml",
+        "security/sys.access.csv",
+        "views/views.xml",
+        "views/menus.xml"
+    ],
+    "application": true,
+    "category": "Service Management"
+}

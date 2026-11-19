@@ -6,6 +6,7 @@ import (
 
 type AccountRecurringTemplate struct {
 	sdk.Model `nexa:"model=account.recurring.template"`
+	CompanyID sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name      sdk.String                   `nexa:"required,string=Name"`
 	JournalID sdk.Many2One[AccountJournal] `nexa:"string=Journal"`

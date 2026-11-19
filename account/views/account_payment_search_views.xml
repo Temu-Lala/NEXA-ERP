@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_account_payment_search" model="account.payment" type="search">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="memo"/>
+            <field name="invoice_id"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="posted" string="Posted" domain='[["state","=","posted"]]'/>
+            <filter name="cancelled" string="Cancelled" domain='[["state","=","cancelled"]]'/>
+            <filter name="inbound" string="Customer Payments" domain='[["payment_type","=","inbound"]]'/>
+            <filter name="outbound" string="Vendor Payments" domain='[["payment_type","=","outbound"]]'/>
+            <filter name="group_partner" string="Partner" group_by="partner_id"/>
+            <filter name="group_journal" string="Journal" group_by="journal_id"/>
+            <filter name="group_date" string="Date" group_by="date"/>
+            <filter name="group_type" string="Type" group_by="payment_type"/>
+            <filter name="group_state" string="Status" group_by="state"/>
+        </view>
+    </data>
+</nexa>

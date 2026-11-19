@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <record id="module_category_healthcare" model="sys.module.category">
+            <field name="name">Healthcare</field>
+            <field name="sequence">53</field>
+        </record>
+        <record id="group_healthcare_admin" model="core.group">
+            <field name="name">Healthcare / Administrator</field>
+            <field name="category_id" ref="module_category_healthcare"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_healthcare_clinical" model="core.group">
+            <field name="name">Healthcare / Clinical</field>
+            <field name="category_id" ref="module_category_healthcare"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_healthcare_frontdesk" model="core.group">
+            <field name="name">Healthcare / Front Desk</field>
+            <field name="category_id" ref="module_category_healthcare"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</nexa>

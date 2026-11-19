@@ -1,0 +1,9 @@
+id,name,model,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_re_property_user,access_re_property_user,realestate.property,group_real_estate_user,1,1,1,0
+access_re_property_manager,access_re_property_manager,realestate.property,group_real_estate_manager,1,1,1,1
+access_re_unit_user,access_re_unit_user,realestate.unit,group_real_estate_user,1,1,1,0
+access_re_unit_manager,access_re_unit_manager,realestate.unit,group_real_estate_manager,1,1,1,1
+access_re_lease_user,access_re_lease_user,realestate.lease,group_real_estate_user,1,1,1,0
+access_re_lease_manager,access_re_lease_manager,realestate.lease,group_real_estate_manager,1,1,1,1
+access_re_rent_payment_user,access_re_rent_payment_user,realestate.rent.payment,group_real_estate_user,1,1,1,0
+access_re_rent_payment_manager,access_re_rent_payment_manager,realestate.rent.payment,group_real_estate_manager,1,1,1,1

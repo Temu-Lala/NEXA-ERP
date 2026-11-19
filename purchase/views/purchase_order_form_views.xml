@@ -24,8 +24,12 @@
                     <group string="Purchase">
                         <field name="user_id" string="Buyer"/>
                         <field name="invoice_status" string="Billing Status"/>
+                        <field name="requisition_ref"/>
+                        <field name="rfq_ref"/>
+                        <field name="contract_ref"/>
+                        <field name="is_maverick" readonly="true"/>
                         <field name="company_id" string="Company"/>
-                        <field name="amount_total" string="Total"/>
+                        <field name="amount_total" string="Total" widget="monetary"/>
                     </group>
                 </group>
                 <notebook>

@@ -22,4 +22,3 @@ type CorePartner = basemodels.CorePartner
 
 // CoreUser → core.user
 type CoreUser = basemodels.CoreUser
-

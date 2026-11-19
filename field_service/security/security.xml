@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <record id="module_category_field_service" model="sys.module.category">
+            <field name="name">Field Service</field>
+            <field name="sequence">54</field>
+        </record>
+        <record id="group_fs_user" model="core.group">
+            <field name="name">Field Service / User</field>
+            <field name="category_id" ref="module_category_field_service"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_fs_manager" model="core.group">
+            <field name="name">Field Service / Manager</field>
+            <field name="category_id" ref="module_category_field_service"/>
+            <field name="implied_ids" eval="[(4, ref('group_fs_user'))]"/>
+        </record>
+    </data>
+</nexa>

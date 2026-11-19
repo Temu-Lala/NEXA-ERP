@@ -4,8 +4,10 @@ import (
 	"nexa/core/sdk"
 )
 
+// ProductProduct model.
 type ProductProduct struct {
 	sdk.Model `nexa:"model=product.product"`
+	CompanyID sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name                     sdk.String                       `nexa:"required,string=Product Name"`
 	Image                    sdk.Text                         `nexa:"string=Image"`
@@ -34,5 +36,10 @@ type ProductProduct struct {
 	SaleOk                   sdk.Boolean                      `nexa:"string=Can be Sold,default=true"`
 	PropertyAccountIncomeID  sdk.Many2One[sdk.Any]            `nexa:"comodel=account.account,string=Income Account"`
 	PropertyAccountExpenseID sdk.Many2One[sdk.Any]            `nexa:"comodel=account.account,string=Expense Account"`
+	PosEnabled               sdk.Boolean                      `nexa:"string=POS Enabled,default=true"`
+	EcommerceEnabled         sdk.Boolean                      `nexa:"string=E-commerce Enabled,default=true"`
+	WholesaleEnabled         sdk.Boolean                      `nexa:"string=Wholesale Enabled,default=true"`
+	AgeRestricted            sdk.Boolean                      `nexa:"string=Age Restricted,default=false"`
+	SoldByWeight             sdk.Boolean                      `nexa:"string=Sold by Weight,default=false"`
 	Active                   sdk.Boolean                      `nexa:"string=Active,default=true"`
 }

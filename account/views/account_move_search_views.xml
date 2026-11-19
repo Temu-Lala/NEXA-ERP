@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nexa>
+    <data>
+        <view id="view_account_move_search" model="account.move" type="search">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="ref"/>
+            <field name="invoice_origin"/>
+            <field name="narration"/>
+            <filter name="draft" string="Draft" domain='[["state","=","draft"]]'/>
+            <filter name="posted" string="Posted" domain='[["state","=","posted"]]'/>
+            <filter name="cancel" string="Cancelled" domain='[["state","=","cancel"]]'/>
+            <filter name="paid" string="Paid" domain='[["payment_state","=","paid"]]'/>
+            <filter name="not_paid" string="Not Paid" domain='[["payment_state","=","not_paid"]]'/>
+            <filter name="partial" string="Partial" domain='[["payment_state","=","partial"]]'/>
+            <filter name="out_invoice" string="Customer Invoices" domain='[["move_type","=","out_invoice"]]'/>
+            <filter name="out_refund" string="Credit Notes" domain='[["move_type","=","out_refund"]]'/>
+            <filter name="in_invoice" string="Vendor Bills" domain='[["move_type","=","in_invoice"]]'/>
+            <filter name="in_refund" string="Vendor Refunds" domain='[["move_type","=","in_refund"]]'/>
+            <filter name="entry" string="Journal Entries" domain='[["move_type","=","entry"]]'/>
+            <filter name="group_partner" string="Partner" group_by="partner_id"/>
+            <filter name="group_journal" string="Journal" group_by="journal_id"/>
+            <filter name="group_invoice_date" string="Invoice Date" group_by="invoice_date"/>
+            <filter name="group_date_due" string="Due Date" group_by="invoice_date_due"/>
+            <filter name="group_move_type" string="Type" group_by="move_type"/>
+            <filter name="group_currency" string="Currency" group_by="currency_id"/>
+            <filter name="group_state" string="Status" group_by="state"/>
+        </view>
+    </data>
+</nexa>

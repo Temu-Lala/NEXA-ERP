@@ -2,6 +2,7 @@ package models
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"strings"
 	"time"
@@ -47,6 +48,7 @@ const (
 // is what the board shows while the sprint is running.
 type ProjectSprint struct {
 	sdk.Model `nexa:"model=project.sprint"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name            sdk.String                   `nexa:"required,size=80,string=Sprint"`
 	ProjectID       sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`
@@ -74,6 +76,7 @@ type ProjectSprint struct {
 // remaining_points is the burn line: scope of the sprint minus what is finished.
 type ProjectSprintSnapshot struct {
 	sdk.Model `nexa:"model=project.sprint.snapshot"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	SprintID        sdk.Many2One[ProjectSprint] `nexa:"required,index,string=Sprint,ondelete=cascade"`
 	Date            sdk.Date                    `nexa:"required,index,string=Day"`
@@ -81,6 +84,10 @@ type ProjectSprintSnapshot struct {
 	CompletedPoints sdk.Integer                 `nexa:"string=Completed Points,default=0"`
 	RemainingPoints sdk.Integer                 `nexa:"string=Remaining Points,default=0"`
 	OpenIssues      sdk.Integer                 `nexa:"string=Open Issues,default=0"`
+	// StageCounts is a JSON object {"<stage name>": <open issues>} captured at
+	// snapshot time — the raw material for the cumulative-flow diagram. Stored
+	// as text because stage sets differ per project and columns are dynamic.
+	StageCounts sdk.Text `nexa:"string=Stage Counts"`
 }
 
 func init() {
@@ -320,6 +327,7 @@ func writeSprintSnapshotValues(ctx context.Context, sprintID int, day time.Time,
 	}
 	date := day.Format(dateLayout)
 	vals := snapshotValues(sprintID, day, t)
+	vals["stage_counts"] = sprintStageCountsJSON(ctx, sprintID)
 	existing, err := orm.SearchPage(ctx, snapModel, [][]interface{}{
 		{"sprint_id", "=", sprintID},
 		{"date", "=", date},
@@ -518,4 +526,56 @@ func nextBacklogRank(ctx context.Context, projectID int) int {
 		rank = 10
 	}
 	return rank + 10
+}
+
+// sprintStageCountsJSON tallies the sprint's open issues by board stage and
+// returns a JSON object {"<stage name>": <count>} for the CFD. Stage names are
+// resolved so the chart needs no second lookup; issues without a stage bucket
+// under "No stage".
+func sprintStageCountsJSON(ctx context.Context, sprintID int) string {
+	if sprintID <= 0 {
+		return "{}"
+	}
+	bypass := orm.ContextWithBypass(ctx, true)
+	rows, err := orm.SearchPage(bypass, taskModel, [][]interface{}{
+		{"sprint_id", "=", sprintID},
+		{"state", "not in", []interface{}{string(TaskStateDone), string(TaskStateCancelled)}},
+	}, 2000, 0, "id asc")
+	if err != nil {
+		return "{}"
+	}
+	stageNames := map[int]string{}
+	counts := map[string]int{}
+	var stageIDs []int
+	for _, r := range rows {
+		sid := intID(r["stage_id"])
+		if sid > 0 {
+			stageIDs = append(stageIDs, sid)
+		}
+	}
+	seen := map[int]bool{}
+	for _, sid := range stageIDs {
+		if seen[sid] {
+			continue
+		}
+		seen[sid] = true
+		if st := loadRec(bypass, stageModel, sid); st != nil {
+			stageNames[sid] = str(st["name"])
+		}
+	}
+	for _, r := range rows {
+		sid := intID(r["stage_id"])
+		name := "No stage"
+		if sid > 0 {
+			if n := stageNames[sid]; n != "" {
+				name = n
+			}
+		}
+		counts[name]++
+	}
+	b, err := json.Marshal(counts)
+	if err != nil {
+		return "{}"
+	}
+	return string(b)
 }

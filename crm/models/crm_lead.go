@@ -62,4 +62,7 @@ type CrmLead struct {
 	MeetingCount           sdk.Integer                      `nexa:"string=Meetings,default=0"`
 	QuotationCount         sdk.Integer                      `nexa:"string=Quotations,default=0"`
 	LeadProperties         sdk.Text                         `nexa:"string=Properties"`
+
+	// Pipeline analytics (computed, see kanban_compute.go).
+	DaysInStage sdk.Integer `nexa:"string=Days In Stage,compute=computeLeadDaysInStage"`
 }

@@ -60,6 +60,7 @@ const (
 // ProjectRisk is a risk register entry with probability, impact and mitigation.
 type ProjectRisk struct {
 	sdk.Model `nexa:"model=project.risk"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID   sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`
 	Name        sdk.String                   `nexa:"required,string=Risk"`
@@ -76,6 +77,7 @@ type ProjectRisk struct {
 // ProjectIssue is a delivery issue or blocker raised on a project.
 type ProjectIssue struct {
 	sdk.Model `nexa:"model=project.issue"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID      sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`
 	Name           sdk.String                   `nexa:"required,string=Issue"`
@@ -90,6 +92,7 @@ type ProjectIssue struct {
 // ProjectChangeRequest records a proposed change and its approved outcome.
 type ProjectChangeRequest struct {
 	sdk.Model `nexa:"model=project.change.request"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	ProjectID          sdk.Many2One[ProjectProject] `nexa:"required,index,string=Project"`
 	Name               sdk.String                   `nexa:"required,string=Change Title"`

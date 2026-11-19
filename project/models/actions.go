@@ -29,6 +29,7 @@ func init() {
 	orm.RegisterObjectAction(projModel, "action_cancel", projCancel)
 	orm.RegisterObjectAction(projModel, "action_archive", projArchive)
 	orm.RegisterObjectAction(projModel, "action_recompute", projRecompute)
+	orm.RegisterObjectAction(projModel, "action_clone", projClone)
 
 	// Task lifecycle.
 	orm.RegisterObjectAction(taskModel, "action_ready", taskReady)

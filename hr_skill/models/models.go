@@ -23,6 +23,7 @@ const (
 // HrSkillType categorizes skills (e.g. Technical, Communication, Leadership).
 type HrSkillType struct {
 	sdk.Model `nexa:"model=hr.skill.type"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name   sdk.String  `nexa:"required,string=Name"`
 	Active sdk.Boolean `nexa:"string=Active,default=true"`
@@ -31,6 +32,7 @@ type HrSkillType struct {
 // HrSkill represents an individual skill definition.
 type HrSkill struct {
 	sdk.Model `nexa:"model=hr.skill"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name   sdk.String                `nexa:"required,string=Skill"`
 	TypeID sdk.Many2One[HrSkillType] `nexa:"required,string=Skill Type"`
@@ -40,6 +42,7 @@ type HrSkill struct {
 // HrEmployeeSkill records an employee's proficiency in a skill.
 type HrEmployeeSkill struct {
 	sdk.Model `nexa:"model=hr.employee.skill"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	EmployeeID sdk.Many2One[HrEmployee]  `nexa:"required,string=Employee"`
 	SkillID    sdk.Many2One[HrSkill]     `nexa:"required,string=Skill"`
@@ -50,6 +53,7 @@ type HrEmployeeSkill struct {
 // HrJobSkill defines a skill requirement for a job position.
 type HrJobSkill struct {
 	sdk.Model `nexa:"model=hr.job.skill"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	JobID   sdk.Many2One[HrJob]       `nexa:"required,string=Job Position"`
 	SkillID sdk.Many2One[HrSkill]     `nexa:"required,string=Required Skill"`

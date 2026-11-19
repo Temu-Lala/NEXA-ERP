@@ -6,17 +6,19 @@ import (
 
 type AccountBankStatement struct {
 	sdk.Model `nexa:"model=account.bank.statement"`
+	CompanyID sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
-	Name       sdk.String                         `nexa:"required,string=Reference"`
-	JournalID  sdk.Many2One[AccountJournal]       `nexa:"required,string=Journal"`
-	Date       sdk.Date                           `nexa:"string=Date"`
-	BalanceEnd sdk.Numeric                        `nexa:"string=Ending Balance,precision=18,scale=2,default=0"`
-	State      sdk.Selection[BankStatementState]  `nexa:"string=Status,default=open"`
+	Name       sdk.String                             `nexa:"required,string=Reference"`
+	JournalID  sdk.Many2One[AccountJournal]           `nexa:"required,string=Journal"`
+	Date       sdk.Date                               `nexa:"string=Date"`
+	BalanceEnd sdk.Numeric                            `nexa:"string=Ending Balance,precision=18,scale=2,default=0"`
+	State      sdk.Selection[BankStatementState]      `nexa:"string=Status,default=open"`
 	LineIDs    sdk.One2Many[AccountBankStatementLine] `nexa:"string=Statement Lines"`
 }
 
 type AccountBankStatementLine struct {
 	sdk.Model `nexa:"model=account.bank.statement.line"`
+	CompanyID sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	StatementID  sdk.Many2One[AccountBankStatement] `nexa:"required,index,string=Statement"`
 	Date         sdk.Date                           `nexa:"string=Date"`
@@ -29,10 +31,11 @@ type AccountBankStatementLine struct {
 
 type AccountReconcileModel struct {
 	sdk.Model `nexa:"model=account.reconcile.model"`
+	CompanyID sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
-	Name              sdk.String                 `nexa:"required,string=Name"`
-	MatchLabel        sdk.String                 `nexa:"string=Label Contains"`
-	MatchAmount       sdk.Numeric                `nexa:"string=Amount Tolerance,precision=18,scale=2,default=0.01"`
+	Name              sdk.String                   `nexa:"required,string=Name"`
+	MatchLabel        sdk.String                   `nexa:"string=Label Contains"`
+	MatchAmount       sdk.Numeric                  `nexa:"string=Amount Tolerance,precision=18,scale=2,default=0.01"`
 	WriteoffAccountID sdk.Many2One[AccountAccount] `nexa:"string=Write-off Account"`
-	Active            sdk.Boolean                `nexa:"string=Active,default=true"`
+	Active            sdk.Boolean                  `nexa:"string=Active,default=true"`
 }

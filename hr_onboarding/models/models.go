@@ -42,6 +42,7 @@ const (
 // HrOnboardingPlan tracks the onboarding process for one employee.
 type HrOnboardingPlan struct {
 	sdk.Model `nexa:"model=hr.onboarding.plan"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	Name         sdk.String                     `nexa:"required,string=Plan Name"`
 	EmployeeID   sdk.Many2One[HrEmployee]       `nexa:"required,string=Employee"`
@@ -55,6 +56,7 @@ type HrOnboardingPlan struct {
 // HrOnboardingActivity is a checklist item within an onboarding plan.
 type HrOnboardingActivity struct {
 	sdk.Model `nexa:"model=hr.onboarding.activity"`
+	CompanyID   sdk.Many2One[CoreCompany] `nexa:"index,string=Company,default=current_company"`
 
 	PlanID        sdk.Many2One[HrOnboardingPlan] `nexa:"required,string=Plan"`
 	Name          sdk.String                     `nexa:"required,string=Activity"`
